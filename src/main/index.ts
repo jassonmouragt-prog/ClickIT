@@ -11,7 +11,9 @@ import { exportPhotos, selected } from '../services/export.ts';
 import * as validate from '../lib/validation.ts';
 import type { Face, FaceReply, Progress, Settings } from '../types/domain.ts';
 import { LIMITS } from '../lib/config.ts';
-import { LICENSED } from '../licensing/types.ts';
+import { requireWorkspaceLicense } from './workspace-license.ts';
+import { registerEditingHandlers } from '../editing/ipc.ts';
+import { referenceThumbnail } from '../editing/references.ts';
 import type { LicenseManager } from '../licensing/manager.ts';
 import { installLicenseManager, licenseApiUrl } from './license.ts';
 protocol.registerSchemesAsPrivileged([{ scheme: 'clickit', privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, corsEnabled: true } }]);
@@ -77,6 +79,13 @@ else {
         if (url.hostname === 'app') {
           const root = path.join(__dirname, 'renderer'); file = path.resolve(root, '.' + decodeURIComponent(url.pathname));
           if (!inside(root, file)) return new Response('Forbidden', { status: 403 });
+        } else if (url.hostname === 'reference') {
+          await requireWorkspaceLicense(license);
+          const referenceId = validate.id(url.pathname.slice(1));
+          const reference = store.listReferenceImages().find(r => r.id === referenceId);
+          if (!reference) return new Response('Not found', { status: 404 });
+          const thumbnail = await referenceThumbnail(reference);
+          return new Response(new Uint8Array(thumbnail), { headers: { 'Content-Type': 'image/jpeg', 'Cache-Control': 'no-store' } });
         } else if (url.hostname === 'models' && url.pathname === '/face_landmarker.task') file = path.join(models(), 'face_landmarker.task');
         else if (url.hostname === 'photo') {
           const [, photoId, kind] = url.pathname.split('/'); validate.id(photoId);
@@ -115,8 +124,7 @@ const handle = (channel: string, fn: (...args: unknown[]) => unknown, protectedC
           const mainWindow = win;
           if (!mainWindow || event.sender !== mainWindow.webContents || event.senderFrame !== mainWindow.webContents.mainFrame || event.senderFrame?.url !== 'clickit://app/index.html') throw new Error('Origem IPC inválida.');
           if (protectedChannel) {
-            const status = await license.status();
-            if (!LICENSED.has(status.state)) throw new Error(status.message ?? 'Licença pendente.');
+            await requireWorkspaceLicense(license);
           }
           return await fn(...args);
         } catch (error) { logger.write('IPC_ERROR', { channel, error: error instanceof Error ? error.stack ?? error.message : String(error) }); throw error; }
@@ -126,6 +134,14 @@ const handle = (channel: string, fn: (...args: unknown[]) => unknown, protectedC
     handle('license:activate', value => { if (typeof value !== 'string') throw new Error('Chave inválida.'); return license.activate(value); });
     handle('license:deactivate', () => license.deactivate());
     const owner = (channel: string, fn: (...args: unknown[]) => unknown): void => handle(channel, fn, true);
+    registerEditingHandlers(owner, store, async mode => {
+      const options = { properties: ['openFile'] as ('openFile')[], filters: [{ name: 'Imagens de referência', extensions: ['jpg', 'jpeg', 'png', 'webp', 'tif', 'tiff'] }] };
+      const before = await dialog.showOpenDialog(win!, { ...options, title: mode === 'PAIR' ? 'Selecionar foto Antes' : 'Adicionar referência' });
+      if (before.canceled || !before.filePaths[0]) return null;
+      if (mode === 'REFERENCE') return [before.filePaths[0]];
+      const after = await dialog.showOpenDialog(win!, { ...options, title: 'Selecionar foto Depois' });
+      return after.canceled || !after.filePaths[0] ? null : [before.filePaths[0], after.filePaths[0]];
+    });
     owner('projects:list', () => store.projects());
     owner('projects:create', async value => {
       if (busy) throw new Error('Aguarde a operação atual.');

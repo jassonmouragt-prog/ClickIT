@@ -1,0 +1,24 @@
+{
+  "mode": "actual Electron GUI automation, not human manual review",
+  "userData": "C:\\dev\\ClickIT\\.test-tmp\\editing-ui-WHlF4U",
+  "checks": [
+    "GUI create/questionnaire/review/save",
+    "GUI reopen/edit/profileVersion=2",
+    "GUI duplicate",
+    "GUI native dialog/reference/thumbnail",
+    "GUI native BEFORE/AFTER pair",
+    "GUI app close/reopen persistent profiles and references",
+    "GUI missing reference",
+    "GUI reference remove",
+    "GUI delete confirmation",
+    "GUI activation gate/all nine editing IPCs and thumbnails blocked without license"
+  ],
+  "screenshots": [
+    "docs/evidence/editing-ui/empty-desktop.png",
+    "docs/evidence/editing-ui/wizard-color-desktop.png",
+    "docs/evidence/editing-ui/wizard-color-1000.png",
+    "docs/evidence/editing-ui/profiles-references-desktop.png"
+  ],
+  "errors": [],
+  "status": "PASS"
+}

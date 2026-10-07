@@ -1088,3 +1088,75 @@ docs/evidence/packaging-reproducibility-2026-10-07.json.
 - Checks: lint PASS, typecheck PASS, 85/85 PASS, build PASS. Zero codigo alterado.
 - Proxima acao: quando houver RAWs reais, rodar
   npm run raw:validate -- --dir "CAMINHO" e declarar RAW_READY_FOR_BETA se PASS.
+
+## Fase A do módulo Editar — 2026-10-07
+
+**Classificação: PHASE_A_READY.**
+
+- Contratos reais em `src/editing/types.ts`; versões centralizadas em
+  `src/editing/config.ts`. CRUD no Store, validadores/fingerprint/lifecycle
+  separados. Nenhuma geração/aplicação de ajustes é executada.
+- Migração v1→v2 aditiva e idempotente das tabelas `editing_profiles`,
+  `editing_plans`, `reference_images`, com transação e rollback de DDL/version.
+- `tests/editing-schema.test.ts` extrai o schema do commit/tag
+  `clickit-beta-0.1.0` via `git show`, cria banco isolado equivalente e prova
+  preservação integral de projects/photos/photo_analysis/photo_decisions,
+  referências de cache e bytes do arquivo original.
+- 18 testes novos: migração/round-trip/reabertura/vazios legados;
+  profileVersion e STALE por evento/leitura; ordem canônica de propriedades;
+  fingerprint sem timestamps/paths; range/enums/versões; lifecycle inválido;
+  engineVersion/hash/path/fingerprint divergentes; refs BEFORE/AFTER;
+  FKs inválidas, exclusão explícita e rollback real de migração.
+- Planos são criados somente DRAFT com arrays vazios e generatedAt=null.
+  Geração e exportação não são simuladas por transições de status;
+  histórico das transições é preservado. Perfil com dependentes não é apagado.
+- Comparação com a tag Beta: nenhum diff em `src/services/pipeline.ts`,
+  `export.ts`, `preview.ts`, `src/ai`, `src/main` ou `src/renderer`.
+  Store recebe apenas integração de persistência/migração e hooks de validade.
+- Checks executados sequencialmente: `npm.cmd run typecheck` PASS;
+  `npm.cmd run lint` PASS; `npm.cmd test` **103/103 PASS** (85 anteriores +
+  18 novos); `npm.cmd run build` PASS. Os testes existentes de importação,
+  análise, picks/decisões, cache/retomada, exportação byte-idêntica e licenciamento
+  continuaram passando.
+- Nenhum novo IPC exposto; não foi necessário alterar guards ou preload.
+  Futura exposição IPC deve reutilizar o guard de licença `owner`.
+- Sem questionário, UI, XMP, edição automática ou nova IA. Fase B não iniciada.
+
+## Fase B do módulo Editar — 2026-10-07
+
+**Classificação: PHASE_B_READY.**
+
+- Questionário determinístico em `src/editing/questionnaire.ts`: 7 etapas
+  (Nome e intenção → Luz e exposição → Cor → Contraste e tons → Textura →
+  Estilo geral → Revisão), 15 sliders cobrindo todos os campos `q`, 6 conceitos
+  cobrindo todos os campos `c`; `newStyleProfile`, `quantitativeAnswer`,
+  `conceptualAnswer`, `describeSlider` e `styleSummary` (resumo "Seu estilo
+  tende a: …" reproduzível). Conceitos `c` continuam intenção semântica — sem
+  números derivados nesta fase.
+- Gestão de referências em `src/editing/references.ts`: importação por diálogo
+  nativo ou cópia de arquivo; individuais `REFERENCE` ou pares `BEFORE`/`AFTER`
+  adicionados juntos (mesmo `pairId`); miniatura via protocolo
+  `clickit://reference/<id>?v=<fingerprint>` (`no-store`); referência ausente
+  marcada "Referência indisponível" sem quebrar o perfil; par atômico;
+  original jamais modificado. Duplicar perfil copia somente `q/c`, sem referências.
+- IPC: 9 handlers (`editing:profiles:list/get/create/update/delete/duplicate`,
+  `editing:references:list/add/remove`) todos atrás de `requireWorkspaceLicense`
+  (`VALID`/`VALID_OFFLINE`); sem licença os 9 IPCs e o fetch de thumbnail são negados.
+- UI: entrada "Editar" na navegação principal, `EditingWorkspace` com lista de
+  perfis (profileVersion, resumo, nº de referências), wizard de 7 etapas,
+  duplicar/excluir com confirmação, grade de referências com miniaturas/estados
+  vazios e "Geração de edição · Em breve" sem geração real.
+- `tests/editing-style.test.ts`: 8 casos PASS (cobertura do questionário,
+  determinismo/limites, conceitos sem derivação, IPC e persistência, duplicação,
+  par BEFORE/AFTER com arquivo ausente e atomicidade, bloqueio de licença nos
+  9 IPCs). Suite final: **111/111 PASS** (85 Beta + 18 Fase A + 8 Fase B).
+- Validação GUI em Electron real (`scripts/validate-editing-ui.mjs`):
+  **PASS, 10 checks, 0 erros**; evidência `docs/evidence/editing-ui/validation.json`
+  e 4 screenshots (estado vazio, wizard Cor no desktop/1000, perfis+referências).
+  Fluxos: criar/questionário/revisão/salvar, reabrir/editar (profileVersion=2),
+  duplicar, diálogo nativo + miniatura, par Antes/Depois, fechar/reabrir
+  (persistência), referência indisponível, remover, confirmar exclusão e gate de
+  ativação bloqueando todos os IPCs de edição e thumbnails sem licença.
+- Checks sequenciais PASS: typecheck, lint, `npm test` 111/111, build.
+  Nenhuma geração de plano, XMP, motor de edição ou preview/editado nesta fase.
+- Próxima ação: aguardar autorização para Fase C.

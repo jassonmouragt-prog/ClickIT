@@ -1,11 +1,15 @@
 # Módulo Editar — Planejamento Técnico
 
-> **Status: SOMENTE PLANEJAMENTO.** Nenhuma linha de código foi escrita.
+> **Status: Fase B implementada (perfis + questionário + referências).**
 > Este documento define arquitetura, schema, interfaces, fluxo, riscos e o
 > plano dividido em fases para a futura aba **Editar** do ClickIT.
 > Base congelada: Beta 0.1.0 (`tag clickit-beta-0.1.0`, commit `cd7f079`).
-> Revisão final de schema/interfaces: **SCHEMA_READY_FOR_PHASE_A**
-> (2026-10-07). A Fase A **não** foi iniciada.
+> Revisão final de schema/interfaces aprovada em 2026-10-07.
+> Contratos executáveis: `src/editing/types.ts`, `config.ts`, `contracts.ts`
+> e `store.ts`; testes: `tests/editing-schema.test.ts` e `tests/editing-style.test.ts`.
+> As fases C–G aguardam autorização.
+> Classificação: **PHASE_B_READY** — Fase A: typecheck, lint, 103/103 testes e build PASS;
+> Fase B: typecheck, lint, 111/111 testes, build PASS e validação GUI automatizada (Electron real).
 
 ## 1. Objetivo e não-objetivos
 
@@ -79,8 +83,9 @@ Princípios:
 
 ## 5. Tipos e interfaces (especificação TypeScript)
 
-> Estes tipos são a especificação. Serão criados em `src/editing/types.ts`
-> apenas na Fase A.
+> O código em `src/editing/types.ts` é o contrato executável da Fase A.
+> O bloco abaixo registra o desenho original; os esclarecimentos da seção 20
+> prevalecem para nullability, versionamento e operações disponíveis.
 
 ```ts
 // Escala UNICA e INTERNA do ClickIT: inteiros -100..+100, step 1 (0 = neutro).
@@ -98,7 +103,7 @@ export interface EditingProfileQuantitative {
   // todos SliderValue | null — null = neutro/nao definido
   temperaturePreference: SliderValue | null; // neg=mais azul, pos=mais Ã¢mbar
   tintPreference: SliderValue | null;
-  exposurePreference: SliderValue | null;    // decimos de EV (35 = +0.35 EV)
+  exposurePreference: SliderValue | null;    // intensidade interna, não EV
   contrastPreference: SliderValue | null;
   highlightsPreference: SliderValue | null;
   shadowsPreference: SliderValue | null;
@@ -189,7 +194,7 @@ export interface EditingPlan {
   profileVersion: number;             // versao do perfil USADA na geracao
   engineVersion: number;              // EDITING_ENGINE_VERSION usada na geracao
   inputFingerprint: string;           // algoritmo no item 5.1
-  generatedAt: string;                // quando o conteudo foi (re)gerado
+  generatedAt: string | null;         // null em DRAFT; nenhum motor nesta fase
   createdAt: string;                  // criacao do registro
   updatedAt: string;
   baseStyle: EditingAdjustment[];     // REQUERIDO — do perfil (deterministico)
@@ -226,7 +231,7 @@ export interface XmpExportResult {
 ENTRADAS (string canônica, chaves ordenadas, sem timestamps, sem caminhos):
   EDITING_ENGINE_VERSION            ;  // versao SEMANTICA do mapeamento perfil/deltas
   profileVersion                    ;  // versao do perfil
-  sha256(canonicalJson(EditingProfile)) ; // CONTEUDO do perfil (q+c ordenados)
+  sha256(canonicalJson({ q, c }))    ; // CONTEUDO relevante do perfil, ordenado
   ANALYSIS_VERSION                  ;  // versao da analise (ja existe em config)
   photos.hash                       ;  // hash sha-256 do ARQUIVO de origem persistido
 
@@ -234,7 +239,8 @@ inputFingerprint = sha256(joinsComPipeDasEntradasAcima)
 ```
 
 - `canonicalJson` = `JSON.stringify` com chaves recursivamente ordenadas,
-  sem espaços, usando apenas os campos do perfil (nada gerado em runtime).
+  sem espaços, usando apenas `q` e `c`. Nome, IDs, caminhos, source e datas
+  não mudam os ajustes e não entram no hash de conteúdo.
 - **Determinístico**: os mesmos 5 insumos sempre produzem o mesmo hash; sem
   data/hora, PID, path absoluto ou ordem de iteração não estável.
 - **Garante invalidação** quando: perfil for editado (muda hash do conteúdo
@@ -258,8 +264,8 @@ derivação documentada). A distinção existe para deixar claro **o mecanismo**
 
 - `SliderValue` (-100..+100) é **espaço interno do ClickIT**. Não é garantia
   de equivalência numérica com Lightroom/Camera Raw.
-- A conversão (curvas/faixas documentadas por parâmetro, ex.: temperatura ±40,
-  exposição em décimos de EV) acontece **somente na Fase E**, dentro de
+- A conversão (curvas/faixas documentadas por parâmetro; nenhuma equivalência
+  física assumida nesta fase) acontece **somente na Fase E**, dentro de
   `src/editing/xmp.ts`.
 - Nenhum valor interno é escrito em XMP antes da Fase E.
 
@@ -283,7 +289,7 @@ Regras absolutas:
 CREATE TABLE IF NOT EXISTS editing_profiles (
   id TEXT PRIMARY KEY,
   name TEXT NOT NULL,
-  profile_version INTEGER NOT NULL DEFAULT 1,
+  profileVersion INTEGER NOT NULL CHECK(profileVersion >= 1),
   data TEXT NOT NULL,               -- EditingProfile (JSON)
   createdAt TEXT NOT NULL,
   updatedAt TEXT NOT NULL
@@ -322,7 +328,7 @@ Regras da migração:
 
 - Nova abertura de banco v1: creates rodam, `user_version` vira 2, tabelas
   antigas intocadas, dados antigos íntegros.
-- Persistência de `profile_version` e `status`/`fingerprint` também em coluna
+- Persistência de `profileVersion` e `status`/`fingerprint` também em coluna
   facilita consulta SQL (ex.: "planos STALE") sem ler JSON.
 - `UNIQUE(profileId, photoId)` evita plano duplicado por par perfil+foto.
 
@@ -477,9 +483,12 @@ extras nesta fase de planejamento.
 | Consumo de RAM ao revisar muitas fotos | usar preview cache existente; revisão em lote paginada 20–50 |
 | `photos.hash` ausente (análise não concluída) | plano só para `analysisStatus='DONE'` |
 
-## 17. Testes de compatibilidade schema/interfaces (implementar na Fase A)
+## 17. Testes de compatibilidade schema/interfaces (implementados na Fase A)
 
 `tests/editing-schema.test.ts` — casos obrigatórios:
+
+Os seis cenários abaixo foram implementados, com mais testes de integridade,
+totalizando 18 testes novos; detalhes e resultado na seção 20 e em VALIDATION.md.
 
 1. **Abrir store v1**: usar fixture = cópia de banco v1 real (sem `editing_*`);
    abre sem erro; `user_version` passa a 2; `projects`/`photos` íntegros e
@@ -529,3 +538,165 @@ round-trip; export byte-idêntico preservado; nenhum original escrito.
 - **Beta 0.2**: Fases C–D (geração e revisão de planos).
 - **Beta 0.3**: Fase E (XMP), depois F e G.
 - Marcadores intermediários criados a cada fase concluída (tags locais).
+
+## 20. Fase A — contrato implementado (2026-10-07)
+
+### Persistência e compatibilidade
+
+`Store` herda somente operações persistentes de `EditingStore`. As três
+tabelas novas e seus índices são criados em `BEGIN IMMEDIATE`; falhas fazem
+`ROLLBACK`, incluindo o `PRAGMA user_version`. Não há mecanismo de backup
+no Store Beta; é usado seu mecanismo equivalente de transação/rollback.
+A versão v2 só é gravada depois dos creates. Nenhuma tabela Beta é removida
+ou alterada. A rotina Beta de recuperação de trabalhos interrompidos permanece.
+
+Coleções sem tabelas editing retornam `[]`; após upgrade, projetos antigos
+possuem tabelas vazias. Erros de versão futura são explícitos, sem downgrade.
+
+Métodos disponíveis no Store:
+
+- `createEditingProfile(input)`, `getEditingProfile(id)`, `listEditingProfiles()`,
+  `updateEditingProfile(id, input)`, `deleteEditingProfile(id)`;
+- `createEditingPlan(profileId, sourcePhotoId)`, `getEditingPlan(id)`,
+  `listEditingPlans(profileId?)`, `updateEditingPlanStatus(id, status)`,
+  `deleteEditingPlan(id)`;
+- `addReferenceImage(input)`, `listReferenceImages(profileId?)`,
+  `removeReferenceImage(id)`.
+
+Perfis novos têm `profileVersion=1`; cada mudança efetiva em `q` ou `c`
+incrementa exatamente uma unidade, independentemente da ordem das propriedades.
+Alterações de nome/metadados não avançam versão. O chamador não escolhe versão.
+Não há exclusão automática de planos: excluir perfil com planos/referências
+falha explicitamente; o usuário deve remover dependentes de forma explícita.
+
+### Fingerprint e validade
+
+Implementação: SHA-256 UTF-8 de
+`[EDITING_ENGINE_VERSION, profileVersion, sha256(canonicalJson({q,c})), ANALYSIS_VERSION, photos.hash].join('|')`.
+Sem timestamps, nome, IDs ou caminhos. `sourceOriginalPath` é conferido
+separadamente para detectar mudanças da referência original.
+
+Planos só nascem `DRAFT`, com arrays vazios, `generatedAt=null` e `xmpPath=null`.
+`statusHistory` registra estado e data das transições, preservando estado anterior.
+Leitura compara versão do perfil/motor, status de análise, hash, path e fingerprint;
+divergência persiste `STALE` sem remover o plano. Mudança do perfil ou reindexação
+da origem marca STALE no evento; resultado de análise também verifica os planos
+da foto. Alterações físicas externas são detectadas quando o fluxo existente de
+indexação/análise atualiza a identidade, sem novo scanner de arquivos nesta fase.
+
+Transições estruturais: DRAFT→GENERATED, GENERATED→REVIEWED,
+REVIEWED→EXPORTED, EXPORTED→REVIEWED, qualquer estado não stale→STALE,
+STALE→GENERATED. Saltos ou estados desconhecidos falham.
+GENERATED exige geração prévia válida (`generatedAt`), regeneração de STALE
+exige o motor futuro; EXPORTED exige evidência (`xmpPath`). Como nenhum motor
+ou exporter foi implementado, essas evidências não são criadas pela Fase A.
+
+### Quantitativos (MODEL_DELTA, espaço interno)
+
+Todos são inteiros; `null` significa preferência ausente, `0` intensidade neutra.
+Nenhum valor abaixo é Kelvin, EV ou slider equivalente de Lightroom.
+
+| Parâmetro | Faixa | Semântica interna (negativo / positivo) |
+|---|---|---|
+| temperaturePreference | -100..100 | mais frio / mais quente |
+| tintPreference | -100..100 | mais verde / mais magenta |
+| exposurePreference | -100..100 | mais escuro / mais claro |
+| contrastPreference | -100..100 | menos / mais contraste |
+| highlightsPreference | -100..100 | reduzir / elevar altas luzes |
+| shadowsPreference | -100..100 | densificar / abrir sombras |
+| whitesPreference | -100..100 | reduzir / elevar brancos |
+| blacksPreference | -100..100 | aprofundar / levantar pretos |
+| saturationPreference | -100..100 | menos / mais saturação |
+| vibrancePreference | -100..100 | menos / mais vivacidade |
+| clarityPreference | -100..100 | suavizar / elevar contraste local |
+| texturePreference | -100..100 | suavizar / acentuar textura |
+| sharpeningPreference | -100..100 | reduzir / acentuar nitidez pretendida |
+| grainPreference | 0..100 | ausente / intensidade de grão |
+| vignettePreference | -100..100 | clarear / escurecer bordas |
+
+Os conceitos `c` permanecem DERIVED_DELTA como contrato futuro, sem qualquer
+conversão nesta fase. Todas as medidas não disponíveis em `SceneSignals`
+aceitam `null`, inclusive indoor/temperatura/céu/verde; nenhum sinal é calculado.
+Referências persistem paths/hash fornecidos, sem tocar nos arquivos nem nos planos.
+
+### IPC e testes
+
+Não foi necessário criar IPC para persistência local/testes. Não há novos
+handlers/preload nem nova superfície sem licença; futura exposição de dados
+deve utilizar o guard `owner` já existente. Nenhuma UI foi criada.
+
+Os testes extraem o schema v1 diretamente da tag `clickit-beta-0.1.0`, geram
+um banco isolado equivalente e comprovam integridade dos registros Beta.
+Cobertura inclui round-trip/idempotência, vazio legado, range/enums/versões,
+STALE por evento e por leitura, lifecycle, refs BEFORE/AFTER, fingerprint
+determinístico e rollback real de DDL. Checks e classificação final estão
+registrados em `docs/VALIDATION.md`.
+
+## 21. Fase B — perfis, questionário e referências (implementado 2026-10-07)
+
+### Questionário determinístico (`src/editing/questionnaire.ts`)
+
+- 7 etapas: `Nome e intenção`, `Luz e exposição`, `Cor`, `Contraste e tons`,
+  `Textura`, `Estilo geral`, `Revisão` (`STYLE_STEPS`).
+- 15 sliders quantitativos (`STYLE_SLIDERS`) cobrindo todos os campos `q`
+  (temperature, tint, exposure, contrast, highlights, shadows, whites, blacks,
+  saturation, vibrance, clarity, texture, sharpening, grain, vignette) com
+  faixa/step/passo determinístico.
+- 6 conceitos (`STYLE_CONCEPTS`) cobrindo todos os campos `c`
+  (skinToneStyle, greensStyle, bluesStyle, blackPointStyle, highlightStyle,
+  overallMood) com opções explícitas.
+- `newStyleProfile(nome)` gera perfil vazio `source:'QUESTIONNAIRE'`;
+  `quantitativeAnswer`/`conceptualAnswer` aplicam o valor selecionado;
+  `describeSlider` e `styleSummary` produzem resumo textual determinístico
+  ("Seu estilo tende a: …"), reproduzível a partir do mesmo perfil.
+- Os conceitos `c` permanecem **intenção semântica**: nenhum número derivado
+  de `c` é calculado nem exposto na Fase B (conversão DERIVED_DELTA fica para
+  as fases de geração/XMP).
+
+### Referências (`src/editing/references.ts`)
+
+- Adicionar por diálogo nativo de arquivo (main) ou cópia de arquivo existente;
+  **nunca** modifica o arquivo original (leitura para SHA-256/thumbnail).
+- Individuais `kind:'REFERENCE'`; pares Antes/Depois `BEFORE`+`AFTER` são
+  adicionados juntos compartilhando `pairId` (decisão do usuário).
+- Miniatura servida via protocolo `clickit://reference/<id>?v=<fingerprint>`
+  com `Cache-Control: no-store`; referência ausente é marcada
+  "Referência indisponível" sem quebrar o perfil.
+- Arquivamentos de par são atômicos: falha em qualquer imagem do par descarta o par.
+
+### IPC e licença (`src/editing/ipc.ts`, `src/main/workspace-license.ts`)
+
+9 handlers, todos atrás de `requireWorkspaceLicense` (`VALID`/`VALID_OFFLINE`):
+
+- `editing:profiles:list`, `editing:profiles:get`, `editing:profiles:create`,
+  `editing:profiles:update`, `editing:profiles:delete`, `editing:profiles:duplicate`,
+- `editing:references:list`, `editing:references:add`, `editing:references:remove`.
+
+Sem licença, os 9 IPCs e o fetch de thumbnail são negados — sem nova superfície
+fora do guard existente. `duplicate` copia somente `q/c` (decisão do usuário),
+sem referências.
+
+### UI (`src/renderer/EditingWorkspace.tsx`, `App.tsx`, `styles.css`)
+
+- Entrada "Editar" na navegação principal; tela de perfis (nome, profileVersion,
+  resumo de estilo, nº de referências; Criar/Editar/Duplicar/Excluir com confirmação).
+- Wizard de 7 etapas com sliders e opções conceituais; revisão antes de salvar.
+- Grade de referências com miniaturas e estados vazios/indisponíveis.
+- "Geração de edição · Em breve" discreto na tela de perfil (sem geração real).
+
+### Testes e validação
+
+- `tests/editing-style.test.ts`: 8 casos (cobertura das 7 etapas/15/6,
+  determinismo e limites, conceitos sem derivação + resumo reproduzível,
+  IPC criar/editar/profileVersion/STALE/persistência, duplicar sem referências,
+  pairId BEFORE/AFTER + arquivo ausente preservando original, atomicidade de par,
+  bloqueio de licença nos 9 IPCs).
+- Suite: **111/111 PASS** (85 Beta + 18 Fase A + 8 Fase B); typecheck, lint e build PASS.
+- Validação GUI automatizada em Electron real
+  (`scripts/validate-editing-ui.mjs`): **PASS**, 10 checks, 0 erros; screenshots e
+  `validation.json` em `docs/evidence/editing-ui/`. Cobre criação/edição da UI,
+  wizard, duplicar, diálogo nativo de referência/thumbnail, par Antes/Depois,
+  persistência após reabrir o app, referência indisponível, remoção, confirmação
+  de exclusão e gate de ativação.
+- Nenhuma geração de plano real, XMP, motor de edição, preview/editado ou nova IA
+  entrou na Fase B (permanecem fases C–G).

@@ -2,6 +2,15 @@ import { contextBridge, ipcRenderer } from 'electron';
 import type { ClickITApi, FaceJob, Progress } from '../types/domain.ts';
 import type { LicenseView } from '../licensing/types.ts';
 const api: ClickITApi = {
+  editingProfiles: () => ipcRenderer.invoke('editing:profiles:list'),
+  editingProfile: id => ipcRenderer.invoke('editing:profiles:get', id),
+  createEditingProfile: input => ipcRenderer.invoke('editing:profiles:create', input),
+  updateEditingProfile: (id, input) => ipcRenderer.invoke('editing:profiles:update', id, input),
+  deleteEditingProfile: id => ipcRenderer.invoke('editing:profiles:delete', id),
+  duplicateEditingProfile: id => ipcRenderer.invoke('editing:profiles:duplicate', id),
+  editingReferences: id => ipcRenderer.invoke('editing:references:list', id),
+  addEditingReference: (id, mode) => ipcRenderer.invoke('editing:references:add', id, mode),
+  removeEditingReference: id => ipcRenderer.invoke('editing:references:remove', id),
   diagnostic: (event, details) => ipcRenderer.send('diagnostic', event, details),
   projects: () => ipcRenderer.invoke('projects:list'), create: name => ipcRenderer.invoke('projects:create', name),
   photos: id => ipcRenderer.invoke('photos:list', id), index: id => ipcRenderer.invoke('projects:index', id),

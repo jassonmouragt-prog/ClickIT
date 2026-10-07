@@ -211,3 +211,39 @@ Pendente / criterio BRANDING_*:
     round-trip v2, idempotencia, projeto antigo sem editing_*, STALE por mudanca
     de perfil, fingerprint deterministico (item 17).
 - Resultado: SCHEMA_READY_FOR_PHASE_A. Proximo passo: Fase A quando autorizado.
+
+## Fase A do módulo Editar — 2026-10-07 — PHASE_A_READY
+
+- Implementados tipos reais (q/c separados, três camadas de plano, status,
+  referências), versões centralizadas, validação e fingerprint canônico.
+- Store integra EditingStore: migração transacional/aditiva para v2; CRUD de
+  perfis/planos/referências, incremento semântico de profileVersion,
+  lifecycle explícito e histórico de status; STALE em leitura e eventos.
+- Planos somente DRAFT, sem deltas ou geração; generatedAt=null.
+  Exclusão de perfil com dependentes falha, sem apagar histórico automaticamente.
+- 18 testes novos usam schema extraído da tag clickit-beta-0.1.0 para provar
+  compatibilidade e rollback. Nenhum original modificado.
+- Checks sequenciais PASS: typecheck, lint, 103/103 testes (85 Beta + 18 novos),
+  build. Comparação com Beta sem diff em pipeline/AI/export/main/renderer.
+- docs/EDITING-MODULE.md e docs/VALIDATION.md atualizados.
+- Sem IPC novo, UI, questionário, XMP ou nova IA nesta fase.
+- Próxima ação: aguardar autorização para Fase B. Nenhuma fase adicional iniciada.
+
+## Fase B do módulo Editar — 2026-10-07 — PHASE_B_READY
+
+- Questionário determinístico (7 etapas, 15 sliders `q`, 6 conceitos `c`) com
+  resumo reproduzível; conceitos `c` seguem intenção semântica (sem derivação).
+- Referências individuais ou pares BEFORE/AFTER (mesmo pairId, adição atômica),
+  miniatura via clickit://reference?id&v=fingerprint (no-store), arquivo original
+  nunca modificado; duplicar perfil copia só q/c (decisão do usuário).
+- 9 IPCs de edição, todos atrás de requireWorkspaceLicense; sem licença, IPCs e
+  thumbnails negados (validado em GUI).
+- UI: entrada "Editar" na navegação, EditingWorkspace (perfis + wizard 7 etapas +
+  referências + "Geração de edição · Em breve").
+- testes: editing-style.test.ts 8 casos; suite 111/111 (85 Beta + 18 Fase A + 8).
+- Validação GUI Electron real (scripts/validate-editing-ui.mjs): PASS, 10 checks,
+  0 erros; evidência docs/evidence/editing-ui/validation.json + 4 screenshots.
+- Checks sequenciais PASS: typecheck, lint, 111/111, build. Sem plano/XMP/motor/
+  preview editado nesta fase.
+- Próxima ação: aguardar autorização para Fase C. Fase A + B ainda não commitadas
+  neste registro (próximo passo: commit local).

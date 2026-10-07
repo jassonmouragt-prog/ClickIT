@@ -3,12 +3,12 @@ import { randomUUID } from 'node:crypto';
 import type { Analysis, DecisionPatch, Metadata, Photo, Project, ProjectStatus, Settings } from '../types/domain.ts';
 import type { Candidate, RankedGroup } from '../ai/grouping.ts';
 import { ANALYSIS_VERSION } from '../lib/config.ts';
+import { EditingStore } from '../editing/store.ts';
 type Row = Record<string, string | number | null | Uint8Array>;
 function decode<T>(v: unknown, fallback: T): T { return typeof v === 'string' ? JSON.parse(v) as T : fallback; }
-export class Store {
-  db: DatabaseSync;
+export class Store extends EditingStore {
   constructor(file: string) {
-    this.db = new DatabaseSync(file);
+    super(new DatabaseSync(file));
     this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=5000;
       CREATE TABLE IF NOT EXISTS projects (id TEXT PRIMARY KEY, name TEXT NOT NULL, sourcePath TEXT NOT NULL, createdAt TEXT NOT NULL, updatedAt TEXT NOT NULL, status TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS photos (id TEXT PRIMARY KEY, projectId TEXT NOT NULL REFERENCES projects(id), originalPath TEXT NOT NULL, fileName TEXT NOT NULL, extension TEXT NOT NULL, fileSize INTEGER NOT NULL, mtime REAL NOT NULL, width INTEGER NOT NULL DEFAULT 0, height INTEGER NOT NULL DEFAULT 0, captureDate TEXT, thumbnailPath TEXT, previewPath TEXT, analysisStatus TEXT NOT NULL DEFAULT 'PENDING', error TEXT, hash TEXT, UNIQUE(projectId,originalPath));
@@ -21,11 +21,10 @@ export class Store {
       CREATE TABLE IF NOT EXISTS photo_decisions (photoId TEXT PRIMARY KEY REFERENCES photos(id), status TEXT NOT NULL DEFAULT 'UNDECIDED', source TEXT NOT NULL DEFAULT 'AI', createdAt TEXT NOT NULL, rating INTEGER NOT NULL DEFAULT 0 CHECK(rating BETWEEN 0 AND 5), favorite INTEGER NOT NULL DEFAULT 0, keep INTEGER NOT NULL DEFAULT 0);
       CREATE TABLE IF NOT EXISTS decision_history (id INTEGER PRIMARY KEY, photoId TEXT NOT NULL, groupId TEXT, aiChoice TEXT, originalRanking TEXT, scores TEXT, humanPatch TEXT NOT NULL, createdAt TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS settings (id INTEGER PRIMARY KEY CHECK(id=1), data TEXT NOT NULL);
-      PRAGMA user_version=1;
       UPDATE projects SET status='INTERRUPTED' WHERE status IN ('INDEXING','ANALYZING');`);
+    try { this.migrateEditing(); } catch (error) { this.db.close(); throw error; }
   }
   close(): void { this.db.close(); }
-  transaction(fn: () => void): void { this.db.exec('BEGIN IMMEDIATE'); try { fn(); this.db.exec('COMMIT'); } catch (e) { this.db.exec('ROLLBACK'); throw e; } }
   projects(): Project[] {
     return this.db.prepare(`SELECT p.*, COUNT(f.id) count, COALESCE(SUM(f.analysisStatus='DONE'),0) analyzed, COALESCE(SUM(f.analysisStatus='FAILED'),0) failed FROM projects p LEFT JOIN photos f ON p.id=f.projectId GROUP BY p.id ORDER BY p.updatedAt DESC`).all() as unknown as Project[];
   }
@@ -41,6 +40,7 @@ export class Store {
     this.transaction(() => {
       if (old) {
         const id = String(old.id);
+        this.invalidateEditingPlansForPhoto(id);
         this.db.prepare("UPDATE photos SET fileSize=?,mtime=?,analysisStatus='PENDING',error=NULL,thumbnailPath=NULL,previewPath=NULL WHERE id=?").run(file.size, file.mtime, id);
         for (const table of ['photo_analysis', 'photo_metadata', 'photo_embeddings', 'group_photos']) this.db.prepare(`DELETE FROM ${table} WHERE photoId=?`).run(id);
         this.db.prepare("UPDATE photo_decisions SET status='UNDECIDED' WHERE photoId=? AND source='AI'").run(id);
@@ -76,6 +76,7 @@ export class Store {
       this.db.prepare('INSERT OR REPLACE INTO photo_metadata VALUES(?,?)').run(id, JSON.stringify(result.metadata));
       this.db.prepare('INSERT OR REPLACE INTO photo_analysis VALUES(?,?,?)').run(id, JSON.stringify(result.analysis), ANALYSIS_VERSION);
       this.db.prepare('INSERT OR REPLACE INTO photo_embeddings VALUES(?,?)').run(id, result.embedding ? JSON.stringify(result.embedding) : null);
+      this.verifyEditingPlansForPhoto(id);
     });
   }
   failed(id: string, message: string): void { this.db.prepare("UPDATE photos SET analysisStatus='FAILED',error=? WHERE id=?").run(message, id); }
