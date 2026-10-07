@@ -1,4 +1,4 @@
-# Session progress — 2026-10-06
+﻿# Session progress — 2026-10-06
 
 ## Completed
 
@@ -170,3 +170,24 @@ Pendente / criterio BRANDING_*:
   byte-identity, pares RAW+JPEG independentes, UI via cache), limitacoes.
 - Nenhum codigo alterado. Checks finais PASS (lint, typecheck, 85/85, build).
 - RAW_READY_FOR_BETA NAO declarado: exige arquivos reais e PASS via harness.
+## Checkpoint Beta 0.1.0 + Planejamento modulo Editar (2026-10-07)
+
+- Repositorio git inicializado em C:\dev\ClickIT (nao existia .git). Commit inicial
+  cd7f079 com o estado Beta 0.1.0 (305 arquivos; .tools/ e .tmp-nima-docker/
+  deixados fora). Tag anotada clickit-beta-0.1.0 criada (checkpoint congelado).
+- docs/EDITING-MODULE.md criado (SOMENTE planejamento, sem codigo):
+  - Tipos/interfaces: EditingProfile (parametros quantitativos -100..+100 +
+    conceituais skinToneStyle/greensStyle/bluesStyle/blackPointStyle/highlightStyle/overallMood),
+    EditingPlan (baseStyle + sceneCorrection + finalAdjustment, auditavel,
+    inputFingerprint p/ invalidar plano quando entradas mudam), ReferenceImage, XmpExportResult.
+  - Schema v2 aditivo: editing_profiles, editing_plans, reference_images
+    (padrao JSON do Store atual; banco v1 intacto; user_version 2).
+  - Questionario estruturado -> deltas deterministicos (sem IA). Sinais de cena:
+    so os que ja existem (exposure/sharpness/rostos); indoor/temperatura/ceu/verde
+    ficam null (proibido inventar classificador).
+  - Estrategia XMP-first (whitelist crs, sidecar .xmp, round-trip test) - so Fase E.
+  - Fluxo: perfil -> questionario -> referencias -> fotos alvo (Picks/Selecionadas/
+    Favoritas/Manual) -> gerar plano -> revisar -> exportar XMP.
+  - Fases A-G com criterios EDITING_READY_FOR_BETA ao final. Nada implementado.
+- Nenhum codigo de producao alterado. Pendente: validar doc com o usuario antes de
+  qualquer implementacao (Fase A).
