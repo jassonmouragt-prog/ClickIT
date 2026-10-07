@@ -1,0 +1,744 @@
+{
+  "source": "C:\\dev\\ClickIT\\docs\\evidence\\selection-test-2026-10-06T12-22-27-400Z.json",
+  "threshold": 0.975,
+  "labels": [
+    {
+      "label": "A",
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "role": "sequence"
+    },
+    {
+      "label": "B",
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "role": "sequence"
+    },
+    {
+      "label": "C",
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "role": "sequence"
+    },
+    {
+      "label": "D",
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "role": "sequence"
+    },
+    {
+      "label": "E",
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "role": "sequence"
+    },
+    {
+      "label": "F",
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "role": "different"
+    },
+    {
+      "label": "G",
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "role": "different"
+    }
+  ],
+  "matrix": [
+    [
+      1,
+      0.9573171788204259,
+      0.9844486150839491,
+      0.9892807821933768,
+      0.9714599056723834,
+      0.06975426040917834,
+      -0.014668794597756442
+    ],
+    [
+      0.9573171788204259,
+      1,
+      0.9698674289296891,
+      0.9638006760821057,
+      0.9628766125325715,
+      0.06622245804025727,
+      -0.03493931042406594
+    ],
+    [
+      0.9844486150839491,
+      0.9698674289296891,
+      1,
+      0.9957253463274771,
+      0.9863162376000657,
+      0.07611109111321886,
+      -0.01986422127580787
+    ],
+    [
+      0.9892807821933768,
+      0.9638006760821057,
+      0.9957253463274771,
+      1,
+      0.9881608572410889,
+      0.0792362157922569,
+      -0.01867458653032569
+    ],
+    [
+      0.9714599056723834,
+      0.9628766125325715,
+      0.9863162376000657,
+      0.9881608572410889,
+      1,
+      0.06757888743981658,
+      -0.010032428007201903
+    ],
+    [
+      0.06975426040917834,
+      0.06622245804025727,
+      0.07611109111321886,
+      0.0792362157922569,
+      0.06757888743981658,
+      1,
+      -0.04202476268237107
+    ],
+    [
+      -0.014668794597756442,
+      -0.03493931042406594,
+      -0.01986422127580787,
+      -0.01867458653032569,
+      -0.010032428007201903,
+      -0.04202476268237107,
+      1
+    ]
+  ],
+  "pairs": [
+    {
+      "a": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "b": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "similarity": 0.9573171788204259,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "b": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "similarity": 0.9844486150839491,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": true,
+      "exactDuplicate": false
+    },
+    {
+      "a": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "b": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "similarity": 0.9892807821933768,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": true,
+      "exactDuplicate": false
+    },
+    {
+      "a": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "b": "226d21d5-f950-406b-8ab4-086c88576921",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "similarity": 0.9714599056723834,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "b": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "similarity": 0.06975426040917834,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "b": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "similarity": -0.014668794597756442,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "b": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "similarity": 0.9698674289296891,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "b": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "similarity": 0.9638006760821057,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "b": "226d21d5-f950-406b-8ab4-086c88576921",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "similarity": 0.9628766125325715,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "b": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "similarity": 0.06622245804025727,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "b": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "similarity": -0.03493931042406594,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+      "b": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "similarity": 0.9957253463274771,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": true,
+      "exactDuplicate": false
+    },
+    {
+      "a": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+      "b": "226d21d5-f950-406b-8ab4-086c88576921",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "similarity": 0.9863162376000657,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": true,
+      "exactDuplicate": false
+    },
+    {
+      "a": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+      "b": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "similarity": 0.07611109111321886,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+      "b": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "similarity": -0.01986422127580787,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+      "b": "226d21d5-f950-406b-8ab4-086c88576921",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "similarity": 0.9881608572410889,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": true,
+      "exactDuplicate": false
+    },
+    {
+      "a": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+      "b": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "similarity": 0.0792362157922569,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+      "b": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "similarity": -0.01867458653032569,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "226d21d5-f950-406b-8ab4-086c88576921",
+      "b": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "similarity": 0.06757888743981658,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "226d21d5-f950-406b-8ab4-086c88576921",
+      "b": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "similarity": -0.010032428007201903,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    },
+    {
+      "a": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+      "b": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+      "aFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "bFile": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "similarity": -0.04202476268237107,
+      "deltaSeconds": null,
+      "threshold": 0.975,
+      "passesThreshold": false,
+      "exactDuplicate": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "2da4257b-ebbf-48f3-9e40-1e2b8c11ce9f",
+      "ids": [
+        "226d21d5-f950-406b-8ab4-086c88576921",
+        "ec4189a4-82d0-4d42-83b1-726cb41de87f"
+      ],
+      "files": [
+        "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+        "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png"
+      ],
+      "representativeId": "226d21d5-f950-406b-8ab4-086c88576921",
+      "duplicate": false,
+      "topRanked": {
+        "id": "226d21d5-f950-406b-8ab4-086c88576921",
+        "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png"
+      },
+      "clickitPick": {
+        "id": "226d21d5-f950-406b-8ab4-086c88576921",
+        "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png"
+      },
+      "ranking": [
+        {
+          "id": "226d21d5-f950-406b-8ab4-086c88576921",
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+          "rank": 1,
+          "similarityToRepresentative": 1,
+          "finalScore": 54,
+          "partialScores": {
+            "version": "clickit-1-dinov2-mp1-ear1",
+            "sharpness": 49.38611818675326,
+            "regionalSharpness": 57.274332027436984,
+            "exposure": 98.49344889322916,
+            "faceScore": 28.92907081901892,
+            "eyesScore": 100,
+            "aestheticScore": null,
+            "overall": 54,
+            "blur": "CLEAR",
+            "confidence": 0.65,
+            "faces": [
+              {
+                "x": 0.3590554893016815,
+                "y": 0.20544561743736267,
+                "width": 0.29675307869911194,
+                "height": 0.4708339273929596,
+                "sharpness": 28.92907081901892,
+                "eyes": "OPEN",
+                "eyesConfidence": 0.4268719010402944,
+                "leftEyeScore": 0.29268719010402944,
+                "rightEyeScore": 0.33664082704579174,
+                "leftEyeState": "OPEN",
+                "rightEyeState": "OPEN",
+                "blinkLeft": 0.10483691096305847,
+                "blinkRight": 0.031758010387420654
+              }
+            ],
+            "facesAvailable": true,
+            "embeddingAvailable": true,
+            "insight": "Regiões nítidas detectadas. Compare com as demais fotografias do momento."
+          },
+          "contributions": {
+            "sharpness": 13.018081868558514,
+            "exposure": 19.698689778645832,
+            "face": 5.785814163803785,
+            "eyes": 15
+          },
+          "decision": "AI_SELECTED",
+          "mainReason": "Vantagem relativa em sharpness: 4.023 pontos ponderados vs Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png. Composição/expressão estética não avaliada."
+        },
+        {
+          "id": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+          "rank": 2,
+          "similarityToRepresentative": 0.9863162376000657,
+          "finalScore": 48,
+          "partialScores": {
+            "version": "clickit-1-dinov2-mp1-ear1",
+            "sharpness": 42.75507699817275,
+            "regionalSharpness": 49.47058031779103,
+            "exposure": 98.46903483072916,
+            "faceScore": 19.98859963410456,
+            "eyesScore": 100,
+            "aestheticScore": null,
+            "overall": 48,
+            "blur": "UNCERTAIN",
+            "confidence": 0.3,
+            "faces": [
+              {
+                "x": 0.37068960070610046,
+                "y": 0.20965251326560974,
+                "width": 0.2989597022533417,
+                "height": 0.4790754020214081,
+                "sharpness": 19.98859963410456,
+                "eyes": "OPEN",
+                "eyesConfidence": 0.44035551864331224,
+                "leftEyeScore": 0.2940355518643312,
+                "rightEyeScore": 0.31706660554127897,
+                "leftEyeState": "OPEN",
+                "rightEyeState": "OPEN",
+                "blinkLeft": 0.09548214823007584,
+                "blinkRight": 0.053365692496299744
+              }
+            ],
+            "facesAvailable": true,
+            "embeddingAvailable": true,
+            "insight": "Poucas regiões nítidas. Pode ser movimento ou intenção artística; revise em 1:1."
+          },
+          "contributions": {
+            "sharpness": 8.994869835347052,
+            "exposure": 19.693806966145832,
+            "face": 3.997719926820912,
+            "eyes": 15
+          },
+          "decision": "REVIEW",
+          "mainReason": "Desvantagem relativa em sharpness: -4.023 pontos ponderados vs Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png. Composição/expressão estética não avaliada."
+        }
+      ]
+    },
+    {
+      "id": "416e958f-e988-43f0-8c22-2ab95c79ed76",
+      "ids": [
+        "000a3f39-5e93-486e-a960-50592f4a42dd",
+        "d445ab6e-6761-4ed7-b865-567cde4e4b52"
+      ],
+      "files": [
+        "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+        "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png"
+      ],
+      "representativeId": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "duplicate": false,
+      "topRanked": {
+        "id": "000a3f39-5e93-486e-a960-50592f4a42dd",
+        "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png"
+      },
+      "clickitPick": {
+        "id": "000a3f39-5e93-486e-a960-50592f4a42dd",
+        "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png"
+      },
+      "ranking": [
+        {
+          "id": "000a3f39-5e93-486e-a960-50592f4a42dd",
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+          "rank": 1,
+          "similarityToRepresentative": 1,
+          "finalScore": 56,
+          "partialScores": {
+            "version": "clickit-1-dinov2-mp1-ear1",
+            "sharpness": 51.379351519563244,
+            "regionalSharpness": 59.092124315154365,
+            "exposure": 98.45530192057291,
+            "faceScore": 33.08886419267837,
+            "eyesScore": 100,
+            "aestheticScore": null,
+            "overall": 56,
+            "blur": "CLEAR",
+            "confidence": 0.65,
+            "faces": [
+              {
+                "x": 0.3683271110057831,
+                "y": 0.20937460660934448,
+                "width": 0.30168452858924866,
+                "height": 0.4859272837638855,
+                "sharpness": 33.08886419267837,
+                "eyes": "OPEN",
+                "eyesConfidence": 0.46362704952957356,
+                "leftEyeScore": 0.29636270495295736,
+                "rightEyeScore": 0.31657234300404213,
+                "leftEyeState": "OPEN",
+                "rightEyeState": "OPEN",
+                "blinkLeft": 0.1036134660243988,
+                "blinkRight": 0.05256962403655052
+              }
+            ],
+            "facesAvailable": true,
+            "embeddingAvailable": true,
+            "insight": "Regiões nítidas detectadas. Compare com as demais fotografias do momento."
+          },
+          "contributions": {
+            "sharpness": 14.889988886705268,
+            "exposure": 19.691060384114582,
+            "face": 6.617772838535675,
+            "eyes": 15
+          },
+          "decision": "AI_SELECTED",
+          "mainReason": "Vantagem relativa em sharpness: 0.772 pontos ponderados vs Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png. Composição/expressão estética não avaliada."
+        },
+        {
+          "id": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+          "rank": 2,
+          "similarityToRepresentative": 0.9892807821933768,
+          "finalScore": 55,
+          "partialScores": {
+            "version": "clickit-1-dinov2-mp1-ear1",
+            "sharpness": 51.63337715250293,
+            "regionalSharpness": 60.518549499022,
+            "exposure": 98.5504150390625,
+            "faceScore": 31.373359260746202,
+            "eyesScore": 100,
+            "aestheticScore": null,
+            "overall": 55,
+            "blur": "CLEAR",
+            "confidence": 0.65,
+            "faces": [
+              {
+                "x": 0.36776241660118103,
+                "y": 0.20706984400749207,
+                "width": 0.2999514043331146,
+                "height": 0.47922053933143616,
+                "sharpness": 31.373359260746202,
+                "eyes": "OPEN",
+                "eyesConfidence": 0.38616805584686886,
+                "leftEyeScore": 0.2886168055846869,
+                "rightEyeScore": 0.30870854185259444,
+                "leftEyeState": "OPEN",
+                "rightEyeState": "OPEN",
+                "blinkLeft": 0.10027539730072021,
+                "blinkRight": 0.05394955351948738
+              }
+            ],
+            "facesAvailable": true,
+            "embeddingAvailable": true,
+            "insight": "Regiões nítidas detectadas. Compare com as demais fotografias do momento."
+          },
+          "contributions": {
+            "sharpness": 14.118011667335791,
+            "exposure": 19.7100830078125,
+            "face": 6.274671852149241,
+            "eyes": 15
+          },
+          "decision": "UNDECIDED",
+          "mainReason": "Desvantagem relativa em sharpness: -0.772 pontos ponderados vs Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png. Composição/expressão estética não avaliada."
+        }
+      ]
+    },
+    {
+      "id": "3f0258b4-8e73-4095-94b9-e39947e40a90",
+      "ids": [
+        "6625dd45-0c62-40d4-bc16-36e1b8e44c43"
+      ],
+      "files": [
+        "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png"
+      ],
+      "representativeId": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "duplicate": false,
+      "topRanked": {
+        "id": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+        "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png"
+      },
+      "clickitPick": null,
+      "ranking": [
+        {
+          "id": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+          "rank": 1,
+          "similarityToRepresentative": 1,
+          "finalScore": 40,
+          "partialScores": {
+            "version": "clickit-1-dinov2-mp1-ear1",
+            "sharpness": 49.388195507869675,
+            "regionalSharpness": 57.30816703320068,
+            "exposure": 98.40545654296875,
+            "faceScore": 26.971488464524423,
+            "eyesScore": 20,
+            "aestheticScore": null,
+            "overall": 40,
+            "blur": "UNCERTAIN",
+            "confidence": 0.3,
+            "faces": [
+              {
+                "x": 0.36965447664260864,
+                "y": 0.2202540636062622,
+                "width": 0.3004773259162903,
+                "height": 0.47066861391067505,
+                "sharpness": 26.971488464524423,
+                "eyes": "CLOSED",
+                "eyesConfidence": 1,
+                "leftEyeScore": 0.01924457018728588,
+                "rightEyeScore": 0.034308342906192606,
+                "leftEyeState": "CLOSED",
+                "rightEyeState": "CLOSED",
+                "blinkLeft": 0.7508381605148315,
+                "blinkRight": 0.656335711479187
+              }
+            ],
+            "facesAvailable": true,
+            "embeddingAvailable": true,
+            "insight": "Possivelmente olhos fechados. Confira a expressão antes de escolher."
+          },
+          "contributions": {
+            "sharpness": 12.13716980903599,
+            "exposure": 19.68109130859375,
+            "face": 5.394297692904885,
+            "eyes": 3
+          },
+          "decision": "REVIEW",
+          "mainReason": "Sem concorrente no grupo; não comprova superioridade relativa."
+        }
+      ]
+    },
+    {
+      "id": "f5e621e1-63c4-4262-83d5-04348ec6e1f7",
+      "ids": [
+        "f5b02992-fa09-41b3-9711-d58b30c4c421"
+      ],
+      "files": [
+        "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png"
+      ],
+      "representativeId": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+      "duplicate": false,
+      "topRanked": {
+        "id": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+        "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png"
+      },
+      "clickitPick": {
+        "id": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+        "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png"
+      },
+      "ranking": [
+        {
+          "id": "f5b02992-fa09-41b3-9711-d58b30c4c421",
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+          "rank": 1,
+          "similarityToRepresentative": 1,
+          "finalScore": 78,
+          "partialScores": {
+            "version": "clickit-1-dinov2-mp1-ear1",
+            "sharpness": 57.66372122225284,
+            "regionalSharpness": 69.18604860581206,
+            "exposure": 97.98024495442709,
+            "faceScore": null,
+            "eyesScore": null,
+            "aestheticScore": null,
+            "overall": 78,
+            "blur": "CLEAR",
+            "confidence": 0.65,
+            "faces": [],
+            "facesAvailable": true,
+            "embeddingAvailable": true,
+            "insight": "Regiões nítidas detectadas. Compare com as demais fotografias do momento."
+          },
+          "contributions": {
+            "sharpness": 47.89803365017758,
+            "exposure": 30.147767678285263,
+            "face": null,
+            "eyes": null
+          },
+          "decision": "AI_SELECTED",
+          "mainReason": "Sem concorrente no grupo; não comprova superioridade relativa."
+        }
+      ]
+    },
+    {
+      "id": "fcf175a8-21e2-4f74-a03d-e083650cac00",
+      "ids": [
+        "b941dcfc-2090-45e5-8e4f-7b5c637e6629"
+      ],
+      "files": [
+        "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png"
+      ],
+      "representativeId": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+      "duplicate": false,
+      "topRanked": {
+        "id": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+        "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png"
+      },
+      "clickitPick": {
+        "id": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+        "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png"
+      },
+      "ranking": [
+        {
+          "id": "b941dcfc-2090-45e5-8e4f-7b5c637e6629",
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+          "rank": 1,
+          "similarityToRepresentative": 1,
+          "finalScore": 79,
+          "partialScores": {
+            "version": "clickit-1-dinov2-mp1-ear1",
+            "sharpness": 60.71149000748365,
+            "regionalSharpness": 69.74339960235946,
+            "exposure": 99.91607666015625,
+            "faceScore": null,
+            "eyesScore": null,
+            "aestheticScore": null,
+            "overall": 79,
+            "blur": "CLEAR",
+            "confidence": 0.65,
+            "faces": [],
+            "facesAvailable": true,
+            "embeddingAvailable": true,
+            "insight": "Regiões nítidas detectadas. Compare com as demais fotografias do momento."
+          },
+          "contributions": {
+            "sharpness": 48.283892032402704,
+            "exposure": 30.743408203125,
+            "face": null,
+            "eyes": null
+          },
+          "decision": "AI_SELECTED",
+          "mainReason": "Sem concorrente no grupo; não comprova superioridade relativa."
+        }
+      ]
+    }
+  ]
+}

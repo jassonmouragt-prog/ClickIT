@@ -1,0 +1,844 @@
+{
+  "generatedAt": "2026-10-06T11:03:22.646Z",
+  "root": "C:\\dev\\ClickIT",
+  "node": "v24.21.0",
+  "counts": {
+    "PASS": 43,
+    "WARN": 1,
+    "FAIL": 1
+  },
+  "rows": [
+    {
+      "status": "PASS",
+      "item": "Node",
+      "detail": "v24.21.0; recomendado 24.21.0 x64 / linha 24 LTS"
+    },
+    {
+      "status": "PASS",
+      "item": "Arquitetura",
+      "detail": "x64; alvo do projeto: x64"
+    },
+    {
+      "status": "PASS",
+      "item": "Sistema operacional",
+      "detail": "win32 10.0.26200; aceitação final requer Windows x64"
+    },
+    {
+      "status": "PASS",
+      "item": "Permissões do projeto",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\dev\\ClickIT"
+    },
+    {
+      "status": "PASS",
+      "item": "Diretório temporário de diagnóstico",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\dev\\ClickIT\\.test-tmp"
+    },
+    {
+      "status": "PASS",
+      "item": "npm",
+      "detail": "11.19.0"
+    },
+    {
+      "status": "PASS",
+      "item": "Permissões do cache npm",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\dev\\ClickIT\\.npm-cache"
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @fontsource/inter",
+      "detail": "5.2.8 instalada; solicitada 5.2.8. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @mediapipe/tasks-vision",
+      "detail": "0.10.35 instalada; solicitada 0.10.35. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência exiftool-vendored",
+      "detail": "34.3.0 instalada; solicitada ^34.0.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência onnxruntime-node",
+      "detail": "1.30.0 instalada; solicitada ^1.22.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência react",
+      "detail": "19.3.0 instalada; solicitada ^19.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência react-dom",
+      "detail": "19.3.0 instalada; solicitada ^19.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência sharp",
+      "detail": "0.34.5 instalada; solicitada ^0.34.3. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @eslint/js",
+      "detail": "9.39.5 instalada; solicitada ^9.30.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @tailwindcss/vite",
+      "detail": "4.3.3 instalada; solicitada ^4.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @types/node",
+      "detail": "24.19.1 instalada; solicitada ^24.0.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @types/react",
+      "detail": "19.3.0 instalada; solicitada ^19.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @types/react-dom",
+      "detail": "19.3.0 instalada; solicitada ^19.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @vitejs/plugin-react",
+      "detail": "6.1.2 instalada; solicitada ^6.0.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência electron",
+      "detail": "44.5.1 instalada; solicitada 44.5.1. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência electron-builder",
+      "detail": "26.15.3 instalada; solicitada ^26.0.12. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência esbuild",
+      "detail": "0.28.2 instalada; solicitada ^0.28.2. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência eslint",
+      "detail": "9.39.5 instalada; solicitada ^9.30.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência tailwindcss",
+      "detail": "4.3.3 instalada; solicitada ^4.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência typescript",
+      "detail": "5.9.3 instalada; solicitada ^5.9.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência typescript-eslint",
+      "detail": "8.71.1 instalada; solicitada ^8.35.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência vite",
+      "detail": "8.3.2 instalada; solicitada ~8.3.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Árvore de dependências",
+      "detail": "npm ls --depth=0 sem dependências diretas ausentes/inválidas."
+    },
+    {
+      "status": "PASS",
+      "item": "Lockfile",
+      "detail": "package-lock.json presente; use npm ci nas instalações subsequentes."
+    },
+    {
+      "status": "PASS",
+      "item": "Diretório dos modelos",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\dev\\ClickIT\\resources\\models"
+    },
+    {
+      "status": "PASS",
+      "item": "Modelo dinov2-small.onnx",
+      "detail": "C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx (88532934 bytes); presença não prova inferência."
+    },
+    {
+      "status": "PASS",
+      "item": "Modelo face_landmarker.task",
+      "detail": "C:\\dev\\ClickIT\\resources\\models\\face_landmarker.task (3758596 bytes); presença não prova inferência."
+    },
+    {
+      "status": "PASS",
+      "item": "Integridade dos modelos",
+      "detail": "SHA-256 confere com o manifesto local.",
+      "data": {
+        "verified": [
+          "dinov2-small.onnx",
+          "face_landmarker.task"
+        ],
+        "note": "SHA-256 e tamanho comparados ao catálogo fixado, incluindo validação do manifesto."
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "SQLite",
+      "detail": "Banco real escrito, fechado e reaberto.",
+      "data": {
+        "version": "3.53.4",
+        "persistence": true
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "Sharp",
+      "detail": "Logo PNG decodificada e redimensionada em memória.",
+      "data": {
+        "sharp": "0.34.5",
+        "vips": "8.17.3",
+        "input": "C:\\dev\\ClickIT\\public\\logo.png",
+        "outputWidth": 64,
+        "outputBytes": 1939
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "ONNX Runtime API",
+      "detail": "API JavaScript importada; ver carga nativa no próximo item.",
+      "data": {
+        "apiLoaded": true,
+        "nativeSessionVerified": false,
+        "note": "DLL e modelo serão testados no probe onnx-model."
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "Modelo ONNX / CPU",
+      "detail": "Contrato real validado e inferência CPU executada pelo Embedder de produção; embedding finito, não nulo e normalizado.",
+      "data": {
+        "inputNames": [
+          "pixel_values"
+        ],
+        "inputMetadata": [
+          {
+            "name": "pixel_values",
+            "isTensor": true,
+            "type": "float32",
+            "shape": [
+              "batch_size",
+              "num_channels",
+              "height",
+              "width"
+            ]
+          }
+        ],
+        "outputNames": [
+          "last_hidden_state"
+        ],
+        "outputMetadata": [
+          {
+            "name": "last_hidden_state",
+            "isTensor": true,
+            "type": "float32",
+            "shape": [
+              "batch_size",
+              "floor(height/14)*floor(width/14) + 1",
+              384
+            ]
+          }
+        ],
+        "inputShape": [
+          1,
+          3,
+          224,
+          224
+        ],
+        "outputShape": [
+          1,
+          257,
+          384
+        ],
+        "loadMs": 263.9409,
+        "cpuInferenceMs": 138.32659999999998,
+        "photo": "C:\\dev\\ClickIT\\FOTO A.png",
+        "embedding": {
+          "dimensions": 384,
+          "norm": 1.0000000000000007,
+          "nonzero": true,
+          "finite": true
+        },
+        "first8": [
+          0.027574940187976543,
+          -0.03567942623613261,
+          0.02772731593308643,
+          -0.01816546322521658,
+          -0.041269701122986925,
+          0.02853267212701164,
+          -0.00738676175830314,
+          -0.02495741067834191
+        ],
+        "inferenceExecuted": true,
+        "implementation": "src/ai/embedding.ts (mesmo Embedder do worker de produção)",
+        "processType": "Node subprocess"
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "MediaPipe / WASM",
+      "detail": "Pacote resolvido, JS e cabeçalhos WASM verificados; não executa faces.",
+      "data": {
+        "entry": "C:\\dev\\ClickIT\\node_modules\\@mediapipe\\tasks-vision\\vision_bundle.cjs",
+        "wasmDirectory": "C:\\dev\\ClickIT\\node_modules\\@mediapipe\\tasks-vision\\wasm",
+        "wasmFiles": [
+          "vision_wasm_internal.wasm",
+          "vision_wasm_module_internal.wasm",
+          "vision_wasm_nosimd_internal.wasm"
+        ],
+        "inferenceExecuted": false
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "Electron disponível",
+      "detail": "C:\\dev\\ClickIT\\node_modules\\electron\\dist\\electron.exe"
+    },
+    {
+      "status": "PASS",
+      "item": "Módulos nativos dentro do Electron",
+      "detail": "Electron executou SQLite, Sharp e inferência DINOv2 CPU em modo Node, fora do renderer.",
+      "data": {
+        "electron": "44.5.1",
+        "node": "v24.21.0",
+        "sqlite": {
+          "version": "3.53.4",
+          "persistence": true
+        },
+        "sharp": {
+          "sharp": "0.34.5",
+          "vips": "8.17.3",
+          "input": "C:\\dev\\ClickIT\\public\\logo.png",
+          "outputWidth": 64,
+          "outputBytes": 1939
+        },
+        "onnx": {
+          "inputNames": [
+            "pixel_values"
+          ],
+          "inputMetadata": [
+            {
+              "name": "pixel_values",
+              "isTensor": true,
+              "type": "float32",
+              "shape": [
+                "batch_size",
+                "num_channels",
+                "height",
+                "width"
+              ]
+            }
+          ],
+          "outputNames": [
+            "last_hidden_state"
+          ],
+          "outputMetadata": [
+            {
+              "name": "last_hidden_state",
+              "isTensor": true,
+              "type": "float32",
+              "shape": [
+                "batch_size",
+                "floor(height/14)*floor(width/14) + 1",
+                384
+              ]
+            }
+          ],
+          "inputShape": [
+            1,
+            3,
+            224,
+            224
+          ],
+          "outputShape": [
+            1,
+            257,
+            384
+          ],
+          "loadMs": 214.14250000000004,
+          "cpuInferenceMs": 138.75379999999996,
+          "photo": "C:\\dev\\ClickIT\\FOTO A.png",
+          "embedding": {
+            "dimensions": 384,
+            "norm": 1.0000000000000007,
+            "nonzero": true,
+            "finite": true
+          },
+          "first8": [
+            0.027574940187976543,
+            -0.03567942623613261,
+            0.02772731593308643,
+            -0.01816546322521658,
+            -0.041269701122986925,
+            0.02853267212701164,
+            -0.00738676175830314,
+            -0.02495741067834191
+          ],
+          "inferenceExecuted": true,
+          "implementation": "src/ai/embedding.ts (mesmo Embedder do worker de produção)",
+          "processType": "Electron ELECTRON_RUN_AS_NODE (fora do renderer)"
+        },
+        "guiTested": false
+      }
+    },
+    {
+      "status": "WARN",
+      "item": "Electron / interface",
+      "detail": "Janela, preload, IPC, logo e interação devem ser verificados via npm run dev."
+    },
+    {
+      "status": "PASS",
+      "item": "Sharp / métricas FOTO A.png",
+      "detail": "Sharp real: foco global=51.8733638493423; regional=58.17586248580504; exposição=98.91815185546875",
+      "data": {
+        "input": "C:\\dev\\ClickIT\\FOTO A.png",
+        "width": 512,
+        "height": 384,
+        "focusGlobal": 51.8733638493423,
+        "focusRegional": 58.17586248580504,
+        "exposure": 98.91815185546875,
+        "inferenceExecuted": false
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "Foto real FOTO A.png",
+      "detail": "Worker de produção executou Sharp/ExifTool/ONNX; veja inferência facial separada.",
+      "data": {
+        "input": "C:\\dev\\ClickIT\\FOTO A.png",
+        "inputSha256": "61bfafdc45c1b90c407b46bc811c03f9069b3a52cda87e9737416f4dca9592f6",
+        "width": 1448,
+        "height": 1086,
+        "elapsedMs": 892.4217,
+        "preview": "C:\\dev\\ClickIT\\.test-tmp\\doctor-photo-6rEhzn\\a7a9b21729bafefb41984f1d127226ba5569b15a5e714d69108ee4a3e5640a28-preview.jpg",
+        "previewBytes": 223951,
+        "thumbnail": "C:\\dev\\ClickIT\\.test-tmp\\doctor-photo-6rEhzn\\a7a9b21729bafefb41984f1d127226ba5569b15a5e714d69108ee4a3e5640a28-thumb.jpg",
+        "thumbnailBytes": 19212,
+        "focusGlobal": 51.8733638493423,
+        "focusRegional": 58.17586248580504,
+        "exposure": 98.91815185546875,
+        "embeddingDimensions": 384,
+        "embeddingNorm": 1.0000000000000007,
+        "embeddingFirst8": [
+          0.02891507856098954,
+          -0.040020148157300046,
+          0.02901541700340798,
+          -0.019623766391241068,
+          -0.039391881490264756,
+          0.028599289335540692,
+          -0.0061359543920537826,
+          -0.023527818994793358
+        ],
+        "embedding": [
+          0.02891507856098954,
+          -0.040020148157300046,
+          0.02901541700340798,
+          -0.019623766391241068,
+          -0.039391881490264756,
+          0.028599289335540692,
+          -0.0061359543920537826,
+          -0.023527818994793358,
+          0.02401207876660063,
+          -0.08447266832824839,
+          -0.03175581433981074,
+          -0.010389930002549624,
+          -0.06658395638988507,
+          0.013275045077696746,
+          0.032990261518964066,
+          0.05601164343701833,
+          0.028168458663935643,
+          -0.014066119596435816,
+          0.07866759228697069,
+          0.009353950586352485,
+          -0.03616495069558037,
+          -0.034025505405182586,
+          -0.004971135379753065,
+          0.006449471197000711,
+          -0.11298498029433848,
+          0.04270061689107337,
+          -0.10857938612941251,
+          -0.009493242367285572,
+          0.031728018649259136,
+          0.012844304290133833,
+          0.00004663652515874254,
+          -0.014065047317792291,
+          -0.10548226055129847,
+          -0.04857793944667058,
+          -0.0079981358968379,
+          -0.020344700973774946,
+          0.0318326993770935,
+          0.010148978736973168,
+          -0.020672316913613167,
+          0.15597512507888756,
+          0.007124741521197837,
+          -0.029613528207292454,
+          0.05858327398951535,
+          -0.019888983816249716,
+          -0.034760359354523485,
+          0.0021322463382060525,
+          -0.007298297478785348,
+          0.023764107683930502,
+          0.08155676417075201,
+          -0.006239155831110153,
+          0.023360163734676292,
+          0.026042787153516062,
+          0.003761690206503659,
+          0.003757137136679062,
+          -0.07967676980096942,
+          -0.0026065892732728122,
+          0.0033271822014986374,
+          -0.05845272184921457,
+          -0.0027495683571387144,
+          -0.018175452160560348,
+          0.01976111300554396,
+          -0.0739585141485617,
+          -0.005968658668105264,
+          -0.016573647635219926,
+          -0.02110213480727864,
+          -0.018259717817077747,
+          0.042296710920991895,
+          -0.032965364905264485,
+          -0.029929950418953535,
+          0.06691462838715595,
+          0.11219036485072817,
+          0.0258578868170329,
+          -0.025768620569438856,
+          0.07220208375129682,
+          0.07261095233328221,
+          -0.10659706574050506,
+          -0.03167149551245152,
+          0.015592430388187972,
+          -0.02160119379672794,
+          -0.057289698302304855,
+          0.03612072521490403,
+          -0.09667918457274252,
+          0.0794600353219006,
+          -0.060359838412218945,
+          -0.027133822444480864,
+          0.003321861319398601,
+          -0.04437913934533652,
+          0.01272209870602757,
+          0.007554052392907314,
+          0.04896477504458054,
+          -0.08925222061958264,
+          0.022746868457532755,
+          -0.07295643620791936,
+          -0.0716903574417683,
+          -0.08392790013844127,
+          0.0658182405647805,
+          0.0264055464878575,
+          0.05340516825951027,
+          0.01895654195478764,
+          0.04803538924055114,
+          0.005151557022291567,
+          0.10508672012699787,
+          -0.0801831030679697,
+          0.023252166159089826,
+          0.09262508511952508,
+          -0.02950127190047008,
+          -0.06538199659508843,
+          -0.021388771219736855,
+          0.017997636205764504,
+          0.08745724389393758,
+          -0.014496265376959229,
+          0.001114274113774538,
+          0.07874605219394948,
+          0.03546857218016389,
+          0.0365922720916248,
+          -0.027974924395517613,
+          -0.021348138568801148,
+          0.07892063991906292,
+          0.051997999398597165,
+          -0.038815296881485925,
+          0.054054419685453534,
+          0.02836290696444414,
+          0.008675155794925641,
+          -0.026255690800028444,
+          0.03381262454617385,
+          -0.01700274772252073,
+          0.01596666069866751,
+          -0.00022039994397731223,
+          -0.0770086417663898,
+          0.07996573053879896,
+          -0.0020269205974214255,
+          0.06225443703989019,
+          -0.06266947343952758,
+          0.018104767856212633,
+          -0.024976929522129068,
+          -0.02136622678280194,
+          -0.0014674832686388992,
+          -0.03497594939452059,
+          -0.012122655699152555,
+          -0.09557839623021962,
+          -0.039945389953690395,
+          -0.05598713927477034,
+          -0.048896458108666586,
+          0.016973699985241324,
+          0.02050176257664407,
+          -0.014627731549350471,
+          -0.03177425449414554,
+          0.024719744692153666,
+          0.03556016022118441,
+          0.017283497363205166,
+          0.027991068075874422,
+          -0.11944362725947173,
+          -0.0006837092963786264,
+          0.056557895346506924,
+          -0.022458849603187024,
+          -0.05799509813721809,
+          0.011514290118629894,
+          0.10443548365629304,
+          -0.0146665855090298,
+          -0.02210832209441079,
+          0.006450367505477234,
+          0.0777201030772714,
+          -0.09129447720695406,
+          0.09405896599859444,
+          0.06849674450935106,
+          0.011488360471431952,
+          0.06667889925783042,
+          0.044384334896166534,
+          0.08822393704975384,
+          0.028879279392770452,
+          -0.04025105393168835,
+          0.02188343728487325,
+          -0.041617220477717806,
+          0.039161770746559015,
+          0.054554519304235743,
+          -0.007360821957871156,
+          -0.03865557926847027,
+          0.06656587830366367,
+          0.047258846819272525,
+          0.02753523951277584,
+          -0.023674968033578905,
+          0.06183140475841986,
+          0.050796910592828565,
+          -0.04775305713433611,
+          0.01179959599406999,
+          -0.04431741559380919,
+          0.13740190185061468,
+          -0.043778562027169184,
+          0.002454264780969492,
+          -0.06230825099570945,
+          -0.06658645795139581,
+          -0.054439518369197124,
+          0.04405082712066484,
+          0.014570201964465398,
+          0.025747129421561096,
+          -0.00755709199269846,
+          0.05276944248295002,
+          -0.021350217295522125,
+          -0.09000882650712073,
+          -0.026413641115539545,
+          0.036073934874095714,
+          -0.025304034009107804,
+          0.0023000516160554194,
+          -0.028144719149032032,
+          0.009797575808265416,
+          0.009587119919435741,
+          -0.009581503432774592,
+          -0.03855194423385852,
+          0.018673669278347373,
+          -0.00799091542311495,
+          0.020515433812855893,
+          0.030200040571823957,
+          -0.020587489165339305,
+          0.025822224373835655,
+          0.1203265063005159,
+          -0.019418732029319173,
+          -0.0402385714435831,
+          -0.08160109346116716,
+          0.10777251607273336,
+          -0.07203250927698426,
+          -0.05140998052688055,
+          -0.025682468614009,
+          -0.04786364235755819,
+          -0.0758900437237995,
+          -0.014959035266861166,
+          0.02828864249008003,
+          -0.026615259883860223,
+          -0.061876817721230354,
+          0.006266525521940926,
+          0.030516827383543287,
+          -0.019510437805775167,
+          0.06371030026413801,
+          -0.013495216671897995,
+          0.036324597414140264,
+          -0.03969533761235444,
+          0.12506280284605095,
+          0.0938213784217498,
+          -0.1109252634152888,
+          0.029410767531844906,
+          -0.016283523468732304,
+          -0.017032594288399972,
+          0.08233226849464256,
+          0.10580754456993081,
+          0.05129036638832717,
+          -0.032299529240560704,
+          0.04821782599469628,
+          0.06757404303972284,
+          -0.05888172445663869,
+          -0.02594835573843019,
+          0.0755700818532396,
+          -0.02869746549705814,
+          -0.06433871884786424,
+          -0.03776287374946738,
+          0.03493778538981259,
+          -0.008047447421729543,
+          -0.06398071197400425,
+          -0.04785620856748172,
+          -0.09273312827011881,
+          0.03072238332610406,
+          -0.019837218203813244,
+          -0.07900061899295108,
+          -0.004971967440129046,
+          0.039493815057938024,
+          0.056528696958509005,
+          -0.024632020398972623,
+          -0.06301060743291427,
+          -0.022733669429035257,
+          0.008193380494001387,
+          0.01813729321974205,
+          -0.016362047940304745,
+          0.0033139024672590805,
+          -0.04944043633168083,
+          -0.024261515845338293,
+          0.04709239676490355,
+          0.045341561965754826,
+          0.0026016011836738576,
+          -0.03750637760849088,
+          0.06611233608676367,
+          0.0038324302136380486,
+          -0.023101393907225456,
+          0.016717853288118582,
+          0.03158319140390007,
+          0.018062365375827522,
+          -0.02493653993789886,
+          0.100877240282291,
+          0.12076301359247227,
+          -0.05134364357183845,
+          0.0379886371438675,
+          0.031858773345147834,
+          0.004898284996587088,
+          0.060888336324426806,
+          -0.1395946977509244,
+          -0.007773422626563875,
+          -0.0005629453383707255,
+          0.004344929399331703,
+          0.03754831927491349,
+          0.052407703522382706,
+          -0.02941451481022133,
+          0.06475034218584526,
+          0.13165583531598626,
+          -0.12215710242629577,
+          0.010667598899339121,
+          -0.02848679502590252,
+          0.04183143060777224,
+          0.06053567185419807,
+          0.08477145807598149,
+          -0.02977495741502599,
+          0.04044867729103741,
+          0.08135524668022528,
+          0.02142103832489168,
+          -0.10036461260039627,
+          -0.04303006342703738,
+          0.017339958467363987,
+          0.036047478582369195,
+          -0.031279150402550276,
+          -0.005749004856625621,
+          0.03435304032278565,
+          -0.07142428042148344,
+          -0.0368471958948501,
+          -0.01670061454161461,
+          -0.02576378455477739,
+          -0.07073701943946797,
+          0.0021944190352044123,
+          -0.006177122549325038,
+          -0.011923444810383214,
+          0.003802978631155239,
+          0.06426143882718505,
+          -0.018348671369482948,
+          0.042712370179062126,
+          -0.09595580792940184,
+          -0.09507782060580582,
+          -0.025384089041341425,
+          0.1009987027405841,
+          -0.01443200968058296,
+          0.0671288967519419,
+          -0.036625220289943985,
+          0.07557583443193638,
+          0.03905152227200184,
+          -0.033495868117792704,
+          0.026924012834573883,
+          0.002971546177496572,
+          0.010940364051942444,
+          -0.11620773084807727,
+          -0.05589823762723454,
+          0.02194697897280212,
+          0.03889623303052697,
+          -0.09432808135269803,
+          -0.007504961147217529,
+          -0.011421998196941372,
+          -0.043146087267794966,
+          -0.04773752112074305,
+          -0.010137427371586115,
+          -0.03405714205607003,
+          -0.012806271946557982,
+          -0.019420820883819547,
+          -0.0017161142394352816,
+          0.010631588313725146,
+          -0.07387986181377439,
+          -0.015548104895690095,
+          -0.01757038064028615,
+          -0.04984296998765419,
+          0.040472345911485255,
+          -0.035149296466658056,
+          0.03021713119955427,
+          -0.08091541747662713,
+          0.04448112101996191,
+          -0.03130450276632266,
+          -0.09070591143515007,
+          0.015560710183120517,
+          -0.043560207103397044,
+          -0.07698147399816073,
+          -0.005660303865719101,
+          0.06042168369709903,
+          0.01933705022252011,
+          -0.06425120976999535,
+          -0.03632827126611606,
+          0.05125982100566962,
+          0.013762220383997567,
+          -0.004482057316898269,
+          0.0009072623029256278,
+          0.0008020327760452602,
+          0.06482000611641886,
+          -0.03073158441368509,
+          0.015276979177376459
+        ],
+        "faceInferenceExecuted": false,
+        "implementation": "src/workers/analysis.ts + src/ai/embedding.ts (produção, sem fixture)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "FaceLandmarker real FOTO A.png",
+      "detail": "Face falhou na etapa app-ready-wait; exit=2147483651; [44936:1006/080322.584:ERROR:components\\os_crypt\\sync\\os_crypt_win.cc:77] Failed to encrypt: O sistema não pode encontrar o arquivo especificado. (0x2)\r\n[44936:1006/080322.603:FATAL:electron\\shell\\browser\\win\\install_dir_access.cc:52] Sandboxed processes cannot read C:\\dev\\ClickIT\\node_modules\\electron\\dist: its ACL has an entry for an AppContainer package SID but none for ALL APPLICATION PACKAGES, so Windows denies the sandbox token access. Grant it with: icacls \"C:\\dev\\ClickIT\\node_modules\\electron\\dist\" /grant *S-1-15-2-1:(OI)(CI)(RX)\r\n",
+      "data": {
+        "stack": "Error: Face falhou na etapa app-ready-wait; exit=2147483651; [44936:1006/080322.584:ERROR:components\\os_crypt\\sync\\os_crypt_win.cc:77] Failed to encrypt: O sistema não pode encontrar o arquivo especificado. (0x2)\r\n[44936:1006/080322.603:FATAL:electron\\shell\\browser\\win\\install_dir_access.cc:52] Sandboxed processes cannot read C:\\dev\\ClickIT\\node_modules\\electron\\dist: its ACL has an entry for an AppContainer package SID but none for ALL APPLICATION PACKAGES, so Windows denies the sandbox token access. Grant it with: icacls \"C:\\dev\\ClickIT\\node_modules\\electron\\dist\" /grant *S-1-15-2-1:(OI)(CI)(RX)\r\n\n    at ChildProcess.<anonymous> (file:///C:/dev/ClickIT/scripts/face-probe.mjs:61:48)\n    at ChildProcess.wrapper (node:events:639:12)\n    at ChildProcess.emit (node:events:514:28)\n    at maybeClose (node:internal/child_process:1141:16)\n    at ChildProcess._handle.onexit (node:internal/child_process:306:5)"
+      }
+    }
+  ]
+}

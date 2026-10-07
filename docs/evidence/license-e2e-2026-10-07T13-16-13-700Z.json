@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-10-07T13:16:10.913Z",
+  "exe": "C:\\dev\\ClickIT\\release\\win-unpacked\\ClickIT.exe",
+  "results": [
+    {
+      "step": "FLUXO INTERROMPIDO",
+      "ok": false,
+      "details": "Error: falha ao criar licença: {\"error\":\"INVALID_CUSTOMER\"}\n    at createLicense (file:///C:/dev/ClickIT/.test-tmp/license-e2e.mjs:40:29)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (file:///C:/dev/ClickIT/.test-tmp/license-e2e.mjs:88:17)",
+      "t": "2026-10-07T13:16:11.525Z"
+    }
+  ],
+  "passed": 0,
+  "failed": 1
+}

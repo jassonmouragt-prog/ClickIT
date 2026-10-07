@@ -1,0 +1,28 @@
+{
+  "scope": "Synthetic scale validation infrastructure; not full pipeline acceptance",
+  "checks": [
+    {
+      "command": "npm.cmd run lint",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "npm.cmd run typecheck",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "npm.cmd test",
+      "exitCode": 0,
+      "status": "PASS",
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "npm.cmd run build",
+      "exitCode": 0,
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "startedAt": "2026-10-07T13:16:38.584Z",
+  "exe": "C:\\dev\\ClickIT\\release\\win-unpacked\\ClickIT.exe",
+  "license": {
+    "id": "5ee5938f-6485-4772-9a03-45e85fa8d36b",
+    "key": "CLICKIT-166D-CF7C-45D8"
+  },
+  "licenseKey": "CLICKIT-166D-CF7C-45D8",
+  "results": [
+    {
+      "step": "instalação limpa mostra tela de ativação (sem workspace)",
+      "ok": true,
+      "details": "",
+      "t": "2026-10-07T13:17:01.849Z"
+    },
+    {
+      "step": "IPC de projeto é negado antes da ativação",
+      "ok": false,
+      "details": "Error: eval: Error: Error invoking remote method 'projects:list': Error: Ative sua ClickIT para começar a usar.",
+      "t": "2026-10-07T13:17:01.898Z"
+    },
+    {
+      "step": "chave inexistente é rejeitada com mensagem",
+      "ok": true,
+      "details": "Chave de licença inválida. Verifique e tente novamente.",
+      "t": "2026-10-07T13:17:02.390Z"
+    },
+    {
+      "step": "ativação válida abre o workspace e some a tela",
+      "ok": true,
+      "details": "",
+      "t": "2026-10-07T13:17:02.816Z"
+    },
+    {
+      "step": "licença salva localmente cifrada (sem key/ID em claro)",
+      "ok": true,
+      "details": "bytes=520",
+      "t": "2026-10-07T13:17:02.821Z"
+    },
+    {
+      "step": "reabre offline com workspace (graça local VALID)",
+      "ok": true,
+      "details": "{\"home\":true,\"activation\":false,\"banner\":null}",
+      "t": "2026-10-07T13:17:11.052Z"
+    },
+    {
+      "step": "app empacotado ignora CLICKIT_DEV_LICENSE (exige licença)",
+      "ok": true,
+      "details": "{\"activation\":true,\"home\":false}",
+      "t": "2026-10-07T13:17:18.180Z"
+    },
+    {
+      "step": "artefato sem private key e sem referência ao keypair dev",
+      "ok": true,
+      "details": "",
+      "t": "2026-10-07T13:17:23.147Z"
+    }
+  ],
+  "passed": 7,
+  "failed": 1
+}

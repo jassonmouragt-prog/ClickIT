@@ -1,0 +1,273 @@
+{
+  "generatedAt": "2026-10-06T10:38:59.958Z",
+  "root": "C:\\dev\\ClickIT",
+  "node": "v24.21.0",
+  "counts": {
+    "PASS": 36,
+    "WARN": 3,
+    "FAIL": 5
+  },
+  "rows": [
+    {
+      "status": "PASS",
+      "item": "Node",
+      "detail": "v24.21.0; recomendado 24.21.0 x64 / linha 24 LTS"
+    },
+    {
+      "status": "PASS",
+      "item": "Arquitetura",
+      "detail": "x64; alvo do projeto: x64"
+    },
+    {
+      "status": "PASS",
+      "item": "Sistema operacional",
+      "detail": "win32 10.0.26200; aceitação final requer Windows x64"
+    },
+    {
+      "status": "PASS",
+      "item": "Permissões do projeto",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\dev\\ClickIT"
+    },
+    {
+      "status": "PASS",
+      "item": "Diretório temporário de diagnóstico",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\dev\\ClickIT\\.test-tmp"
+    },
+    {
+      "status": "PASS",
+      "item": "npm",
+      "detail": "11.19.0"
+    },
+    {
+      "status": "PASS",
+      "item": "Permissões do cache npm",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\dev\\ClickIT\\.npm-cache"
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @fontsource/inter",
+      "detail": "5.2.8 instalada; solicitada 5.2.8. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @mediapipe/tasks-vision",
+      "detail": "0.10.35 instalada; solicitada 0.10.35. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência exiftool-vendored",
+      "detail": "34.3.0 instalada; solicitada ^34.0.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência onnxruntime-node",
+      "detail": "1.30.0 instalada; solicitada ^1.22.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência react",
+      "detail": "19.3.0 instalada; solicitada ^19.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência react-dom",
+      "detail": "19.3.0 instalada; solicitada ^19.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência sharp",
+      "detail": "0.34.5 instalada; solicitada ^0.34.3. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @eslint/js",
+      "detail": "9.39.5 instalada; solicitada ^9.30.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @tailwindcss/vite",
+      "detail": "4.3.3 instalada; solicitada ^4.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @types/node",
+      "detail": "24.19.1 instalada; solicitada ^24.0.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @types/react",
+      "detail": "19.3.0 instalada; solicitada ^19.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @types/react-dom",
+      "detail": "19.3.0 instalada; solicitada ^19.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência @vitejs/plugin-react",
+      "detail": "6.1.2 instalada; solicitada ^6.0.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência electron",
+      "detail": "44.5.1 instalada; solicitada 44.5.1. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência electron-builder",
+      "detail": "26.15.3 instalada; solicitada ^26.0.12. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência esbuild",
+      "detail": "0.28.2 instalada; solicitada ^0.28.2. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência eslint",
+      "detail": "9.39.5 instalada; solicitada ^9.30.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência tailwindcss",
+      "detail": "4.3.3 instalada; solicitada ^4.1.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência typescript",
+      "detail": "5.9.3 instalada; solicitada ^5.9.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência typescript-eslint",
+      "detail": "8.71.1 instalada; solicitada ^8.35.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Dependência vite",
+      "detail": "8.3.2 instalada; solicitada ~8.3.0. Faixa verificada por npm ls abaixo."
+    },
+    {
+      "status": "PASS",
+      "item": "Árvore de dependências",
+      "detail": "npm ls --depth=0 sem dependências diretas ausentes/inválidas."
+    },
+    {
+      "status": "PASS",
+      "item": "Lockfile",
+      "detail": "package-lock.json presente; use npm ci nas instalações subsequentes."
+    },
+    {
+      "status": "PASS",
+      "item": "Diretório dos modelos",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\dev\\ClickIT\\resources\\models"
+    },
+    {
+      "status": "FAIL",
+      "item": "Modelo dinov2-small.onnx",
+      "detail": "ENOENT: no such file or directory, access 'C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, access 'C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx'\n    at async access (node:internal/fs/promises:1312:10)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:96:105\n    at async check (file:///C:/dev/ClickIT/scripts/doctor.mjs:30:24)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:96:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Modelo face_landmarker.task",
+      "detail": "ENOENT: no such file or directory, access 'C:\\dev\\ClickIT\\resources\\models\\face_landmarker.task'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, access 'C:\\dev\\ClickIT\\resources\\models\\face_landmarker.task'\n    at async access (node:internal/fs/promises:1312:10)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:96:105\n    at async check (file:///C:/dev/ClickIT/scripts/doctor.mjs:30:24)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:96:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Integridade dos modelos",
+      "detail": "Error: ENOENT: no such file or directory, open 'C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx'",
+      "data": {
+        "stack": "Error: Error: ENOENT: no such file or directory, open 'C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx'\n    at probe (file:///C:/dev/ClickIT/scripts/doctor.mjs:49:47)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:98:111\n    at async check (file:///C:/dev/ClickIT/scripts/doctor.mjs:30:24)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:98:1"
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "SQLite",
+      "detail": "Banco real escrito, fechado e reaberto.",
+      "data": {
+        "version": "3.53.4",
+        "persistence": true
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "Sharp",
+      "detail": "Logo PNG decodificada e redimensionada em memória.",
+      "data": {
+        "sharp": "0.34.5",
+        "vips": "8.17.3",
+        "input": "C:\\dev\\ClickIT\\public\\logo.png",
+        "outputWidth": 64,
+        "outputBytes": 1939
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "ONNX Runtime API",
+      "detail": "API JavaScript importada; ver carga nativa no próximo item.",
+      "data": {
+        "apiLoaded": true,
+        "nativeSessionVerified": false,
+        "note": "DLL e modelo serão testados no probe onnx-model."
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Modelo ONNX / CPU",
+      "detail": "Error: Load model from C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx failed:Load model C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx failed. File doesn't exist",
+      "data": {
+        "stack": "Error: Error: Load model from C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx failed:Load model C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx failed. File doesn't exist\n    at new OnnxruntimeSessionHandler (C:\\dev\\ClickIT\\node_modules\\onnxruntime-node\\dist\\backend.js:50:92)\n    at Immediate.<anonymous> (C:\\dev\\ClickIT\\node_modules\\onnxruntime-node\\dist\\backend.js:136:29)\n    at process.processImmediate (node:internal/timers:574:21)\n    at probe (file:///C:/dev/ClickIT/scripts/doctor.mjs:49:47)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:102:129\n    at async check (file:///C:/dev/ClickIT/scripts/doctor.mjs:30:24)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:102:1"
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "MediaPipe / WASM",
+      "detail": "Pacote resolvido, JS e cabeçalhos WASM verificados; não executa faces.",
+      "data": {
+        "entry": "C:\\dev\\ClickIT\\node_modules\\@mediapipe\\tasks-vision\\vision_bundle.cjs",
+        "wasmDirectory": "C:\\dev\\ClickIT\\node_modules\\@mediapipe\\tasks-vision\\wasm",
+        "wasmFiles": [
+          "vision_wasm_internal.wasm",
+          "vision_wasm_module_internal.wasm",
+          "vision_wasm_nosimd_internal.wasm"
+        ],
+        "inferenceExecuted": false
+      }
+    },
+    {
+      "status": "WARN",
+      "item": "MediaPipe / inferência",
+      "detail": "Exige renderer Electron real e fotografia; siga LOCAL-SETUP.md. Doctor não simula DOM nem detecção."
+    },
+    {
+      "status": "PASS",
+      "item": "Electron disponível",
+      "detail": "C:\\dev\\ClickIT\\node_modules\\electron\\dist\\electron.exe"
+    },
+    {
+      "status": "FAIL",
+      "item": "Módulos nativos dentro do Electron",
+      "detail": "Error: Load model from C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx failed:Load model C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx failed. File doesn't exist",
+      "data": {
+        "stack": "Error: Error: Load model from C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx failed:Load model C:\\dev\\ClickIT\\resources\\models\\dinov2-small.onnx failed. File doesn't exist\n    at new OnnxruntimeSessionHandler (C:\\dev\\ClickIT\\node_modules\\onnxruntime-node\\dist\\backend.js:50:92)\n    at Immediate.<anonymous> (C:\\dev\\ClickIT\\node_modules\\onnxruntime-node\\dist\\backend.js:136:29)\n    at process.processImmediate (node:internal/timers:574:21)\n    at probe (file:///C:/dev/ClickIT/scripts/doctor.mjs:49:47)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:113:173\n    at async check (file:///C:/dev/ClickIT/scripts/doctor.mjs:30:24)\n    at async file:///C:/dev/ClickIT/scripts/doctor.mjs:113:15"
+      }
+    },
+    {
+      "status": "WARN",
+      "item": "Electron / interface",
+      "detail": "Janela, preload, IPC, logo e interação devem ser verificados via npm run dev."
+    },
+    {
+      "status": "WARN",
+      "item": "Inferência em foto real",
+      "detail": "Não executada; use --photo \"C:\\Fotos\\teste.jpg\" (pode repetir a opção)."
+    }
+  ]
+}

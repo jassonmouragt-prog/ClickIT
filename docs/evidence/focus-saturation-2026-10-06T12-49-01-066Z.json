@@ -1,0 +1,289 @@
+{
+  "generatedAt": "2026-10-06T12:49:01.065Z",
+  "source": "docs/evidence/selection-test-2026-10-06T12-22-27-400Z.json",
+  "sourceSha256": "33adf88b87a6f5c4c61a80d2fcfb48131470e359a1738ee6d20358c8d72d86cd",
+  "membershipSource": "docs/evidence/selection-grouping-replay.json",
+  "mode": "Real saved analyses replay, production scoring and Store decisions, frozen membership; not new end-to-end inference",
+  "formula": "T(s)=(100+k)*clamp(s,0,100)/(clamp(s,0,100)+k)",
+  "k": 27,
+  "weights": {
+    "sharpness": 0.45,
+    "exposure": 0.2,
+    "face": 0.2,
+    "eyes": 0.15
+  },
+  "curve": [
+    {
+      "sharpness": 0,
+      "utility": 0
+    },
+    {
+      "sharpness": 20,
+      "utility": 54.04255319148936
+    },
+    {
+      "sharpness": 27,
+      "utility": 63.5
+    },
+    {
+      "sharpness": 35,
+      "utility": 71.69354838709677
+    },
+    {
+      "sharpness": 48,
+      "utility": 81.28
+    },
+    {
+      "sharpness": 50,
+      "utility": 82.46753246753246
+    },
+    {
+      "sharpness": 70,
+      "utility": 91.64948453608247
+    },
+    {
+      "sharpness": 90,
+      "utility": 97.6923076923077
+    },
+    {
+      "sharpness": 100,
+      "utility": 100
+    }
+  ],
+  "checks": {
+    "closedLowerPriority": true,
+    "softLowerPriority": true,
+    "noneRejected": true,
+    "membershipUnchanged": true,
+    "eyesUnchanged": true
+  },
+  "rows": [
+    {
+      "id": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "globalSharpness": 51.379351519563244,
+      "regionalSharpness": 59.092124315154365,
+      "subjectSharpness": 33.08886419267837,
+      "before": {
+        "contributions": {
+          "sharpness": 14.889988886705268,
+          "exposure": 19.691060384114582,
+          "face": 6.617772838535675,
+          "eyes": 15
+        },
+        "sharpnessContribution": 21.507761725240943,
+        "score": 56,
+        "rank": 1
+      },
+      "after": {
+        "transformedSharpness": 69.93451796651179,
+        "values": {
+          "sharpness": 69.93451796651179,
+          "exposure": 98.45530192057291,
+          "face": 69.93451796651179,
+          "eyes": 100
+        },
+        "denominator": 1,
+        "contributions": {
+          "sharpness": 31.470533084930306,
+          "exposure": 19.691060384114582,
+          "face": 13.986903593302358,
+          "eyes": 15
+        },
+        "unrounded": 80.14849706234725,
+        "overall": 80,
+        "sharpnessContribution": 45.45743667823267,
+        "rank": 1,
+        "decision": "AI_SELECTED"
+      },
+      "eyes": [
+        "OPEN"
+      ],
+      "blur": "CLEAR",
+      "aestheticScore": null
+    },
+    {
+      "id": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "globalSharpness": 51.63337715250293,
+      "regionalSharpness": 60.518549499022,
+      "subjectSharpness": 31.373359260746202,
+      "before": {
+        "contributions": {
+          "sharpness": 14.118011667335791,
+          "exposure": 19.7100830078125,
+          "face": 6.274671852149241,
+          "eyes": 15
+        },
+        "sharpnessContribution": 20.392683519485033,
+        "score": 55,
+        "rank": 2
+      },
+      "after": {
+        "transformedSharpness": 68.25744957244788,
+        "values": {
+          "sharpness": 68.25744957244788,
+          "exposure": 98.5504150390625,
+          "face": 68.25744957244788,
+          "eyes": 100
+        },
+        "denominator": 1,
+        "contributions": {
+          "sharpness": 30.715852307601548,
+          "exposure": 19.7100830078125,
+          "face": 13.651489914489577,
+          "eyes": 15
+        },
+        "unrounded": 79.07742522990362,
+        "overall": 79,
+        "sharpnessContribution": 44.367342222091125,
+        "rank": 2,
+        "decision": "UNDECIDED"
+      },
+      "eyes": [
+        "OPEN"
+      ],
+      "blur": "CLEAR",
+      "aestheticScore": null
+    },
+    {
+      "id": "226d21d5-f950-406b-8ab4-086c88576921",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "globalSharpness": 49.38611818675326,
+      "regionalSharpness": 57.274332027436984,
+      "subjectSharpness": 28.92907081901892,
+      "before": {
+        "contributions": {
+          "sharpness": 13.018081868558514,
+          "exposure": 19.698689778645832,
+          "face": 5.785814163803785,
+          "eyes": 15
+        },
+        "sharpnessContribution": 18.8038960323623,
+        "score": 54,
+        "rank": 3
+      },
+      "after": {
+        "transformedSharpness": 65.69020261223518,
+        "values": {
+          "sharpness": 65.69020261223518,
+          "exposure": 98.49344889322916,
+          "face": 65.69020261223518,
+          "eyes": 100
+        },
+        "denominator": 1,
+        "contributions": {
+          "sharpness": 29.560591175505834,
+          "exposure": 19.698689778645832,
+          "face": 13.138040522447037,
+          "eyes": 15
+        },
+        "unrounded": 77.3973214765987,
+        "overall": 77,
+        "sharpnessContribution": 42.69863169795287,
+        "rank": 3,
+        "decision": "UNDECIDED"
+      },
+      "eyes": [
+        "OPEN"
+      ],
+      "blur": "CLEAR",
+      "aestheticScore": null
+    },
+    {
+      "id": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "globalSharpness": 42.75507699817275,
+      "regionalSharpness": 49.47058031779103,
+      "subjectSharpness": 19.98859963410456,
+      "before": {
+        "contributions": {
+          "sharpness": 8.994869835347052,
+          "exposure": 19.693806966145832,
+          "face": 3.997719926820912,
+          "eyes": 15
+        },
+        "sharpnessContribution": 12.992589762167963,
+        "score": 48,
+        "rank": 4
+      },
+      "after": {
+        "transformedSharpness": 54.02485226839545,
+        "values": {
+          "sharpness": 54.02485226839545,
+          "exposure": 98.46903483072916,
+          "face": 54.02485226839545,
+          "eyes": 100
+        },
+        "denominator": 1,
+        "contributions": {
+          "sharpness": 24.311183520777952,
+          "exposure": 19.693806966145832,
+          "face": 10.80497045367909,
+          "eyes": 15
+        },
+        "unrounded": 69.80996094060288,
+        "overall": 70,
+        "sharpnessContribution": 35.11615397445704,
+        "rank": 4,
+        "decision": "REVIEW"
+      },
+      "eyes": [
+        "OPEN"
+      ],
+      "blur": "UNCERTAIN",
+      "aestheticScore": null
+    },
+    {
+      "id": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "globalSharpness": 49.388195507869675,
+      "regionalSharpness": 57.30816703320068,
+      "subjectSharpness": 26.971488464524423,
+      "before": {
+        "contributions": {
+          "sharpness": 12.13716980903599,
+          "exposure": 19.68109130859375,
+          "face": 5.394297692904885,
+          "eyes": 3
+        },
+        "sharpnessContribution": 17.531467501940874,
+        "score": 40,
+        "rank": 5
+      },
+      "after": {
+        "transformedSharpness": 63.46645483468759,
+        "values": {
+          "sharpness": 63.46645483468759,
+          "exposure": 98.40545654296875,
+          "face": 63.46645483468759,
+          "eyes": 20
+        },
+        "denominator": 1,
+        "contributions": {
+          "sharpness": 28.559904675609417,
+          "exposure": 19.68109130859375,
+          "face": 12.693290966937518,
+          "eyes": 3
+        },
+        "unrounded": 63.934286951140685,
+        "overall": 64,
+        "sharpnessContribution": 41.253195642546935,
+        "rank": 5,
+        "decision": "REVIEW"
+      },
+      "eyes": [
+        "CLOSED"
+      ],
+      "blur": "UNCERTAIN",
+      "aestheticScore": null
+    }
+  ],
+  "pick": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+  "limitation": "Technical layer only. No composition, expression, pose, moment or aesthetic signal. This small set cannot calibrate focus sufficiency universally."
+}

@@ -1,0 +1,326 @@
+{
+  "generatedAt": "2026-10-05T23:47:07.587Z",
+  "root": "C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT",
+  "node": "v24.21.0",
+  "counts": {
+    "PASS": 9,
+    "WARN": 4,
+    "FAIL": 31
+  },
+  "rows": [
+    {
+      "status": "PASS",
+      "item": "Node",
+      "detail": "v24.21.0; recomendado 24.21.0 x64 / linha 24 LTS"
+    },
+    {
+      "status": "PASS",
+      "item": "Arquitetura",
+      "detail": "x64; alvo do projeto: x64"
+    },
+    {
+      "status": "PASS",
+      "item": "Sistema operacional",
+      "detail": "win32 10.0.26200; aceitação final requer Windows x64"
+    },
+    {
+      "status": "PASS",
+      "item": "Permissões do projeto",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT"
+    },
+    {
+      "status": "PASS",
+      "item": "Diretório temporário de diagnóstico",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\.test-tmp"
+    },
+    {
+      "status": "PASS",
+      "item": "npm",
+      "detail": "11.19.0"
+    },
+    {
+      "status": "PASS",
+      "item": "Permissões do cache npm",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\.npm-cache"
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência @fontsource/inter",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@fontsource\\inter\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@fontsource\\inter\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência @mediapipe/tasks-vision",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@mediapipe\\tasks-vision\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@mediapipe\\tasks-vision\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência exiftool-vendored",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\exiftool-vendored\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\exiftool-vendored\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência onnxruntime-node",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\onnxruntime-node\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\onnxruntime-node\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência react",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\react\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\react\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência react-dom",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\react-dom\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\react-dom\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência sharp",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\sharp\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\sharp\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência @eslint/js",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@eslint\\js\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@eslint\\js\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência @tailwindcss/vite",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@tailwindcss\\vite\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@tailwindcss\\vite\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência @types/node",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@types\\node\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@types\\node\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência @types/react",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@types\\react\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@types\\react\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência @types/react-dom",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@types\\react-dom\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@types\\react-dom\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência @vitejs/plugin-react",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@vitejs\\plugin-react\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\@vitejs\\plugin-react\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência electron",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\electron\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\electron\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência electron-builder",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\electron-builder\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\electron-builder\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência esbuild",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\esbuild\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\esbuild\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência eslint",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\eslint\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\eslint\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência tailwindcss",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\tailwindcss\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\tailwindcss\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência typescript",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\typescript\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\typescript\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência typescript-eslint",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\typescript-eslint\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\typescript-eslint\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Dependência vite",
+      "detail": "ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\vite\\package.json'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\node_modules\\vite\\package.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:80:34\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:79:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Árvore de dependências",
+      "detail": "missing: @eslint/js@^9.30.0, required by clickit@0.1.0; missing: @fontsource/inter@5.2.8, required by clickit@0.1.0; missing: @mediapipe/tasks-vision@0.10.35, required by clickit@0.1.0; missing: @tailwindcss/vite@^4.1.0, required by clickit@0.1.0; missing: @types/node@^24.0.0, required by clickit@0.1.0; missing: @types/react-dom@^19.1.0, required by clickit@0.1.0; missing: @types/react@^19.1.0, required by clickit@0.1.0; missing: @vitejs/plugin-react@^6.0.0, required by clickit@0.1.0; missing: electron-builder@^26.0.12, required by clickit@0.1.0; missing: electron@44.5.1, required by clickit@0.1.0; missing: esbuild@^0.25.0, required by clickit@0.1.0; missing: eslint@^9.30.0, required by clickit@0.1.0; missing: exiftool-vendored@^34.0.0, required by clickit@0.1.0; missing: onnxruntime-node@^1.22.0, required by clickit@0.1.0; missing: react-dom@^19.1.0, required by clickit@0.1.0; missing: react@^19.1.0, required by clickit@0.1.0; missing: sharp@^0.34.3, required by clickit@0.1.0; missing: tailwindcss@^4.1.0, required by clickit@0.1.0; missing: typescript-eslint@^8.35.0, required by clickit@0.1.0; missing: typescript@^5.9.0, required by clickit@0.1.0; missing: vite@~8.3.0, required by clickit@0.1.0",
+      "data": {
+        "stack": "Error: missing: @eslint/js@^9.30.0, required by clickit@0.1.0; missing: @fontsource/inter@5.2.8, required by clickit@0.1.0; missing: @mediapipe/tasks-vision@0.10.35, required by clickit@0.1.0; missing: @tailwindcss/vite@^4.1.0, required by clickit@0.1.0; missing: @types/node@^24.0.0, required by clickit@0.1.0; missing: @types/react-dom@^19.1.0, required by clickit@0.1.0; missing: @types/react@^19.1.0, required by clickit@0.1.0; missing: @vitejs/plugin-react@^6.0.0, required by clickit@0.1.0; missing: electron-builder@^26.0.12, required by clickit@0.1.0; missing: electron@44.5.1, required by clickit@0.1.0; missing: esbuild@^0.25.0, required by clickit@0.1.0; missing: eslint@^9.30.0, required by clickit@0.1.0; missing: exiftool-vendored@^34.0.0, required by clickit@0.1.0; missing: onnxruntime-node@^1.22.0, required by clickit@0.1.0; missing: react-dom@^19.1.0, required by clickit@0.1.0; missing: react@^19.1.0, required by clickit@0.1.0; missing: sharp@^0.34.3, required by clickit@0.1.0; missing: tailwindcss@^4.1.0, required by clickit@0.1.0; missing: typescript-eslint@^8.35.0, required by clickit@0.1.0; missing: typescript@^5.9.0, required by clickit@0.1.0; missing: vite@~8.3.0, required by clickit@0.1.0\n    at file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:87:32\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:84:1"
+      }
+    },
+    {
+      "status": "WARN",
+      "item": "Lockfile",
+      "detail": "Ausente; gerar com npm install e preservar o resultado revisado."
+    },
+    {
+      "status": "PASS",
+      "item": "Diretório dos modelos",
+      "detail": "Leitura, escrita e exclusão verificadas: C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\resources\\models"
+    },
+    {
+      "status": "FAIL",
+      "item": "Modelo dinov2-small.onnx",
+      "detail": "ENOENT: no such file or directory, access 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\resources\\models\\dinov2-small.onnx'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, access 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\resources\\models\\dinov2-small.onnx'\n    at async access (node:internal/fs/promises:1312:10)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:95:105\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:95:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Modelo face_landmarker.task",
+      "detail": "ENOENT: no such file or directory, access 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\resources\\models\\face_landmarker.task'",
+      "data": {
+        "stack": "Error: ENOENT: no such file or directory, access 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\resources\\models\\face_landmarker.task'\n    at async access (node:internal/fs/promises:1312:10)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:95:105\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:95:3"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Integridade dos modelos",
+      "detail": "Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\resources\\models\\manifest.json'",
+      "data": {
+        "stack": "Error: Error: ENOENT: no such file or directory, open 'C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\resources\\models\\manifest.json'\n    at async open (node:internal/fs/promises:1345:25)\n    at async readFile (node:internal/fs/promises:1996:14)\n    at async probe (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor-probe.mjs:105:33)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor-probe.mjs:126:52\n    at probe (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:48:47)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:97:111\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:97:1"
+      }
+    },
+    {
+      "status": "PASS",
+      "item": "SQLite",
+      "detail": "Banco real escrito, fechado e reaberto.",
+      "data": {
+        "version": "3.53.4",
+        "persistence": true
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Sharp",
+      "detail": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\scripts\\doctor-probe.mjs",
+      "data": {
+        "stack": "Error: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'sharp' imported from C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\scripts\\doctor-probe.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)\n    at #resolve (node:internal/modules/esm/loader:687:17)\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)\n    at node:internal/modules/esm/loader:636:32\n    at probe (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:48:47)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:99:105\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:99:1"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "ONNX Runtime API",
+      "detail": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'onnxruntime-node' imported from C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\scripts\\doctor-probe.mjs",
+      "data": {
+        "stack": "Error: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'onnxruntime-node' imported from C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\scripts\\doctor-probe.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)\n    at #resolve (node:internal/modules/esm/loader:687:17)\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)\n    at node:internal/modules/esm/loader:636:32\n    at probe (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:48:47)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:100:125\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:100:1"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Modelo ONNX / CPU",
+      "detail": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'onnxruntime-node' imported from C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\scripts\\doctor-probe.mjs",
+      "data": {
+        "stack": "Error: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'onnxruntime-node' imported from C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\scripts\\doctor-probe.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)\n    at #resolve (node:internal/modules/esm/loader:687:17)\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)\n    at node:internal/modules/esm/loader:636:32\n    at probe (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:48:47)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:101:129\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:101:1"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "MediaPipe / WASM",
+      "detail": "Error: Cannot find module '@mediapipe/tasks-vision'",
+      "data": {
+        "stack": "Error: Error: Cannot find module '@mediapipe/tasks-vision'\nRequire stack:\n- C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\scripts\\doctor-probe.mjs\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)\n    at require.resolve (node:internal/modules/helpers:175:31)\n    at probe (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor-probe.mjs:93:27)\n    at file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor-probe.mjs:126:58\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n    at probe (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:48:47)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:102:136\n    at async check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:24)\n    at async file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:102:1"
+      }
+    },
+    {
+      "status": "WARN",
+      "item": "MediaPipe / inferência",
+      "detail": "Exige renderer Electron real e fotografia; siga LOCAL-SETUP.md. Doctor não simula DOM nem detecção."
+    },
+    {
+      "status": "FAIL",
+      "item": "Electron disponível",
+      "detail": "Cannot find module 'electron'",
+      "data": {
+        "stack": "Error: Cannot find module 'electron'\nRequire stack:\n- C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\scripts\\doctor.mjs\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)\n    at Module._load (node:internal/modules/cjs/loader:1341:5)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.require (node:internal/modules/cjs/loader:1674:12)\n    at require (node:internal/modules/helpers:157:16)\n    at file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:107:14\n    at check (file:///C:/Users/jasso/OneDrive/Documents/jobs/ClickIT/scripts/doctor.mjs:29:30)"
+      }
+    },
+    {
+      "status": "FAIL",
+      "item": "Módulos nativos dentro do Electron",
+      "detail": "Executável Electron indisponível."
+    },
+    {
+      "status": "WARN",
+      "item": "Electron / interface",
+      "detail": "Janela, preload, IPC, logo e interação devem ser verificados via npm run dev."
+    },
+    {
+      "status": "WARN",
+      "item": "Inferência em foto real",
+      "detail": "Não executada; use --photo \"C:\\Fotos\\teste.jpg\" (pode repetir a opção)."
+    }
+  ]
+}

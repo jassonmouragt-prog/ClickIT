@@ -1,0 +1,91 @@
+{
+  "source": "docs/evidence/selection-test-2026-10-06T12-22-27-400Z.json",
+  "mode": "Offline regrouping of real persisted analyses; no new face inference",
+  "threshold": 0.965,
+  "groups": [
+    {
+      "ids": [
+        "000a3f39-5e93-486e-a960-50592f4a42dd",
+        "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+        "226d21d5-f950-406b-8ab4-086c88576921",
+        "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+        "6625dd45-0c62-40d4-bc16-36e1b8e44c43"
+      ],
+      "rows": [
+        {
+          "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+          "rank": 1,
+          "score": 56,
+          "eyes": [
+            "OPEN"
+          ],
+          "decision": "AI_SELECTED"
+        },
+        {
+          "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+          "rank": 2,
+          "score": 55,
+          "eyes": [
+            "OPEN"
+          ],
+          "decision": "UNDECIDED"
+        },
+        {
+          "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+          "rank": 3,
+          "score": 54,
+          "eyes": [
+            "OPEN"
+          ],
+          "decision": "UNDECIDED"
+        },
+        {
+          "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+          "rank": 4,
+          "score": 48,
+          "eyes": [
+            "OPEN"
+          ],
+          "decision": "REVIEW"
+        },
+        {
+          "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+          "rank": 5,
+          "score": 40,
+          "eyes": [
+            "CLOSED"
+          ],
+          "decision": "REVIEW"
+        }
+      ]
+    },
+    {
+      "ids": [
+        "b941dcfc-2090-45e5-8e4f-7b5c637e6629"
+      ],
+      "rows": [
+        {
+          "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+          "rank": 1,
+          "score": 79,
+          "eyes": [],
+          "decision": "AI_SELECTED"
+        }
+      ]
+    },
+    {
+      "ids": [
+        "f5b02992-fa09-41b3-9711-d58b30c4c421"
+      ],
+      "rows": [
+        {
+          "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+          "rank": 1,
+          "score": 78,
+          "eyes": [],
+          "decision": "AI_SELECTED"
+        }
+      ]
+    }
+  ]
+}

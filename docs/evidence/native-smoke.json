@@ -1,0 +1,29 @@
+{
+  "status": "PASS_BACKEND_ONLY",
+  "scope": "3 PNGs reais da identidade visual; não são um ensaio fotográfico. Sem Electron, thumbnails ou inferência.",
+  "root": "C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\.test-tmp\\real-png-pgp4Rm",
+  "sqliteVersion": "3.53.4",
+  "importCount": 3,
+  "importMs": 3.2623000000000104,
+  "persistenceAfterReopen": true,
+  "rating": 5,
+  "favorite": true,
+  "rejected": true,
+  "exportedOriginals": 1,
+  "exportMs": 4.318000000000012,
+  "sourceHash": "f8b4b7c1b9e047e8a9193d7fec800b8231351b7bcb5cd22890de6f88c33759fc",
+  "destinationHash": "f8b4b7c1b9e047e8a9193d7fec800b8231351b7bcb5cd22890de6f88c33759fc",
+  "originalBrandFilesUnchanged": true,
+  "peakNodeRssMiB": 68.75390625,
+  "progressEvents": [
+    {
+      "projectId": "def2f551-aa86-4591-90ed-cb8ff2d3c822",
+      "kind": "INDEX",
+      "stage": "Pasta indexada",
+      "done": 3,
+      "total": 3,
+      "failed": 0,
+      "active": false
+    }
+  ]
+}

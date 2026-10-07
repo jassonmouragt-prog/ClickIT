@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "models": {
+    "dinov2": {
+      "name": "DINOv2 Small ViT-S/14 FP32",
+      "file": "dinov2-small.onnx",
+      "type": "embedding",
+      "author": "Meta AI; ONNX export by ONNX Community / Xenova",
+      "version": "ef1fb1005bfd7768839d18080f7038b403506f87",
+      "sha256": "f22797eabf810a75e41de68d378541ebea372122b25c4ce3ef25ff618250c20a",
+      "bytes": 88532934,
+      "source": "https://huggingface.co/onnx-community/dinov2-small/tree/ef1fb1005bfd7768839d18080f7038b403506f87",
+      "url": "https://huggingface.co/onnx-community/dinov2-small/resolve/ef1fb1005bfd7768839d18080f7038b403506f87/onnx/model.onnx",
+      "hashSource": "https://huggingface.co/onnx-community/dinov2-small/raw/main/onnx/model.onnx",
+      "license": "Apache-2.0",
+      "licenseSource": "https://github.com/facebookresearch/dinov2/blob/main/LICENSE"
+    },
+    "faceLandmarker": {
+      "name": "MediaPipe Face Landmarker float16 v1",
+      "file": "face_landmarker.task",
+      "type": "face-landmarks",
+      "author": "Google MediaPipe",
+      "version": "float16/1",
+      "sha256": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
+      "bytes": 3758596,
+      "source": "https://ai.google.dev/edge/mediapipe/solutions/vision/face_landmarker",
+      "url": "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
+      "hashSource": "https://huggingface.co/lithiumice/models_hub/blame/8a7b241f38e33d194a06f881a1211b3e7eda4edd/face_landmarker.task",
+      "license": "Apache-2.0",
+      "licenseSource": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20MediaPipe%20Face%20Mesh%20V2.pdf",
+      "input": {
+        "type": "ImageBitmap RGB, preprocessing handled by MediaPipe Tasks"
+      },
+      "output": {
+        "landmarksPerFace": 478,
+        "blendshapesPerFace": 52,
+        "identityRecognition": false
+      },
+      "runtime": {
+        "package": "@mediapipe/tasks-vision",
+        "version": "0.10.35",
+        "delegate": "CPU",
+        "runningMode": "IMAGE",
+        "numFaces": 20,
+        "minFaceDetectionConfidence": 0.6,
+        "minFacePresenceConfidence": 0.6,
+        "outputFaceBlendshapes": true
+      }
+    }
+  }
+}

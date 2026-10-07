@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-06",
+  "classification": "READY_FOR_PHOTOGRAPHER_BETA",
+  "scope": "Operational readiness for the tested formats and replicated local throughput dataset; human preference is pending",
+  "criteria": {
+    "availableRawFormats": { "status": "PASS", "tested": { "DNG": 2 }, "notTested": ["CR2", "CR3", "NEF", "ARW"] },
+    "originalExportIntegrity": { "status": "PASS", "identicalSha256Copies": 2, "sourcesUnchanged": true },
+    "thousandFilesNoCrash": { "status": "PASS", "done": 1000, "failed": 0, "sourcePoolFiles": 82, "replicationAuthorized": true },
+    "controlledMemory": { "status": "PASS", "peakApproxBytes": 1273839616, "measurement": "node+electron WorkingSet sampled every 1.5 seconds" },
+    "cache": { "status": "PASS", "warmHits": 100, "warmMisses": 0, "mutatedHits": 99, "mutatedMisses": 1 },
+    "resume": { "status": "PASS", "processedBeforeStop": 31, "remainingAfterRestart": 69, "finalDone": 100, "duplicatesReprocessed": 0 },
+    "photosPreserved": { "status": "PASS", "basis": "Complete indexed/DONE counts, RAW source hashes before/after, cache mutation source hash unchanged" },
+    "closedEyesPenalty": { "status": "PASS", "basis": "Applicable controlled datasets across A/B/C" },
+    "weakNeverWinsByAesthetics": { "status": "PASS", "weakOrReviewTop1": [] },
+    "criticalPersistenceExportErrors": { "status": "PASS", "observed": 0 }
+  },
+  "evidence": {
+    "raw": "raw-validation-2026-10-06T19-11-13-389Z.json",
+    "benchmark": "benchmark-photos-2026-10-06T18-26-26-569Z.json",
+    "cache": "cache-test-2026-10-06T18-21-40-269Z.json",
+    "resume": "resume-test-2026-10-06T19-14-34-996Z.json",
+    "grouping": "grouping-audit-2026-10-06T18-34-40-163Z.json",
+    "ranking": "ranking-validation-summary.json"
+  },
+  "pending": ["Human annotations", "Unavailable RAW formats", "Independent large photo collection", "3000-file tier"],
+  "rankingExperimentClassification": "READY_FOR_MORE_DATA",
+  "trainingOrTuning": false,
+  "checks": {
+    "order": ["typecheck", "lint", "test", "build"],
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "test": { "status": "PASS", "passed": 43, "failed": 0, "skipped": 0 },
+    "build": "PASS"
+  }
+}

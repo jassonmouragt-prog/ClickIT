@@ -1,0 +1,69 @@
+{
+  "name": "portrait-expression-01",
+  "description": "Dataset A — retrato/expressão: mesma pessoa, mesmo ambiente, enquadramento próximo; variações de expressão/pose reais das 5 gerações + 1 variação de foco suave + 1 reenquadramento leve.",
+  "photos": [
+    {
+      "file": "01.png",
+      "labels": [
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "02.png",
+      "labels": [
+        "closed-eyes",
+        "soft-focus",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "03.png",
+      "labels": [
+        "open-eyes",
+        "soft-focus",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "04.png",
+      "labels": [
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "05.png",
+      "labels": [
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "06.png",
+      "labels": [
+        "open-eyes",
+        "soft-focus",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "07.png",
+      "labels": [
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    }
+  ]
+}

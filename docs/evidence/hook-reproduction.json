@@ -1,0 +1,14 @@
+{
+  "hook": "impeccable Stop (diagnostic reproduction; historical event not recovered)",
+  "command": "if exist \"C:\\Users\\jasso\\.codex\\plugins\\cache\\openai-curated-remote\\impeccable\\4.3.1/skills/impeccable/scripts/impeccable.cmd\" (\"C:\\Users\\jasso\\.codex\\plugins\\cache\\openai-curated-remote\\impeccable\\4.3.1/skills/impeccable/scripts/impeccable.cmd\" hook & exit /b)",
+  "shell": "cmd.exe /d /s /c",
+  "input": {
+    "hook_event_name": "Stop",
+    "cwd": "C:\\dev\\ClickIT",
+    "session_id": "ranking-audit-diagnostic",
+    "stop_hook_active": false
+  },
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}

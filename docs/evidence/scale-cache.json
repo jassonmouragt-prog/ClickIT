@@ -1,0 +1,89 @@
+{
+  "scope": "Synthetic robustness/performance only; no human aesthetic preference or professional selection validation.",
+  "tiers": [
+    {
+      "size": 100,
+      "suite": "C:\\dev\\ClickIT\\.test-tmp\\scale-runs\\100-16fpRV",
+      "cold": {
+        "cacheHits": 0,
+        "cacheMisses": 100,
+        "ms": 73694.8937
+      },
+      "warm": {
+        "cacheHits": 100,
+        "cacheMisses": 0,
+        "ms": 540.4362
+      },
+      "mutation": {
+        "file": "image-00001.jpg",
+        "method": "append diagnostic trailer (bytes and mtime change; image still decodes)",
+        "beforeSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+        "expectedMisses": 1,
+        "afterSha256": "ce46d98aff8dee8466ce7767c28882771868572877f6211a147090971d4d5fa7",
+        "restoredSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+        "actualMisses": 1,
+        "preparedCount": 1,
+        "cacheHits": 99,
+        "onlyChangedFilePrepared": true
+      },
+      "speedup": 136.3618752777849,
+      "pass": true
+    },
+    {
+      "size": 500,
+      "suite": "C:\\dev\\ClickIT\\.test-tmp\\scale-runs\\500-Nuyaet",
+      "cold": {
+        "cacheHits": 0,
+        "cacheMisses": 500,
+        "ms": 329480.06659999996
+      },
+      "warm": {
+        "cacheHits": 500,
+        "cacheMisses": 0,
+        "ms": 1112.0317
+      },
+      "mutation": {
+        "file": "image-00001.jpg",
+        "method": "append diagnostic trailer (bytes and mtime change; image still decodes)",
+        "beforeSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+        "expectedMisses": 1,
+        "afterSha256": "ce46d98aff8dee8466ce7767c28882771868572877f6211a147090971d4d5fa7",
+        "restoredSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+        "actualMisses": 1,
+        "preparedCount": 1,
+        "cacheHits": 499,
+        "onlyChangedFilePrepared": true
+      },
+      "speedup": 296.2865776218429,
+      "pass": true
+    },
+    {
+      "size": 1000,
+      "suite": "C:\\dev\\ClickIT\\.test-tmp\\scale-runs\\1000-nAnKNM",
+      "cold": {
+        "cacheHits": 0,
+        "cacheMisses": 1000,
+        "ms": 581429.3044
+      },
+      "warm": {
+        "cacheHits": 1000,
+        "cacheMisses": 0,
+        "ms": 1414.0271
+      },
+      "mutation": {
+        "file": "image-00001.jpg",
+        "method": "append diagnostic trailer (bytes and mtime change; image still decodes)",
+        "beforeSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+        "expectedMisses": 1,
+        "afterSha256": "ce46d98aff8dee8466ce7767c28882771868572877f6211a147090971d4d5fa7",
+        "restoredSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+        "actualMisses": 1,
+        "preparedCount": 1,
+        "cacheHits": 999,
+        "onlyChangedFilePrepared": true
+      },
+      "speedup": 411.1868184138762,
+      "pass": true
+    }
+  ]
+}

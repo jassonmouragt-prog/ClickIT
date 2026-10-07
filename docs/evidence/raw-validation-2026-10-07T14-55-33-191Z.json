@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-10-07T14:55:33.201Z",
+  "mode": "RAW validation (real files only; no simulation; production code untouched)",
+  "command": "npm run raw:validate -- --dir \"C:\\dev\\ClickIT\\Imagens Teste\"",
+  "directory": "C:\\dev\\ClickIT\\Imagens Teste",
+  "formats": [
+    {
+      "format": ".cr2",
+      "status": "NOT_TESTED",
+      "filesFound": 0,
+      "reason": "Nenhum arquivo disponível para validação real (sem simulação).",
+      "perFile": []
+    },
+    {
+      "format": ".cr3",
+      "status": "NOT_TESTED",
+      "filesFound": 0,
+      "reason": "Nenhum arquivo disponível para validação real (sem simulação).",
+      "perFile": []
+    },
+    {
+      "format": ".nef",
+      "status": "NOT_TESTED",
+      "filesFound": 0,
+      "reason": "Nenhum arquivo disponível para validação real (sem simulação).",
+      "perFile": []
+    },
+    {
+      "format": ".arw",
+      "status": "NOT_TESTED",
+      "filesFound": 0,
+      "reason": "Nenhum arquivo disponível para validação real (sem simulação).",
+      "perFile": []
+    },
+    {
+      "format": ".dng",
+      "status": "NOT_TESTED",
+      "filesFound": 0,
+      "reason": "Nenhum arquivo disponível para validação real (sem simulação).",
+      "perFile": []
+    }
+  ],
+  "summary": {
+    "expectedFormats": 5,
+    "testedFormats": 0,
+    "notTestedFormats": 5,
+    "passed": 0,
+    "failed": 0,
+    "extraRawFormatsFound": [],
+    "status": "NOT_TESTED"
+  },
+  "notes": [
+    "Formatação por extensão + verificação de magic bytes (TIFF para CR2/NEF/ARW/DNG; ftyp-crx para CR3).",
+    "Extração de preview embutido (JpgFromRaw/PreviewImage/OtherImage) cronometrada, como no worker de produção.",
+    "Análise via pipeline de produção (índice, previews, cache, embedding, rostos) em cópias hardlink em staging; exportação via exportPhotos com SHA-256 idêntico exigido.",
+    "Original verificado por SHA-256 antes e depois (intocabilidade)."
+  ]
+}

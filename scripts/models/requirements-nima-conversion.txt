@@ -1,0 +1,10 @@
+# Isolated development-time export environment (Python 3.7 x64).
+# TensorFlow 2.0 is the version used by the upstream official Dockerfile at the pinned commit.
+tensorflow==2.0.0
+numpy==1.18.5
+h5py==2.10.0
+Pillow==7.2.0
+tf2onnx==1.9.3
+onnx==1.10.2
+onnxruntime==1.10.0
+protobuf==3.20.3

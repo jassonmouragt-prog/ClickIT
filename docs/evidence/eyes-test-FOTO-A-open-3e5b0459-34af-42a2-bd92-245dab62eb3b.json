@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-10-06T11:47:35.686Z",
+  "photo": "C:\\dev\\ClickIT\\FOTO A.png",
+  "expected": "OPEN",
+  "config": {
+    "version": "ear-1",
+    "landmarks": {
+      "left": [
+        362,
+        385,
+        387,
+        263,
+        373,
+        380
+      ],
+      "right": [
+        33,
+        160,
+        158,
+        133,
+        153,
+        144
+      ]
+    },
+    "closedMax": 0.18,
+    "openMin": 0.25,
+    "minEyeWidthPixels": 12,
+    "maxPlausibleEar": 0.6,
+    "confidenceMargin": 0.1,
+    "formula": "EAR = (distance(p2,p6) + distance(p3,p5)) / (2 * distance(p1,p4)); distances in image pixels"
+  },
+  "scoreMeaning": "EAR geométrico: razão de abertura/ largura, não probabilidade.",
+  "confidenceMeaning": "Margem heurística normalizada até o limiar, não calibrada; não é confidence do MediaPipe.",
+  "ok": false,
+  "photoSha256": "61bfafdc45c1b90c407b46bc811c03f9069b3a52cda87e9737416f4dca9592f6",
+  "error": "Error: Face falhou na etapa app-ready-wait; exit=2147483651; [2940:1006/084736.564:ERROR:components\\os_crypt\\sync\\os_crypt_win.cc:77] Failed to encrypt: O sistema não pode encontrar o arquivo especificado. (0x2)\r\n[2940:1006/084736.608:FATAL:electron\\shell\\browser\\win\\install_dir_access.cc:52] Sandboxed processes cannot read C:\\dev\\ClickIT\\node_modules\\electron\\dist: its ACL has an entry for an AppContainer package SID but none for ALL APPLICATION PACKAGES, so Windows denies the sandbox token access. Grant it with: icacls \"C:\\dev\\ClickIT\\node_modules\\electron\\dist\" /grant *S-1-15-2-1:(OI)(CI)(RX)\r\n\n    at ChildProcess.<anonymous> (file:///C:/dev/ClickIT/scripts/face-probe.mjs:61:48)\n    at ChildProcess.wrapper (node:events:639:12)\n    at ChildProcess.emit (node:events:514:28)\n    at maybeClose (node:internal/child_process:1141:16)\n    at ChildProcess._handle.onexit (node:internal/child_process:306:5)",
+  "totalMs": 950.3598999999999,
+  "evidenceFile": "C:\\dev\\ClickIT\\docs\\evidence\\eyes-test-FOTO-A-open-3e5b0459-34af-42a2-bd92-245dab62eb3b.json"
+}

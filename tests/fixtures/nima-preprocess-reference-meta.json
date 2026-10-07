@@ -1,0 +1,20 @@
+{
+  "image": "Imagens Teste/Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+  "imageSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+  "resize": [
+    224,
+    224
+  ],
+  "interpolation": "nearest",
+  "pilFormula": "src = floor((dst + 0.5) * srcSize / 224)",
+  "colorMode": "rgb",
+  "dtype": "float32",
+  "preprocess": "tf.keras.applications.mobilenet.preprocess_input; RGB [0,255] -> [-1,1]",
+  "tensorShape": [
+    1,
+    224,
+    224,
+    3
+  ],
+  "tensorBytes": 602112
+}

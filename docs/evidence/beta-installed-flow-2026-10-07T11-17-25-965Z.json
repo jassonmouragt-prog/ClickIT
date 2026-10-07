@@ -1,0 +1,53 @@
+{
+  "startedAt": "2026-10-07T11:12:07.440Z",
+  "exe": "C:\\dev\\ClickIT\\release\\win-unpacked\\ClickIT.exe",
+  "userData": "C:\\dev\\ClickIT\\.test-tmp\\beta-installed\\ud",
+  "source": "C:\\dev\\ClickIT\\Imagens Teste",
+  "results": [
+    {
+      "step": "app aberto: home vazio (banco isolado novo)",
+      "ok": true,
+      "details": "{\"homeEmpty\":\"Nenhum projeto ainda\"}",
+      "t": "2026-10-07T11:12:10.176Z"
+    },
+    {
+      "step": "modal \"Novo projeto\" abriu",
+      "ok": true,
+      "details": "",
+      "t": "2026-10-07T11:12:10.753Z"
+    },
+    {
+      "step": "diálogo nativo: pasta de origem selecionada",
+      "ok": true,
+      "details": "RESULT=OK picked=C:\\dev\\ClickIT\\Imagens Teste how=bmclick:id=1 elements=89 candidates=1",
+      "t": "2026-10-07T11:12:15.210Z"
+    },
+    {
+      "step": "projeto criado e selecionado",
+      "ok": true,
+      "details": "Beta Instalado",
+      "t": "2026-10-07T11:12:15.213Z"
+    },
+    {
+      "step": "importação: 7 fotos com thumbnails/previews gerados",
+      "ok": true,
+      "details": "cards=7 imgs=7 placeholders=0",
+      "t": "2026-10-07T11:12:15.215Z"
+    },
+    {
+      "step": "análise concluída: rank/Pick persistido, sem erro",
+      "ok": false,
+      "details": "{\"home\":false,\"homeEmpty\":null,\"homeProjects\":0,\"header\":\"Beta Instalado\",\"footer\":\"0 fotos · 3 selecionadas · 0 favoritasComparar  CGrade \",\"cards\":0,\"imgs\":0,\"placeholders\":0,\"picks\":0,\"rejectedCards\":0,\"checked\":0,\"errorBanner\":null,\"noticeBanner\":null,\"progressActive\":false,\"progressText\":\"Análise concluída7 / 7 · 100%\",\"inspectorScore\":null,\"inspectorEmpty\":true,\"inspectorBadge\":null,\"inspectorRating\":0,\"inspectorFace\":null,\"inspectorAnalyzed\":false,\"viewer\":null,\"viewerPhotos\":0,\"modal\":null,\"emptyTitle\":\"Nenhuma foto neste filtro\",\"captionStars\":0}",
+      "t": "2026-10-07T11:17:16.095Z"
+    },
+    {
+      "step": "FLUXO INTERROMPIDO",
+      "ok": false,
+      "details": "Error: eval: TypeError: Cannot read properties of undefined (reading 'click')\n    at <anonymous>:1:65\n    at ev (file:///C:/dev/ClickIT/.test-tmp/flow-test.mjs:118:35)\n    at async main (file:///C:/dev/ClickIT/.test-tmp/flow-test.mjs:169:19)",
+      "t": "2026-10-07T11:17:24.324Z"
+    }
+  ],
+  "passed": 5,
+  "failed": 2,
+  "finishedAt": "2026-10-07T11:17:25.965Z"
+}

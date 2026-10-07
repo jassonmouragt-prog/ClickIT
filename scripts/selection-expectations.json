@@ -1,0 +1,61 @@
+{
+  "description": "Controlled seven-image set; visual annotations confirmed by the user on 2026-10-06. Used only for validation AFTER production ranking, never as input to grouping/scoring.",
+  "images": [
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "role": "sequence",
+      "closed": false,
+      "soft": false,
+      "acceptablePick": false
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "role": "sequence",
+      "closed": true,
+      "soft": false,
+      "acceptablePick": false
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "role": "sequence",
+      "closed": false,
+      "soft": true,
+      "acceptablePick": false
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "role": "sequence",
+      "closed": false,
+      "soft": false,
+      "acceptablePick": true
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "role": "sequence",
+      "closed": false,
+      "soft": false,
+      "acceptablePick": true
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "role": "different",
+      "closed": false,
+      "soft": false,
+      "acceptablePick": false
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "role": "different",
+      "closed": false,
+      "soft": false,
+      "acceptablePick": false
+    }
+  ]
+}

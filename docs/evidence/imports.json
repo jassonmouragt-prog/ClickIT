@@ -1,0 +1,515 @@
+[
+  {
+    "file": "src\\ai\\embedding.ts",
+    "specifier": "onnxruntime-node",
+    "dependency": "onnxruntime-node",
+    "declared": "^1.22.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\ai\\embedding.ts",
+    "specifier": "sharp",
+    "dependency": "sharp",
+    "declared": "^0.34.3",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\ai\\face-host.ts",
+    "specifier": "@mediapipe/tasks-vision",
+    "dependency": "@mediapipe/tasks-vision",
+    "declared": "0.10.35",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\ai\\face-host.ts",
+    "specifier": "./quality.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\ai\\face-host.ts",
+    "specifier": "../lib/config.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\ai\\face-host.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\ai\\grouping.ts",
+    "specifier": "../lib/config.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\ai\\grouping.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\ai\\quality.ts",
+    "specifier": "../lib/config.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\ai\\quality.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\components\\Inspector.tsx",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\components\\Inspector.tsx",
+    "specifier": "../features/photos.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\components\\Inspector.tsx",
+    "specifier": "./ui.tsx",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\components\\PhotoGrid.tsx",
+    "specifier": "react",
+    "dependency": "react",
+    "declared": "^19.1.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\components\\PhotoGrid.tsx",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\components\\PhotoGrid.tsx",
+    "specifier": "../features/photos.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\components\\PhotoViewer.tsx",
+    "specifier": "react",
+    "dependency": "react",
+    "declared": "^19.1.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\components\\PhotoViewer.tsx",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\components\\PhotoViewer.tsx",
+    "specifier": "../features/photos.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\components\\PhotoViewer.tsx",
+    "specifier": "./ui.tsx",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\components\\ui.tsx",
+    "specifier": "react",
+    "dependency": "react",
+    "declared": "^19.1.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\components\\ui.tsx",
+    "specifier": "react",
+    "dependency": "react",
+    "declared": "^19.1.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\database\\store.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\database\\store.ts",
+    "specifier": "../ai/grouping.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\database\\store.ts",
+    "specifier": "../lib/config.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\features\\hotkeys.ts",
+    "specifier": "react",
+    "dependency": "react",
+    "declared": "^19.1.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\features\\photos.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\lib\\validation.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\main\\index.ts",
+    "specifier": "electron",
+    "dependency": "electron",
+    "declared": "44.5.1",
+    "section": "devDependencies"
+  },
+  {
+    "file": "src\\main\\index.ts",
+    "specifier": "../lib/files.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\main\\index.ts",
+    "specifier": "../database/store.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\main\\index.ts",
+    "specifier": "../services/pipeline.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\main\\index.ts",
+    "specifier": "../services/log.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\main\\index.ts",
+    "specifier": "../services/export.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\main\\index.ts",
+    "specifier": "../lib/validation.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\main\\index.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\main\\index.ts",
+    "specifier": "../lib/config.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\preload\\index.ts",
+    "specifier": "electron",
+    "dependency": "electron",
+    "declared": "44.5.1",
+    "section": "devDependencies"
+  },
+  {
+    "file": "src\\preload\\index.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\App.tsx",
+    "specifier": "react",
+    "dependency": "react",
+    "declared": "^19.1.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\renderer\\App.tsx",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\App.tsx",
+    "specifier": "../components/ui.tsx",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\App.tsx",
+    "specifier": "../components/PhotoGrid.tsx",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\App.tsx",
+    "specifier": "../components/Inspector.tsx",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\App.tsx",
+    "specifier": "../components/PhotoViewer.tsx",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\App.tsx",
+    "specifier": "../features/photos.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\App.tsx",
+    "specifier": "../features/photos.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\App.tsx",
+    "specifier": "../features/hotkeys.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\main.tsx",
+    "specifier": "react",
+    "dependency": "react",
+    "declared": "^19.1.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\renderer\\main.tsx",
+    "specifier": "react-dom/client",
+    "dependency": "react-dom",
+    "declared": "^19.1.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\renderer\\main.tsx",
+    "specifier": "@fontsource/inter/400.css",
+    "dependency": "@fontsource/inter",
+    "declared": "5.2.8",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\renderer\\main.tsx",
+    "specifier": "@fontsource/inter/500.css",
+    "dependency": "@fontsource/inter",
+    "declared": "5.2.8",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\renderer\\main.tsx",
+    "specifier": "@fontsource/inter/600.css",
+    "dependency": "@fontsource/inter",
+    "declared": "5.2.8",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\renderer\\main.tsx",
+    "specifier": "@fontsource/inter/700.css",
+    "dependency": "@fontsource/inter",
+    "declared": "5.2.8",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\renderer\\main.tsx",
+    "specifier": "./App.tsx",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\renderer\\main.tsx",
+    "specifier": "./styles.css",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\services\\export.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\services\\pipeline.ts",
+    "specifier": "../database/store.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\services\\pipeline.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\services\\pipeline.ts",
+    "specifier": "../lib/files.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\services\\pipeline.ts",
+    "specifier": "../lib/config.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\services\\pipeline.ts",
+    "specifier": "../ai/quality.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\services\\pipeline.ts",
+    "specifier": "../ai/grouping.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\services\\pipeline.ts",
+    "specifier": "../workers/analysis.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\workers\\analysis.ts",
+    "specifier": "sharp",
+    "dependency": "sharp",
+    "declared": "^0.34.3",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\workers\\analysis.ts",
+    "specifier": "exiftool-vendored",
+    "dependency": "exiftool-vendored",
+    "declared": "^34.0.0",
+    "section": "dependencies"
+  },
+  {
+    "file": "src\\workers\\analysis.ts",
+    "specifier": "../ai/embedding.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\workers\\analysis.ts",
+    "specifier": "../ai/quality.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\workers\\analysis.ts",
+    "specifier": "../lib/files.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\workers\\analysis.ts",
+    "specifier": "../lib/config.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\workers\\analysis.ts",
+    "specifier": "../types/domain.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\workers\\grouping.ts",
+    "specifier": "../ai/grouping.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "src\\workers\\grouping.ts",
+    "specifier": "../ai/grouping.ts",
+    "kind": "relative",
+    "present": true
+  },
+  {
+    "file": "scripts\\build.mjs",
+    "specifier": "esbuild",
+    "dependency": "esbuild",
+    "declared": "^0.25.0",
+    "section": "devDependencies"
+  },
+  {
+    "file": "scripts\\build.mjs",
+    "specifier": "vite",
+    "dependency": "vite",
+    "declared": "~8.3.0",
+    "section": "devDependencies"
+  },
+  {
+    "file": "scripts\\dev.mjs",
+    "specifier": "electron",
+    "dependency": "electron",
+    "declared": "44.5.1",
+    "section": "devDependencies"
+  },
+  {
+    "file": "vite.config.ts",
+    "specifier": "vite",
+    "dependency": "vite",
+    "declared": "~8.3.0",
+    "section": "devDependencies"
+  },
+  {
+    "file": "vite.config.ts",
+    "specifier": "@vitejs/plugin-react",
+    "dependency": "@vitejs/plugin-react",
+    "declared": "^6.0.0",
+    "section": "devDependencies"
+  },
+  {
+    "file": "vite.config.ts",
+    "specifier": "@tailwindcss/vite",
+    "dependency": "@tailwindcss/vite",
+    "declared": "^4.1.0",
+    "section": "devDependencies"
+  },
+  {
+    "file": "eslint.config.mjs",
+    "specifier": "@eslint/js",
+    "dependency": "@eslint/js",
+    "declared": "^9.30.0",
+    "section": "devDependencies"
+  },
+  {
+    "file": "eslint.config.mjs",
+    "specifier": "typescript-eslint",
+    "dependency": "typescript-eslint",
+    "declared": "^8.35.0",
+    "section": "devDependencies"
+  }
+]

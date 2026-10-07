@@ -1,0 +1,68 @@
+{
+  "classification": "BLOCKED",
+  "scope": "Harness-only repair; no 500/1000 runs; no leak assessment",
+  "productionUnchanged": true,
+  "productionFilesCompared": 36,
+  "harnessFingerprint": {
+    "scale-face-client.mjs": "cb285be4839370253bdc9e8ac19cf0bbf00440cfba8ea203fabd02448cdbc715",
+    "scale-face-host.mjs": "4f81974c7e5378c0baddd9754c34e6ebf80ae9c76ea031ce8cc598b02e5a8179",
+    "scale-face-renderer.ts": "c99d3e7f280cb678f65ea44586ab1047a179affa6fa1eb8e352da457d1bc5eac",
+    "scale-harness-state.mjs": "f26f3ab57dadf3a8655f7f2fae0fd1a1b3a1223930207f5f3c57416a6b6d9a1f",
+    "scale-run.mjs": "4783c5f9144e2f856bb681a991336e10aa33309268748ce6832c60796a863ce6",
+    "benchmark-scale.mjs": "f33082a43dc7c7539bba3f4c0b6f121ffa42741ff6d861115971c94033f56e12",
+    "benchmark-face-smoke.mjs": "9594105d059474fce2e3040034e5ea0430e078cb46ab6a2ad28a0038aa7bbcc2",
+    "benchmark-harness.mjs": "420aaa98b32c434d046d9ed3121e4af27d513a5c87b75e89a754c18b44168b35"
+  },
+  "smoke": {
+    "status": "BLOCKED",
+    "workspace": "C:\\dev\\ClickIT\\.test-tmp\\face-smoke-hV6Ojo",
+    "starts": 1,
+    "requests": 0,
+    "responses": 0,
+    "outcome": {
+      "exitCode": 2147483651,
+      "signal": null,
+      "processError": null,
+      "controlledFailure": false,
+      "unexpectedExit": true,
+      "nativeCrash": true,
+      "timeout": false,
+      "nativeEvidence": [
+        {
+          "stderr": "[25056:1006/181044.889:ERROR:components\\os_crypt\\sync\\os_crypt_win.cc:77] Failed to encrypt: O sistema não pode encontrar o arquivo especificado. (0x2)\r\n[25056:1006/181044.912:FATAL:electron\\shell\\browser\\win\\install_dir_access.cc:52] Sandboxed processes cannot read C:\\dev\\ClickIT\\node_modules\\electron\\dist: its ACL has an entry for an AppContainer package SID but none for ALL APPLICATION PACKAGES, so Windows denies the sandbox token access. Grant it with: icacls \"C:\\dev\\ClickIT\\node_modules\\electron\\dist\" /grant *S-1-15-2-1:(OI)(CI)(RX)\r\n"
+        }
+      ]
+    }
+  },
+  "validation10": {
+    "status": "NOT_RUN",
+    "reason": "Smoke did not PASS"
+  },
+  "validation100": {
+    "status": "NOT_RUN",
+    "reason": "10-image validation not executed",
+    "done": null,
+    "failed": null,
+    "totalMs": null,
+    "faceHostStarts": null,
+    "faceRequests": null,
+    "faceResponses": null,
+    "unexpectedExits": null,
+    "validRam": null
+  },
+  "legacyCodeZeroRootCause": {
+    "codePath": "readline close -> app.quit without explicit shutdown",
+    "confirmedHistoricalTrigger": false,
+    "limitation": "Prior run lacks lifecycle traces; instrumented reproduction blocked by native Electron ACL failure before READY"
+  },
+  "checks": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "test": {
+      "passed": 50,
+      "failed": 0,
+      "skipped": 0
+    },
+    "build": "PASS"
+  }
+}

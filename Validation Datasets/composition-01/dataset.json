@@ -1,0 +1,86 @@
+{
+  "name": "composition-01",
+  "description": "Dataset C — composição: mesmo assunto (base -4), variações de enquadramento: centralizado, deslocado, espaço negativo, crop fechado/aberto; qualidade técnica semelhante.",
+  "photos": [
+    {
+      "file": "01.png",
+      "labels": [
+        "subject-centered",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "02.png",
+      "labels": [
+        "subject-offcenter",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "03.png",
+      "labels": [
+        "subject-offcenter",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "04.png",
+      "labels": [
+        "more-headroom",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "05.png",
+      "labels": [
+        "tight-crop",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "06.png",
+      "labels": [
+        "open-crop",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "07.png",
+      "labels": [
+        "negative-space",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "08.png",
+      "labels": [
+        "negative-space",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "scope": "Synthetic robustness/performance only; no human aesthetic preference or professional selection validation.",
+  "tiers": [
+    {
+      "size": 100,
+      "suite": "C:\\dev\\ClickIT\\.test-tmp\\scale-runs\\100-16fpRV",
+      "scope": "Production exportPhotos COPY on a deterministic subset of indexed synthetic files; independent of inference/selection quality.",
+      "result": {
+        "copied": 12,
+        "total": 12,
+        "cancelled": false,
+        "destination": "C:\\dev\\ClickIT\\.test-tmp\\scale-runs\\100-16fpRV\\primary\\export",
+        "errors": []
+      },
+      "comparisons": [
+        {
+          "source": "image-00001.jpg",
+          "exported": "image-00001_fe7ebafd_c2f02d2b.jpg",
+          "originalSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+          "exportedSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+          "identical": true
+        },
+        {
+          "source": "image-00009.jpg",
+          "exported": "image-00009_a35bc43b_c2f02d2b.jpg",
+          "originalSha256": "80ae2877bf3be6cbeb101093e8309867dae8de1ac7565ab5fce3b9274bb55929",
+          "exportedSha256": "80ae2877bf3be6cbeb101093e8309867dae8de1ac7565ab5fce3b9274bb55929",
+          "identical": true
+        },
+        {
+          "source": "image-00017.jpg",
+          "exported": "image-00017_bd0f9a1d_c2f02d2b.jpg",
+          "originalSha256": "2cb1673270e28f1cf79d32413ea24966fad07f3353fe887c74e6c995140c8212",
+          "exportedSha256": "2cb1673270e28f1cf79d32413ea24966fad07f3353fe887c74e6c995140c8212",
+          "identical": true
+        },
+        {
+          "source": "image-00025.jpg",
+          "exported": "image-00025_b7c0b6c4_c2f02d2b.jpg",
+          "originalSha256": "0f9605cbe0bc8fc4e61f425dcc26eb921339a03d936ba0bb5431eefc17a34d75",
+          "exportedSha256": "0f9605cbe0bc8fc4e61f425dcc26eb921339a03d936ba0bb5431eefc17a34d75",
+          "identical": true
+        },
+        {
+          "source": "image-00033.png",
+          "exported": "image-00033_ea94da72_c2f02d2b.png",
+          "originalSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+          "exportedSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+          "identical": true
+        },
+        {
+          "source": "image-00041.jpg",
+          "exported": "image-00041_d21478ff_c2f02d2b.jpg",
+          "originalSha256": "e23387bd3814061c7f90218f65c7f86be1db6be5922293c7c03dc18ca619ded0",
+          "exportedSha256": "e23387bd3814061c7f90218f65c7f86be1db6be5922293c7c03dc18ca619ded0",
+          "identical": true
+        },
+        {
+          "source": "image-00049.jpg",
+          "exported": "image-00049_2623259b_c2f02d2b.jpg",
+          "originalSha256": "f293469fa5550c4167994922ce48d82653b1ba27be2a8a20d6642a03d661902c",
+          "exportedSha256": "f293469fa5550c4167994922ce48d82653b1ba27be2a8a20d6642a03d661902c",
+          "identical": true
+        },
+        {
+          "source": "image-00057.jpg",
+          "exported": "image-00057_02ffd510_c2f02d2b.jpg",
+          "originalSha256": "564301f795308a3b50dda0ead0fc0d4e1b5868a63a54c7761730efb69fe822ce",
+          "exportedSha256": "564301f795308a3b50dda0ead0fc0d4e1b5868a63a54c7761730efb69fe822ce",
+          "identical": true
+        },
+        {
+          "source": "image-00065.jpg",
+          "exported": "image-00065_6a02e05c_c2f02d2b.jpg",
+          "originalSha256": "212917e3a6d14f9fff70a0b61bb7c612c62fa4d0c431742998e90829352779d8",
+          "exportedSha256": "212917e3a6d14f9fff70a0b61bb7c612c62fa4d0c431742998e90829352779d8",
+          "identical": true
+        },
+        {
+          "source": "image-00073.jpg",
+          "exported": "image-00073_22e99fb0_c2f02d2b.jpg",
+          "originalSha256": "292a2c88d0d530c0d19d81395dc968b01f2dcee6e96941884b75d5f63a2a4316",
+          "exportedSha256": "292a2c88d0d530c0d19d81395dc968b01f2dcee6e96941884b75d5f63a2a4316",
+          "identical": true
+        },
+        {
+          "source": "image-00081.jpg",
+          "exported": "image-00081_254abe77_c2f02d2b.jpg",
+          "originalSha256": "9b4fc18168628b8a1c0363721656650049619f942b43338644963fada71ca052",
+          "exportedSha256": "9b4fc18168628b8a1c0363721656650049619f942b43338644963fada71ca052",
+          "identical": true
+        },
+        {
+          "source": "image-00089.jpg",
+          "exported": "image-00089_800b325b_c2f02d2b.jpg",
+          "originalSha256": "0b65efa6f95d9c00c857faaed1ffb7782e42b803cb62d8dbb45c9aae7d78ebb3",
+          "exportedSha256": "0b65efa6f95d9c00c857faaed1ffb7782e42b803cb62d8dbb45c9aae7d78ebb3",
+          "identical": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "size": 500,
+      "suite": "C:\\dev\\ClickIT\\.test-tmp\\scale-runs\\500-Nuyaet",
+      "scope": "Production exportPhotos COPY on a deterministic subset of indexed synthetic files; independent of inference/selection quality.",
+      "result": {
+        "copied": 12,
+        "total": 12,
+        "cancelled": false,
+        "destination": "C:\\dev\\ClickIT\\.test-tmp\\scale-runs\\500-Nuyaet\\primary\\export",
+        "errors": []
+      },
+      "comparisons": [
+        {
+          "source": "image-00001.jpg",
+          "exported": "image-00001_90c994ed_a3818e38.jpg",
+          "originalSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+          "exportedSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+          "identical": true
+        },
+        {
+          "source": "image-00042.jpg",
+          "exported": "image-00042_0a42b0d5_a3818e38.jpg",
+          "originalSha256": "aef84e581e10ae3e282ee72597985aad83d0bd34f0e3e2eb66bcb8d1209a1962",
+          "exportedSha256": "aef84e581e10ae3e282ee72597985aad83d0bd34f0e3e2eb66bcb8d1209a1962",
+          "identical": true
+        },
+        {
+          "source": "image-00083.jpg",
+          "exported": "image-00083_09736b7d_a3818e38.jpg",
+          "originalSha256": "d13e0ea2ea2be955604886e4eec4784a6a21cb4d438c5ee77261f3acbfb8ce2e",
+          "exportedSha256": "d13e0ea2ea2be955604886e4eec4784a6a21cb4d438c5ee77261f3acbfb8ce2e",
+          "identical": true
+        },
+        {
+          "source": "image-00124.jpg",
+          "exported": "image-00124_d336f6c8_a3818e38.jpg",
+          "originalSha256": "b3d41284963d8ac9234358afcfc731c6a9c1eab324143baf8506e3b974171551",
+          "exportedSha256": "b3d41284963d8ac9234358afcfc731c6a9c1eab324143baf8506e3b974171551",
+          "identical": true
+        },
+        {
+          "source": "image-00165.jpg",
+          "exported": "image-00165_ddd57882_a3818e38.jpg",
+          "originalSha256": "9aad821df57a4aef62fb80b2f79133a71163d0d8d76a135b7f2c039fa8ca6a05",
+          "exportedSha256": "9aad821df57a4aef62fb80b2f79133a71163d0d8d76a135b7f2c039fa8ca6a05",
+          "identical": true
+        },
+        {
+          "source": "image-00206.jpg",
+          "exported": "image-00206_1124b6e6_a3818e38.jpg",
+          "originalSha256": "086d203629226521124be1595856bf52d57deec3ded047d22a9e72dda4a874a0",
+          "exportedSha256": "086d203629226521124be1595856bf52d57deec3ded047d22a9e72dda4a874a0",
+          "identical": true
+        },
+        {
+          "source": "image-00247.jpg",
+          "exported": "image-00247_8919913d_a3818e38.jpg",
+          "originalSha256": "417c9905ead35f98d6e3fad99308ff4c36c1a7d276d07a38acfc7f998bef4cfd",
+          "exportedSha256": "417c9905ead35f98d6e3fad99308ff4c36c1a7d276d07a38acfc7f998bef4cfd",
+          "identical": true
+        },
+        {
+          "source": "image-00288.jpg",
+          "exported": "image-00288_43cec804_a3818e38.jpg",
+          "originalSha256": "6b919477f8c6cb898d8adf255dc0011be11416ac439bbce493d8159fc763789e",
+          "exportedSha256": "6b919477f8c6cb898d8adf255dc0011be11416ac439bbce493d8159fc763789e",
+          "identical": true
+        },
+        {
+          "source": "image-00329.jpg",
+          "exported": "image-00329_44d2430a_a3818e38.jpg",
+          "originalSha256": "29023fa0a7bb4c9b38678c3a2986e14cc953ab487773ebbf61501687f300ebd1",
+          "exportedSha256": "29023fa0a7bb4c9b38678c3a2986e14cc953ab487773ebbf61501687f300ebd1",
+          "identical": true
+        },
+        {
+          "source": "image-00370.jpg",
+          "exported": "image-00370_33c339f1_a3818e38.jpg",
+          "originalSha256": "04e91831c5d58c9e54ccf8b46919388b2e400882b189c467c185d3155165d322",
+          "exportedSha256": "04e91831c5d58c9e54ccf8b46919388b2e400882b189c467c185d3155165d322",
+          "identical": true
+        },
+        {
+          "source": "image-00411.jpg",
+          "exported": "image-00411_4e27bf30_a3818e38.jpg",
+          "originalSha256": "b3d41284963d8ac9234358afcfc731c6a9c1eab324143baf8506e3b974171551",
+          "exportedSha256": "b3d41284963d8ac9234358afcfc731c6a9c1eab324143baf8506e3b974171551",
+          "identical": true
+        },
+        {
+          "source": "image-00452.jpg",
+          "exported": "image-00452_052342d8_a3818e38.jpg",
+          "originalSha256": "6bb290d160372cfb47338860dd6612dfcf3f54bedb1263165e803a67854c137f",
+          "exportedSha256": "6bb290d160372cfb47338860dd6612dfcf3f54bedb1263165e803a67854c137f",
+          "identical": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "size": 1000,
+      "suite": "C:\\dev\\ClickIT\\.test-tmp\\scale-runs\\1000-nAnKNM",
+      "scope": "Production exportPhotos COPY on a deterministic subset of indexed synthetic files; independent of inference/selection quality.",
+      "result": {
+        "copied": 12,
+        "total": 12,
+        "cancelled": false,
+        "destination": "C:\\dev\\ClickIT\\.test-tmp\\scale-runs\\1000-nAnKNM\\primary\\export",
+        "errors": []
+      },
+      "comparisons": [
+        {
+          "source": "image-00001.jpg",
+          "exported": "image-00001_d529a89f_c45d81fd.jpg",
+          "originalSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+          "exportedSha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b",
+          "identical": true
+        },
+        {
+          "source": "image-00084.jpg",
+          "exported": "image-00084_cb111fe4_c45d81fd.jpg",
+          "originalSha256": "66ee662f183b587d2e26584699c0135c30604a7a4afa39b3e0d72c959dc0732d",
+          "exportedSha256": "66ee662f183b587d2e26584699c0135c30604a7a4afa39b3e0d72c959dc0732d",
+          "identical": true
+        },
+        {
+          "source": "image-00167.jpg",
+          "exported": "image-00167_400bf6c9_c45d81fd.jpg",
+          "originalSha256": "b27f401e19b22e9ee689a634b3075d430a313f361ffcb9eb4cbd8f31ad0cfd0e",
+          "exportedSha256": "b27f401e19b22e9ee689a634b3075d430a313f361ffcb9eb4cbd8f31ad0cfd0e",
+          "identical": true
+        },
+        {
+          "source": "image-00250.jpg",
+          "exported": "image-00250_1d9c5630_c45d81fd.jpg",
+          "originalSha256": "829b81af4aeabd0e6f14098c94818503f2c06c8a25b0a9d785b7d1eb9e30ebe1",
+          "exportedSha256": "829b81af4aeabd0e6f14098c94818503f2c06c8a25b0a9d785b7d1eb9e30ebe1",
+          "identical": true
+        },
+        {
+          "source": "image-00333.jpg",
+          "exported": "image-00333_39dc7d33_c45d81fd.jpg",
+          "originalSha256": "9b4fc18168628b8a1c0363721656650049619f942b43338644963fada71ca052",
+          "exportedSha256": "9b4fc18168628b8a1c0363721656650049619f942b43338644963fada71ca052",
+          "identical": true
+        },
+        {
+          "source": "image-00416.jpg",
+          "exported": "image-00416_d4a592e1_c45d81fd.jpg",
+          "originalSha256": "d3ac31850a416144cfe2a6a8bc9d0cdeec278c8e67d636195ea8e9098d27e511",
+          "exportedSha256": "d3ac31850a416144cfe2a6a8bc9d0cdeec278c8e67d636195ea8e9098d27e511",
+          "identical": true
+        },
+        {
+          "source": "image-00499.jpg",
+          "exported": "image-00499_94eb04bb_c45d81fd.jpg",
+          "originalSha256": "5051476cb2ee0000d2f8aa2157769666b1b1977f91aff799925b9a77a9926d5e",
+          "exportedSha256": "5051476cb2ee0000d2f8aa2157769666b1b1977f91aff799925b9a77a9926d5e",
+          "identical": true
+        },
+        {
+          "source": "image-00582.jpg",
+          "exported": "image-00582_3f0c640d_c45d81fd.jpg",
+          "originalSha256": "b4509e7915b2eb027de03c2c9fb082f34e5e78cfdd22cd480ffecaab1dfdc503",
+          "exportedSha256": "b4509e7915b2eb027de03c2c9fb082f34e5e78cfdd22cd480ffecaab1dfdc503",
+          "identical": true
+        },
+        {
+          "source": "image-00665.jpg",
+          "exported": "image-00665_6b333207_c45d81fd.jpg",
+          "originalSha256": "d0a5f03e286f61e3818d9a37f24cd9def84e7be7b1ce150f986cbe68e82fb64e",
+          "exportedSha256": "d0a5f03e286f61e3818d9a37f24cd9def84e7be7b1ce150f986cbe68e82fb64e",
+          "identical": true
+        },
+        {
+          "source": "image-00748.jpg",
+          "exported": "image-00748_fc244c79_c45d81fd.jpg",
+          "originalSha256": "e496fe619cc9bd81d338a1d5080ffe2e710e9c56e7f2a5cfd941d79c20580a00",
+          "exportedSha256": "e496fe619cc9bd81d338a1d5080ffe2e710e9c56e7f2a5cfd941d79c20580a00",
+          "identical": true
+        },
+        {
+          "source": "image-00831.jpg",
+          "exported": "image-00831_f9c60550_c45d81fd.jpg",
+          "originalSha256": "b960425518ab3512ae2ba5b53e7f1599b619e6826d33dc189da6bfa248dd3aec",
+          "exportedSha256": "b960425518ab3512ae2ba5b53e7f1599b619e6826d33dc189da6bfa248dd3aec",
+          "identical": true
+        },
+        {
+          "source": "image-00914.jpg",
+          "exported": "image-00914_e7c0de14_c45d81fd.jpg",
+          "originalSha256": "3aa2d8b9e93fe0552851333490f871ff806eb3e25b77a2c2b1f48b791162656d",
+          "exportedSha256": "3aa2d8b9e93fe0552851333490f871ff806eb3e25b77a2c2b1f48b791162656d",
+          "identical": true
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

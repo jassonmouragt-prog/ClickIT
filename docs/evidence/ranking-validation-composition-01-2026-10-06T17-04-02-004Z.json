@@ -1,0 +1,670 @@
+{
+  "name": "composition-01",
+  "description": "Dataset C — composição: mesmo assunto (base -4), variações de enquadramento: centralizado, deslocado, espaço negativo, crop fechado/aberto; qualidade técnica semelhante.",
+  "directory": "C:\\dev\\ClickIT\\Validation Datasets\\composition-01",
+  "manifestSha256": "7f960c23f7d7ee0e141deaadb9ce3a84a6f1e898e1306e2b9f8b066d057797b4",
+  "mode": "Validation only; production ranking/grouping/thresholds/models untouched; humanRank excluded from ranking",
+  "photos": [
+    {
+      "file": "01.png",
+      "labels": [
+        "subject-centered",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null,
+      "technicalScore": 79,
+      "blur": "CLEAR",
+      "eyesState": "OPEN",
+      "faceSharpness": 31.373438605406648,
+      "regionalSharpness": 60.5153543417611,
+      "exposure": 98.5504150390625,
+      "groupId": "37b76a8c-4b39-4c6c-86b9-01b834054e81",
+      "productionRank": 3,
+      "productionDecision": "UNDECIDED",
+      "nimaMean": 5.236387528344494,
+      "nimaStd": 1.269442640367215,
+      "distribution": [
+        0.0000010541371011640877,
+        0.017892295494675636,
+        0.05806548520922661,
+        0.1771811693906784,
+        0.360246479511261,
+        0.24267755448818207,
+        0.09816659241914749,
+        0.0387922003865242,
+        0.006892123259603977,
+        0.00008501661795889959
+      ],
+      "hasOpenAlternative": true,
+      "tier": "TECHNICALLY_GOOD"
+    },
+    {
+      "file": "02.png",
+      "labels": [
+        "subject-offcenter",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null,
+      "technicalScore": 80,
+      "blur": "CLEAR",
+      "eyesState": "OPEN",
+      "faceSharpness": 31.79427615163582,
+      "regionalSharpness": 59.61280607734908,
+      "exposure": 99.964599609375,
+      "groupId": "37b76a8c-4b39-4c6c-86b9-01b834054e81",
+      "productionRank": 2,
+      "productionDecision": "UNDECIDED",
+      "nimaMean": 5.030386144485362,
+      "nimaStd": 1.2801021369637882,
+      "distribution": [
+        8.745964237277803e-7,
+        0.027072615921497345,
+        0.07781312614679337,
+        0.21204634010791779,
+        0.35888785123825073,
+        0.20730267465114594,
+        0.08197818696498871,
+        0.03158949315547943,
+        0.003291429253295064,
+        0.00001738777973514516
+      ],
+      "hasOpenAlternative": true,
+      "tier": "TECHNICALLY_GOOD"
+    },
+    {
+      "file": "03.png",
+      "labels": [
+        "subject-offcenter",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null,
+      "technicalScore": 79,
+      "blur": "CLEAR",
+      "eyesState": "OPEN",
+      "faceSharpness": 31.404147271539244,
+      "regionalSharpness": 59.60641320116456,
+      "exposure": 98.194580078125,
+      "groupId": "37b76a8c-4b39-4c6c-86b9-01b834054e81",
+      "productionRank": 4,
+      "productionDecision": "UNDECIDED",
+      "nimaMean": 5.37853017788575,
+      "nimaStd": 1.2391189580990136,
+      "distribution": [
+        1.596940819581505e-7,
+        0.010784226469695568,
+        0.046017784625291824,
+        0.1555330455303192,
+        0.3539709746837616,
+        0.2680853009223938,
+        0.11428660154342651,
+        0.04354953393340111,
+        0.007716693449765444,
+        0.00005566269828705117
+      ],
+      "hasOpenAlternative": true,
+      "tier": "TECHNICALLY_GOOD"
+    },
+    {
+      "file": "04.png",
+      "labels": [
+        "more-headroom",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null,
+      "technicalScore": 79,
+      "blur": "CLEAR",
+      "eyesState": "OPEN",
+      "faceSharpness": 31.40235862358786,
+      "regionalSharpness": 57.43740129537106,
+      "exposure": 98.35660133136095,
+      "groupId": "861d0044-8737-47e0-821e-19b17ae3a0b1",
+      "productionRank": 1,
+      "productionDecision": "AI_SELECTED",
+      "nimaMean": 5.403577035880559,
+      "nimaStd": 1.247907588227428,
+      "distribution": [
+        1.8098766929597332e-7,
+        0.010515631176531315,
+        0.04529927298426628,
+        0.1513325423002243,
+        0.3497106730937958,
+        0.2729734480381012,
+        0.11667566001415253,
+        0.04328460246324539,
+        0.010162394493818283,
+        0.00004555604391498491
+      ],
+      "hasOpenAlternative": true,
+      "tier": "TECHNICALLY_GOOD"
+    },
+    {
+      "file": "05.png",
+      "labels": [
+        "tight-crop",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null,
+      "technicalScore": 79,
+      "blur": "CLEAR",
+      "eyesState": "OPEN",
+      "faceSharpness": 31.015496207266388,
+      "regionalSharpness": 51.996131367417334,
+      "exposure": 99.92150992990653,
+      "groupId": "6f4b5e97-2577-4cb7-9e5d-bbe7aac24c92",
+      "productionRank": 1,
+      "productionDecision": "AI_SELECTED",
+      "nimaMean": 5.643363962395213,
+      "nimaStd": 1.2795294115145144,
+      "distribution": [
+        1.2348171196663316e-7,
+        0.006053884048014879,
+        0.03441254794597626,
+        0.1186179518699646,
+        0.31692764163017273,
+        0.29918181896209717,
+        0.14504671096801758,
+        0.059464678168296814,
+        0.020173197612166405,
+        0.0001214316944242455
+      ],
+      "hasOpenAlternative": true,
+      "tier": "TECHNICALLY_GOOD"
+    },
+    {
+      "file": "06.png",
+      "labels": [
+        "open-crop",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null,
+      "technicalScore": 81,
+      "blur": "CLEAR",
+      "eyesState": "OPEN",
+      "faceSharpness": 34.574093252249206,
+      "regionalSharpness": 54.44884698864501,
+      "exposure": 99.25516419491525,
+      "groupId": "f008128b-3047-4d7b-98f1-3b0a038940d1",
+      "productionRank": 1,
+      "productionDecision": "AI_SELECTED",
+      "nimaMean": 5.625621910632617,
+      "nimaStd": 1.3288671395463862,
+      "distribution": [
+        0.0000020715124264825135,
+        0.009292258881032467,
+        0.039499539881944656,
+        0.12547284364700317,
+        0.3076885938644409,
+        0.28422558307647705,
+        0.14761856198310852,
+        0.0664081797003746,
+        0.019669292494654655,
+        0.0001229855406563729
+      ],
+      "hasOpenAlternative": true,
+      "tier": "TECHNICALLY_GOOD"
+    },
+    {
+      "file": "07.png",
+      "labels": [
+        "negative-space",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null,
+      "technicalScore": 82,
+      "blur": "CLEAR",
+      "eyesState": "OPEN",
+      "faceSharpness": 35.427812168129215,
+      "regionalSharpness": 55.82380863752297,
+      "exposure": 98.99573359929079,
+      "groupId": "37b76a8c-4b39-4c6c-86b9-01b834054e81",
+      "productionRank": 1,
+      "productionDecision": "AI_SELECTED",
+      "nimaMean": 5.405861300768578,
+      "nimaStd": 1.2682499938060732,
+      "distribution": [
+        3.215057802208321e-7,
+        0.011897307820618153,
+        0.04741809144616127,
+        0.15241771936416626,
+        0.3420320451259613,
+        0.2693035900592804,
+        0.12062869966030121,
+        0.04700647294521332,
+        0.009251282550394535,
+        0.000044522170355776325
+      ],
+      "hasOpenAlternative": true,
+      "tier": "TECHNICALLY_GOOD"
+    },
+    {
+      "file": "08.png",
+      "labels": [
+        "negative-space",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null,
+      "technicalScore": 79,
+      "blur": "CLEAR",
+      "eyesState": "OPEN",
+      "faceSharpness": 31.92868566455904,
+      "regionalSharpness": 59.14047505713902,
+      "exposure": 98.85574090676229,
+      "groupId": "a174c103-1ead-4eb0-b44d-ebb7e4f19850",
+      "productionRank": 1,
+      "productionDecision": "AI_SELECTED",
+      "nimaMean": 5.595869862941015,
+      "nimaStd": 1.2742298390518771,
+      "distribution": [
+        5.360060981729475e-7,
+        0.00814975518733263,
+        0.03572435677051544,
+        0.12455862760543823,
+        0.32097479701042175,
+        0.29444360733032227,
+        0.14195869863033295,
+        0.05885635316371918,
+        0.015267282724380493,
+        0.00006593465514015406
+      ],
+      "hasOpenAlternative": true,
+      "tier": "TECHNICALLY_GOOD"
+    }
+  ],
+  "orders": {
+    "technicalScore": [
+      "07.png",
+      "06.png",
+      "02.png",
+      "01.png",
+      "03.png",
+      "04.png",
+      "05.png",
+      "08.png"
+    ],
+    "nima": [
+      "05.png",
+      "06.png",
+      "08.png",
+      "07.png",
+      "04.png",
+      "03.png",
+      "01.png",
+      "02.png"
+    ]
+  },
+  "rankings": {
+    "A": [
+      {
+        "rank": 1,
+        "file": "07.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 82,
+        "nimaMean": 5.405861300768578,
+        "aestheticIndex": 48.9540144529842,
+        "experimentalFinal": 77.04310216794764
+      },
+      {
+        "rank": 2,
+        "file": "06.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 81,
+        "nimaMean": 5.625621910632617,
+        "aestheticIndex": 51.395799007029076,
+        "experimentalFinal": 76.55936985105436
+      },
+      {
+        "rank": 3,
+        "file": "05.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.643363962395213,
+        "aestheticIndex": 51.59293291550237,
+        "experimentalFinal": 74.88893993732535
+      },
+      {
+        "rank": 4,
+        "file": "08.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.595869862941015,
+        "aestheticIndex": 51.065220699344614,
+        "experimentalFinal": 74.80978310490168
+      },
+      {
+        "rank": 5,
+        "file": "02.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 80,
+        "nimaMean": 5.030386144485362,
+        "aestheticIndex": 44.78206827205958,
+        "experimentalFinal": 74.71731024080894
+      },
+      {
+        "rank": 6,
+        "file": "04.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.403577035880559,
+        "aestheticIndex": 48.92863373200622,
+        "experimentalFinal": 74.48929505980092
+      },
+      {
+        "rank": 7,
+        "file": "03.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.37853017788575,
+        "aestheticIndex": 48.65033530984167,
+        "experimentalFinal": 74.44755029647624
+      },
+      {
+        "rank": 8,
+        "file": "01.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.236387528344494,
+        "aestheticIndex": 47.07097253716104,
+        "experimentalFinal": 74.21064588057415
+      }
+    ],
+    "B": [
+      {
+        "rank": 1,
+        "file": "06.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 81,
+        "nimaMean": 5.625621910632617,
+        "aestheticIndex": 51.395799007029076,
+        "experimentalFinal": 70.63852965246018
+      },
+      {
+        "rank": 2,
+        "file": "07.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 82,
+        "nimaMean": 5.405861300768578,
+        "aestheticIndex": 48.9540144529842,
+        "experimentalFinal": 70.43390505854447
+      },
+      {
+        "rank": 3,
+        "file": "05.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.643363962395213,
+        "aestheticIndex": 51.59293291550237,
+        "experimentalFinal": 69.40752652042583
+      },
+      {
+        "rank": 4,
+        "file": "08.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.595869862941015,
+        "aestheticIndex": 51.065220699344614,
+        "experimentalFinal": 69.22282724477061
+      },
+      {
+        "rank": 5,
+        "file": "04.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.403577035880559,
+        "aestheticIndex": 48.92863373200622,
+        "experimentalFinal": 68.47502180620218
+      },
+      {
+        "rank": 6,
+        "file": "03.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.37853017788575,
+        "aestheticIndex": 48.65033530984167,
+        "experimentalFinal": 68.37761735844458
+      },
+      {
+        "rank": 7,
+        "file": "01.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.236387528344494,
+        "aestheticIndex": 47.07097253716104,
+        "experimentalFinal": 67.82484038800636
+      },
+      {
+        "rank": 8,
+        "file": "02.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 80,
+        "nimaMean": 5.030386144485362,
+        "aestheticIndex": 44.78206827205958,
+        "experimentalFinal": 67.67372389522086
+      }
+    ],
+    "C": [
+      {
+        "rank": 1,
+        "file": "06.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 81,
+        "nimaMean": 5.625621910632617,
+        "aestheticIndex": 51.395799007029076,
+        "experimentalFinal": 58.79684925527181
+      },
+      {
+        "rank": 2,
+        "file": "05.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.643363962395213,
+        "aestheticIndex": 51.59293291550237,
+        "experimentalFinal": 58.44469968662678
+      },
+      {
+        "rank": 3,
+        "file": "08.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.595869862941015,
+        "aestheticIndex": 51.065220699344614,
+        "experimentalFinal": 58.04891552450846
+      },
+      {
+        "rank": 4,
+        "file": "07.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 82,
+        "nimaMean": 5.405861300768578,
+        "aestheticIndex": 48.9540144529842,
+        "experimentalFinal": 57.215510839738144
+      },
+      {
+        "rank": 5,
+        "file": "04.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.403577035880559,
+        "aestheticIndex": 48.92863373200622,
+        "experimentalFinal": 56.44647529900466
+      },
+      {
+        "rank": 6,
+        "file": "03.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.37853017788575,
+        "aestheticIndex": 48.65033530984167,
+        "experimentalFinal": 56.237751482381256
+      },
+      {
+        "rank": 7,
+        "file": "01.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 79,
+        "nimaMean": 5.236387528344494,
+        "aestheticIndex": 47.07097253716104,
+        "experimentalFinal": 55.053229402870784
+      },
+      {
+        "rank": 8,
+        "file": "02.png",
+        "tier": "TECHNICALLY_GOOD",
+        "technicalScore": 80,
+        "nimaMean": 5.030386144485362,
+        "aestheticIndex": 44.78206827205958,
+        "experimentalFinal": 53.58655120404469
+      }
+    ]
+  },
+  "picks": {
+    "A": "07.png",
+    "B": "06.png",
+    "C": "06.png",
+    "production": "04.png"
+  },
+  "groups": {
+    "count": 5,
+    "main": {
+      "id": "37b76a8c-4b39-4c6c-86b9-01b834054e81",
+      "files": [
+        "01.png",
+        "02.png",
+        "03.png",
+        "07.png"
+      ],
+      "size": 4
+    },
+    "detail": [
+      {
+        "id": "37b76a8c-4b39-4c6c-86b9-01b834054e81",
+        "files": [
+          "01.png",
+          "02.png",
+          "03.png",
+          "07.png"
+        ],
+        "size": 4
+      },
+      {
+        "id": "6f4b5e97-2577-4cb7-9e5d-bbe7aac24c92",
+        "files": [
+          "05.png"
+        ],
+        "size": 1
+      },
+      {
+        "id": "861d0044-8737-47e0-821e-19b17ae3a0b1",
+        "files": [
+          "04.png"
+        ],
+        "size": 1
+      },
+      {
+        "id": "a174c103-1ead-4eb0-b44d-ebb7e4f19850",
+        "files": [
+          "08.png"
+        ],
+        "size": 1
+      },
+      {
+        "id": "f008128b-3047-4d7b-98f1-3b0a038940d1",
+        "files": [
+          "06.png"
+        ],
+        "size": 1
+      }
+    ]
+  },
+  "metrics": {
+    "A": {
+      "closedEyesPenaltyCorrect": true,
+      "closedApplicable": false,
+      "softFocusPriorityCorrect": true,
+      "softApplicable": false,
+      "weakOrReviewTop1": null
+    },
+    "B": {
+      "closedEyesPenaltyCorrect": true,
+      "closedApplicable": false,
+      "softFocusPriorityCorrect": true,
+      "softApplicable": false,
+      "weakOrReviewTop1": null
+    },
+    "C": {
+      "closedEyesPenaltyCorrect": true,
+      "closedApplicable": false,
+      "softFocusPriorityCorrect": true,
+      "softApplicable": false,
+      "weakOrReviewTop1": null
+    },
+    "differentImagesOutsideSequence": {
+      "status": "FAIL",
+      "applicable": true,
+      "sequenceGrouped": false,
+      "differentOutside": true,
+      "differentCount": 0,
+      "thresholdNote": "Imagens geradas não têm data EXIF, então todo par usa visualOnlySimilarity (sem proximidade temporal).",
+      "detail": "Sequência dividida em 5 grupos: [01.png, 02.png, 03.png, 07.png] | [05.png] | [04.png] | [08.png] | [06.png]"
+    },
+    "humanRankComparison": {
+      "humanAnnotated": 0,
+      "humanTop1File": null,
+      "byConfig": {
+        "A": {
+          "humanTop1Match": null,
+          "humanTop3Containment": null
+        },
+        "B": {
+          "humanTop1Match": null,
+          "humanTop3Containment": null
+        },
+        "C": {
+          "humanTop1Match": null,
+          "humanTop3Containment": null
+        }
+      }
+    }
+  },
+  "errors": [],
+  "performance": {
+    "wallMs": 25975.3171,
+    "images": 8,
+    "avgMsPerImage": 3246.9179,
+    "pipelineMs": 21949.1938,
+    "faceMs": 15522.538999999997,
+    "faceCalls": 8,
+    "dinov2Ms": 2980.1150000000052,
+    "dinov2InferenceMs": 2815.7710000000043,
+    "dinov2Calls": 8,
+    "nimaMs": 981.4795999999988,
+    "nimaCalls": 8,
+    "notes": "dinov2Ms é medição isolada pós-análise sobre os previews em cache (pré-processo + inferência); faceMs é a duração total do faceProbe por foto (inclui esbuild/spawn Electron); nimaMs é inferência ONNX por foto."
+  },
+  "analysisVersion": "clickit-1-dinov2-mp1-ear1-focus-saturation1",
+  "productionRanks": {
+    "01.png": 3,
+    "02.png": 2,
+    "03.png": 4,
+    "04.png": 1,
+    "05.png": 1,
+    "06.png": 1,
+    "07.png": 1,
+    "08.png": 1
+  }
+}

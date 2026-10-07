@@ -1,0 +1,50 @@
+[
+  {
+    "input": "ID VISUAL 01.png",
+    "height": 192,
+    "decoder": "Windows System.Drawing; NOT Sharp",
+    "originalWidth": 1448,
+    "grayscaleFile": "asset-0.gray",
+    "decodeMs": 113.5935,
+    "originalHeight": 1086,
+    "width": 256,
+    "inputKind": "BRAND_PNG_NOT_PHOTOGRAPH",
+    "sharpness": 64.74161162697646,
+    "regionalSharpness": 73.0537980172104,
+    "exposure": 98.89322916666666,
+    "metricsMs": 8.659099999999995,
+    "algorithm": "Production quality.ts functions; deterministic heuristics, not neural inference"
+  },
+  {
+    "input": "ID VISUAL 02.png",
+    "height": 144,
+    "decoder": "Windows System.Drawing; NOT Sharp",
+    "originalWidth": 1672,
+    "grayscaleFile": "asset-1.gray",
+    "decodeMs": 49.2828,
+    "originalHeight": 941,
+    "width": 256,
+    "inputKind": "BRAND_PNG_NOT_PHOTOGRAPH",
+    "sharpness": 69.20168727747458,
+    "regionalSharpness": 73.84732714624352,
+    "exposure": 99.72873263888889,
+    "metricsMs": 4.968999999999994,
+    "algorithm": "Production quality.ts functions; deterministic heuristics, not neural inference"
+  },
+  {
+    "input": "LOGO CLICK IT.png",
+    "height": 144,
+    "decoder": "Windows System.Drawing; NOT Sharp",
+    "originalWidth": 1672,
+    "grayscaleFile": "asset-2.gray",
+    "decodeMs": 41.1543,
+    "originalHeight": 941,
+    "width": 256,
+    "inputKind": "BRAND_PNG_NOT_PHOTOGRAPH",
+    "sharpness": 73.25523495207537,
+    "regionalSharpness": 85.70539245971027,
+    "exposure": 6.637912326388884,
+    "metricsMs": 4.330199999999991,
+    "algorithm": "Production quality.ts functions; deterministic heuristics, not neural inference"
+  }
+]

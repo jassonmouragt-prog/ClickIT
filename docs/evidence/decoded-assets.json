@@ -1,0 +1,35 @@
+﻿[
+    {
+        "input":  "ID VISUAL 01.png",
+        "height":  192,
+        "decoder":  "Windows System.Drawing; NOT Sharp",
+        "originalWidth":  1448,
+        "grayscaleFile":  "asset-0.gray",
+        "decodeMs":  113.5935,
+        "originalHeight":  1086,
+        "width":  256,
+        "inputKind":  "BRAND_PNG_NOT_PHOTOGRAPH"
+    },
+    {
+        "input":  "ID VISUAL 02.png",
+        "height":  144,
+        "decoder":  "Windows System.Drawing; NOT Sharp",
+        "originalWidth":  1672,
+        "grayscaleFile":  "asset-1.gray",
+        "decodeMs":  49.2828,
+        "originalHeight":  941,
+        "width":  256,
+        "inputKind":  "BRAND_PNG_NOT_PHOTOGRAPH"
+    },
+    {
+        "input":  "LOGO CLICK IT.png",
+        "height":  144,
+        "decoder":  "Windows System.Drawing; NOT Sharp",
+        "originalWidth":  1672,
+        "grayscaleFile":  "asset-2.gray",
+        "decodeMs":  41.1543,
+        "originalHeight":  941,
+        "width":  256,
+        "inputKind":  "BRAND_PNG_NOT_PHOTOGRAPH"
+    }
+]

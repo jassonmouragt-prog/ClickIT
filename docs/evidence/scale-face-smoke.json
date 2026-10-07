@@ -1,0 +1,691 @@
+{
+  "reportVersion": 2,
+  "workspace": "C:\\dev\\ClickIT\\.test-tmp\\face-smoke-qDGgmF",
+  "source": "C:\\dev\\ClickIT\\.test-tmp\\scale-data-100",
+  "count": 3,
+  "status": "PASS",
+  "results": [
+    {
+      "faces": [
+        {
+          "x": 0.36795318126678467,
+          "y": 0.2161158174276352,
+          "width": 0.2992359399795532,
+          "height": 0.4716671258211136,
+          "sharpness": 31.061264561087377,
+          "eyes": "OPEN",
+          "eyesConfidence": 0.4088090746599138,
+          "leftEyeScore": 0.2908809074659914,
+          "rightEyeScore": 0.3073850822305555,
+          "leftEyeState": "OPEN",
+          "rightEyeState": "OPEN",
+          "blinkLeft": 0.11418067663908005,
+          "blinkRight": 0.06359667330980301
+        }
+      ],
+      "detectionMs": 109.90000000223517,
+      "eyesAndFaceMetricsMs": 55.5
+    },
+    {
+      "faces": [
+        {
+          "x": 0.36965447664260864,
+          "y": 0.2202540636062622,
+          "width": 0.3004773259162903,
+          "height": 0.47066861391067505,
+          "sharpness": 26.971488464524423,
+          "eyes": "CLOSED",
+          "eyesConfidence": 1,
+          "leftEyeScore": 0.01924457018728588,
+          "rightEyeScore": 0.034308342906192606,
+          "leftEyeState": "CLOSED",
+          "rightEyeState": "CLOSED",
+          "blinkLeft": 0.7508381605148315,
+          "blinkRight": 0.656335711479187
+        }
+      ],
+      "detectionMs": 40.30000000074506,
+      "eyesAndFaceMetricsMs": 9
+    },
+    {
+      "faces": [
+        {
+          "x": 0.3703341782093048,
+          "y": 0.20936870574951172,
+          "width": 0.29923519492149353,
+          "height": 0.47926223278045654,
+          "sharpness": 21.139339213369517,
+          "eyes": "OPEN",
+          "eyesConfidence": 0.4318155244584315,
+          "leftEyeScore": 0.29318155244584315,
+          "rightEyeScore": 0.315836007971974,
+          "leftEyeState": "OPEN",
+          "rightEyeState": "OPEN",
+          "blinkLeft": 0.095089852809906,
+          "blinkRight": 0.05317120626568794
+        }
+      ],
+      "detectionMs": 24.900000002235174,
+      "eyesAndFaceMetricsMs": 7.199999999254942
+    }
+  ],
+  "error": null,
+  "productionFingerprint": {
+    "src/ai/dinov2-contract.json": "81b1c168e1718be01b9cd9aa3d37c44c7e03bd8b00aef4c47b43f0932af4b87c",
+    "src/ai/embedding.ts": "d350c5484d6aec484461cbb605c2be43a0f35666a0570dc63018d600d548d3dd",
+    "src/ai/eyes-config.ts": "aadac5124170fb484afe75a5bfe0b64e2533384d7837b01de29c47ba37729120",
+    "src/ai/eyes.ts": "145fa6c805c4e07c712848fd3d48c1d0723a151e7141b6d5ba4edd1b2cf8c95d",
+    "src/ai/face-analysis.ts": "1e598745a33406bb1507922a798825b62f589f26c35dc942876ee72d7c2c2d05",
+    "src/ai/face-host.ts": "51412d32f06e3742971777aa2aaaac70436025e977d24553eb979732ccc3372b",
+    "src/ai/face-options.ts": "35693db8a2f2b6303270db8414fa5dacdc7b66faa9d7ff8b795a082093a1abd3",
+    "src/ai/grouping.ts": "fb5cb8bc2daee69cd3d8fc4bcf749ca44adda0ce4f0ddcefca4f71c6df549f84",
+    "src/ai/quality.ts": "118769abc3725ae4428d5d403cff3b8bef702d14ad99f9a80f1cb8cb9384d021",
+    "src/ai/technical-score.ts": "a6ff4f610c26e8dcc4c6b8e3b6decbd1713ab952f77f9259cd40ff47a2900485",
+    "src/components/Inspector.tsx": "f40a8f48009523c2f49da7f9f8fd354dc9ccbf0f44f0c0db5c8d33fbfc4dcdf6",
+    "src/components/PhotoGrid.tsx": "6f59ce486b8f00023723b339fbf7446f17e70a34d1ba47a007b1cb355ce56401",
+    "src/components/PhotoViewer.tsx": "a8fccc2bf4c78b0337c5ca7fd34280573fcd0a8cd43fb29a9adcb3c9eecb0862",
+    "src/components/ui.tsx": "2d889207ab78f257cf8c021a4fcfea23d1ddf0656dae0bd8f57664f1e4777be3",
+    "src/database/store.ts": "cf37707463111b7577114913ffae41103ca22da5b51a2b93176e306306c95d66",
+    "src/features/hotkeys.ts": "04a5798dd8030e56ae1077f2d43845d383dd16157007fc2a1c0feaf9bfaad511",
+    "src/features/photos.ts": "9468a603ef8dd31a365e50e1304c370bcca33c3d5761fbca8df3e51837ef09f4",
+    "src/lib/config.ts": "1e53f02156b9f74a3953b5a440a6e745ba4c49aa08580771349c2886c4d889f6",
+    "src/lib/files.ts": "9f4d8f3d10e1b5120c6ced3b51b04b2cf660a8935e2ede2b622c651980cadb21",
+    "src/lib/validation.ts": "0c4d81b47bc60314e73d104a0d871cd50b32e15f88ff2ca971d9ef56fd5fed06",
+    "src/main/index.ts": "c14c90fa12f4bea7f788768f36bd8817f2eb06f16b9cd45630ec832dab342fe9",
+    "src/preload/index.ts": "5f115c9a1452247e7dac525ff0eac9f68b4552362228e9fc2126b09f35881285",
+    "src/renderer/App.tsx": "796cef582c7e7b0fa70e169f31523aa148b2887fff430eaf758970139813bdf3",
+    "src/renderer/main.tsx": "99817f9b7d6300cf7da7fe0df5d74630a8fdba55d8fd952a84aabe61a1997188",
+    "src/renderer/styles.css": "612b18ef72d1132e3ab90fc294ff9b6436892de9dcacdd82a1b959e7200da6a3",
+    "src/services/export.ts": "ba1abbcb8c1a335819063b155f43fa30b84b922827481311628a9ae00240b7a7",
+    "src/services/log.ts": "ce64ff8e54e17cb334a5887c51a3d0685c7c14a5e3659947a5c2d87531be6c25",
+    "src/services/pipeline.ts": "0ab61ad0bc239ea90c6a65d8cd23ba16ea488f873f3f17dea4b699cbf2e876c3",
+    "src/types/domain.ts": "c62913ef3fef70e6ac1a8238ceb9364ffca31278c7ddad9cfa74480237678010",
+    "src/workers/analysis.ts": "bece48d487f3b3ab51c84c924ad77828b59eb67249357a358fd826f39e457bf6",
+    "src/workers/grouping.ts": "db8f3cc2abf4b52f7b3af2bd93279f4ce7915c0a4f4bc6e7057b611c5f4a066b",
+    "resources/models/dinov2-small.onnx": "f22797eabf810a75e41de68d378541ebea372122b25c4ce3ef25ff618250c20a",
+    "resources/models/face_landmarker.task": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
+    "resources/models/manifest.json": "d1117d5efd35398097275acc703e88602edfdb18f7e1e0048a6467ce02681f18",
+    "resources/models/nima-mobilenet-aesthetic.onnx": "b00e347d9b3cf6442d561b6b349732368c058a07416a2eda30a9acb21e2164db",
+    "resources/models/weights_mobilenet_aesthetic_0.07.hdf5": "e563ad91b3d47410e45f7238f07ab8f6abd1bd0c4b18a4b0af9c681a21a91cb2"
+  },
+  "harnessFingerprint": {
+    "scale-face-client.mjs": "cb285be4839370253bdc9e8ac19cf0bbf00440cfba8ea203fabd02448cdbc715",
+    "scale-face-host.mjs": "4f81974c7e5378c0baddd9754c34e6ebf80ae9c76ea031ce8cc598b02e5a8179",
+    "scale-face-renderer.ts": "c99d3e7f280cb678f65ea44586ab1047a179affa6fa1eb8e352da457d1bc5eac",
+    "scale-harness-state.mjs": "f26f3ab57dadf3a8655f7f2fae0fd1a1b3a1223930207f5f3c57416a6b6d9a1f",
+    "scale-run.mjs": "4783c5f9144e2f856bb681a991336e10aa33309268748ce6832c60796a863ce6",
+    "benchmark-scale.mjs": "f33082a43dc7c7539bba3f4c0b6f121ffa42741ff6d861115971c94033f56e12",
+    "benchmark-face-smoke.mjs": "9594105d059474fce2e3040034e5ea0430e078cb46ab6a2ad28a0038aa7bbcc2",
+    "benchmark-harness.mjs": "420aaa98b32c434d046d9ed3121e4af27d513a5c87b75e89a754c18b44168b35"
+  },
+  "host": {
+    "starts": 1,
+    "requests": 3,
+    "responses": 3,
+    "successfulResponses": 3,
+    "responseIds": [
+      "face-1",
+      "face-2",
+      "face-3"
+    ],
+    "requestIds": [
+      "face-1",
+      "face-2",
+      "face-3"
+    ],
+    "timeoutMs": 60000,
+    "shutdownRequested": true,
+    "shutdownAcknowledged": true,
+    "internalShutdownReason": "requested",
+    "unexpectedExits": 0,
+    "events": [
+      {
+        "event": "spawn",
+        "at": "2026-10-06T21:17:50.260Z"
+      },
+      {
+        "event": "host:process-start",
+        "at": "2026-10-06T21:17:50.554Z",
+        "hostEvent": {
+          "event": "process-start",
+          "at": "2026-10-06T21:17:50.548Z",
+          "pid": 15384,
+          "transport": "dedicated-local-socket; stdin unused"
+        }
+      },
+      {
+        "event": "ipc-connected",
+        "at": "2026-10-06T21:17:50.556Z"
+      },
+      {
+        "event": "host:ipc-connected",
+        "at": "2026-10-06T21:17:50.623Z",
+        "hostEvent": {
+          "event": "ipc-connected",
+          "at": "2026-10-06T21:17:50.622Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "ipc-authenticated",
+        "at": "2026-10-06T21:17:50.623Z",
+        "pid": 15384
+      },
+      {
+        "event": "host:app-ready",
+        "at": "2026-10-06T21:17:50.636Z",
+        "hostEvent": {
+          "event": "app-ready",
+          "at": "2026-10-06T21:17:50.636Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:renderer-created",
+        "at": "2026-10-06T21:17:50.751Z",
+        "hostEvent": {
+          "event": "renderer-created",
+          "at": "2026-10-06T21:17:50.750Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:renderer-console",
+        "at": "2026-10-06T21:17:51.055Z",
+        "hostEvent": {
+          "event": "renderer-console",
+          "at": "2026-10-06T21:17:51.055Z",
+          "pid": 15384,
+          "message": "W1006 21:17:51.054000 2136208 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default."
+        }
+      },
+      {
+        "event": "host:renderer-console",
+        "at": "2026-10-06T21:17:51.227Z",
+        "hostEvent": {
+          "event": "renderer-console",
+          "at": "2026-10-06T21:17:51.226Z",
+          "pid": 15384,
+          "message": "I1006 21:17:51.224999 2136208 gl_context.cc:407] GL version: 3.0 (OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))), renderer: WebKit WebGL"
+        }
+      },
+      {
+        "event": "host:renderer-console",
+        "at": "2026-10-06T21:17:51.227Z",
+        "hostEvent": {
+          "event": "renderer-console",
+          "at": "2026-10-06T21:17:51.227Z",
+          "pid": 15384,
+          "message": "W1006 21:17:51.227000 2136208 gl_context.cc:1118] OpenGL error checking is disabled"
+        }
+      },
+      {
+        "event": "host:renderer-console",
+        "at": "2026-10-06T21:17:51.229Z",
+        "hostEvent": {
+          "event": "renderer-console",
+          "at": "2026-10-06T21:17:51.229Z",
+          "pid": 15384,
+          "message": "Graph successfully started running."
+        }
+      },
+      {
+        "event": "host:model-loaded",
+        "at": "2026-10-06T21:17:51.229Z",
+        "hostEvent": {
+          "event": "model-loaded",
+          "at": "2026-10-06T21:17:51.229Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:ready",
+        "at": "2026-10-06T21:17:51.231Z",
+        "hostEvent": {
+          "event": "ready",
+          "at": "2026-10-06T21:17:51.230Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:waiting-next-message",
+        "at": "2026-10-06T21:17:51.231Z",
+        "hostEvent": {
+          "event": "waiting-next-message",
+          "at": "2026-10-06T21:17:51.231Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "response-received",
+        "at": "2026-10-06T21:17:51.231Z",
+        "id": "ready",
+        "type": "READY"
+      },
+      {
+        "event": "request-sent",
+        "at": "2026-10-06T21:17:51.232Z",
+        "id": "face-1",
+        "type": "ANALYZE_FACE"
+      },
+      {
+        "event": "host:message-received",
+        "at": "2026-10-06T21:17:51.233Z",
+        "hostEvent": {
+          "event": "message-received",
+          "at": "2026-10-06T21:17:51.233Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:photo-received",
+        "at": "2026-10-06T21:17:51.234Z",
+        "hostEvent": {
+          "event": "photo-received",
+          "at": "2026-10-06T21:17:51.233Z",
+          "pid": 15384,
+          "id": "face-1",
+          "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\face-smoke-qDGgmF\\previews\\0.jpg"
+        }
+      },
+      {
+        "event": "host:inference-started",
+        "at": "2026-10-06T21:17:51.250Z",
+        "hostEvent": {
+          "event": "inference-started",
+          "at": "2026-10-06T21:17:51.250Z",
+          "pid": 15384,
+          "id": "face-1"
+        }
+      },
+      {
+        "event": "host:renderer-console",
+        "at": "2026-10-06T21:17:51.270Z",
+        "hostEvent": {
+          "event": "renderer-console",
+          "at": "2026-10-06T21:17:51.270Z",
+          "pid": 15384,
+          "message": "INFO: Created TensorFlow Lite XNNPACK delegate for CPU."
+        }
+      },
+      {
+        "event": "host:renderer-console",
+        "at": "2026-10-06T21:17:51.282Z",
+        "hostEvent": {
+          "event": "renderer-console",
+          "at": "2026-10-06T21:17:51.281Z",
+          "pid": 15384,
+          "message": "W1006 21:17:51.280999 2136208 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors."
+        }
+      },
+      {
+        "event": "host:renderer-console",
+        "at": "2026-10-06T21:17:51.295Z",
+        "hostEvent": {
+          "event": "renderer-console",
+          "at": "2026-10-06T21:17:51.295Z",
+          "pid": 15384,
+          "message": "W1006 21:17:51.295000 2136208 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors."
+        }
+      },
+      {
+        "event": "host:inference-completed",
+        "at": "2026-10-06T21:17:51.361Z",
+        "hostEvent": {
+          "event": "inference-completed",
+          "at": "2026-10-06T21:17:51.360Z",
+          "pid": 15384,
+          "id": "face-1",
+          "detectionMs": 109.90000000223517
+        }
+      },
+      {
+        "event": "response-received",
+        "at": "2026-10-06T21:17:51.416Z",
+        "id": "face-1",
+        "type": "RESPONSE",
+        "ok": true
+      },
+      {
+        "event": "request-sent",
+        "at": "2026-10-06T21:17:51.416Z",
+        "id": "face-2",
+        "type": "ANALYZE_FACE"
+      },
+      {
+        "event": "host:response-sent",
+        "at": "2026-10-06T21:17:51.417Z",
+        "hostEvent": {
+          "event": "response-sent",
+          "at": "2026-10-06T21:17:51.416Z",
+          "pid": 15384,
+          "id": "face-1",
+          "ok": true
+        }
+      },
+      {
+        "event": "host:waiting-next-message",
+        "at": "2026-10-06T21:17:51.417Z",
+        "hostEvent": {
+          "event": "waiting-next-message",
+          "at": "2026-10-06T21:17:51.417Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:message-received",
+        "at": "2026-10-06T21:17:51.417Z",
+        "hostEvent": {
+          "event": "message-received",
+          "at": "2026-10-06T21:17:51.417Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:photo-received",
+        "at": "2026-10-06T21:17:51.417Z",
+        "hostEvent": {
+          "event": "photo-received",
+          "at": "2026-10-06T21:17:51.417Z",
+          "pid": 15384,
+          "id": "face-2",
+          "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\face-smoke-qDGgmF\\previews\\1.jpg"
+        }
+      },
+      {
+        "event": "host:inference-started",
+        "at": "2026-10-06T21:17:51.426Z",
+        "hostEvent": {
+          "event": "inference-started",
+          "at": "2026-10-06T21:17:51.425Z",
+          "pid": 15384,
+          "id": "face-2"
+        }
+      },
+      {
+        "event": "host:inference-completed",
+        "at": "2026-10-06T21:17:51.466Z",
+        "hostEvent": {
+          "event": "inference-completed",
+          "at": "2026-10-06T21:17:51.466Z",
+          "pid": 15384,
+          "id": "face-2",
+          "detectionMs": 40.30000000074506
+        }
+      },
+      {
+        "event": "response-received",
+        "at": "2026-10-06T21:17:51.475Z",
+        "id": "face-2",
+        "type": "RESPONSE",
+        "ok": true
+      },
+      {
+        "event": "request-sent",
+        "at": "2026-10-06T21:17:51.476Z",
+        "id": "face-3",
+        "type": "ANALYZE_FACE"
+      },
+      {
+        "event": "host:response-sent",
+        "at": "2026-10-06T21:17:51.476Z",
+        "hostEvent": {
+          "event": "response-sent",
+          "at": "2026-10-06T21:17:51.475Z",
+          "pid": 15384,
+          "id": "face-2",
+          "ok": true
+        }
+      },
+      {
+        "event": "host:waiting-next-message",
+        "at": "2026-10-06T21:17:51.476Z",
+        "hostEvent": {
+          "event": "waiting-next-message",
+          "at": "2026-10-06T21:17:51.476Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:message-received",
+        "at": "2026-10-06T21:17:51.477Z",
+        "hostEvent": {
+          "event": "message-received",
+          "at": "2026-10-06T21:17:51.476Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:photo-received",
+        "at": "2026-10-06T21:17:51.477Z",
+        "hostEvent": {
+          "event": "photo-received",
+          "at": "2026-10-06T21:17:51.476Z",
+          "pid": 15384,
+          "id": "face-3",
+          "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\face-smoke-qDGgmF\\previews\\2.jpg"
+        }
+      },
+      {
+        "event": "host:inference-started",
+        "at": "2026-10-06T21:17:51.485Z",
+        "hostEvent": {
+          "event": "inference-started",
+          "at": "2026-10-06T21:17:51.484Z",
+          "pid": 15384,
+          "id": "face-3"
+        }
+      },
+      {
+        "event": "host:inference-completed",
+        "at": "2026-10-06T21:17:51.510Z",
+        "hostEvent": {
+          "event": "inference-completed",
+          "at": "2026-10-06T21:17:51.509Z",
+          "pid": 15384,
+          "id": "face-3",
+          "detectionMs": 24.900000002235174
+        }
+      },
+      {
+        "event": "response-received",
+        "at": "2026-10-06T21:17:51.517Z",
+        "id": "face-3",
+        "type": "RESPONSE",
+        "ok": true
+      },
+      {
+        "event": "request-sent",
+        "at": "2026-10-06T21:17:51.517Z",
+        "id": "face-4",
+        "type": "SHUTDOWN"
+      },
+      {
+        "event": "host:response-sent",
+        "at": "2026-10-06T21:17:51.518Z",
+        "hostEvent": {
+          "event": "response-sent",
+          "at": "2026-10-06T21:17:51.517Z",
+          "pid": 15384,
+          "id": "face-3",
+          "ok": true
+        }
+      },
+      {
+        "event": "host:waiting-next-message",
+        "at": "2026-10-06T21:17:51.518Z",
+        "hostEvent": {
+          "event": "waiting-next-message",
+          "at": "2026-10-06T21:17:51.518Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:message-received",
+        "at": "2026-10-06T21:17:51.518Z",
+        "hostEvent": {
+          "event": "message-received",
+          "at": "2026-10-06T21:17:51.518Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:shutdown-requested",
+        "at": "2026-10-06T21:17:51.519Z",
+        "hostEvent": {
+          "event": "shutdown-requested",
+          "at": "2026-10-06T21:17:51.518Z",
+          "pid": 15384,
+          "id": "face-4"
+        }
+      },
+      {
+        "event": "host:renderer-console",
+        "at": "2026-10-06T21:17:51.521Z",
+        "hostEvent": {
+          "event": "renderer-console",
+          "at": "2026-10-06T21:17:51.521Z",
+          "pid": 15384,
+          "message": "Graph finished closing successfully."
+        }
+      },
+      {
+        "event": "host:renderer-console",
+        "at": "2026-10-06T21:17:51.522Z",
+        "hostEvent": {
+          "event": "renderer-console",
+          "at": "2026-10-06T21:17:51.522Z",
+          "pid": 15384,
+          "message": "I1006 21:17:51.521999 2136208 gl_context_webgl.cc:140] Successfully destroyed WebGL context with handle 1"
+        }
+      },
+      {
+        "event": "response-received",
+        "at": "2026-10-06T21:17:51.522Z",
+        "id": "face-4",
+        "type": "SHUTDOWN_ACK",
+        "ok": true
+      },
+      {
+        "event": "host:shutdown-ack-sent",
+        "at": "2026-10-06T21:17:51.523Z",
+        "hostEvent": {
+          "event": "shutdown-ack-sent",
+          "at": "2026-10-06T21:17:51.522Z",
+          "pid": 15384,
+          "id": "face-4"
+        }
+      },
+      {
+        "event": "host:renderer-closed",
+        "at": "2026-10-06T21:17:51.529Z",
+        "hostEvent": {
+          "event": "renderer-closed",
+          "at": "2026-10-06T21:17:51.529Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:window-all-closed",
+        "at": "2026-10-06T21:17:51.529Z",
+        "hostEvent": {
+          "event": "window-all-closed",
+          "at": "2026-10-06T21:17:51.529Z",
+          "pid": 15384
+        }
+      },
+      {
+        "event": "host:app-quit-called",
+        "at": "2026-10-06T21:17:51.530Z",
+        "hostEvent": {
+          "event": "app-quit-called",
+          "at": "2026-10-06T21:17:51.529Z",
+          "pid": 15384,
+          "reason": "requested"
+        }
+      },
+      {
+        "event": "host:before-quit",
+        "at": "2026-10-06T21:17:51.530Z",
+        "hostEvent": {
+          "event": "before-quit",
+          "at": "2026-10-06T21:17:51.530Z",
+          "pid": 15384,
+          "shutdownReason": "requested"
+        }
+      },
+      {
+        "event": "host:will-quit",
+        "at": "2026-10-06T21:17:51.530Z",
+        "hostEvent": {
+          "event": "will-quit",
+          "at": "2026-10-06T21:17:51.530Z",
+          "pid": 15384,
+          "shutdownReason": "requested"
+        }
+      },
+      {
+        "event": "host:process-exit",
+        "at": "2026-10-06T21:17:51.530Z",
+        "hostEvent": {
+          "event": "process-exit",
+          "at": "2026-10-06T21:17:51.530Z",
+          "pid": 15384,
+          "code": 0,
+          "shutdownReason": "requested"
+        }
+      },
+      {
+        "event": "host:app-quit",
+        "at": "2026-10-06T21:17:51.530Z",
+        "hostEvent": {
+          "event": "app-quit",
+          "at": "2026-10-06T21:17:51.530Z",
+          "pid": 15384,
+          "code": 0,
+          "shutdownReason": "requested"
+        }
+      },
+      {
+        "event": "ipc-closed",
+        "at": "2026-10-06T21:17:51.540Z"
+      },
+      {
+        "event": "process-exit",
+        "at": "2026-10-06T21:17:51.700Z",
+        "exitCode": 0,
+        "signal": null
+      },
+      {
+        "event": "process-close",
+        "at": "2026-10-06T21:17:51.701Z",
+        "exitCode": 0,
+        "signal": null,
+        "processError": null,
+        "controlledFailure": false,
+        "unexpectedExit": false,
+        "nativeCrash": false,
+        "timeout": false,
+        "nativeEvidence": []
+      }
+    ],
+    "stdout": "C:\\dev\\ClickIT\\.test-tmp\\face-smoke-qDGgmF\\host\\host-stdout.log",
+    "stderr": "C:\\dev\\ClickIT\\.test-tmp\\face-smoke-qDGgmF\\host\\host-stderr.log",
+    "lifecycle": "C:\\dev\\ClickIT\\.test-tmp\\face-smoke-qDGgmF\\host\\lifecycle.jsonl",
+    "outcome": {
+      "exitCode": 0,
+      "signal": null,
+      "processError": null,
+      "controlledFailure": false,
+      "unexpectedExit": false,
+      "nativeCrash": false,
+      "timeout": false,
+      "nativeEvidence": []
+    },
+    "memory": {
+      "electronRss": 0,
+      "valid": true,
+      "state": "exited"
+    }
+  }
+}

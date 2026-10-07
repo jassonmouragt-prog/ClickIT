@@ -1,0 +1,462 @@
+{
+  "generatedAt": "2026-10-06T15:59:32.374Z",
+  "mode": "Experimental/test only; production ranking, grouping, thresholds, DINOv2, EAR, NIMA model and preprocessing unchanged",
+  "sources": {
+    "technical": {
+      "path": "docs/evidence/focus-saturation-2026-10-06T12-51-03-650Z.json",
+      "sha256": "74b49f98218afd657f2e0cc594c0560588147bc9a3a35e19e0098b89a3b3a3e9"
+    },
+    "aesthetic": {
+      "path": "docs/evidence/nima-test-2026-10-06T15-45-49-156Z.json",
+      "sha256": "1134635f6711e3abc257f808ab34d8497107c44a8c7256a12d1c10941fa2dc39",
+      "model": "NIMA MobileNet Aesthetic AVA",
+      "onnxSha256": "b00e347d9b3cf6442d561b6b349732368c058a07416a2eda30a9acb21e2164db"
+    },
+    "expression": {
+      "path": "docs/evidence/preference-signals-2026-10-06T13-05-51-937Z.json",
+      "sha256": "227d0e9a38a36a16e0bbec68caf85a8ee53c6b632896b4d999c3aa6f72c0b926"
+    }
+  },
+  "thresholds": {
+    "production": {
+      "softFocus": 27,
+      "clearRegion": 48,
+      "relativeFocusRatio": 0.6
+    },
+    "analysisWeights": {
+      "sharpness": 0.45,
+      "exposure": 0.2,
+      "face": 0.2,
+      "eyes": 0.15
+    }
+  },
+  "nimaNormalization": {
+    "formula": "aestheticIndex = (nimaMean - 1) / 9 * 100",
+    "domain": "nimaMean official range 1..10",
+    "properties": [
+      "fixed and generalizable: not fitted to this dataset",
+      "not a probability",
+      "monotone in nimaMean",
+      "presentation/comparison scale 0..100"
+    ]
+  },
+  "layerA": {
+    "tiers": [
+      "TECHNICALLY_GOOD",
+      "TECHNICALLY_ACCEPTABLE",
+      "REVIEW",
+      "TECHNICALLY_WEAK"
+    ],
+    "rules": [
+      "TECHNICALLY_WEAK: eyes CLOSED when another photo in the set has eyes OPEN",
+      "REVIEW: eyes UNCERTAIN (EAR abstention band) or no usable eye state with non-CLEAR blur",
+      "TECHNICALLY_GOOD: eyes OPEN and blur CLEAR",
+      "TECHNICALLY_ACCEPTABLE: eyes OPEN and blur UNCERTAIN/DOF_POSSIBLE, or blur CLEAR without eye signal"
+    ],
+    "thresholdsUsed": {
+      "softFocus": 27,
+      "clearRegion": 48,
+      "eyesClosedMax": 0.18,
+      "eyesOpenMin": 0.25,
+      "note": "Only existing production signals/thresholds; no new calibration"
+    }
+  },
+  "layerB": {
+    "concept": "Camada A define viabilidade; Camada B ordena preferência dentro do tier. Ranking é lexicográfico por tier e depois por experimentalFinal; pesos documentados por configuração.",
+    "formula": "experimentalFinal = tierFactor * (wTech * technicalScore + wAes * aestheticIndex)",
+    "configs": [
+      {
+        "id": "A",
+        "name": "conservadora",
+        "description": "Técnico domina; estética só desempata.",
+        "weights": {
+          "GOOD": {
+            "tech": 0.85,
+            "aes": 0.15
+          },
+          "ACCEPTABLE": {
+            "tech": 0.85,
+            "aes": 0.15
+          },
+          "REVIEW": {
+            "tech": 1,
+            "aes": 0
+          },
+          "WEAK": {
+            "tech": 1,
+            "aes": 0
+          }
+        },
+        "tierFactor": {
+          "TECHNICALLY_GOOD": 1,
+          "TECHNICALLY_ACCEPTABLE": 0.9,
+          "REVIEW": 0.6,
+          "TECHNICALLY_WEAK": 0.4
+        }
+      },
+      {
+        "id": "B",
+        "name": "balanceada",
+        "description": "Mistura moderada entre viabilidade técnica e preferência estética.",
+        "weights": {
+          "GOOD": {
+            "tech": 0.65,
+            "aes": 0.35
+          },
+          "ACCEPTABLE": {
+            "tech": 0.65,
+            "aes": 0.35
+          },
+          "REVIEW": {
+            "tech": 1,
+            "aes": 0
+          },
+          "WEAK": {
+            "tech": 1,
+            "aes": 0
+          }
+        },
+        "tierFactor": {
+          "TECHNICALLY_GOOD": 1,
+          "TECHNICALLY_ACCEPTABLE": 0.9,
+          "REVIEW": 0.6,
+          "TECHNICALLY_WEAK": 0.4
+        }
+      },
+      {
+        "id": "C",
+        "name": "preferência",
+        "description": "Entre fotos tecnicamente boas a estética domina; em tier inferior a técnica pesa mais e estética não resgata REVIEW/WEAK.",
+        "weights": {
+          "GOOD": {
+            "tech": 0.25,
+            "aes": 0.75
+          },
+          "ACCEPTABLE": {
+            "tech": 0.7,
+            "aes": 0.3
+          },
+          "REVIEW": {
+            "tech": 1,
+            "aes": 0
+          },
+          "WEAK": {
+            "tech": 1,
+            "aes": 0
+          }
+        },
+        "tierFactor": {
+          "TECHNICALLY_GOOD": 1,
+          "TECHNICALLY_ACCEPTABLE": 0.9,
+          "REVIEW": 0.6,
+          "TECHNICALLY_WEAK": 0.4
+        }
+      }
+    ]
+  },
+  "configs": [
+    {
+      "config": "A",
+      "name": "conservadora",
+      "description": "Técnico domina; estética só desempata.",
+      "weights": {
+        "GOOD": {
+          "tech": 0.85,
+          "aes": 0.15
+        },
+        "ACCEPTABLE": {
+          "tech": 0.85,
+          "aes": 0.15
+        },
+        "REVIEW": {
+          "tech": 1,
+          "aes": 0
+        },
+        "WEAK": {
+          "tech": 1,
+          "aes": 0
+        }
+      },
+      "tierFactor": {
+        "TECHNICALLY_GOOD": 1,
+        "TECHNICALLY_ACCEPTABLE": 0.9,
+        "REVIEW": 0.6,
+        "TECHNICALLY_WEAK": 0.4
+      },
+      "productionPick": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "experimentalPick": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "pickChanged": false,
+      "rows": [
+        {
+          "experimentalRank": 1,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+          "tier": "TECHNICALLY_GOOD",
+          "eyesState": "OPEN",
+          "blur": "CLEAR",
+          "technicalScore": 80,
+          "nimaMean": 5.25081182905808,
+          "aestheticIndex": 47.23124254508978,
+          "technicalContribution": 68,
+          "aestheticContribution": 7.084686381763467,
+          "experimentalFinal": 75.08468638176346
+        },
+        {
+          "experimentalRank": 2,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+          "tier": "TECHNICALLY_GOOD",
+          "eyesState": "OPEN",
+          "blur": "CLEAR",
+          "technicalScore": 79,
+          "nimaMean": 5.296260550232319,
+          "aestheticIndex": 47.736228335914646,
+          "technicalContribution": 67.14999999999999,
+          "aestheticContribution": 7.160434250387197,
+          "experimentalFinal": 74.31043425038719
+        },
+        {
+          "experimentalRank": 3,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+          "tier": "TECHNICALLY_GOOD",
+          "eyesState": "OPEN",
+          "blur": "CLEAR",
+          "technicalScore": 77,
+          "nimaMean": 5.388869570621154,
+          "aestheticIndex": 48.765217451346146,
+          "technicalContribution": 65.45,
+          "aestheticContribution": 7.314782617701922,
+          "experimentalFinal": 72.76478261770193
+        },
+        {
+          "experimentalRank": 4,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+          "tier": "TECHNICALLY_ACCEPTABLE",
+          "eyesState": "OPEN",
+          "blur": "UNCERTAIN",
+          "technicalScore": 70,
+          "nimaMean": 5.085798775831961,
+          "aestheticIndex": 45.39776417591067,
+          "technicalContribution": 53.550000000000004,
+          "aestheticContribution": 6.128698163747941,
+          "experimentalFinal": 59.678698163747946
+        },
+        {
+          "experimentalRank": 5,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+          "tier": "TECHNICALLY_WEAK",
+          "eyesState": "CLOSED",
+          "blur": "UNCERTAIN",
+          "technicalScore": 64,
+          "nimaMean": 4.919546963772518,
+          "aestheticIndex": 43.55052181969465,
+          "technicalContribution": 25.6,
+          "aestheticContribution": 0,
+          "experimentalFinal": 25.6
+        }
+      ]
+    },
+    {
+      "config": "B",
+      "name": "balanceada",
+      "description": "Mistura moderada entre viabilidade técnica e preferência estética.",
+      "weights": {
+        "GOOD": {
+          "tech": 0.65,
+          "aes": 0.35
+        },
+        "ACCEPTABLE": {
+          "tech": 0.65,
+          "aes": 0.35
+        },
+        "REVIEW": {
+          "tech": 1,
+          "aes": 0
+        },
+        "WEAK": {
+          "tech": 1,
+          "aes": 0
+        }
+      },
+      "tierFactor": {
+        "TECHNICALLY_GOOD": 1,
+        "TECHNICALLY_ACCEPTABLE": 0.9,
+        "REVIEW": 0.6,
+        "TECHNICALLY_WEAK": 0.4
+      },
+      "productionPick": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "experimentalPick": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "pickChanged": false,
+      "rows": [
+        {
+          "experimentalRank": 1,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+          "tier": "TECHNICALLY_GOOD",
+          "eyesState": "OPEN",
+          "blur": "CLEAR",
+          "technicalScore": 80,
+          "nimaMean": 5.25081182905808,
+          "aestheticIndex": 47.23124254508978,
+          "technicalContribution": 52,
+          "aestheticContribution": 16.53093489078142,
+          "experimentalFinal": 68.53093489078142
+        },
+        {
+          "experimentalRank": 2,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+          "tier": "TECHNICALLY_GOOD",
+          "eyesState": "OPEN",
+          "blur": "CLEAR",
+          "technicalScore": 79,
+          "nimaMean": 5.296260550232319,
+          "aestheticIndex": 47.736228335914646,
+          "technicalContribution": 51.35,
+          "aestheticContribution": 16.707679917570125,
+          "experimentalFinal": 68.05767991757013
+        },
+        {
+          "experimentalRank": 3,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+          "tier": "TECHNICALLY_GOOD",
+          "eyesState": "OPEN",
+          "blur": "CLEAR",
+          "technicalScore": 77,
+          "nimaMean": 5.388869570621154,
+          "aestheticIndex": 48.765217451346146,
+          "technicalContribution": 50.050000000000004,
+          "aestheticContribution": 17.06782610797115,
+          "experimentalFinal": 67.11782610797115
+        },
+        {
+          "experimentalRank": 4,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+          "tier": "TECHNICALLY_ACCEPTABLE",
+          "eyesState": "OPEN",
+          "blur": "UNCERTAIN",
+          "technicalScore": 70,
+          "nimaMean": 5.085798775831961,
+          "aestheticIndex": 45.39776417591067,
+          "technicalContribution": 40.95,
+          "aestheticContribution": 14.300295715411862,
+          "experimentalFinal": 55.250295715411866
+        },
+        {
+          "experimentalRank": 5,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+          "tier": "TECHNICALLY_WEAK",
+          "eyesState": "CLOSED",
+          "blur": "UNCERTAIN",
+          "technicalScore": 64,
+          "nimaMean": 4.919546963772518,
+          "aestheticIndex": 43.55052181969465,
+          "technicalContribution": 25.6,
+          "aestheticContribution": 0,
+          "experimentalFinal": 25.6
+        }
+      ]
+    },
+    {
+      "config": "C",
+      "name": "preferência",
+      "description": "Entre fotos tecnicamente boas a estética domina; em tier inferior a técnica pesa mais e estética não resgata REVIEW/WEAK.",
+      "weights": {
+        "GOOD": {
+          "tech": 0.25,
+          "aes": 0.75
+        },
+        "ACCEPTABLE": {
+          "tech": 0.7,
+          "aes": 0.3
+        },
+        "REVIEW": {
+          "tech": 1,
+          "aes": 0
+        },
+        "WEAK": {
+          "tech": 1,
+          "aes": 0
+        }
+      },
+      "tierFactor": {
+        "TECHNICALLY_GOOD": 1,
+        "TECHNICALLY_ACCEPTABLE": 0.9,
+        "REVIEW": 0.6,
+        "TECHNICALLY_WEAK": 0.4
+      },
+      "productionPick": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "experimentalPick": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "pickChanged": true,
+      "rows": [
+        {
+          "experimentalRank": 1,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+          "tier": "TECHNICALLY_GOOD",
+          "eyesState": "OPEN",
+          "blur": "CLEAR",
+          "technicalScore": 77,
+          "nimaMean": 5.388869570621154,
+          "aestheticIndex": 48.765217451346146,
+          "technicalContribution": 19.25,
+          "aestheticContribution": 36.57391308850961,
+          "experimentalFinal": 55.82391308850961
+        },
+        {
+          "experimentalRank": 2,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+          "tier": "TECHNICALLY_GOOD",
+          "eyesState": "OPEN",
+          "blur": "CLEAR",
+          "technicalScore": 79,
+          "nimaMean": 5.296260550232319,
+          "aestheticIndex": 47.736228335914646,
+          "technicalContribution": 19.75,
+          "aestheticContribution": 35.80217125193599,
+          "experimentalFinal": 55.55217125193599
+        },
+        {
+          "experimentalRank": 3,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+          "tier": "TECHNICALLY_GOOD",
+          "eyesState": "OPEN",
+          "blur": "CLEAR",
+          "technicalScore": 80,
+          "nimaMean": 5.25081182905808,
+          "aestheticIndex": 47.23124254508978,
+          "technicalContribution": 20,
+          "aestheticContribution": 35.423431908817335,
+          "experimentalFinal": 55.423431908817335
+        },
+        {
+          "experimentalRank": 4,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+          "tier": "TECHNICALLY_ACCEPTABLE",
+          "eyesState": "OPEN",
+          "blur": "UNCERTAIN",
+          "technicalScore": 70,
+          "nimaMean": 5.085798775831961,
+          "aestheticIndex": 45.39776417591067,
+          "technicalContribution": 44.1,
+          "aestheticContribution": 12.257396327495883,
+          "experimentalFinal": 56.357396327495884
+        },
+        {
+          "experimentalRank": 5,
+          "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+          "tier": "TECHNICALLY_WEAK",
+          "eyesState": "CLOSED",
+          "blur": "UNCERTAIN",
+          "technicalScore": 64,
+          "nimaMean": 4.919546963772518,
+          "aestheticIndex": 43.55052181969465,
+          "technicalContribution": 25.6,
+          "aestheticContribution": 0,
+          "experimentalFinal": 25.6
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "productionUnchanged": true,
+    "closedNeverBeatsGoodInAnyConfig": true,
+    "noOptimizationTowardMinus5": "Configs fixed before running; outcome recorded as-is",
+    "sampleSizeLimitation": "5 AI-generated photos from one moment; insufficient to promote any weight to production"
+  }
+}

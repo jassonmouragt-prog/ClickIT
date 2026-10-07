@@ -1,0 +1,935 @@
+{
+  "generatedAt": "2026-10-06T18:34:40.206Z",
+  "mode": "grouping-audit (read-only; production thresholds untouched)",
+  "workspaces": "C:\\dev\\ClickIT\\.test-tmp\\ranking-validate",
+  "status": "PASS",
+  "datasets": [
+    {
+      "name": "composition-01",
+      "status": "PASS",
+      "photos": 8,
+      "pairsEvaluated": 28,
+      "connectedPairs": 3,
+      "temporalPairs": 0,
+      "nearMissPairs": 14,
+      "groupsStored": 5,
+      "groupsRecomputed": 5,
+      "groups": {
+        "stored": [
+          [
+            "01.png",
+            "02.png",
+            "03.png",
+            "07.png"
+          ],
+          [
+            "04.png"
+          ],
+          [
+            "05.png"
+          ],
+          [
+            "06.png"
+          ],
+          [
+            "08.png"
+          ]
+        ],
+        "recomputed": [
+          [
+            "01.png",
+            "02.png",
+            "03.png",
+            "07.png"
+          ],
+          [
+            "04.png"
+          ],
+          [
+            "05.png"
+          ],
+          [
+            "06.png"
+          ],
+          [
+            "08.png"
+          ]
+        ]
+      },
+      "thresholds": {
+        "similarity": 0.91,
+        "visualOnlySimilarity": 0.965,
+        "temporalSeconds": 12
+      },
+      "thresholdNote": "Datas ausentes (datasets sem EXIF) => todo par usa visualOnlySimilarity (0.965). nearMiss = par com similaridade >= 0.91 e < 0.965 que conectaria apenas houvesse proximidade temporal <= 12s. Auditoria é somente leitura; nenhum threshold foi alterado.",
+      "pairs": [
+        {
+          "a": "01.png",
+          "b": "02.png",
+          "similarity": 0.966226,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "03.png",
+          "similarity": 0.971799,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "04.png",
+          "similarity": 0.916033,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "01.png",
+          "b": "05.png",
+          "similarity": 0.646265,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "06.png",
+          "similarity": 0.919696,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "01.png",
+          "b": "07.png",
+          "similarity": 0.964569,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "01.png",
+          "b": "08.png",
+          "similarity": 0.958566,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "02.png",
+          "b": "03.png",
+          "similarity": 0.949124,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "02.png",
+          "b": "04.png",
+          "similarity": 0.877688,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "02.png",
+          "b": "05.png",
+          "similarity": 0.645497,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "02.png",
+          "b": "06.png",
+          "similarity": 0.927473,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "02.png",
+          "b": "07.png",
+          "similarity": 0.998745,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "02.png",
+          "b": "08.png",
+          "similarity": 0.948687,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "03.png",
+          "b": "04.png",
+          "similarity": 0.913528,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "03.png",
+          "b": "05.png",
+          "similarity": 0.681481,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "03.png",
+          "b": "06.png",
+          "similarity": 0.920508,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "03.png",
+          "b": "07.png",
+          "similarity": 0.947402,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "03.png",
+          "b": "08.png",
+          "similarity": 0.948828,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "04.png",
+          "b": "05.png",
+          "similarity": 0.752523,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "04.png",
+          "b": "06.png",
+          "similarity": 0.843058,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "04.png",
+          "b": "07.png",
+          "similarity": 0.876998,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "04.png",
+          "b": "08.png",
+          "similarity": 0.848489,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "05.png",
+          "b": "06.png",
+          "similarity": 0.616938,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "05.png",
+          "b": "07.png",
+          "similarity": 0.641131,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "05.png",
+          "b": "08.png",
+          "similarity": 0.532004,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "below-threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "06.png",
+          "b": "07.png",
+          "similarity": 0.930592,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "06.png",
+          "b": "08.png",
+          "similarity": 0.936652,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "07.png",
+          "b": "08.png",
+          "similarity": 0.9524,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        }
+      ],
+      "errors": [],
+      "wallMs": 26.475099999999998
+    },
+    {
+      "name": "couple-event-01",
+      "status": "PASS",
+      "photos": 7,
+      "pairsEvaluated": 21,
+      "connectedPairs": 20,
+      "temporalPairs": 0,
+      "nearMissPairs": 1,
+      "groupsStored": 1,
+      "groupsRecomputed": 1,
+      "groups": {
+        "stored": [
+          [
+            "01.png",
+            "02.png",
+            "03.png",
+            "04.png",
+            "05.png",
+            "06.png",
+            "07.png"
+          ]
+        ],
+        "recomputed": [
+          [
+            "01.png",
+            "02.png",
+            "03.png",
+            "04.png",
+            "05.png",
+            "06.png",
+            "07.png"
+          ]
+        ]
+      },
+      "thresholds": {
+        "similarity": 0.91,
+        "visualOnlySimilarity": 0.965,
+        "temporalSeconds": 12
+      },
+      "thresholdNote": "Datas ausentes (datasets sem EXIF) => todo par usa visualOnlySimilarity (0.965). nearMiss = par com similaridade >= 0.91 e < 0.965 que conectaria apenas houvesse proximidade temporal <= 12s. Auditoria é somente leitura; nenhum threshold foi alterado.",
+      "pairs": [
+        {
+          "a": "01.png",
+          "b": "02.png",
+          "similarity": 0.993308,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "03.png",
+          "similarity": 0.99317,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "04.png",
+          "similarity": 0.980561,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "05.png",
+          "similarity": 0.985454,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "06.png",
+          "similarity": 0.982931,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "07.png",
+          "similarity": 0.98294,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "02.png",
+          "b": "03.png",
+          "similarity": 0.988095,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "02.png",
+          "b": "04.png",
+          "similarity": 0.975032,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "02.png",
+          "b": "05.png",
+          "similarity": 0.985344,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "02.png",
+          "b": "06.png",
+          "similarity": 0.983214,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "02.png",
+          "b": "07.png",
+          "similarity": 0.987764,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "03.png",
+          "b": "04.png",
+          "similarity": 0.9734,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "03.png",
+          "b": "05.png",
+          "similarity": 0.988223,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "03.png",
+          "b": "06.png",
+          "similarity": 0.986266,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "03.png",
+          "b": "07.png",
+          "similarity": 0.982242,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "04.png",
+          "b": "05.png",
+          "similarity": 0.963702,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "04.png",
+          "b": "06.png",
+          "similarity": 0.967682,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "04.png",
+          "b": "07.png",
+          "similarity": 0.965307,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "05.png",
+          "b": "06.png",
+          "similarity": 0.987381,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "05.png",
+          "b": "07.png",
+          "similarity": 0.978474,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "06.png",
+          "b": "07.png",
+          "similarity": 0.977236,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        }
+      ],
+      "errors": [],
+      "wallMs": 4.8577999999999975
+    },
+    {
+      "name": "portrait-expression-01",
+      "status": "PASS",
+      "photos": 7,
+      "pairsEvaluated": 21,
+      "connectedPairs": 11,
+      "temporalPairs": 0,
+      "nearMissPairs": 10,
+      "groupsStored": 2,
+      "groupsRecomputed": 2,
+      "groups": {
+        "stored": [
+          [
+            "01.png",
+            "02.png",
+            "03.png",
+            "04.png",
+            "05.png",
+            "06.png"
+          ],
+          [
+            "07.png"
+          ]
+        ],
+        "recomputed": [
+          [
+            "01.png",
+            "02.png",
+            "03.png",
+            "04.png",
+            "05.png",
+            "06.png"
+          ],
+          [
+            "07.png"
+          ]
+        ]
+      },
+      "thresholds": {
+        "similarity": 0.91,
+        "visualOnlySimilarity": 0.965,
+        "temporalSeconds": 12
+      },
+      "thresholdNote": "Datas ausentes (datasets sem EXIF) => todo par usa visualOnlySimilarity (0.965). nearMiss = par com similaridade >= 0.91 e < 0.965 que conectaria apenas houvesse proximidade temporal <= 12s. Auditoria é somente leitura; nenhum threshold foi alterado.",
+      "pairs": [
+        {
+          "a": "01.png",
+          "b": "02.png",
+          "similarity": 0.95728,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "01.png",
+          "b": "03.png",
+          "similarity": 0.98427,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "04.png",
+          "similarity": 0.989258,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "05.png",
+          "similarity": 0.97135,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "06.png",
+          "similarity": 0.999389,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "01.png",
+          "b": "07.png",
+          "similarity": 0.961417,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "02.png",
+          "b": "03.png",
+          "similarity": 0.970097,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "02.png",
+          "b": "04.png",
+          "similarity": 0.963933,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "02.png",
+          "b": "05.png",
+          "similarity": 0.963051,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "02.png",
+          "b": "06.png",
+          "similarity": 0.956874,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "02.png",
+          "b": "07.png",
+          "similarity": 0.944502,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "03.png",
+          "b": "04.png",
+          "similarity": 0.99573,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "03.png",
+          "b": "05.png",
+          "similarity": 0.986271,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "03.png",
+          "b": "06.png",
+          "similarity": 0.98525,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "03.png",
+          "b": "07.png",
+          "similarity": 0.961469,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "04.png",
+          "b": "05.png",
+          "similarity": 0.988379,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "04.png",
+          "b": "06.png",
+          "similarity": 0.990177,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "04.png",
+          "b": "07.png",
+          "similarity": 0.963673,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "05.png",
+          "b": "06.png",
+          "similarity": 0.971709,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": true,
+          "exactDuplicate": false,
+          "reason": "similarity>=threshold",
+          "nearMiss": false
+        },
+        {
+          "a": "05.png",
+          "b": "07.png",
+          "similarity": 0.954779,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        },
+        {
+          "a": "06.png",
+          "b": "07.png",
+          "similarity": 0.959799,
+          "captureTimeDeltaSeconds": null,
+          "threshold": 0.965,
+          "connected": false,
+          "exactDuplicate": false,
+          "reason": "near-miss (conectaria com proximidade temporal <= 12s)",
+          "nearMiss": true
+        }
+      ],
+      "errors": [],
+      "wallMs": 4.883699999999976
+    }
+  ]
+}

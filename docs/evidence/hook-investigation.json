@@ -1,0 +1,61 @@
+{
+  "status": "UNRESOLVED: exact Hook failed / hook exited with code 1 event not found",
+  "searched": [
+    "ClickIT scripts/docs evidence/npm cache logs",
+    "current Codex rollout event types and projected thread items",
+    "Codex logs_2.sqlite hook_runtime records",
+    "Codex config.toml hook states and plugin hooks/hooks.json"
+  ],
+  "configuredPluginHooks": {
+    "hooks": {
+      "PostToolUse": [
+        {
+          "matcher": "Edit|Write|apply_patch",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "[ ! -f \"${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable\" ] || \"${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable\" hook",
+              "commandWindows": "if exist \"${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable.cmd\" (\"${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable.cmd\" hook & exit /b)",
+              "timeout": 5,
+              "statusMessage": "Checking UI changes"
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "[ ! -f \"${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable\" ] || \"${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable\" hook",
+              "commandWindows": "if exist \"${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable.cmd\" (\"${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable.cmd\" hook & exit /b)",
+              "timeout": 30,
+              "statusMessage": "Design deep pass"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pluginConfigPath": "C:\\Users\\jasso\\.codex\\plugins\\cache\\openai-curated-remote\\impeccable\\4.3.1\\hooks\\hooks.json",
+  "reproductionEvidence": "hook-reproduction.json",
+  "runtimeHookLogs": [
+    {
+      "id": 231963,
+      "ts": 1791244037,
+      "level": "WARN",
+      "target": "codex_core::hook_runtime",
+      "feedback_log_body": "session_loop{thread_id=01a10e22-53c0-7753-913c-96cde75a68b3}:submission_dispatch{otel.name=\"op.dispatch.turn_input\" submission.id=\"01a10e6e-2ff7-7bd0-844b-5c8fe2e98e24\" codex.op=\"turn_input\"}:turn{otel.name=\"session_task.turn\" thread.id=01a10e22-53c0-7753-913c-96cde75a68b3 turn.id=01a10e6e-2ff7-7bd0-844b-5c8fe2e98e24 model=gpt-6-astra codex.turn.reasoning_effort=low}:session_task.run:run_turn:run_legacy_after_agent_hook: after_agent hook failed; continuing turn_id=01a10e6e-2ff7-7bd0-844b-5c8fe2e98e24 hook_name=legacy_notify error=O nome do arquivo ou a extensão é muito grande. (os error 206)"
+    },
+    {
+      "id": 230313,
+      "ts": 1791242420,
+      "level": "WARN",
+      "target": "codex_core::hook_runtime",
+      "feedback_log_body": "session_loop{thread_id=01a10e22-53c0-7753-913c-96cde75a68b3}:submission_dispatch{otel.name=\"op.dispatch.turn_input\" submission.id=\"01a10e54-e620-7b23-b476-08c616a872be\" codex.op=\"turn_input\"}:turn{otel.name=\"session_task.turn\" thread.id=01a10e22-53c0-7753-913c-96cde75a68b3 turn.id=01a10e54-e620-7b23-b476-08c616a872be model=gpt-6-astra codex.turn.reasoning_effort=low}:session_task.run:run_turn:run_legacy_after_agent_hook: after_agent hook failed; continuing turn_id=01a10e54-e620-7b23-b476-08c616a872be hook_name=legacy_notify error=O nome do arquivo ou a extensão é muito grande. (os error 206)"
+    }
+  ],
+  "distinction": "legacy_notify os error 206 records are from a different thread; not proof of the reported code 1. Electron ACL exit 2147483651 is a separate failure.",
+  "missing": "Original expanded hook failure: hook identity, execution time, command, stdout/stderr/stack. No matching stack was available; none invented.",
+  "accessLimitation": "Codex app-server-daemon directory listing denied by filesystem permissions."
+}

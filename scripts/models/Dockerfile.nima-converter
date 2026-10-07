@@ -1,0 +1,11 @@
+FROM python:3.7.9-slim-buster
+WORKDIR /workspace
+RUN sed -i 's|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g; s|http://deb.debian.org/debian-security|http://archive.debian.org/debian-security|g; s|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list \
+    && printf 'Acquire::Check-Valid-Until "false";\n' > /etc/apt/apt.conf.d/99archive \
+    && apt-get update \
+    && apt-get install --no-install-recommends -y libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+COPY scripts/models/requirements-nima-conversion.txt /tmp/requirements-nima-conversion.txt
+RUN python -m pip install --no-cache-dir pip==23.3.2 \
+    && python -m pip install --no-cache-dir --requirement /tmp/requirements-nima-conversion.txt
+ENTRYPOINT ["python", "scripts/models/convert-nima-to-onnx.py"]

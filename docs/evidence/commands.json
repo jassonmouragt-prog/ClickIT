@@ -1,0 +1,155 @@
+[
+  {
+    "label": "npm-version",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "-v"
+    ],
+    "exitCode": 0,
+    "signal": null,
+    "elapsedMs": 158,
+    "error": null
+  },
+  {
+    "label": "npm-cache",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "config",
+      "get",
+      "cache"
+    ],
+    "exitCode": 0,
+    "signal": null,
+    "elapsedMs": 143,
+    "error": null
+  },
+  {
+    "label": "npm-prefix",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "config",
+      "get",
+      "prefix"
+    ],
+    "exitCode": 0,
+    "signal": null,
+    "elapsedMs": 132,
+    "error": null
+  },
+  {
+    "label": "pnpm-location",
+    "executable": "where.exe",
+    "args": [
+      "pnpm"
+    ],
+    "exitCode": 1,
+    "signal": null,
+    "elapsedMs": 52,
+    "error": null
+  },
+  {
+    "label": "lint",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "lint"
+    ],
+    "exitCode": 1,
+    "signal": null,
+    "elapsedMs": 173,
+    "error": null
+  },
+  {
+    "label": "typecheck",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 1,
+    "signal": null,
+    "elapsedMs": 164,
+    "error": null
+  },
+  {
+    "label": "test",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "test"
+    ],
+    "exitCode": 0,
+    "signal": null,
+    "elapsedMs": 500,
+    "error": null
+  },
+  {
+    "label": "build",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "build"
+    ],
+    "exitCode": 1,
+    "signal": null,
+    "elapsedMs": 212,
+    "error": null
+  },
+  {
+    "label": "dev",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "dev"
+    ],
+    "exitCode": 1,
+    "signal": null,
+    "elapsedMs": 252,
+    "error": null
+  },
+  {
+    "label": "start",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "start"
+    ],
+    "exitCode": 1,
+    "signal": null,
+    "elapsedMs": 170,
+    "error": null
+  },
+  {
+    "label": "models",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+      "run",
+      "models"
+    ],
+    "exitCode": 1,
+    "signal": null,
+    "elapsedMs": 334,
+    "error": null
+  },
+  {
+    "label": "verify-models",
+    "executable": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "scripts/verify-models.mjs"
+    ],
+    "exitCode": 1,
+    "signal": null,
+    "elapsedMs": 61,
+    "error": null
+  }
+]

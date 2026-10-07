@@ -1,0 +1,9 @@
+{
+  "versions": {
+    "electron-builder": "26.15.3",
+    "app-builder-lib": "26.15.3"
+  },
+  "file": "node_modules/app-builder-lib/out/targets/nsis/NsisTarget.js",
+  "before": "        else {\n            const wineVm = new WineVm_1.WineVmManager((_a = packager.config.toolsets) === null || _a === void 0 ? void 0 : _a.wine);\n            await wineVm.exec(installerPath, [], { env: { __COMPAT_LAYER: \"RunAsInvoker\" } });\n        }",
+  "after": "        else if (process.platform === \"win32\") {\n            // Native Windows harvest: reassemble the uninstaller from the compiled bytes\n            // without spawning a freshly-written GUI executable (spawn UNKNOWN). See nsisUtil.UninstallerReader.\n            await nsisUtil_1.UninstallerReader.exec(installerPath, uninstallerPath);\n        }\n        else {\n            const wineVm = new WineVm_1.WineVmManager((_a = packager.config.toolsets) === null || _a === void 0 ? void 0 : _a.wine);\n            await wineVm.exec(installerPath, [], { env: { __COMPAT_LAYER: \"RunAsInvoker\" } });\n        }"
+}

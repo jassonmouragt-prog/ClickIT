@@ -1,0 +1,11 @@
+node_modules/
+dist/
+release/
+.npm-cache/
+.test-tmp/
+resources/models/*.onnx
+resources/models/*.task
+public/wasm/
+*.log
+licensing/dev-keypair.json
+licensing/dist/

@@ -1,0 +1,20 @@
+[
+  {
+    "groupId": "22b83c03-4f71-454d-845b-a7aa4e0f1803",
+    "dataset": "composition-01",
+    "files": ["01.png", "02.png", "03.png", "07.png"],
+    "humanRank": []
+  },
+  {
+    "groupId": "934f8479-e63a-4db3-8bde-1e383244b476",
+    "dataset": "couple-event-01",
+    "files": ["01.png", "02.png", "03.png", "04.png", "05.png", "06.png", "07.png"],
+    "humanRank": []
+  },
+  {
+    "groupId": "8a461196-3066-45da-a0fa-e782aa06a318",
+    "dataset": "portrait-expression-01",
+    "files": ["01.png", "02.png", "03.png", "04.png", "05.png", "06.png"],
+    "humanRank": []
+  }
+]

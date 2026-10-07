@@ -1,0 +1,133 @@
+{
+  "timestamp": "2026-10-07T14:39:52.327Z",
+  "results": [
+    {
+      "artifact": "portable",
+      "path": "C:\\dev\\ClickIT\\release\\ClickIT 0.1.0.exe",
+      "size": 328720765,
+      "sha256": "045be4f0fd8a3bf52e9246013942cf6f50f6e3e555c372c21693788b1e6e35ca",
+      "activation": true,
+      "home": false,
+      "licenseState": "UNACTIVATED",
+      "guard": "Error invoking remote method 'projects:list': Error: Ative sua ClickIT para começar a usar.",
+      "pass": true
+    }
+  ],
+  "pass": false,
+  "payloadInspection": [
+    {
+      "artifact": "ClickIT Setup 0.1.0.exe",
+      "size": 329041767,
+      "sha256": "a6aa23352e8f6ed92a2de57721e9bc50dcdd8ada8a10cb47515a852c0090e084",
+      "asarSha256": "1e8263746decd93420b2ace784f792d4cfe811bbe041547fee3a28cec73259c5",
+      "noPrivateKey": true,
+      "licenseGuardPresent": true
+    },
+    {
+      "artifact": "ClickIT 0.1.0.exe",
+      "size": 328720765,
+      "sha256": "045be4f0fd8a3bf52e9246013942cf6f50f6e3e555c372c21693788b1e6e35ca",
+      "asarSha256": "1e8263746decd93420b2ace784f792d4cfe811bbe041547fee3a28cec73259c5",
+      "noPrivateKey": true,
+      "licenseGuardPresent": true
+    }
+  ],
+  "identicalApplicationPayloads": true,
+  "nsisInstallRuntime": {
+    "status": "BLOCKED",
+    "reason": "Windows Application Control policy blocked execution of the NSIS setup. Payload inspection passed; installation runtime was not tested."
+  },
+  "buildReproducibility": "PASS",
+  "checks": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "tests": "85/85 PASS",
+    "build": "PASS",
+    "nsisBuild": "PASS",
+    "portableBuild": "PASS"
+  },
+  "branding": {
+    "exes": [
+      {
+        "artifact": "release/ClickIT Setup 0.1.0.exe",
+        "versionInfo": {
+          "ProductName": "ClickIT",
+          "FileDescription": "Sele��o local de fotografias",
+          "InternalName": "",
+          "OriginalFilename": "",
+          "CompanyName": "ClickIT",
+          "FileVersion": "0.1.0",
+          "ProductVersion": "0.1.0",
+          "LegalCopyright": "Copyright � 2026 ClickIT",
+          "Description": "Sele��o local de fotografias"
+        },
+        "icon": {
+          "extracted": true,
+          "dims": "32x32",
+          "renderedAvgRGB": [
+            18,
+            139,
+            249
+          ],
+          "blueishRatio": 1,
+          "renderedPngSha256": "26ed511ac1cd582c2ad78a94888c1698d164c8f272f9c305225f34e2239b1843"
+        }
+      },
+      {
+        "artifact": "release/ClickIT 0.1.0.exe",
+        "versionInfo": {
+          "ProductName": "ClickIT",
+          "FileDescription": "Sele��o local de fotografias",
+          "InternalName": "",
+          "OriginalFilename": "",
+          "CompanyName": "ClickIT",
+          "FileVersion": "0.1.0",
+          "ProductVersion": "0.1.0",
+          "LegalCopyright": "Copyright � 2026 ClickIT",
+          "Description": "Sele��o local de fotografias"
+        },
+        "icon": {
+          "extracted": true,
+          "dims": "32x32",
+          "renderedAvgRGB": [
+            18,
+            139,
+            249
+          ],
+          "blueishRatio": 1,
+          "renderedPngSha256": "26ed511ac1cd582c2ad78a94888c1698d164c8f272f9c305225f34e2239b1843"
+        }
+      },
+      {
+        "artifact": "release/win-unpacked/ClickIT.exe",
+        "versionInfo": {
+          "ProductName": "ClickIT",
+          "FileDescription": "ClickIT",
+          "InternalName": "ClickIT",
+          "OriginalFilename": "",
+          "CompanyName": "ClickIT",
+          "FileVersion": "0.1.0",
+          "ProductVersion": "0.1.0.0",
+          "LegalCopyright": "Copyright � 2026 ClickIT",
+          "Description": "ClickIT"
+        },
+        "icon": {
+          "extracted": true,
+          "dims": "32x32",
+          "renderedAvgRGB": [
+            18,
+            139,
+            249
+          ],
+          "blueishRatio": 1,
+          "renderedPngSha256": "26ed511ac1cd582c2ad78a94888c1698d164c8f272f9c305225f34e2239b1843"
+        }
+      }
+    ],
+    "expectedBrandRGB": [
+      38,
+      99,
+      252
+    ]
+  }
+}

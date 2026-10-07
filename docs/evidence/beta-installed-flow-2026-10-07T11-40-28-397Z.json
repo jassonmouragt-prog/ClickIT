@@ -1,0 +1,287 @@
+{
+  "startedAt": "2026-10-07T11:39:45.339Z",
+  "exe": "C:\\dev\\ClickIT\\release\\win-unpacked\\ClickIT.exe",
+  "userData": "C:\\dev\\ClickIT\\.test-tmp\\beta-installed\\ud",
+  "source": "C:\\dev\\ClickIT\\Imagens Teste",
+  "afterAnalysis": {
+    "home": false,
+    "homeEmpty": null,
+    "homeProjects": 0,
+    "header": "Beta Instalado",
+    "footer": "7 fotos · 3 selecionadas · 0 favoritasComparar  CGrade ",
+    "cards": 7,
+    "imgs": 7,
+    "placeholders": 0,
+    "picks": 3,
+    "rejectedCards": 0,
+    "checked": 0,
+    "errorBanner": null,
+    "noticeBanner": null,
+    "progressActive": false,
+    "progressText": "Análise concluída7 / 7 · 100%",
+    "inspectorScore": "80",
+    "inspectorEmpty": false,
+    "inspectorBadge": "Selecionada",
+    "inspectorRating": 0,
+    "inspectorFace": "Pessoa 1 · Olhos provavelmente abertos",
+    "inspectorAnalyzed": true,
+    "viewer": null,
+    "viewerPhotos": 0,
+    "modal": null,
+    "filterActive": "Todas",
+    "query": "",
+    "emptyTitle": null,
+    "captionStars": 0
+  },
+  "afterDecisions": {
+    "home": false,
+    "homeEmpty": null,
+    "homeProjects": 0,
+    "header": "Beta Instalado",
+    "footer": "7 fotos · 3 selecionadas · 1 favoritasComparar  CGrade ",
+    "cards": 7,
+    "imgs": 7,
+    "placeholders": 0,
+    "picks": 3,
+    "rejectedCards": 0,
+    "checked": 0,
+    "errorBanner": null,
+    "noticeBanner": null,
+    "progressActive": false,
+    "progressText": "Análise concluída7 / 7 · 100%",
+    "inspectorScore": "80",
+    "inspectorEmpty": false,
+    "inspectorBadge": "Selecionada",
+    "inspectorRating": 4,
+    "inspectorFace": "Pessoa 1 · Olhos provavelmente abertos",
+    "inspectorAnalyzed": true,
+    "viewer": null,
+    "viewerPhotos": 0,
+    "modal": null,
+    "filterActive": "Todas",
+    "query": "",
+    "emptyTitle": null,
+    "captionStars": 1
+  },
+  "beforeClose": {
+    "home": false,
+    "homeEmpty": null,
+    "homeProjects": 0,
+    "header": "Beta Instalado",
+    "footer": "7 fotos · 3 selecionadas · 1 favoritasComparar (3) CGrade ",
+    "cards": 7,
+    "imgs": 7,
+    "placeholders": 0,
+    "picks": 3,
+    "rejectedCards": 0,
+    "checked": 3,
+    "errorBanner": null,
+    "noticeBanner": null,
+    "progressActive": false,
+    "progressText": "Análise concluída7 / 7 · 100%",
+    "inspectorScore": "80",
+    "inspectorEmpty": false,
+    "inspectorBadge": "Selecionada",
+    "inspectorRating": 4,
+    "inspectorFace": "Pessoa 1 · Olhos provavelmente abertos",
+    "inspectorAnalyzed": true,
+    "viewer": null,
+    "viewerPhotos": 0,
+    "modal": null,
+    "filterActive": "Todas",
+    "query": "",
+    "emptyTitle": null,
+    "captionStars": 1
+  },
+  "afterReopen": {
+    "home": false,
+    "homeEmpty": null,
+    "homeProjects": 0,
+    "header": "Beta Instalado",
+    "footer": "7 fotos · 3 selecionadas · 1 favoritasComparar  CGrade ",
+    "cards": 7,
+    "imgs": 7,
+    "placeholders": 0,
+    "picks": 3,
+    "rejectedCards": 0,
+    "checked": 0,
+    "errorBanner": null,
+    "noticeBanner": null,
+    "progressActive": false,
+    "progressText": null,
+    "inspectorScore": null,
+    "inspectorEmpty": true,
+    "inspectorBadge": null,
+    "inspectorRating": 0,
+    "inspectorFace": null,
+    "inspectorAnalyzed": false,
+    "viewer": null,
+    "viewerPhotos": 0,
+    "modal": null,
+    "filterActive": "Todas",
+    "query": "",
+    "emptyTitle": null,
+    "captionStars": 1
+  },
+  "results": [
+    {
+      "step": "app aberto: home vazio (banco isolado novo)",
+      "ok": true,
+      "details": "{\"homeEmpty\":\"Nenhum projeto ainda\"}",
+      "t": "2026-10-07T11:39:47.505Z"
+    },
+    {
+      "step": "modal \"Novo projeto\" abriu",
+      "ok": true,
+      "details": "",
+      "t": "2026-10-07T11:39:47.737Z"
+    },
+    {
+      "step": "diálogo nativo: pasta de origem selecionada",
+      "ok": true,
+      "details": "RESULT=OK picked=C:\\dev\\ClickIT\\Imagens Teste how=bmclick:id=1 elements=89 candidates=1",
+      "t": "2026-10-07T11:39:51.423Z"
+    },
+    {
+      "step": "projeto criado e selecionado",
+      "ok": true,
+      "details": "Beta Instalado",
+      "t": "2026-10-07T11:39:51.426Z"
+    },
+    {
+      "step": "importação: 7 fotos com thumbnails/previews gerados",
+      "ok": true,
+      "details": "cards=7 imgs=7 placeholders=0",
+      "t": "2026-10-07T11:39:52.132Z"
+    },
+    {
+      "step": "análise concluída: rank/Pick persistido, sem erro",
+      "ok": true,
+      "details": "picks=3 progress=Análise concluída7 / 7 · 100%",
+      "t": "2026-10-07T11:39:56.185Z"
+    },
+    {
+      "step": "inspector mostra score real (não \"—\")",
+      "ok": true,
+      "details": "score=80 face=Pessoa 1 · Olhos provavelmente abertos",
+      "t": "2026-10-07T11:40:04.810Z"
+    },
+    {
+      "step": "filtros: todos os chips sem erro, volta para 7",
+      "ok": true,
+      "details": "[{\"label\":\"Todas\",\"cards\":7,\"error\":null},{\"label\":\"ClickIT Picks\",\"cards\":3,\"error\":null},{\"label\":\"Selecionadas\",\"cards\":3,\"error\":null},{\"label\":\"Favoritas\",\"cards\":0,\"error\":null},{\"label\":\"Revisar\",\"cards\":2,\"error\":null},{\"label\":\"Rejeitadas\",\"cards\":0,\"error\":null},{\"label\":\"Semelhantes\",\"cards\":5,\"error\":null},{\"label\":\"Possível desfoque\",\"cards\":2,\"error\":null},{\"label\":\"Olhos fechados\",\"cards\":1,\"error\":null},{\"label\":\"Duplicadas\",\"cards\":0,\"error\":null},{\"label\":\"Com rosto\",\"cards\":5,\"error\":null},{\"label\":\"Sem rosto\",\"cards\":2,\"error\":null}]",
+      "t": "2026-10-07T11:40:09.506Z"
+    },
+    {
+      "step": "busca reduz para 1 foto e restaura 7",
+      "ok": false,
+      "details": "busca=7 limpa=7",
+      "t": "2026-10-07T11:40:10.924Z"
+    },
+    {
+      "step": "foto ativada no inspector",
+      "ok": true,
+      "details": "7 fotos · 3 selecionadas · 0 favoritasComparar  CGrade ",
+      "t": "2026-10-07T11:40:11.242Z"
+    },
+    {
+      "step": "rejeitar marca o card como rejeitado",
+      "ok": true,
+      "details": "rejected=1 sel 3->2",
+      "t": "2026-10-07T11:40:11.551Z"
+    },
+    {
+      "step": "desfazer rejeição (selecionar) restaura seleção",
+      "ok": true,
+      "details": "rejected=0 sel=3",
+      "t": "2026-10-07T11:40:11.912Z"
+    },
+    {
+      "step": "favoritar incrementa favoritas",
+      "ok": true,
+      "details": "0->1",
+      "t": "2026-10-07T11:40:12.234Z"
+    },
+    {
+      "step": "estrelas: 4 estrelas aplicadas",
+      "ok": true,
+      "details": "rated=4 captions=1",
+      "t": "2026-10-07T11:40:12.545Z"
+    },
+    {
+      "step": "revisar define estado REVIEW",
+      "ok": true,
+      "details": "Revisar",
+      "t": "2026-10-07T11:40:12.860Z"
+    },
+    {
+      "step": "atalhos X e A: rejeitar e desfazer",
+      "ok": true,
+      "details": "rejected_after_x=true badge=Selecionada",
+      "t": "2026-10-07T11:40:13.501Z"
+    },
+    {
+      "step": "3 fotos marcadas para comparação",
+      "ok": true,
+      "details": "checked=3",
+      "t": "2026-10-07T11:40:13.812Z"
+    },
+    {
+      "step": "comparação abre com 3 fotografias",
+      "ok": true,
+      "details": "Comparação photos=3",
+      "t": "2026-10-07T11:40:14.437Z"
+    },
+    {
+      "step": "atalho G volta para a grade",
+      "ok": true,
+      "details": "null",
+      "t": "2026-10-07T11:40:14.876Z"
+    },
+    {
+      "step": "Espaço abre viewer individual",
+      "ok": true,
+      "details": "Visualização individual photos=1",
+      "t": "2026-10-07T11:40:15.416Z"
+    },
+    {
+      "step": "G fecha o viewer",
+      "ok": true,
+      "details": "null",
+      "t": "2026-10-07T11:40:15.832Z"
+    },
+    {
+      "step": "reabertura: projeto \"Beta Instalado\" presente",
+      "ok": true,
+      "details": "{\"homeProjects\":1}",
+      "t": "2026-10-07T11:40:22.101Z"
+    },
+    {
+      "step": "persistência: 7 fotos, Pick e decisões após reabrir",
+      "ok": true,
+      "details": "sel=3 fav=1 stars=1 picks=3",
+      "t": "2026-10-07T11:40:22.533Z"
+    },
+    {
+      "step": "modal de exportação abriu",
+      "ok": true,
+      "details": "",
+      "t": "2026-10-07T11:40:22.615Z"
+    },
+    {
+      "step": "diálogo nativo: destino de exportação",
+      "ok": false,
+      "details": "RESULT=NAV_MISMATCH leaf=export-copy",
+      "t": "2026-10-07T11:40:26.767Z"
+    },
+    {
+      "step": "FLUXO INTERROMPIDO",
+      "ok": false,
+      "details": "Error: falha no diálogo nativo de exportação: RESULT=NAV_MISMATCH leaf=export-copy\n    at main (file:///C:/dev/ClickIT/.test-tmp/flow-test.mjs:298:22)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "t": "2026-10-07T11:40:26.768Z"
+    }
+  ],
+  "passed": 23,
+  "failed": 3,
+  "finishedAt": "2026-10-07T11:40:28.397Z"
+}

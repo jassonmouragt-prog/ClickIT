@@ -1,0 +1,87 @@
+{
+  "generatedAt": "2026-10-06T19:52:09.348Z",
+  "seed": 20261006,
+  "tiers": [
+    {
+      "size": 100,
+      "dir": "C:\\dev\\ClickIT\\.test-tmp\\scale-data-100",
+      "manifestSha256": "06946831b136e35137962ed0e3b302e9f419a67ba90a822f5c09f08b677c36a8",
+      "verified": 100,
+      "sourceCount": 7,
+      "transformationCounts": {
+        "rotate": 9,
+        "exact-copy": 11,
+        "blur-light": 8,
+        "resize": 8,
+        "sharpen": 10,
+        "contrast": 8,
+        "jpeg-recompress": 9,
+        "blur-moderate": 8,
+        "crop-light": 8,
+        "crop-moderate": 7,
+        "brightness": 7,
+        "exposure": 7
+      }
+    },
+    {
+      "size": 500,
+      "dir": "C:\\dev\\ClickIT\\.test-tmp\\scale-data-500",
+      "manifestSha256": "3f1377ee47b4078e0f73caeefeba05cd6b67b9a9d77a8d53f2b75eff62440f8b",
+      "verified": 500,
+      "sourceCount": 7,
+      "transformationCounts": {
+        "rotate": 42,
+        "exact-copy": 42,
+        "blur-light": 42,
+        "resize": 42,
+        "sharpen": 41,
+        "contrast": 40,
+        "jpeg-recompress": 42,
+        "blur-moderate": 41,
+        "crop-light": 42,
+        "crop-moderate": 42,
+        "brightness": 42,
+        "exposure": 42
+      }
+    },
+    {
+      "size": 1000,
+      "dir": "C:\\dev\\ClickIT\\.test-tmp\\scale-data-1000",
+      "manifestSha256": "4eb0e194b64d55bf322f08cf2e0b94017c7642d2d779150f951e27ba01a2b337",
+      "verified": 1000,
+      "sourceCount": 7,
+      "transformationCounts": {
+        "rotate": 83,
+        "exact-copy": 84,
+        "blur-light": 84,
+        "resize": 83,
+        "sharpen": 82,
+        "contrast": 82,
+        "jpeg-recompress": 84,
+        "blur-moderate": 83,
+        "crop-light": 84,
+        "crop-moderate": 84,
+        "brightness": 84,
+        "exposure": 83
+      }
+    }
+  ],
+  "repeats": [
+    {
+      "size": 100,
+      "identicalManifest": true,
+      "identicalFiles": 100,
+      "manifestSha256": "06946831b136e35137962ed0e3b302e9f419a67ba90a822f5c09f08b677c36a8"
+    },
+    {
+      "size": 1000,
+      "identicalManifest": true,
+      "identicalFiles": 1000,
+      "manifestSha256": "4eb0e194b64d55bf322f08cf2e0b94017c7642d2d779150f951e27ba01a2b337"
+    }
+  ],
+  "baseSourcesUnchanged": true,
+  "productionUnchanged": true,
+  "productionFilesCompared": 36,
+  "scales3000And5000": "SUPPORTED_NOT_GENERATED"
+}

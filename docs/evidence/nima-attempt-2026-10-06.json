@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-06",
+  "officialSource": "idealo/image-quality-assessment",
+  "sourceCommit": "dceaf7c2d218bc6e80b21d6e147e3b56a21b7f31",
+  "sourceWeights": "resources/models/weights_mobilenet_aesthetic_0.07.hdf5",
+  "sourceWeightsBytes": 13174216,
+  "expectedBytes": 13174216,
+  "sourceWeightsSha256": "e563ad91b3d47410e45f7238f07ab8f6abd1bd0c4b18a4b0af9c681a21a91cb2",
+  "sourceWeightsGitBlobSha1": "003fb321ce92445e41d708144a3656589f9214e7",
+  "expectedGitBlobSha1": "003fb321ce92445e41d708144a3656589f9214e7",
+  "hdf5Signature": "PASS",
+  "hdf5LibraryOpen": "NOT RUN: h5py/h5dump unavailable; Keras load_weights remains pending",
+  "docker": "UNAVAILABLE: docker executable not installed",
+  "python": "Python 3.14 only; Python 3.7 is not installed",
+  "python37InstallerProbe": "HEAD https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe failed: Impossível conectar-se ao servidor remoto; no installer downloaded",
+  "attempts": [
+    {
+      "command": "npm run nima:convert -- --images <five portrait images -1 through -5>",
+      "exitCode": 1,
+      "result": "NIMA conversion environment missing. Run scripts\\models\\setup-nima-converter.ps1 first."
+    },
+    {
+      "command": "npm run nima:test -- --photo <five portrait images -1 through -5>",
+      "exitCode": 1,
+      "result": "NIMA ainda não foi convertido/verificado; aestheticScore permanece null."
+    },
+    {
+      "command": "node scripts/doctor-probe.mjs model-hashes",
+      "exitCode": 0,
+      "result": "DINOv2/FaceLandmarker and manifest verified; NIMA sourceArtifacts SHA-256 and size checked."
+    },
+    {
+      "command": "py -3.14 -m py_compile scripts/models/convert-nima-to-onnx.py",
+      "exitCode": 0,
+      "result": "Python syntax compilation only; no imports, conversion or inference executed."
+    }
+  ],
+  "previouslyMeasuredTechnicalScores": [
+    { "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png", "technicalScore": 80 },
+    { "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png", "technicalScore": 79 },
+    { "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png", "technicalScore": 77 },
+    { "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png", "technicalScore": 70 },
+    { "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png", "technicalScore": 64 }
+  ],
+  "technicalScoresSource": "preference-signals-2026-10-06T13-05-51-937Z.json",
+  "onnxSha256": null,
+  "onnxContract": null,
+  "kerasOnnxDistributionComparison": null,
+  "fivePhotoNimaScores": null,
+  "experimentalCombination": null,
+  "productionRankingChanged": false
+}

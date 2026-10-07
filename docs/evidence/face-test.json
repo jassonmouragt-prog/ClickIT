@@ -1,0 +1,120 @@
+{
+  "ok": true,
+  "data": {
+    "facesDetected": 1,
+    "landmarkCounts": [
+      478
+    ],
+    "firstLandmarks": [
+      [
+        {
+          "x": 0.5110665559768677,
+          "y": 0.57517409324646,
+          "z": -0.0334571972489357,
+          "visibility": 0
+        },
+        {
+          "x": 0.5046647191047668,
+          "y": 0.5149481892585754,
+          "z": -0.07447746396064758,
+          "visibility": 0
+        },
+        {
+          "x": 0.507434606552124,
+          "y": 0.5327244400978088,
+          "z": -0.036638565361499786,
+          "visibility": 0
+        }
+      ]
+    ],
+    "initializationMs": 1978.800000011921,
+    "elapsedMs": 121.19999998807907,
+    "width": 1448,
+    "height": 1086,
+    "faceConfidence": null,
+    "confidenceNote": "FaceLandmarkerResult não expõe confiança de detecção/presença por rosto; thresholds configurados não são scores medidos.",
+    "eyeClassificationValidated": false,
+    "runtime": "@mediapipe/tasks-vision 0.10.35 / Electron renderer sandbox / CPU",
+    "totalProcessMs": 3433.5078,
+    "stages": [
+      {
+        "name": "prepare-assets",
+        "timestamp": "2026-10-06T11:10:46.115Z"
+      },
+      {
+        "name": "spawn-electron",
+        "timestamp": "2026-10-06T11:10:46.194Z"
+      },
+      {
+        "name": "process-start",
+        "timestamp": "2026-10-06T11:10:46.529Z"
+      },
+      {
+        "name": "app-ready-wait",
+        "timestamp": "2026-10-06T11:10:46.538Z"
+      },
+      {
+        "name": "app-ready",
+        "timestamp": "2026-10-06T11:10:46.610Z"
+      },
+      {
+        "name": "create-renderer",
+        "timestamp": "2026-10-06T11:10:46.647Z"
+      },
+      {
+        "name": "load-page",
+        "timestamp": "2026-10-06T11:10:46.721Z"
+      },
+      {
+        "name": "import-renderer",
+        "timestamp": "2026-10-06T11:10:47.804Z"
+      },
+      {
+        "name": "import-mediapipe",
+        "timestamp": "2026-10-06T11:10:47.821Z"
+      },
+      {
+        "name": "resolve-wasm",
+        "timestamp": "2026-10-06T11:10:47.828Z"
+      },
+      {
+        "name": "create-fileset-resolver",
+        "timestamp": "2026-10-06T11:10:47.829Z"
+      },
+      {
+        "name": "read-face-model",
+        "timestamp": "2026-10-06T11:10:47.833Z"
+      },
+      {
+        "name": "create-face-landmarker",
+        "timestamp": "2026-10-06T11:10:47.846Z"
+      },
+      {
+        "name": "read-photo",
+        "timestamp": "2026-10-06T11:10:49.799Z"
+      },
+      {
+        "name": "convert-image",
+        "timestamp": "2026-10-06T11:10:49.812Z"
+      },
+      {
+        "name": "detect",
+        "timestamp": "2026-10-06T11:10:49.837Z"
+      },
+      {
+        "name": "detect-returned",
+        "timestamp": "2026-10-06T11:10:49.958Z"
+      },
+      {
+        "name": "close-landmarker",
+        "timestamp": "2026-10-06T11:10:49.958Z"
+      },
+      {
+        "name": "shutdown",
+        "timestamp": "2026-10-06T11:10:49.962Z"
+      }
+    ],
+    "processExited": true,
+    "exitCode": 0
+  }
+}

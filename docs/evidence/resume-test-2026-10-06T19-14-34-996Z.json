@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-10-06T19:17:13.438Z",
+  "mode": "resume-test",
+  "status": "PASS",
+  "command": "npm run benchmark:photos -- --dir \"C:\\dev\\ClickIT\\.test-tmp\\benchmark\\pool\" --resume-test",
+  "poolDir": "C:\\dev\\ClickIT\\.test-tmp\\benchmark\\pool",
+  "size": 100,
+  "cancelAtRatio": 0.3,
+  "datasetDir": "C:\\dev\\ClickIT\\.test-tmp\\benchmark\\photos-100",
+  "replication": "Entrada i = pool[i % 82] �\u001d réplicas documentadas de 82 fontes distintas; hardlink com fallback para cópia; nenhuma fonte é modificada.",
+  "phase1": {
+    "indexMs": 234.24440000000004,
+    "analyzeMs": 61845.0046,
+    "processedBeforeStop": 31,
+    "failed": 0,
+    "pending": 69,
+    "cancelled": true,
+    "status": "INTERRUPTED",
+    "cacheBytes": 6240612,
+    "errors": []
+  },
+  "phase2": {
+    "indexMs": 55.73319999999512,
+    "analyzeMs": 95963.67859999998,
+    "remainingAfterRestart": 69,
+    "preparedCount": 69,
+    "done": 100,
+    "failed": 0,
+    "status": "READY",
+    "groupedCount": 100,
+    "cacheBytes": 15587770,
+    "errors": []
+  },
+  "duplicates": {
+    "ids": [],
+    "duplicatesReprocessed": 0
+  },
+  "checks": {
+    "phase1CancelledInterrupted": {
+      "pass": true,
+      "actual": {
+        "cancelled": true,
+        "status": "INTERRUPTED"
+      }
+    },
+    "processedApprox30Percent": {
+      "pass": true,
+      "expected": "~30% de 100",
+      "actual": 31
+    },
+    "remainingMatchesPending": {
+      "pass": true,
+      "expected": 69,
+      "actual": 69
+    },
+    "duplicatesReprocessedZero": {
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    "finalComplete": {
+      "pass": true,
+      "expected": "100 DONE / 0 falhas",
+      "actual": "100 DONE / 0 falhas"
+    },
+    "groupingSaved": {
+      "pass": true,
+      "actual": 100
+    }
+  },
+  "ramPeakBytesApprox": 996458496,
+  "notes": [
+    "Fase 2 reabre o mesmo banco (nova instância de Store) e reutiliza o mesmo projeto; fotos DONE não são re-preparadas.",
+    "duplicatesReprocessed = fotos DONE antes da fase 2 que foram re-preparadas na fase 2 (esperado 0)."
+  ]
+}

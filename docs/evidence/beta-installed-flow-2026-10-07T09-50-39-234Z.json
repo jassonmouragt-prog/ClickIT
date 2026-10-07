@@ -1,0 +1,35 @@
+{
+  "startedAt": "2026-10-07T09:49:49.225Z",
+  "exe": "C:\\dev\\ClickIT\\release\\win-unpacked\\ClickIT.exe",
+  "userData": "C:\\dev\\ClickIT\\.test-tmp\\beta-installed\\ud",
+  "source": "C:\\dev\\ClickIT\\Imagens Teste",
+  "results": [
+    {
+      "step": "app aberto: home vazio (banco isolado novo)",
+      "ok": true,
+      "details": "{\"homeEmpty\":\"Nenhum projeto ainda\"}",
+      "t": "2026-10-07T09:49:51.943Z"
+    },
+    {
+      "step": "modal \"Novo projeto\" abriu",
+      "ok": true,
+      "details": "",
+      "t": "2026-10-07T09:49:51.974Z"
+    },
+    {
+      "step": "diálogo nativo: pasta de origem selecionada",
+      "ok": false,
+      "details": "RESULT=NO_WINDOW pattern=*Selecionar pasta*",
+      "t": "2026-10-07T09:50:37.622Z"
+    },
+    {
+      "step": "FLUXO INTERROMPIDO",
+      "ok": false,
+      "details": "Error: falha no diálogo nativo de origem: RESULT=NO_WINDOW pattern=*Selecionar pasta*\n    at main (file:///C:/dev/ClickIT/.test-tmp/flow-test.mjs:148:22)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "t": "2026-10-07T09:50:37.623Z"
+    }
+  ],
+  "passed": 2,
+  "failed": 2,
+  "finishedAt": "2026-10-07T09:50:39.234Z"
+}

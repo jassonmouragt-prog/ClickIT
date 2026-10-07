@@ -1,0 +1,6 @@
+{
+  "generatedAt": "2026-10-06T21:19:42.697Z",
+  "scope": "Synthetic robustness/performance only; no human aesthetic preference or professional selection validation.",
+  "classification": "BLOCKED",
+  "error": "Error: Argumento inválido: --limit\n    at args (file:///C:/dev/ClickIT/scripts/scale-common.mjs:38:104)\n    at file:///C:/dev/ClickIT/scripts/benchmark-scale.mjs:193:21"
+}

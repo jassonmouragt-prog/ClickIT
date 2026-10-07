@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-10-07T13:16:29.285Z",
+  "exe": "C:\\dev\\ClickIT\\release\\win-unpacked\\ClickIT.exe",
+  "results": [
+    {
+      "step": "FLUXO INTERROMPIDO",
+      "ok": false,
+      "details": "Error: falha ao criar licença: {\"license\":{\"id\":\"3bdd3146-beba-4669-8041-00ba160af143\",\"customerName\":\"E2E Desktop\",\"customerEmail\":\"E2E Desktop@e2e.local\",\"status\":\"ACTIVE\",\"plan\":\"LIFETIME\",\"maxDevices\":2,\"createdAt\":\"2026-10-07T13:16:29.892Z\",\"expiresAt\":null,\"revokedAt\":null,\"keyHashPrefix\":\"0d8809ed\"},\"licenseKey\":\"CLICKIT-944F-6064-9F42\"}\n    at createLicense (file:///C:/dev/ClickIT/.test-tmp/license-e2e.mjs:40:29)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async main (file:///C:/dev/ClickIT/.test-tmp/license-e2e.mjs:88:17)",
+      "t": "2026-10-07T13:16:29.910Z"
+    }
+  ],
+  "passed": 0,
+  "failed": 1
+}

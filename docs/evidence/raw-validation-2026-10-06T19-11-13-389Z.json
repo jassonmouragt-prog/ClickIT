@@ -1,0 +1,178 @@
+{
+  "generatedAt": "2026-10-06T19:11:25.128Z",
+  "mode": "RAW validation (real files only; no simulation; production code untouched)",
+  "command": "npm run raw:validate -- --dir \"C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\Plataforma para professores\\Arquivos Editáveis\"",
+  "directory": "C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\Plataforma para professores\\Arquivos Editáveis",
+  "formats": [
+    {
+      "format": ".cr2",
+      "status": "NOT_TESTED",
+      "filesFound": 0,
+      "reason": "Nenhum arquivo disponível para validação real (sem simulação).",
+      "perFile": []
+    },
+    {
+      "format": ".cr3",
+      "status": "NOT_TESTED",
+      "filesFound": 0,
+      "reason": "Nenhum arquivo disponível para validação real (sem simulação).",
+      "perFile": []
+    },
+    {
+      "format": ".nef",
+      "status": "NOT_TESTED",
+      "filesFound": 0,
+      "reason": "Nenhum arquivo disponível para validação real (sem simulação).",
+      "perFile": []
+    },
+    {
+      "format": ".arw",
+      "status": "NOT_TESTED",
+      "filesFound": 0,
+      "reason": "Nenhum arquivo disponível para validação real (sem simulação).",
+      "perFile": []
+    },
+    {
+      "format": ".dng",
+      "status": "PASS",
+      "filesFound": 2,
+      "fatal": null,
+      "summary": {
+        "totalFiles": 2,
+        "pipelineMs": 9155.4854,
+        "exportMs": 18.55709999999999,
+        "exportResult": {
+          "copied": 2,
+          "total": 2,
+          "errors": []
+        },
+        "faceMsTotal": 4737.0018,
+        "faceCalls": 2,
+        "pipelineErrors": []
+      },
+      "perFile": [
+        {
+          "file": "C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\Plataforma para professores\\Arquivos Editáveis\\PhotoTraces_Free_RAW_Photos_01_Manhattan_Skyline.dng",
+          "extension": ".dng",
+          "size": 3962612,
+          "magic": {
+            "magicOk": true,
+            "container": "tiff-le"
+          },
+          "exif": {
+            "ok": true,
+            "ms": 981.9656,
+            "captureDate": "2010-07-25T14:47:31-04:00",
+            "camera": "Canon EOS DIGITAL REBEL XT",
+            "lens": "17.0-70.0 mm",
+            "iso": 200
+          },
+          "previewExtraction": {
+            "ok": true,
+            "ms": 248.23919999999998,
+            "tag": "PreviewImage",
+            "embeddedBytes": 68997
+          },
+          "pipeline": {
+            "status": "DONE",
+            "error": null,
+            "captureDate": "2010-07-25T18:47:31.000Z",
+            "metadata": {
+              "camera": "Canon EOS DIGITAL REBEL XT",
+              "lens": "17.0-70.0 mm",
+              "iso": 200,
+              "aperture": 8,
+              "shutterSpeed": "1/200",
+              "focalLength": "57.0 mm"
+            },
+            "camera": "Canon EOS DIGITAL REBEL XT",
+            "hasPreview": true,
+            "hasThumbnail": true,
+            "previewBytes": 86375,
+            "analysisVersion": "clickit-1-dinov2-mp1-ear1-focus-saturation1",
+            "embeddingAvailable": true,
+            "grouped": true
+          },
+          "export": {
+            "copied": true,
+            "exportedFile": "00-PhotoTraces_Free_RAW_Photos_01_Manhattan_Skyline_5be240f1_4e5595b1.dng",
+            "shaOriginal": "8726ee28e30b3e0157769043d6fc73444338a41c9c247547ee37fdb973515cc1",
+            "shaExported": "8726ee28e30b3e0157769043d6fc73444338a41c9c247547ee37fdb973515cc1",
+            "ms": 0,
+            "identical": true
+          },
+          "originalUntouched": true,
+          "ok": true
+        },
+        {
+          "file": "C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\Plataforma para professores\\Arquivos Editáveis\\PhotoTraces_Free_RAW_Photos_06_Golden_Gate_Trafficc.dng",
+          "extension": ".dng",
+          "size": 5542912,
+          "magic": {
+            "magicOk": true,
+            "container": "tiff-le"
+          },
+          "exif": {
+            "ok": true,
+            "ms": 255.80880000000002,
+            "captureDate": "2011-11-05T19:06:50.660-04:00",
+            "camera": "Canon EOS 60D",
+            "lens": "17-70mm",
+            "iso": 100
+          },
+          "previewExtraction": {
+            "ok": true,
+            "ms": 321.8881000000001,
+            "tag": "PreviewImage",
+            "embeddedBytes": 54362
+          },
+          "pipeline": {
+            "status": "DONE",
+            "error": null,
+            "captureDate": "2011-11-05T23:06:50.660Z",
+            "metadata": {
+              "camera": "Canon EOS 60D",
+              "lens": "17-70mm",
+              "iso": 100,
+              "aperture": 8,
+              "shutterSpeed": "1/60",
+              "focalLength": "17.0 mm"
+            },
+            "camera": "Canon EOS 60D",
+            "hasPreview": true,
+            "hasThumbnail": true,
+            "previewBytes": 65381,
+            "analysisVersion": "clickit-1-dinov2-mp1-ear1-focus-saturation1",
+            "embeddingAvailable": true,
+            "grouped": true
+          },
+          "export": {
+            "copied": true,
+            "exportedFile": "01-PhotoTraces_Free_RAW_Photos_06_Golden_Gate_Trafficc_1e4d1876_4e5595b1.dng",
+            "shaOriginal": "d334d80c627735afcc5e9ef629aaf8d6a3bc07cdcfe281ff9e760d2a72451128",
+            "shaExported": "d334d80c627735afcc5e9ef629aaf8d6a3bc07cdcfe281ff9e760d2a72451128",
+            "ms": 0,
+            "identical": true
+          },
+          "originalUntouched": true,
+          "ok": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "expectedFormats": 5,
+    "testedFormats": 1,
+    "notTestedFormats": 4,
+    "passed": 1,
+    "failed": 0,
+    "extraRawFormatsFound": [],
+    "status": "PASS"
+  },
+  "notes": [
+    "Formatação por extensão + verificação de magic bytes (TIFF para CR2/NEF/ARW/DNG; ftyp-crx para CR3).",
+    "Extração de preview embutido (JpgFromRaw/PreviewImage/OtherImage) cronometrada, como no worker de produção.",
+    "Análise via pipeline de produção (índice, previews, cache, embedding, rostos) em cópias hardlink em staging; exportação via exportPhotos com SHA-256 idêntico exigido.",
+    "Original verificado por SHA-256 antes e depois (intocabilidade)."
+  ]
+}

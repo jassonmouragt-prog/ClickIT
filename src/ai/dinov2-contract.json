@@ -1,0 +1,25 @@
+{
+  "input": {
+    "name": "pixel_values",
+    "dtype": "float32",
+    "metadataShape": ["batch_size", "num_channels", "height", "width"],
+    "shape": [1, 3, 224, 224],
+    "color": "RGB",
+    "resizeShortestEdge": 256,
+    "cropSize": 224,
+    "resizeKernel": "lanczos3",
+    "scale": 255,
+    "mean": [0.485, 0.456, 0.406],
+    "std": [0.229, 0.224, 0.225]
+  },
+  "output": {
+    "name": "last_hidden_state",
+    "dtype": "float32",
+    "metadataShape": ["batch_size", "floor(height/14)*floor(width/14) + 1", 384],
+    "shape": [1, 257, 384],
+    "embeddingDimensions": 384,
+    "tokenIndex": 0,
+    "postprocessing": "CLS token, L2 normalization"
+  },
+  "provider": "cpu"
+}

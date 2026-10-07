@@ -1,0 +1,221 @@
+{
+  "generatedAt": "2026-10-06T13:00:22.827Z",
+  "source": "docs/evidence/focus-saturation-2026-10-06T12-51-03-650Z.json",
+  "sourceSha256": "74b49f98218afd657f2e0cc594c0560588147bc9a3a35e19e0098b89a3b3a3e9",
+  "rows": [
+    {
+      "id": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "role": "sequence",
+      "technicalScore": 80,
+      "aestheticScore": null,
+      "compositionScore": null,
+      "expressionScore": null,
+      "availableCompositionMeasurements": {
+        "faceRect": {
+          "normalized": {
+            "left": 0.3683271110057831,
+            "top": 0.20937460660934448,
+            "width": 0.30168452858924866,
+            "height": 0.4859272837638855,
+            "right": 0.6700116395950317,
+            "bottom": 0.69530189037323,
+            "centerX": 0.5191693753004074,
+            "centerY": 0.45233824849128723
+          },
+          "clearance": {
+            "left": 0.3683271110057831,
+            "top": 0.20937460660934448,
+            "right": 0.32998836040496826,
+            "bottom": 0.30469810962677
+          }
+        },
+        "centerDistanceToNearestThird": 0.14749729136625922,
+        "note": "Raw normalized face geometry. No validated mapping from these geometric features to composition quality."
+      },
+      "availableExpressionMeasurements": {
+        "eyes": "OPEN",
+        "leftEAR": 0.29636270495295736,
+        "rightEAR": 0.31657234300404213,
+        "blinkLeftBlendshape": 0.1036134660243988,
+        "blinkRightBlendshape": 0.05256962403655052,
+        "note": "Real saved FaceLandmarker/EAR observations. No gaze, mouth, smile or head-pose values are present in the saved production Face record."
+      },
+      "image": null
+    },
+    {
+      "id": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "role": "sequence",
+      "technicalScore": 79,
+      "aestheticScore": null,
+      "compositionScore": null,
+      "expressionScore": null,
+      "availableCompositionMeasurements": {
+        "faceRect": {
+          "normalized": {
+            "left": 0.36776241660118103,
+            "top": 0.20706984400749207,
+            "width": 0.2999514043331146,
+            "height": 0.47922053933143616,
+            "right": 0.6677138209342957,
+            "bottom": 0.6862903833389282,
+            "centerX": 0.5177381187677383,
+            "centerY": 0.44668011367321014
+          },
+          "clearance": {
+            "left": 0.36776241660118103,
+            "top": 0.20706984400749207,
+            "right": 0.33228617906570435,
+            "bottom": 0.3137096166610718
+          }
+        },
+        "centerDistanceToNearestThird": 0.1489285478989283,
+        "note": "Raw normalized face geometry. No validated mapping from these geometric features to composition quality."
+      },
+      "availableExpressionMeasurements": {
+        "eyes": "OPEN",
+        "leftEAR": 0.2886168055846869,
+        "rightEAR": 0.30870854185259444,
+        "blinkLeftBlendshape": 0.10027539730072021,
+        "blinkRightBlendshape": 0.05394955351948738,
+        "note": "Real saved FaceLandmarker/EAR observations. No gaze, mouth, smile or head-pose values are present in the saved production Face record."
+      },
+      "image": null
+    },
+    {
+      "id": "226d21d5-f950-406b-8ab4-086c88576921",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "role": "sequence",
+      "technicalScore": 77,
+      "aestheticScore": null,
+      "compositionScore": null,
+      "expressionScore": null,
+      "availableCompositionMeasurements": {
+        "faceRect": {
+          "normalized": {
+            "left": 0.3590554893016815,
+            "top": 0.20544561743736267,
+            "width": 0.29675307869911194,
+            "height": 0.4708339273929596,
+            "right": 0.6558085680007935,
+            "bottom": 0.6762795448303223,
+            "centerX": 0.5074320286512375,
+            "centerY": 0.44086258113384247
+          },
+          "clearance": {
+            "left": 0.3590554893016815,
+            "top": 0.20544561743736267,
+            "right": 0.34419143199920654,
+            "bottom": 0.32372045516967773
+          }
+        },
+        "centerDistanceToNearestThird": 0.15923463801542914,
+        "note": "Raw normalized face geometry. No validated mapping from these geometric features to composition quality."
+      },
+      "availableExpressionMeasurements": {
+        "eyes": "OPEN",
+        "leftEAR": 0.29268719010402944,
+        "rightEAR": 0.33664082704579174,
+        "blinkLeftBlendshape": 0.10483691096305847,
+        "blinkRightBlendshape": 0.031758010387420654,
+        "note": "Real saved FaceLandmarker/EAR observations. No gaze, mouth, smile or head-pose values are present in the saved production Face record."
+      },
+      "image": null
+    },
+    {
+      "id": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "role": "sequence",
+      "technicalScore": 70,
+      "aestheticScore": null,
+      "compositionScore": null,
+      "expressionScore": null,
+      "availableCompositionMeasurements": {
+        "faceRect": {
+          "normalized": {
+            "left": 0.37068960070610046,
+            "top": 0.20965251326560974,
+            "width": 0.2989597022533417,
+            "height": 0.4790754020214081,
+            "right": 0.6696493029594421,
+            "bottom": 0.6887279152870178,
+            "centerX": 0.5201694518327713,
+            "centerY": 0.4491902142763138
+          },
+          "clearance": {
+            "left": 0.37068960070610046,
+            "top": 0.20965251326560974,
+            "right": 0.33035069704055786,
+            "bottom": 0.3112720847129822
+          }
+        },
+        "centerDistanceToNearestThird": 0.14649721483389533,
+        "note": "Raw normalized face geometry. No validated mapping from these geometric features to composition quality."
+      },
+      "availableExpressionMeasurements": {
+        "eyes": "OPEN",
+        "leftEAR": 0.2940355518643312,
+        "rightEAR": 0.31706660554127897,
+        "blinkLeftBlendshape": 0.09548214823007584,
+        "blinkRightBlendshape": 0.053365692496299744,
+        "note": "Real saved FaceLandmarker/EAR observations. No gaze, mouth, smile or head-pose values are present in the saved production Face record."
+      },
+      "image": null
+    },
+    {
+      "id": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "role": "sequence",
+      "technicalScore": 64,
+      "aestheticScore": null,
+      "compositionScore": null,
+      "expressionScore": null,
+      "availableCompositionMeasurements": {
+        "faceRect": {
+          "normalized": {
+            "left": 0.36965447664260864,
+            "top": 0.2202540636062622,
+            "width": 0.3004773259162903,
+            "height": 0.47066861391067505,
+            "right": 0.6701318025588989,
+            "bottom": 0.6909226775169373,
+            "centerX": 0.5198931396007538,
+            "centerY": 0.45558837056159973
+          },
+          "clearance": {
+            "left": 0.36965447664260864,
+            "top": 0.2202540636062622,
+            "right": 0.3298681974411011,
+            "bottom": 0.30907732248306274
+          }
+        },
+        "centerDistanceToNearestThird": 0.14677352706591285,
+        "note": "Raw normalized face geometry. No validated mapping from these geometric features to composition quality."
+      },
+      "availableExpressionMeasurements": {
+        "eyes": "CLOSED",
+        "leftEAR": 0.01924457018728588,
+        "rightEAR": 0.034308342906192606,
+        "blinkLeftBlendshape": 0.7508381605148315,
+        "blinkRightBlendshape": 0.656335711479187,
+        "note": "Real saved FaceLandmarker/EAR observations. No gaze, mouth, smile or head-pose values are present in the saved production Face record."
+      },
+      "image": null
+    }
+  ],
+  "audit": {
+    "aestheticModel": "not executed",
+    "aestheticScore": "null; model artifact unavailable in this execution environment",
+    "compositionScore": "null; geometry is reported as raw measurement, not a validated quality score",
+    "expressionScore": "null; eyes/blink alone do not define a reliable general expression score",
+    "productionRankingChanged": false,
+    "groupingChanged": false
+  },
+  "blocker": "Shell access to Hugging Face is unavailable; Chrome blocks the Xet artifact CDN with ERR_BLOCKED_BY_CLIENT. The ONNX file is not installed or hash-verified; no model inference is claimed."
+}

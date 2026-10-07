@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "models": {
+    "dinov2": {
+      "name": "DINOv2 Small ViT-S/14 FP32",
+      "file": "dinov2-small.onnx",
+      "type": "embedding",
+      "author": "Meta AI; ONNX export by ONNX Community / Xenova",
+      "version": "ef1fb1005bfd7768839d18080f7038b403506f87",
+      "sha256": "f22797eabf810a75e41de68d378541ebea372122b25c4ce3ef25ff618250c20a",
+      "bytes": 88532934,
+      "source": "https://huggingface.co/onnx-community/dinov2-small/tree/ef1fb1005bfd7768839d18080f7038b403506f87",
+      "url": "https://huggingface.co/onnx-community/dinov2-small/resolve/ef1fb1005bfd7768839d18080f7038b403506f87/onnx/model.onnx",
+      "hashSource": "https://huggingface.co/onnx-community/dinov2-small/raw/main/onnx/model.onnx",
+      "license": "Apache-2.0",
+      "licenseSource": "https://github.com/facebookresearch/dinov2/blob/main/LICENSE",
+      "input": {
+        "name": "pixel_values",
+        "dtype": "float32",
+        "metadataShape": [
+          "batch_size",
+          "num_channels",
+          "height",
+          "width"
+        ],
+        "shape": [
+          1,
+          3,
+          224,
+          224
+        ],
+        "color": "RGB",
+        "resizeShortestEdge": 256,
+        "cropSize": 224,
+        "resizeKernel": "lanczos3",
+        "scale": 255,
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      },
+      "output": {
+        "name": "last_hidden_state",
+        "dtype": "float32",
+        "metadataShape": [
+          "batch_size",
+          "floor(height/14)*floor(width/14) + 1",
+          384
+        ],
+        "shape": [
+          1,
+          257,
+          384
+        ],
+        "embeddingDimensions": 384,
+        "tokenIndex": 0,
+        "postprocessing": "CLS token, L2 normalization"
+      },
+      "provider": "cpu"
+    },
+    "faceLandmarker": {
+      "name": "MediaPipe Face Landmarker float16 v1",
+      "file": "face_landmarker.task",
+      "type": "face-landmarks",
+      "author": "Google MediaPipe",
+      "version": "float16/1",
+      "sha256": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
+      "bytes": 3758596,
+      "source": "https://ai.google.dev/edge/mediapipe/solutions/vision/face_landmarker",
+      "url": "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
+      "hashSource": "https://huggingface.co/lithiumice/models_hub/blame/8a7b241f38e33d194a06f881a1211b3e7eda4edd/face_landmarker.task",
+      "license": "Apache-2.0",
+      "licenseSource": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20MediaPipe%20Face%20Mesh%20V2.pdf",
+      "input": {
+        "type": "ImageBitmap RGB, preprocessing handled by MediaPipe Tasks"
+      },
+      "output": {
+        "landmarksPerFace": 478,
+        "blendshapesPerFace": 52,
+        "identityRecognition": false
+      },
+      "runtime": {
+        "package": "@mediapipe/tasks-vision",
+        "version": "0.10.35",
+        "delegate": "CPU",
+        "runningMode": "IMAGE",
+        "numFaces": 20,
+        "minFaceDetectionConfidence": 0.6,
+        "minFacePresenceConfidence": 0.6,
+        "outputFaceBlendshapes": true
+      }
+    },
+    "nimaAesthetic": {
+      "name": "NIMA MobileNet Aesthetic AVA",
+      "file": "nima-mobilenet-aesthetic.onnx",
+      "type": "aesthetic-distribution",
+      "version": "dceaf7c2d218bc6e80b21d6e147e3b56a21b7f31",
+      "source": "https://github.com/idealo/image-quality-assessment/tree/dceaf7c2d218bc6e80b21d6e147e3b56a21b7f31",
+      "sourceCommit": "dceaf7c2d218bc6e80b21d6e147e3b56a21b7f31",
+      "sourceWeights": "models/MobileNet/weights_mobilenet_aesthetic_0.07.hdf5",
+      "sourceWeightsBytes": 13174216,
+      "sourceWeightsGitBlobSha1": "003fb321ce92445e41d708144a3656589f9214e7",
+      "sourceWeightsSha256": "e563ad91b3d47410e45f7238f07ab8f6abd1bd0c4b18a4b0af9c681a21a91cb2",
+      "sha256": "b00e347d9b3cf6442d561b6b349732368c058a07416a2eda30a9acb21e2164db",
+      "bytes": 12842030,
+      "license": "Apache-2.0",
+      "licenseSource": "https://github.com/idealo/image-quality-assessment/blob/dceaf7c2d218bc6e80b21d6e147e3b56a21b7f31/LICENSE",
+      "conversionScript": "scripts/models/convert-nima-to-onnx.py",
+      "input": {
+        "name": "image",
+        "dtype": "float32",
+        "shape": [
+          1,
+          224,
+          224,
+          3
+        ],
+        "color": "RGB",
+        "resize": [
+          224,
+          224
+        ],
+        "resizeMethod": "Keras load_img interpolation=nearest",
+        "preprocessing": "tf.keras.applications.mobilenet.preprocess_input; RGB [0,255] -> [-1,1]"
+      },
+      "output": {
+        "name": "dense",
+        "dtype": "float32",
+        "shape": [
+          1,
+          10
+        ],
+        "meaning": "AVA rating probability distribution, indices 1..10"
+      },
+      "score": {
+        "mean": "sum(p_i * i), i=1..10",
+        "std": "sqrt(sum(p_i * (i-mean)^2))",
+        "presentationNormalization": "(mean-1)/9*100"
+      },
+      "equivalence": {
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "maxAbs": 0.0001,
+        "imagesCompared": 5,
+        "maxAbsObserved": 4.76837158203125e-07
+      }
+    }
+  },
+  "sourceArtifacts": {
+    "nimaAestheticWeights": {
+      "name": "NIMA MobileNet Aesthetic AVA original weights",
+      "file": "weights_mobilenet_aesthetic_0.07.hdf5",
+      "bytes": 13174216,
+      "sha256": "e563ad91b3d47410e45f7238f07ab8f6abd1bd0c4b18a4b0af9c681a21a91cb2",
+      "gitBlobSha1": "003fb321ce92445e41d708144a3656589f9214e7",
+      "source": "https://github.com/idealo/image-quality-assessment/blob/dceaf7c2d218bc6e80b21d6e147e3b56a21b7f31/models/MobileNet/weights_mobilenet_aesthetic_0.07.hdf5",
+      "license": "Apache-2.0"
+    }
+  }
+}

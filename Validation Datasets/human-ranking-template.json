@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-10-06T18:35:14.593Z",
+  "instructions": "Preencha humanRank de 1 (melhor) a N (pior) para CADA foto de cada dataset, baseado apenas na qualidade fotográfica (nitidez, exposicao, expressao, composicao). Deixe null para nao anotar. A comparacao Top1/Top3/Spearman roda somente DEPOIS dos rankings ClickIT e e apenas informativa: nenhuma resposta humana altera pesos, thresholds ou treinamento. Os arquivos (nao groupIds) sao a chave de comparacao porque groupIds mudam a cada execucao.",
+  "datasets": [
+    {
+      "dataset": "composition-01",
+      "photos": [
+        {
+          "file": "01.png",
+          "humanRank": null
+        },
+        {
+          "file": "02.png",
+          "humanRank": null
+        },
+        {
+          "file": "03.png",
+          "humanRank": null
+        },
+        {
+          "file": "04.png",
+          "humanRank": null
+        },
+        {
+          "file": "05.png",
+          "humanRank": null
+        },
+        {
+          "file": "06.png",
+          "humanRank": null
+        },
+        {
+          "file": "07.png",
+          "humanRank": null
+        },
+        {
+          "file": "08.png",
+          "humanRank": null
+        }
+      ]
+    },
+    {
+      "dataset": "couple-event-01",
+      "photos": [
+        {
+          "file": "01.png",
+          "humanRank": null
+        },
+        {
+          "file": "02.png",
+          "humanRank": null
+        },
+        {
+          "file": "03.png",
+          "humanRank": null
+        },
+        {
+          "file": "04.png",
+          "humanRank": null
+        },
+        {
+          "file": "05.png",
+          "humanRank": null
+        },
+        {
+          "file": "06.png",
+          "humanRank": null
+        },
+        {
+          "file": "07.png",
+          "humanRank": null
+        }
+      ]
+    },
+    {
+      "dataset": "portrait-expression-01",
+      "photos": [
+        {
+          "file": "01.png",
+          "humanRank": null
+        },
+        {
+          "file": "02.png",
+          "humanRank": null
+        },
+        {
+          "file": "03.png",
+          "humanRank": null
+        },
+        {
+          "file": "04.png",
+          "humanRank": null
+        },
+        {
+          "file": "05.png",
+          "humanRank": null
+        },
+        {
+          "file": "06.png",
+          "humanRank": null
+        },
+        {
+          "file": "07.png",
+          "humanRank": null
+        }
+      ]
+    }
+  ]
+}

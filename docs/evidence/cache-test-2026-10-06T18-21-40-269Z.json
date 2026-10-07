@@ -1,0 +1,119 @@
+{
+  "generatedAt": "2026-10-06T18:23:29.018Z",
+  "mode": "cache-test",
+  "status": "PASS",
+  "command": "npm run benchmark:photos -- --dir \"C:\\dev\\ClickIT\\.test-tmp\\benchmark\\pool\" --cache-test",
+  "poolDir": "C:\\dev\\ClickIT\\.test-tmp\\benchmark\\pool",
+  "size": 100,
+  "datasetDir": "C:\\dev\\ClickIT\\.test-tmp\\benchmark\\photos-100",
+  "replication": "Entrada i = pool[i % 82] �\u001d réplicas documentadas de 82 fontes distintas; hardlink com fallback para cópia; nenhuma fonte é modificada.",
+  "runs": [
+    {
+      "label": "cache-1-frio",
+      "indexMs": 99.20730000000003,
+      "analyzeMs": 102548.3712,
+      "firstRunSeconds": 102.5,
+      "pendingBefore": 100,
+      "preparedCount": 100,
+      "hits": 0,
+      "misses": 100,
+      "done": 100,
+      "failed": 0,
+      "status": "READY",
+      "cacheBytes": 15587770,
+      "errors": []
+    },
+    {
+      "label": "cache-2-quente",
+      "indexMs": 28.32500000001164,
+      "analyzeMs": 1302.1178999999975,
+      "firstRunSeconds": 102.5,
+      "pendingBefore": 0,
+      "preparedCount": 0,
+      "hits": 100,
+      "misses": 0,
+      "done": 100,
+      "failed": 0,
+      "status": "READY",
+      "cacheBytes": 15587770,
+      "errors": []
+    },
+    {
+      "label": "cache-3-mutado",
+      "indexMs": 43.398400000005495,
+      "analyzeMs": 4029.2088000000076,
+      "firstRunSeconds": 102.5,
+      "pendingBefore": 1,
+      "preparedCount": 1,
+      "hits": 99,
+      "misses": 1,
+      "done": 100,
+      "failed": 0,
+      "status": "READY",
+      "cacheBytes": 15832211,
+      "errors": []
+    }
+  ],
+  "mutation": {
+    "entry": "0000-0000-Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+    "source": "C:\\dev\\ClickIT\\.test-tmp\\benchmark\\pool\\0000-Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+    "method": "sharp-reencode",
+    "sourceSha256Before": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+    "sourceSha256After": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+    "sourceUntouched": true
+  },
+  "checks": {
+    "runsCompletedWithoutError": {
+      "pass": true,
+      "actual": [
+        {
+          "label": "cache-1-frio",
+          "errors": 0
+        },
+        {
+          "label": "cache-2-quente",
+          "errors": 0
+        },
+        {
+          "label": "cache-3-mutado",
+          "errors": 0
+        }
+      ]
+    },
+    "coldRunMissesAll": {
+      "pass": true,
+      "expected": 100,
+      "actual": 100
+    },
+    "warmRunNoRecompute": {
+      "pass": true,
+      "expected": 0,
+      "actual": 0
+    },
+    "warmRunHitsAll": {
+      "pass": true,
+      "expected": 100,
+      "actual": 100
+    },
+    "mutatedRunSingleMiss": {
+      "pass": true,
+      "expected": 1,
+      "actual": 1
+    },
+    "mutatedRunHitsRest": {
+      "pass": true,
+      "expected": 99,
+      "actual": 99
+    },
+    "sourceUntouched": {
+      "pass": true,
+      "actual": true
+    }
+  },
+  "ramPeakBytesApprox": 953745408,
+  "notes": [
+    "hit = foto não re-preparada nesta execução (análise anterior aproveitada); miss = foto preparada novamente.",
+    "A mutação reescreve apenas a entrada do dataset (unlink + nova escrita); a fonte é verificada por SHA-256 antes e depois.",
+    "ws-cache é removido no início para garantir execução 1 fria."
+  ]
+}

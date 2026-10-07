@@ -1,0 +1,232 @@
+{
+  "startedAt": "2026-10-07T09:31:45.851Z",
+  "environment": {
+    "chrome": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "debugPort": 9333
+  },
+  "serverRequestsBefore": [
+    {
+      "time": 1791365506442,
+      "op": "requests"
+    }
+  ],
+  "after": {
+    "label": "after (App atual com guarda)",
+    "url": "http://127.0.0.1:4180/after?race",
+    "events": [
+      {
+        "t": 1791365506770,
+        "action": "click Projeto teste (resposta atrasada 15s)"
+      },
+      {
+        "t": 1791365507585,
+        "action": "click Projeto vazio"
+      },
+      {
+        "t": 1791365508788,
+        "action": "snapshot mid"
+      },
+      {
+        "t": 1791365525299,
+        "action": "snapshot final (após resposta atrasada)"
+      }
+    ],
+    "mid": {
+      "home": false,
+      "header": "Projeto vazio",
+      "footer": "0 fotos · 0 selecionadas · 0 favoritasComparar  CGrade ",
+      "cards": 0,
+      "empty": "Nenhuma fotografia indexada",
+      "loadingText": false
+    },
+    "final": {
+      "home": false,
+      "header": "Projeto vazio",
+      "footer": "0 fotos · 0 selecionadas · 0 favoritasComparar  CGrade ",
+      "cards": 0,
+      "empty": "Nenhuma fotografia indexada",
+      "loadingText": false
+    },
+    "requests": [
+      {
+        "time": 1791365506442,
+        "op": "requests"
+      },
+      {
+        "time": 1791365506616,
+        "op": "projects"
+      },
+      {
+        "time": 1791365506623,
+        "op": "settings"
+      },
+      {
+        "time": 1791365506625,
+        "op": "progress"
+      },
+      {
+        "time": 1791365506770,
+        "op": "projects"
+      },
+      {
+        "time": 1791365506772,
+        "op": "photos",
+        "id": "228d0893-35e6-4842-b7f9-c8df05f90780"
+      },
+      {
+        "time": 1791365507583,
+        "op": "projects"
+      },
+      {
+        "time": 1791365507585,
+        "op": "photos",
+        "id": "afea1223-ae20-4c21-9d3a-9712c30c478b"
+      },
+      {
+        "time": 1791365525301,
+        "op": "requests"
+      }
+    ],
+    "consoleLogs": [],
+    "exceptions": []
+  },
+  "before": {
+    "label": "before (App antigo sem guarda)",
+    "url": "http://127.0.0.1:4180/before?race",
+    "events": [
+      {
+        "t": 1791365525638,
+        "action": "click Projeto teste (resposta atrasada 15s)"
+      },
+      {
+        "t": 1791365526459,
+        "action": "click Projeto vazio"
+      },
+      {
+        "t": 1791365527669,
+        "action": "snapshot mid"
+      },
+      {
+        "t": 1791365544172,
+        "action": "snapshot final (após resposta atrasada)"
+      }
+    ],
+    "mid": {
+      "home": false,
+      "header": "Projeto vazio",
+      "footer": "0 fotos · 0 selecionadas · 0 favoritasComparar  CGrade ",
+      "cards": 0,
+      "empty": "Sua pasta está pronta",
+      "loadingText": false
+    },
+    "final": {
+      "home": false,
+      "header": "Projeto vazio",
+      "footer": "7 fotos · 3 selecionadas · 0 favoritasComparar  CGrade ",
+      "cards": 4,
+      "empty": null,
+      "loadingText": false
+    },
+    "requests": [
+      {
+        "time": 1791365506442,
+        "op": "requests"
+      },
+      {
+        "time": 1791365506616,
+        "op": "projects"
+      },
+      {
+        "time": 1791365506623,
+        "op": "settings"
+      },
+      {
+        "time": 1791365506625,
+        "op": "progress"
+      },
+      {
+        "time": 1791365506770,
+        "op": "projects"
+      },
+      {
+        "time": 1791365506772,
+        "op": "photos",
+        "id": "228d0893-35e6-4842-b7f9-c8df05f90780"
+      },
+      {
+        "time": 1791365507583,
+        "op": "projects"
+      },
+      {
+        "time": 1791365507585,
+        "op": "photos",
+        "id": "afea1223-ae20-4c21-9d3a-9712c30c478b"
+      },
+      {
+        "time": 1791365525301,
+        "op": "requests"
+      },
+      {
+        "time": 1791365525525,
+        "op": "projects"
+      },
+      {
+        "time": 1791365525526,
+        "op": "settings"
+      },
+      {
+        "time": 1791365525528,
+        "op": "progress"
+      },
+      {
+        "time": 1791365525637,
+        "op": "projects"
+      },
+      {
+        "time": 1791365525665,
+        "op": "photos",
+        "id": "228d0893-35e6-4842-b7f9-c8df05f90780"
+      },
+      {
+        "time": 1791365526450,
+        "op": "projects"
+      },
+      {
+        "time": 1791365526456,
+        "op": "photos",
+        "id": "afea1223-ae20-4c21-9d3a-9712c30c478b"
+      },
+      {
+        "time": 1791365540704,
+        "op": "diagnostic",
+        "id": "11925713-d5df-4b04-a74c-83aec00af414"
+      },
+      {
+        "time": 1791365540707,
+        "op": "diagnostic",
+        "id": "0dedff2a-a4aa-4134-aa0d-c06ae584bb33"
+      },
+      {
+        "time": 1791365540707,
+        "op": "diagnostic",
+        "id": "1e2219b3-8946-428e-a225-0c9538c6c234"
+      },
+      {
+        "time": 1791365540707,
+        "op": "diagnostic",
+        "id": "8aba631f-03b7-4845-b0f7-57a741b89f75"
+      },
+      {
+        "time": 1791365544174,
+        "op": "requests"
+      }
+    ],
+    "consoleLogs": [],
+    "exceptions": []
+  },
+  "verdict": {
+    "guardHolds": true,
+    "staleReproducedOnBefore": true
+  },
+  "finishedAt": "2026-10-07T09:32:24.178Z"
+}

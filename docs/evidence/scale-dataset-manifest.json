@@ -1,0 +1,1427 @@
+{
+  "schemaVersion": 1,
+  "generatorVersion": 1,
+  "seed": 20261006,
+  "count": 100,
+  "scope": "Synthetic robustness/performance only; no human aesthetic preference or professional selection validation.",
+  "reproducibility": "Same input bytes + relative filenames + seed + count + recorded Sharp/libvips versions. No timestamps or absolute paths in manifest.",
+  "runtime": {
+    "node": "24.21.0",
+    "sharp": {
+      "aom": "3.13.1",
+      "archive": "3.8.2",
+      "cairo": "1.18.4",
+      "cgif": "0.5.0",
+      "exif": "0.6.25",
+      "expat": "2.7.3",
+      "ffi": "3.5.2",
+      "fontconfig": "2.17.1",
+      "freetype": "2.14.1",
+      "fribidi": "1.0.16",
+      "glib": "2.86.1",
+      "harfbuzz": "12.1.0",
+      "heif": "1.20.2",
+      "highway": "1.3.0",
+      "imagequant": "2.4.1",
+      "lcms": "2.17",
+      "mozjpeg": "0826579",
+      "pango": "1.57.0",
+      "pixman": "0.46.4",
+      "png": "1.6.50",
+      "proxy-libintl": "0.5",
+      "rsvg": "2.61.2",
+      "spng": "0.7.4",
+      "tiff": "4.7.1",
+      "vips": "8.17.3",
+      "webp": "1.6.0",
+      "xml2": "2.15.1",
+      "zlib-ng": "2.2.5",
+      "sharp": "0.34.5"
+    }
+  },
+  "sources": [
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "width": 1448,
+      "height": 1086
+    }
+  ],
+  "entries": [
+    {
+      "file": "image-00001.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "rotate",
+      "parameters": {
+        "degrees": -1.28496,
+        "background": "#808080",
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "85fb84a6ff467f24380af86bf481523fb66c4009941b71d89229e161fc516c7b"
+    },
+    {
+      "file": "image-00002.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82"
+    },
+    {
+      "file": "image-00003.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "blur-light",
+      "parameters": {
+        "sigma": 0.52295,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "5d947620b2b09e0ed97f5525a963868e35801c3f33f860d50a61f4588ab72af6"
+    },
+    {
+      "file": "image-00004.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990"
+    },
+    {
+      "file": "image-00005.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "resize",
+      "parameters": {
+        "factor": 0.82005,
+        "width": 1187,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "29eee369bc50ad42f1a0a8228d88f9b22cf3e1fa679890e0e80469bfa149a43f"
+    },
+    {
+      "file": "image-00006.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.44222,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "1754f3857c36dd2a352fdb24eac545b974f170fe2d2362690d4979db3a29dc0f"
+    },
+    {
+      "file": "image-00007.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.49856,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "ef5dece186af918cd2a5facc9845655cd2b3ea4afcf218ce057e6d0c21e0c53b"
+    },
+    {
+      "file": "image-00008.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "contrast",
+      "parameters": {
+        "factor": 1.01404,
+        "offset": -1.7971200000000067,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "04acd2281eac0ec3ad9c94fed4d06a50dcd09c129aa267e331677899f7e41553"
+    },
+    {
+      "file": "image-00009.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "jpeg-recompress",
+      "parameters": {
+        "quality": 91,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "80ae2877bf3be6cbeb101093e8309867dae8de1ac7565ab5fce3b9274bb55929"
+    },
+    {
+      "file": "image-00010.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "blur-moderate",
+      "parameters": {
+        "sigma": 1.17549,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "4f37d2909d9101e110a6f3a597b28e091db6ff624b0cad67dd8910fa402c088d"
+    },
+    {
+      "file": "image-00011.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "jpeg-recompress",
+      "parameters": {
+        "quality": 85,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "935d06671fb4c3add979fb44aa6c5d2fe4ffd7b85c30743f166a9c3463affb18"
+    },
+    {
+      "file": "image-00012.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "rotate",
+      "parameters": {
+        "degrees": 1.76096,
+        "background": "#808080",
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "bcf77e0bad7d6da0986ff09dae5d8519926edddec1509e3e68a4709d2ac95f70"
+    },
+    {
+      "file": "image-00013.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724"
+    },
+    {
+      "file": "image-00014.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693"
+    },
+    {
+      "file": "image-00015.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.78037,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "81cbc470508bdd34eec7387fe607869344c0ad11d9382fe75e8c00105a8b5d4f"
+    },
+    {
+      "file": "image-00016.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "crop-light",
+      "parameters": {
+        "fraction": 0.93694,
+        "width": 1356,
+        "height": 1017,
+        "left": 21,
+        "top": 9,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "6ccfd95d50c7174c39945021b38fbc27736c56dcfcedcde9e1258529ecd8eaf8"
+    },
+    {
+      "file": "image-00017.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "resize",
+      "parameters": {
+        "factor": 0.86166,
+        "width": 1247,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "2cb1673270e28f1cf79d32413ea24966fad07f3353fe887c74e6c995140c8212"
+    },
+    {
+      "file": "image-00018.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "crop-light",
+      "parameters": {
+        "fraction": 0.95025,
+        "width": 1375,
+        "height": 1031,
+        "left": 43,
+        "top": 48,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "fbeb31b772a222b1d46186840e012c5410fdab9f0269fd0270208ae7f7c4b828"
+    },
+    {
+      "file": "image-00019.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "contrast",
+      "parameters": {
+        "factor": 0.97932,
+        "offset": 2.647040000000004,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "091149c3821b8a78ebcde4fc2146b76d716bc99cb8e793e18352256359b150e5"
+    },
+    {
+      "file": "image-00020.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "jpeg-recompress",
+      "parameters": {
+        "quality": 83,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "d585497a3b31887c1835becdd0c788299e5df49e6bdd2e8d38a95aff93d310f2"
+    },
+    {
+      "file": "image-00021.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "jpeg-recompress",
+      "parameters": {
+        "quality": 91,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "09a3396cce7394e634b6309a5af53d4e7fd735e522b46c8bac2caaa5b68dc7ba"
+    },
+    {
+      "file": "image-00022.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1"
+    },
+    {
+      "file": "image-00023.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "crop-moderate",
+      "parameters": {
+        "fraction": 0.87392,
+        "width": 1265,
+        "height": 949,
+        "left": 13,
+        "top": 121,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "c17d4efab09bb98845c05eae23a51c2dc9ee37f80e65732b0b906f040e9f4138"
+    },
+    {
+      "file": "image-00024.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "rotate",
+      "parameters": {
+        "degrees": 1.72657,
+        "background": "#808080",
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "0bf5eb5a651ca8df28cfb32c5f0c188408a9dfe25b4d57aabd16812f08d4f781"
+    },
+    {
+      "file": "image-00025.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "crop-moderate",
+      "parameters": {
+        "fraction": 0.87699,
+        "width": 1269,
+        "height": 952,
+        "left": 147,
+        "top": 81,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "0f9605cbe0bc8fc4e61f425dcc26eb921339a03d936ba0bb5431eefc17a34d75"
+    },
+    {
+      "file": "image-00026.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.62098,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "52ec8d095af8d1739fe5d3d636660df4aa16e249823f3d1a6d3647508cce75f3"
+    },
+    {
+      "file": "image-00027.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "crop-light",
+      "parameters": {
+        "fraction": 0.9495,
+        "width": 1374,
+        "height": 1031,
+        "left": 29,
+        "top": 5,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "d0600ada0c197a33541d7f66d0e4e64791918688e2c8ca746ff4293103c6b538"
+    },
+    {
+      "file": "image-00028.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "crop-light",
+      "parameters": {
+        "fraction": 0.94281,
+        "width": 1365,
+        "height": 1023,
+        "left": 20,
+        "top": 24,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "e32557dfe6e83a0a928010f464289d49a13dba232c7545eadd0bc4fdcf6d710d"
+    },
+    {
+      "file": "image-00029.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "jpeg-recompress",
+      "parameters": {
+        "quality": 92,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "9fc48238a3c05a8a3710fa9e18da1321061db630e38a302ddfb1359e68769fb3"
+    },
+    {
+      "file": "image-00030.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "brightness",
+      "parameters": {
+        "offset": 1.07612,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "d015062be68caabaed6f92ed45873925c6c338459fd34d542c7feeebaad99d78"
+    },
+    {
+      "file": "image-00031.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "contrast",
+      "parameters": {
+        "factor": 1.05566,
+        "offset": -7.1244800000000055,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "905aa5e4bf80726e370b4c374da1edd4f3b862c77b4bf0bcf69aacb7d492e8d1"
+    },
+    {
+      "file": "image-00032.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "brightness",
+      "parameters": {
+        "offset": -5.21248,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "3677149faf7985dba7123e036c0c0a43f753ad95e5626546309b2fdc8faac729"
+    },
+    {
+      "file": "image-00033.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0"
+    },
+    {
+      "file": "image-00034.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "crop-moderate",
+      "parameters": {
+        "fraction": 0.89246,
+        "width": 1292,
+        "height": 969,
+        "left": 53,
+        "top": 16,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "fa65232081e07b2603e026ba6a74c0b81d4e03de25b6e88b029eb04cc4985295"
+    },
+    {
+      "file": "image-00035.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "crop-moderate",
+      "parameters": {
+        "fraction": 0.80163,
+        "width": 1160,
+        "height": 870,
+        "left": 66,
+        "top": 164,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "05a046c747850d9e1926fb94bcdc9c1895e95e55650bdad8ffbe9d19f9279b9b"
+    },
+    {
+      "file": "image-00036.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "crop-light",
+      "parameters": {
+        "fraction": 0.96637,
+        "width": 1399,
+        "height": 1049,
+        "left": 4,
+        "top": 7,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "219e8c4d085044d32c39da28c32f5941dfdfc08dad1ded7fdd675d44525b5207"
+    },
+    {
+      "file": "image-00037.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "exposure",
+      "parameters": {
+        "ev": -0.06346,
+        "multiplier": 0.9569662830444328,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "966df83e7b1d509c37ac14056399b6528073ffe435eaf624c2c7eaeb1a9bbe86"
+    },
+    {
+      "file": "image-00038.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.48427,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "e7f5b08d6b0831476039128e21a7bee10b308bef9dcc945b4a117e3bbc9ccab5"
+    },
+    {
+      "file": "image-00039.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "exposure",
+      "parameters": {
+        "ev": -0.02245,
+        "multiplier": 0.9845592949710978,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "3b3ea711606c64d6c6c884f652b720a82257117bdb946f937919871d90f3f13d"
+    },
+    {
+      "file": "image-00040.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "jpeg-recompress",
+      "parameters": {
+        "quality": 91,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "39200ac25196048831150f25a5e4c47674266faa3313e49167403c8919e440cd"
+    },
+    {
+      "file": "image-00041.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "brightness",
+      "parameters": {
+        "offset": -5.09076,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "e23387bd3814061c7f90218f65c7f86be1db6be5922293c7c03dc18ca619ded0"
+    },
+    {
+      "file": "image-00042.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "brightness",
+      "parameters": {
+        "offset": -2.18849,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "aef84e581e10ae3e282ee72597985aad83d0bd34f0e3e2eb66bcb8d1209a1962"
+    },
+    {
+      "file": "image-00043.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "crop-moderate",
+      "parameters": {
+        "fraction": 0.88829,
+        "width": 1286,
+        "height": 964,
+        "left": 16,
+        "top": 45,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "a53fcd42ce1a2dc69f1904f1919ceed361837c10c8319a96625bcfcd09d5555b"
+    },
+    {
+      "file": "image-00044.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "blur-light",
+      "parameters": {
+        "sigma": 0.37901,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "5051476cb2ee0000d2f8aa2157769666b1b1977f91aff799925b9a77a9926d5e"
+    },
+    {
+      "file": "image-00045.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e"
+    },
+    {
+      "file": "image-00046.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "blur-light",
+      "parameters": {
+        "sigma": 0.54109,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "2a01deaed5a212c786f15a110aa8d7ee2b7d6e24b95856b1cb4187acf4c26727"
+    },
+    {
+      "file": "image-00047.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "crop-light",
+      "parameters": {
+        "fraction": 0.9671,
+        "width": 1400,
+        "height": 1050,
+        "left": 24,
+        "top": 31,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "abb8c3f68ce2c97c29adff0ced1e2d8837e3afa76a9464134bb209a42dc74a09"
+    },
+    {
+      "file": "image-00048.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "exposure",
+      "parameters": {
+        "ev": 0.09559,
+        "multiplier": 1.068502290025181,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "143f3d9e28a62d74228313aa97ac133d7f1dd737b7fe42d1e9d7ad059870cc30"
+    },
+    {
+      "file": "image-00049.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "exposure",
+      "parameters": {
+        "ev": 0.05397,
+        "multiplier": 1.038117683268253,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "f293469fa5550c4167994922ce48d82653b1ba27be2a8a20d6642a03d661902c"
+    },
+    {
+      "file": "image-00050.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "brightness",
+      "parameters": {
+        "offset": -6.92013,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "ffe30b7723f2d9ffed76d3756c16423b50661ace8bf3126b33e0011a9bf32876"
+    },
+    {
+      "file": "image-00051.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "blur-moderate",
+      "parameters": {
+        "sigma": 1.43438,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "18749794b36bfea94731d6296d3bb3ced9bd964ab00f97c133745bfb7b1649e2"
+    },
+    {
+      "file": "image-00052.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "jpeg-recompress",
+      "parameters": {
+        "quality": 83,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "557643f565cb4b61191372af18b3b599ca3e7360305b29e4037a635e0b47297b"
+    },
+    {
+      "file": "image-00053.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "blur-moderate",
+      "parameters": {
+        "sigma": 1.09348,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "828438239d1316667f73b810eaa0f0497a6a9fdef884f0727d31fe2739e839c2"
+    },
+    {
+      "file": "image-00054.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "crop-moderate",
+      "parameters": {
+        "fraction": 0.89265,
+        "width": 1292,
+        "height": 969,
+        "left": 3,
+        "top": 102,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "23a7ffb800adbf8ccfc01fadd3f65ec6c1c5e1b04b05221f2e6cc17ce236fe0d"
+    },
+    {
+      "file": "image-00055.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "blur-light",
+      "parameters": {
+        "sigma": 0.43032,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "1754f3857c36dd2a352fdb24eac545b974f170fe2d2362690d4979db3a29dc0f"
+    },
+    {
+      "file": "image-00056.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "blur-light",
+      "parameters": {
+        "sigma": 0.4709,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "d5a0d2b6a67131e0d10da8087c1b40396d9aa95bc8f42a99aa96c39d52c2ac56"
+    },
+    {
+      "file": "image-00057.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "exposure",
+      "parameters": {
+        "ev": -0.05093,
+        "multiplier": 0.9653138610561751,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "564301f795308a3b50dda0ead0fc0d4e1b5868a63a54c7761730efb69fe822ce"
+    },
+    {
+      "file": "image-00058.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "resize",
+      "parameters": {
+        "factor": 0.90051,
+        "width": 1303,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "bfbc701c0f65bb9bae4e5ed1bb71081eb8183bd16ac8bd6abffd863ba1365dc8"
+    },
+    {
+      "file": "image-00059.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "crop-light",
+      "parameters": {
+        "fraction": 0.96511,
+        "width": 1397,
+        "height": 1048,
+        "left": 25,
+        "top": 23,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "0dcd151aac055528d453130865aec6d1846709344bfe7112c8664afae97325c2"
+    },
+    {
+      "file": "image-00060.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "resize",
+      "parameters": {
+        "factor": 0.77833,
+        "width": 1127,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "71fdb338fedea1bb18a8cd5d8c588ddff11dd4dab9ff7984b4887b1a155c56e6"
+    },
+    {
+      "file": "image-00061.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "brightness",
+      "parameters": {
+        "offset": 7.0775,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "229ba4d63410e9eec34caf997650ced9e6c38b52e6e34ce9c5d8ce406d6aaace"
+    },
+    {
+      "file": "image-00062.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "blur-moderate",
+      "parameters": {
+        "sigma": 1.46893,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "b00936edf35f11cd5fcd04752ae4d021522c0a90300bbaf85929273b0fe68599"
+    },
+    {
+      "file": "image-00063.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "blur-moderate",
+      "parameters": {
+        "sigma": 1.25383,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "a34169c4471960400591b114a4d852c32ca2147e48e4330f3c9b65a8c7c4f8ff"
+    },
+    {
+      "file": "image-00064.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "blur-light",
+      "parameters": {
+        "sigma": 0.46348,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "fef05dd01fe89834907480badf9aaed8b503722759aacbcd223f4fdc00d418d7"
+    },
+    {
+      "file": "image-00065.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "rotate",
+      "parameters": {
+        "degrees": -1.37235,
+        "background": "#808080",
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "212917e3a6d14f9fff70a0b61bb7c612c62fa4d0c431742998e90829352779d8"
+    },
+    {
+      "file": "image-00066.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "crop-moderate",
+      "parameters": {
+        "fraction": 0.83018,
+        "width": 1202,
+        "height": 901,
+        "left": 67,
+        "top": 54,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "899e16ef1170d785d8b54f6c82e5a6d2c3abf431e261aff1dd6ff0107ea78168"
+    },
+    {
+      "file": "image-00067.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "rotate",
+      "parameters": {
+        "degrees": 0.0763,
+        "background": "#808080",
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "20a15c0bdb873ebc82fb547ed873c393198926516ec5e4caea8f08927e52fe86"
+    },
+    {
+      "file": "image-00068.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "exposure",
+      "parameters": {
+        "ev": -0.09053,
+        "multiplier": 0.939177662006207,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "6d6eeb227cd1d74078891edd4677c99001c29b6634292f566f58cc87b6e3684b"
+    },
+    {
+      "file": "image-00069.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "resize",
+      "parameters": {
+        "factor": 0.92712,
+        "width": 1342,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "2a5c0f20a305f04dd106f7b21c134a5666f63e77a65ca57772ac9cc50032e3e2"
+    },
+    {
+      "file": "image-00070.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "resize",
+      "parameters": {
+        "factor": 0.80503,
+        "width": 1165,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "76dd0dc72bafcddfe68dd6a8d109d544479bb984649a399d9f47bf0023ff5942"
+    },
+    {
+      "file": "image-00071.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "blur-moderate",
+      "parameters": {
+        "sigma": 1.50301,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "9cf704d99eb4a622fe0bebc6fe4af691c25ead4410222417b8064a2fb6aa8fbe"
+    },
+    {
+      "file": "image-00072.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "contrast",
+      "parameters": {
+        "factor": 0.9628,
+        "offset": 4.761600000000001,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "dd29d9253439bb69d703fd56b3fbddcbf7b88e2bdb110f55f05a93366936ef2b"
+    },
+    {
+      "file": "image-00073.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "brightness",
+      "parameters": {
+        "offset": 1.07949,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "292a2c88d0d530c0d19d81395dc968b01f2dcee6e96941884b75d5f63a2a4316"
+    },
+    {
+      "file": "image-00074.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "contrast",
+      "parameters": {
+        "factor": 1.00804,
+        "offset": -1.029120000000006,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "7917c7473f80ec743c4b572c01ebe822262173a17ba122e913597f1dca47224f"
+    },
+    {
+      "file": "image-00075.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "blur-light",
+      "parameters": {
+        "sigma": 0.40108,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "b3d41284963d8ac9234358afcfc731c6a9c1eab324143baf8506e3b974171551"
+    },
+    {
+      "file": "image-00076.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "rotate",
+      "parameters": {
+        "degrees": -0.61394,
+        "background": "#808080",
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "478db64e828888d82bf8c1f22c84ade3ba7f234065fd9306a0ba313c0801c00e"
+    },
+    {
+      "file": "image-00077.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "rotate",
+      "parameters": {
+        "degrees": 1.0557,
+        "background": "#808080",
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "736cd8a8596ea25977d5c55f5573406fbcdb438fa7baa027a5d0db4ff24ba565"
+    },
+    {
+      "file": "image-00078.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "resize",
+      "parameters": {
+        "factor": 0.76012,
+        "width": 1100,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "ebb3a77283b7dc129c80d0bf2957f3a5121399c5d11b512041fcbd039fbae164"
+    },
+    {
+      "file": "image-00079.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.4433,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "5051476cb2ee0000d2f8aa2157769666b1b1977f91aff799925b9a77a9926d5e"
+    },
+    {
+      "file": "image-00080.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "exposure",
+      "parameters": {
+        "ev": 0.09412,
+        "multiplier": 1.0674141193580764,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "b836ea3f97b74322bd8a7ecc9176c553344b26a0c9675c990b26000b637a9be5"
+    },
+    {
+      "file": "image-00081.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.65341,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "9b4fc18168628b8a1c0363721656650049619f942b43338644963fada71ca052"
+    },
+    {
+      "file": "image-00082.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "blur-moderate",
+      "parameters": {
+        "sigma": 1.42679,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "4075e9e2181430a3ee5838fc1c1904642a52daefa606d68ed20094df70b83a5f"
+    },
+    {
+      "file": "image-00083.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "contrast",
+      "parameters": {
+        "factor": 1.03052,
+        "offset": -3.906560000000013,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "d13e0ea2ea2be955604886e4eec4784a6a21cb4d438c5ee77261f3acbfb8ce2e"
+    },
+    {
+      "file": "image-00084.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "contrast",
+      "parameters": {
+        "factor": 0.96998,
+        "offset": 3.842560000000006,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "66ee662f183b587d2e26584699c0135c30604a7a4afa39b3e0d72c959dc0732d"
+    },
+    {
+      "file": "image-00085.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "rotate",
+      "parameters": {
+        "degrees": -0.29228,
+        "background": "#808080",
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "a0d45f5c7500eb65747908912e774f5eebf1d0b0c1b164799b993517caa271b4"
+    },
+    {
+      "file": "image-00086.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82"
+    },
+    {
+      "file": "image-00087.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "blur-light",
+      "parameters": {
+        "sigma": 0.36503,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "5d947620b2b09e0ed97f5525a963868e35801c3f33f860d50a61f4588ab72af6"
+    },
+    {
+      "file": "image-00088.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990"
+    },
+    {
+      "file": "image-00089.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "resize",
+      "parameters": {
+        "factor": 0.78217,
+        "width": 1132,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "0b65efa6f95d9c00c857faaed1ffb7782e42b803cb62d8dbb45c9aae7d78ebb3"
+    },
+    {
+      "file": "image-00090.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.58141,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "507474338a8fb2bfa52f4eb3f3321f8f1f7cbc5dfc2073ce5491e97917531375"
+    },
+    {
+      "file": "image-00091.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.549,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "9c9489a814b2a5d9e0076695d35492f1294c05987839474a9798513bf4d2434e"
+    },
+    {
+      "file": "image-00092.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "contrast",
+      "parameters": {
+        "factor": 1.04478,
+        "offset": -5.731840000000005,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "2daa948ea22afbf228122d0427d4b71eb68a086e55d8150a45903992b6a92aee"
+    },
+    {
+      "file": "image-00093.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "jpeg-recompress",
+      "parameters": {
+        "quality": 79,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "cba0c291adc04398f18bb6f155305f31aec9118b5419dd3a5bf84b708b40c1a2"
+    },
+    {
+      "file": "image-00094.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sourceSha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "trueGroup": "source-3",
+      "transformation": "blur-moderate",
+      "parameters": {
+        "sigma": 1.32258,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "e8991e423f9b7bbd42901815dfbd038b3b245c43625471332a0de18ae823ce76"
+    },
+    {
+      "file": "image-00095.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sourceSha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "trueGroup": "source-4",
+      "transformation": "jpeg-recompress",
+      "parameters": {
+        "quality": 93,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "3065cf6d7bdb2ffbe5ee5f457f979ee322b2eac30e4ce3bdc3e816f59d8cbc9e"
+    },
+    {
+      "file": "image-00096.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sourceSha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "trueGroup": "source-5",
+      "transformation": "rotate",
+      "parameters": {
+        "degrees": -1.64639,
+        "background": "#808080",
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "d719f3769f61f4ab464569512a19ec998fcc5b54d38c7892255810889ab2d351"
+    },
+    {
+      "file": "image-00097.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_08-6.png",
+      "sourceSha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724",
+      "trueGroup": "source-6",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "494f7edec98056db5bcd8efcfc01603e56a42fda336e9b81b0430dffd43e8724"
+    },
+    {
+      "file": "image-00098.png",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_10-7.png",
+      "sourceSha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693",
+      "trueGroup": "source-7",
+      "transformation": "exact-copy",
+      "parameters": {},
+      "sha256": "bf37c86a540512172c1db857aabc41986404d4c55005907d21118734fed75693"
+    },
+    {
+      "file": "image-00099.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sourceSha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "trueGroup": "source-1",
+      "transformation": "sharpen",
+      "parameters": {
+        "sigma": 0.5899,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "c0f0b5de9e1ffd9f907217ab19361f00ae3a7d03c932f5e5430b25bc437bf015"
+    },
+    {
+      "file": "image-00100.jpg",
+      "source": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sourceSha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "trueGroup": "source-2",
+      "transformation": "crop-light",
+      "parameters": {
+        "fraction": 0.96094,
+        "width": 1391,
+        "height": 1043,
+        "left": 24,
+        "top": 31,
+        "quality": 90,
+        "chromaSubsampling": "4:4:4"
+      },
+      "sha256": "af5c83a32fbc452836ebe8829c9ec4fea4acb747e4a43acebd47f1267dd3c308"
+    }
+  ]
+}

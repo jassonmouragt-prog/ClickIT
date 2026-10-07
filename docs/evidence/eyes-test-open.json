@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2026-10-06T11:39:09.186Z",
+  "photo": "C:\\dev\\ClickIT\\FOTO C.png",
+  "expected": "OPEN",
+  "config": {
+    "version": "ear-1",
+    "landmarks": {
+      "left": [
+        362,
+        385,
+        387,
+        263,
+        373,
+        380
+      ],
+      "right": [
+        33,
+        160,
+        158,
+        133,
+        153,
+        144
+      ]
+    },
+    "closedMax": 0.18,
+    "openMin": 0.25,
+    "minEyeWidthPixels": 12,
+    "maxPlausibleEar": 0.6,
+    "confidenceMargin": 0.1,
+    "formula": "EAR = (distance(p2,p6) + distance(p3,p5)) / (2 * distance(p1,p4)); distances in image pixels"
+  },
+  "scoreMeaning": "EAR geométrico: razão de abertura/ largura, não probabilidade.",
+  "confidenceMeaning": "Margem heurística normalizada até o limiar, não calibrada; não é confidence do MediaPipe.",
+  "ok": false,
+  "photoSha256": "3ded4d3721b823402e07006eb75ba6436cd45e4740ea07141cf5211938711b44",
+  "faces": [
+    {
+      "left": {
+        "score": 0.02292883944403182,
+        "state": "CLOSED",
+        "confidence": 1,
+        "reason": "ear-threshold",
+        "points": [
+          {
+            "index": 362,
+            "x": 770.7138619422913,
+            "y": 454.5168018937111
+          },
+          {
+            "index": 385,
+            "x": 806.9318656921387,
+            "y": 461.115993976593
+          },
+          {
+            "index": 387,
+            "x": 842.1218605041504,
+            "y": 466.38555389642715
+          },
+          {
+            "index": 263,
+            "x": 871.5276975631714,
+            "y": 464.62248533964157
+          },
+          {
+            "index": 373,
+            "x": 840.5016956329346,
+            "y": 466.5612004995346
+          },
+          {
+            "index": 380,
+            "x": 803.9932670593262,
+            "y": 461.79754292964935
+          }
+        ]
+      },
+      "right": {
+        "score": 0.017656606261224284,
+        "state": "CLOSED",
+        "confidence": 1,
+        "reason": "ear-threshold",
+        "points": [
+          {
+            "index": 33,
+            "x": 554.9994647502899,
+            "y": 467.04609775543213
+          },
+          {
+            "index": 160,
+            "x": 584.163079738617,
+            "y": 468.28420078754425
+          },
+          {
+            "index": 158,
+            "x": 618.9885115623474,
+            "y": 462.8406125307083
+          },
+          {
+            "index": 133,
+            "x": 655.6621758937836,
+            "y": 454.753845512867
+          },
+          {
+            "index": 153,
+            "x": 621.5422649383545,
+            "y": 462.5771264433861
+          },
+          {
+            "index": 144,
+            "x": 585.1613557338715,
+            "y": 468.1073566675186
+          }
+        ]
+      },
+      "leftEyeScore": 0.02292883944403182,
+      "rightEyeScore": 0.017656606261224284,
+      "leftEyeState": "CLOSED",
+      "rightEyeState": "CLOSED",
+      "eyes": "CLOSED",
+      "confidence": 1,
+      "eyesConfidence": 1,
+      "method": "ear-1"
+    }
+  ],
+  "eyesMs": 0.25700000000006185,
+  "initializationMs": 153.80000001192093,
+  "faceInferenceMs": 116.40000003576279,
+  "facesDetected": 1,
+  "landmarkCounts": [
+    478
+  ],
+  "runtime": "@mediapipe/tasks-vision 0.10.35 / Electron renderer sandbox / CPU",
+  "imageSize": {
+    "width": 1448,
+    "height": 1086
+  },
+  "totalMs": 671.8761000000001,
+  "error": "Error: Classificação medida não corresponde a OPEN nos dois olhos de todos os rostos.\n    at file:///C:/dev/ClickIT/scripts/eyes-test.mjs:32:27"
+}

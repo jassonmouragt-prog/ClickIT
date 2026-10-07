@@ -1,0 +1,25 @@
+{
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v24.21.0",
+  "executable": "C:\\Program Files\\nodejs\\node.exe",
+  "cwd": "C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT",
+  "npm": "11.19.0",
+  "cache": "C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\.npm-cache",
+  "prefix": "C:\\Users\\jasso\\AppData\\Roaming\\npm",
+  "pnpm": "",
+  "nodeModules": false,
+  "lockfile": false,
+  "permissions": [
+    {
+      "directory": "C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT",
+      "write": "PASS",
+      "delete": "PASS"
+    },
+    {
+      "directory": "C:\\Users\\jasso\\OneDrive\\Documents\\jobs\\ClickIT\\.npm-cache",
+      "write": "PASS",
+      "delete": "PASS"
+    }
+  ]
+}

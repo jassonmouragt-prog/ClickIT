@@ -1,0 +1,233 @@
+{
+  "generatedAt": "2026-10-06T12:32:11.659Z",
+  "source": "docs/evidence/selection-test-2026-10-06T12-22-27-400Z.json",
+  "sourceSha256": "33adf88b87a6f5c4c61a80d2fcfb48131470e359a1738ee6d20358c8d72d86cd",
+  "membershipSource": "docs/evidence/selection-grouping-replay.json",
+  "mode": "Audit of real saved analyses; no new inference; production code/weights unchanged",
+  "weights": {
+    "sharpness": 0.45,
+    "exposure": 0.2,
+    "face": 0.2,
+    "eyes": 0.15
+  },
+  "formula": "round((0.45*focus + 0.20*exposure + optional(0.20*face) + optional(0.15*eyes)) / sum(available weights)); focus=face??regional",
+  "normalization": "clamp(20*log10(1+max(0,mean(L^2)-mean(L)^2)),0,100); L=4*center-left-right-up-down",
+  "experiment": null,
+  "rows": [
+    {
+      "id": "000a3f39-5e93-486e-a960-50592f4a42dd",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_00-1.png",
+      "sha256": "0c344268ea1a356d8a1e882d3eb1889710ba9c83452dbd2956b7858a11342cd1",
+      "rawSharpness": {
+        "globalLaplacianVarianceReconstructed": 369.6530481379231,
+        "faceLaplacianVarianceReconstructed": 44.1277010402023,
+        "note": "Raw variance was not persisted. Algebraic inverse of saved unclipped normalization; not a fresh measurement. Regional score averages the two best normalized tiles, so cannot invert to one raw variance."
+      },
+      "normalizedSharpness": {
+        "global": 51.379351519563244,
+        "regional": 59.092124315154365,
+        "usedForFocus": 33.08886419267837
+      },
+      "exposure": 98.45530192057291,
+      "faceScore": 33.08886419267837,
+      "eyesScore": 100,
+      "eyes": [
+        {
+          "state": "OPEN",
+          "leftEAR": 0.29636270495295736,
+          "rightEAR": 0.31657234300404213,
+          "confidence": 0.46362704952957356
+        }
+      ],
+      "closedPenaltyVersusOpenUnrounded": 0,
+      "explicitBlurPenalty": 0,
+      "blur": "CLEAR",
+      "relativeScore": null,
+      "relativeScoreNote": "No group-relative score. Blur annotation may change after ranking; it does not subtract score.",
+      "denominator": 1,
+      "weighted": {
+        "sharpness": 14.889988886705268,
+        "exposure": 19.691060384114582,
+        "face": 6.617772838535675,
+        "eyes": 15
+      },
+      "unroundedScore": 56.19882210935552,
+      "finalScore": 56,
+      "rank": 1,
+      "decision": "AI_SELECTED",
+      "aestheticScore": null
+    },
+    {
+      "id": "d445ab6e-6761-4ed7-b865-567cde4e4b52",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_05-4.png",
+      "sha256": "3330f82092b8ca6609585dc267ce8d6f092e5c9d682b5e2604b1963346b69990",
+      "rawSharpness": {
+        "globalLaplacianVarianceReconstructed": 380.6531556365138,
+        "faceLaplacianVarianceReconstructed": 36.039742860658784,
+        "note": "Raw variance was not persisted. Algebraic inverse of saved unclipped normalization; not a fresh measurement. Regional score averages the two best normalized tiles, so cannot invert to one raw variance."
+      },
+      "normalizedSharpness": {
+        "global": 51.63337715250293,
+        "regional": 60.518549499022,
+        "usedForFocus": 31.373359260746202
+      },
+      "exposure": 98.5504150390625,
+      "faceScore": 31.373359260746202,
+      "eyesScore": 100,
+      "eyes": [
+        {
+          "state": "OPEN",
+          "leftEAR": 0.2886168055846869,
+          "rightEAR": 0.30870854185259444,
+          "confidence": 0.38616805584686886
+        }
+      ],
+      "closedPenaltyVersusOpenUnrounded": 0,
+      "explicitBlurPenalty": 0,
+      "blur": "CLEAR",
+      "relativeScore": null,
+      "relativeScoreNote": "No group-relative score. Blur annotation may change after ranking; it does not subtract score.",
+      "denominator": 1,
+      "weighted": {
+        "sharpness": 14.118011667335791,
+        "exposure": 19.7100830078125,
+        "face": 6.274671852149241,
+        "eyes": 15
+      },
+      "unroundedScore": 55.10276652729753,
+      "finalScore": 55,
+      "rank": 2,
+      "decision": "UNDECIDED",
+      "aestheticScore": null
+    },
+    {
+      "id": "226d21d5-f950-406b-8ab4-086c88576921",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_07-5.png",
+      "sha256": "1640d2d428f665874a9a80ca83770d018e0dc13f50e6c1946389a8d59c0e99b0",
+      "rawSharpness": {
+        "globalLaplacianVarianceReconstructed": 293.64963628399533,
+        "faceLaplacianVarianceReconstructed": 26.95461664518827,
+        "note": "Raw variance was not persisted. Algebraic inverse of saved unclipped normalization; not a fresh measurement. Regional score averages the two best normalized tiles, so cannot invert to one raw variance."
+      },
+      "normalizedSharpness": {
+        "global": 49.38611818675326,
+        "regional": 57.274332027436984,
+        "usedForFocus": 28.92907081901892
+      },
+      "exposure": 98.49344889322916,
+      "faceScore": 28.92907081901892,
+      "eyesScore": 100,
+      "eyes": [
+        {
+          "state": "OPEN",
+          "leftEAR": 0.29268719010402944,
+          "rightEAR": 0.33664082704579174,
+          "confidence": 0.4268719010402944
+        }
+      ],
+      "closedPenaltyVersusOpenUnrounded": 0,
+      "explicitBlurPenalty": 0,
+      "blur": "CLEAR",
+      "relativeScore": null,
+      "relativeScoreNote": "No group-relative score. Blur annotation may change after ranking; it does not subtract score.",
+      "denominator": 1,
+      "weighted": {
+        "sharpness": 13.018081868558514,
+        "exposure": 19.698689778645832,
+        "face": 5.785814163803785,
+        "eyes": 15
+      },
+      "unroundedScore": 53.50258581100813,
+      "finalScore": 54,
+      "rank": 3,
+      "decision": "UNDECIDED",
+      "aestheticScore": null
+    },
+    {
+      "id": "ec4189a4-82d0-4d42-83b1-726cb41de87f",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_03-3.png",
+      "sha256": "1319460329d9b15564efbd6f38312619b5115ac071848024a7c84669ed21436e",
+      "rawSharpness": {
+        "globalLaplacianVarianceReconstructed": 136.3263414056072,
+        "faceLaplacianVarianceReconstructed": 8.986883453436405,
+        "note": "Raw variance was not persisted. Algebraic inverse of saved unclipped normalization; not a fresh measurement. Regional score averages the two best normalized tiles, so cannot invert to one raw variance."
+      },
+      "normalizedSharpness": {
+        "global": 42.75507699817275,
+        "regional": 49.47058031779103,
+        "usedForFocus": 19.98859963410456
+      },
+      "exposure": 98.46903483072916,
+      "faceScore": 19.98859963410456,
+      "eyesScore": 100,
+      "eyes": [
+        {
+          "state": "OPEN",
+          "leftEAR": 0.2940355518643312,
+          "rightEAR": 0.31706660554127897,
+          "confidence": 0.44035551864331224
+        }
+      ],
+      "closedPenaltyVersusOpenUnrounded": 0,
+      "explicitBlurPenalty": 0,
+      "blur": "UNCERTAIN",
+      "relativeScore": null,
+      "relativeScoreNote": "No group-relative score. Blur annotation may change after ranking; it does not subtract score.",
+      "denominator": 1,
+      "weighted": {
+        "sharpness": 8.994869835347052,
+        "exposure": 19.693806966145832,
+        "face": 3.997719926820912,
+        "eyes": 15
+      },
+      "unroundedScore": 47.686396728313795,
+      "finalScore": 48,
+      "rank": 4,
+      "decision": "REVIEW",
+      "aestheticScore": null
+    },
+    {
+      "id": "6625dd45-0c62-40d4-bc16-36e1b8e44c43",
+      "fileName": "Imagem do ChatGPT 6 de out. de 2026, 09_01_01-2.png",
+      "sha256": "f4ab17e8b870c7d268a3740a4ec14629e15248168e2b96d2eeaed522e517ad82",
+      "rawSharpness": {
+        "globalLaplacianVarianceReconstructed": 293.72011324555353,
+        "faceLaplacianVarianceReconstructed": 21.313845577451303,
+        "note": "Raw variance was not persisted. Algebraic inverse of saved unclipped normalization; not a fresh measurement. Regional score averages the two best normalized tiles, so cannot invert to one raw variance."
+      },
+      "normalizedSharpness": {
+        "global": 49.388195507869675,
+        "regional": 57.30816703320068,
+        "usedForFocus": 26.971488464524423
+      },
+      "exposure": 98.40545654296875,
+      "faceScore": 26.971488464524423,
+      "eyesScore": 20,
+      "eyes": [
+        {
+          "state": "CLOSED",
+          "leftEAR": 0.01924457018728588,
+          "rightEAR": 0.034308342906192606,
+          "confidence": 1
+        }
+      ],
+      "closedPenaltyVersusOpenUnrounded": 12,
+      "explicitBlurPenalty": 0,
+      "blur": "UNCERTAIN",
+      "relativeScore": null,
+      "relativeScoreNote": "No group-relative score. Blur annotation may change after ranking; it does not subtract score.",
+      "denominator": 1,
+      "weighted": {
+        "sharpness": 12.13716980903599,
+        "exposure": 19.68109130859375,
+        "face": 5.394297692904885,
+        "eyes": 3
+      },
+      "unroundedScore": 40.212558810534624,
+      "finalScore": 40,
+      "rank": 5,
+      "decision": "REVIEW",
+      "aestheticScore": null
+    }
+  ]
+}

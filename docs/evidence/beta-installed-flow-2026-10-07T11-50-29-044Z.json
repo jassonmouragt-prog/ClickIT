@@ -1,0 +1,342 @@
+{
+  "startedAt": "2026-10-07T11:49:38.918Z",
+  "exe": "C:\\dev\\ClickIT\\release\\win-unpacked\\ClickIT.exe",
+  "userData": "C:\\dev\\ClickIT\\.test-tmp\\beta-installed\\ud",
+  "source": "C:\\dev\\ClickIT\\Imagens Teste",
+  "afterAnalysis": {
+    "home": false,
+    "homeEmpty": null,
+    "homeProjects": 0,
+    "header": "Beta Instalado",
+    "footer": "7 fotos · 3 selecionadas · 0 favoritasComparar  CGrade ",
+    "cards": 7,
+    "imgs": 7,
+    "placeholders": 0,
+    "picks": 3,
+    "rejectedCards": 0,
+    "checked": 0,
+    "errorBanner": null,
+    "noticeBanner": null,
+    "progressActive": false,
+    "progressText": "Análise concluída7 / 7 · 100%",
+    "inspectorScore": "80",
+    "inspectorEmpty": false,
+    "inspectorBadge": "Selecionada",
+    "inspectorRating": 0,
+    "inspectorFace": "Pessoa 1 · Olhos provavelmente abertos",
+    "inspectorAnalyzed": true,
+    "viewer": null,
+    "viewerPhotos": 0,
+    "modal": null,
+    "filterActive": "Todas",
+    "query": "",
+    "emptyTitle": null,
+    "captionStars": 0
+  },
+  "afterDecisions": {
+    "home": false,
+    "homeEmpty": null,
+    "homeProjects": 0,
+    "header": "Beta Instalado",
+    "footer": "7 fotos · 3 selecionadas · 1 favoritasComparar  CGrade ",
+    "cards": 7,
+    "imgs": 7,
+    "placeholders": 0,
+    "picks": 3,
+    "rejectedCards": 0,
+    "checked": 0,
+    "errorBanner": null,
+    "noticeBanner": null,
+    "progressActive": false,
+    "progressText": "Análise concluída7 / 7 · 100%",
+    "inspectorScore": "80",
+    "inspectorEmpty": false,
+    "inspectorBadge": "Selecionada",
+    "inspectorRating": 4,
+    "inspectorFace": "Pessoa 1 · Olhos provavelmente abertos",
+    "inspectorAnalyzed": true,
+    "viewer": null,
+    "viewerPhotos": 0,
+    "modal": null,
+    "filterActive": "Todas",
+    "query": "",
+    "emptyTitle": null,
+    "captionStars": 1
+  },
+  "beforeClose": {
+    "home": false,
+    "homeEmpty": null,
+    "homeProjects": 0,
+    "header": "Beta Instalado",
+    "footer": "7 fotos · 3 selecionadas · 1 favoritasComparar (3) CGrade ",
+    "cards": 7,
+    "imgs": 7,
+    "placeholders": 0,
+    "picks": 3,
+    "rejectedCards": 0,
+    "checked": 3,
+    "errorBanner": null,
+    "noticeBanner": null,
+    "progressActive": false,
+    "progressText": "Análise concluída7 / 7 · 100%",
+    "inspectorScore": "80",
+    "inspectorEmpty": false,
+    "inspectorBadge": "Selecionada",
+    "inspectorRating": 4,
+    "inspectorFace": "Pessoa 1 · Olhos provavelmente abertos",
+    "inspectorAnalyzed": true,
+    "viewer": null,
+    "viewerPhotos": 0,
+    "modal": null,
+    "filterActive": "Todas",
+    "query": "",
+    "emptyTitle": null,
+    "captionStars": 1
+  },
+  "afterReopen": {
+    "home": false,
+    "homeEmpty": null,
+    "homeProjects": 0,
+    "header": "Beta Instalado",
+    "footer": "7 fotos · 3 selecionadas · 1 favoritasComparar  CGrade ",
+    "cards": 7,
+    "imgs": 7,
+    "placeholders": 0,
+    "picks": 3,
+    "rejectedCards": 0,
+    "checked": 0,
+    "errorBanner": null,
+    "noticeBanner": null,
+    "progressActive": false,
+    "progressText": null,
+    "inspectorScore": null,
+    "inspectorEmpty": true,
+    "inspectorBadge": null,
+    "inspectorRating": 0,
+    "inspectorFace": null,
+    "inspectorAnalyzed": false,
+    "viewer": null,
+    "viewerPhotos": 0,
+    "modal": null,
+    "filterActive": "Todas",
+    "query": "",
+    "emptyTitle": null,
+    "captionStars": 1
+  },
+  "logCounts": {
+    "startup": 2,
+    "RENDERER_LOADING": 2,
+    "RENDERER_LOADED": 2,
+    "PREVIEW_QUEUED": 7,
+    "PREVIEW_STARTED": 7,
+    "PREVIEW_WRITTEN": 7,
+    "PREVIEW_DB_SAVED": 7,
+    "PREVIEW_URL_CREATED": 87,
+    "PREVIEW_RENDERED": 44
+  },
+  "consoleErrors": [],
+  "exceptions": [],
+  "results": [
+    {
+      "step": "app aberto: home vazio (banco isolado novo)",
+      "ok": true,
+      "details": "{\"homeEmpty\":\"Nenhum projeto ainda\"}",
+      "t": "2026-10-07T11:49:41.661Z"
+    },
+    {
+      "step": "modal \"Novo projeto\" abriu",
+      "ok": true,
+      "details": "",
+      "t": "2026-10-07T11:49:41.951Z"
+    },
+    {
+      "step": "diálogo nativo: pasta de origem selecionada",
+      "ok": true,
+      "details": "True\r\nRESULT=OK picked=C:\\dev\\ClickIT\\Imagens Teste how=bmclick:id=1 elements=89 candidates=1",
+      "t": "2026-10-07T11:49:46.785Z"
+    },
+    {
+      "step": "projeto criado e selecionado",
+      "ok": true,
+      "details": "Beta Instalado",
+      "t": "2026-10-07T11:49:46.788Z"
+    },
+    {
+      "step": "importação: 7 fotos com thumbnails/previews gerados",
+      "ok": true,
+      "details": "cards=7 imgs=7 placeholders=0",
+      "t": "2026-10-07T11:49:47.499Z"
+    },
+    {
+      "step": "análise concluída: rank/Pick persistido, sem erro",
+      "ok": true,
+      "details": "picks=3 progress=Análise concluída7 / 7 · 100%",
+      "t": "2026-10-07T11:49:50.530Z"
+    },
+    {
+      "step": "inspector mostra score real (não \"—\")",
+      "ok": true,
+      "details": "score=80 face=Pessoa 1 · Olhos provavelmente abertos",
+      "t": "2026-10-07T11:49:59.187Z"
+    },
+    {
+      "step": "filtros: todos os chips sem erro, volta para 7",
+      "ok": true,
+      "details": "[{\"label\":\"Todas\",\"cards\":7,\"error\":null},{\"label\":\"ClickIT Picks\",\"cards\":3,\"error\":null},{\"label\":\"Selecionadas\",\"cards\":3,\"error\":null},{\"label\":\"Favoritas\",\"cards\":0,\"error\":null},{\"label\":\"Revisar\",\"cards\":2,\"error\":null},{\"label\":\"Rejeitadas\",\"cards\":0,\"error\":null},{\"label\":\"Semelhantes\",\"cards\":5,\"error\":null},{\"label\":\"Possível desfoque\",\"cards\":2,\"error\":null},{\"label\":\"Olhos fechados\",\"cards\":1,\"error\":null},{\"label\":\"Duplicadas\",\"cards\":0,\"error\":null},{\"label\":\"Com rosto\",\"cards\":5,\"error\":null},{\"label\":\"Sem rosto\",\"cards\":2,\"error\":null}]",
+      "t": "2026-10-07T11:50:03.948Z"
+    },
+    {
+      "step": "busca reduz para 1 foto e restaura 7",
+      "ok": true,
+      "details": "busca=1 limpa=7",
+      "t": "2026-10-07T11:50:05.852Z"
+    },
+    {
+      "step": "foto ativada no inspector",
+      "ok": true,
+      "details": "7 fotos · 3 selecionadas · 0 favoritasComparar  CGrade ",
+      "t": "2026-10-07T11:50:06.170Z"
+    },
+    {
+      "step": "rejeitar marca o card como rejeitado",
+      "ok": true,
+      "details": "rejected=1 sel 3->2",
+      "t": "2026-10-07T11:50:06.487Z"
+    },
+    {
+      "step": "desfazer rejeição (selecionar) restaura seleção",
+      "ok": true,
+      "details": "rejected=0 sel=3",
+      "t": "2026-10-07T11:50:06.801Z"
+    },
+    {
+      "step": "favoritar incrementa favoritas",
+      "ok": true,
+      "details": "0->1",
+      "t": "2026-10-07T11:50:07.107Z"
+    },
+    {
+      "step": "estrelas: 4 estrelas aplicadas",
+      "ok": true,
+      "details": "rated=4 captions=1",
+      "t": "2026-10-07T11:50:07.420Z"
+    },
+    {
+      "step": "revisar define estado REVIEW",
+      "ok": true,
+      "details": "Revisar",
+      "t": "2026-10-07T11:50:07.736Z"
+    },
+    {
+      "step": "atalhos X e A: rejeitar e desfazer",
+      "ok": true,
+      "details": "rejected_after_x=true badge=Selecionada",
+      "t": "2026-10-07T11:50:08.373Z"
+    },
+    {
+      "step": "3 fotos marcadas para comparação",
+      "ok": true,
+      "details": "checked=3",
+      "t": "2026-10-07T11:50:08.683Z"
+    },
+    {
+      "step": "comparação abre com 3 fotografias",
+      "ok": true,
+      "details": "Comparação photos=3",
+      "t": "2026-10-07T11:50:09.297Z"
+    },
+    {
+      "step": "atalho G volta para a grade",
+      "ok": true,
+      "details": "null",
+      "t": "2026-10-07T11:50:09.765Z"
+    },
+    {
+      "step": "Espaço abre viewer individual",
+      "ok": true,
+      "details": "Visualização individual photos=1",
+      "t": "2026-10-07T11:50:10.282Z"
+    },
+    {
+      "step": "G fecha o viewer",
+      "ok": true,
+      "details": "null",
+      "t": "2026-10-07T11:50:10.702Z"
+    },
+    {
+      "step": "reabertura: projeto \"Beta Instalado\" presente",
+      "ok": true,
+      "details": "{\"homeProjects\":1}",
+      "t": "2026-10-07T11:50:17.007Z"
+    },
+    {
+      "step": "persistência: 7 fotos, Pick e decisões após reabrir",
+      "ok": true,
+      "details": "sel=3 fav=1 stars=1 picks=3",
+      "t": "2026-10-07T11:50:17.428Z"
+    },
+    {
+      "step": "modal de exportação abriu",
+      "ok": true,
+      "details": "",
+      "t": "2026-10-07T11:50:17.481Z"
+    },
+    {
+      "step": "diálogo nativo: destino de exportação",
+      "ok": true,
+      "details": "True\r\nRESULT=OK picked=C:\\dev\\ClickIT\\.test-tmp\\beta-installed\\export-copy how=bmclick:id=1 elements=89 candidates=1",
+      "t": "2026-10-07T11:50:21.715Z"
+    },
+    {
+      "step": "exportação COPY concluída com banner",
+      "ok": true,
+      "details": "Exportação concluída: 3/3 arquivos. ×",
+      "t": "2026-10-07T11:50:21.717Z"
+    },
+    {
+      "step": "exportação COPY: byte-identical",
+      "ok": true,
+      "details": "3 arquivos byte-identical (SHA-256)",
+      "t": "2026-10-07T11:50:21.755Z"
+    },
+    {
+      "step": "diálogo nativo: destino da lista",
+      "ok": true,
+      "details": "True\r\nRESULT=OK picked=C:\\dev\\ClickIT\\.test-tmp\\beta-installed\\export-list how=bmclick:id=1 elements=89 candidates=1",
+      "t": "2026-10-07T11:50:25.931Z"
+    },
+    {
+      "step": "exportação LIST concluída",
+      "ok": true,
+      "details": "Exportação concluída: 3/3 arquivos. ×",
+      "t": "2026-10-07T11:50:25.932Z"
+    },
+    {
+      "step": "manifesto LIST válido",
+      "ok": true,
+      "details": "arquivo ClickIT-selecao-f09a4b8a-3d0f-4493-b40f-1929a2390480.json com 3 fotos (esperado 3)",
+      "t": "2026-10-07T11:50:25.933Z"
+    },
+    {
+      "step": "log sem erros de processo/renderer/IPC",
+      "ok": true,
+      "details": "eventos={\"startup\":2,\"RENDERER_LOADING\":2,\"RENDERER_LOADED\":2,\"PREVIEW_QUEUED\":7,\"PREVIEW_STARTED\":7,\"PREVIEW_WRITTEN\":7,\"PREVIEW_DB_SAVED\":7,\"PREVIEW_URL_CREATED\":87,\"PREVIEW_RENDERED\":44}",
+      "t": "2026-10-07T11:50:25.934Z"
+    },
+    {
+      "step": "log registrou previews renderizados",
+      "ok": true,
+      "details": "PREVIEW_RENDERED=44",
+      "t": "2026-10-07T11:50:25.934Z"
+    },
+    {
+      "step": "sem erros de console/exception via CDP",
+      "ok": true,
+      "details": "{\"consoleErrors\":[],\"exceptions\":[]}",
+      "t": "2026-10-07T11:50:25.934Z"
+    }
+  ],
+  "passed": 33,
+  "failed": 0,
+  "finishedAt": "2026-10-07T11:50:29.044Z"
+}

@@ -1,0 +1,1609 @@
+{
+  "count": 10,
+  "scope": "Harness validation only; cold pipeline, no full scale acceptance or leak conclusion",
+  "status": "PASS",
+  "counters": {
+    "indexed": 10,
+    "prepared": 10,
+    "analysisStarted": 10,
+    "done": 10,
+    "failed": 0
+  },
+  "run": {
+    "label": "harness-10",
+    "pid": 8300,
+    "errors": [],
+    "criticalError": null,
+    "totalMs": 4105.2312999999995,
+    "photosPerMinute": 146.15498035396934,
+    "averageMsPerImage": 410.5231299999999,
+    "timings": {
+      "faceLandmarkerMs": 355.4000000022352,
+      "eyesAndFaceMetricsMs": 130.59999999776483,
+      "faceRoundtripMs": 615.4703,
+      "nimaMs": 175.37339999999995,
+      "faceCalls": 10,
+      "facesDetected": 8,
+      "nimaCalls": 10,
+      "dinov2Ms": 1595.2926000000002,
+      "dinov2InferenceMs": 1501.3365999999992,
+      "previewMs": 199.82120000000032,
+      "previewCalls": 10,
+      "dinov2Calls": 10,
+      "groupingAndRankingMs": 44.38730000000032
+    },
+    "cacheBytes": 2448484,
+    "stageStatus": {
+      "index": "PASS",
+      "analysis": "PASS"
+    },
+    "projectId": "93b9fdfa-f14d-47b1-9e15-10f8fcb86b86",
+    "total": 10,
+    "done": 10,
+    "failed": [],
+    "indexMs": 9.616600000000005,
+    "cacheHits": 0,
+    "cacheMisses": 10,
+    "preparedCount": 10,
+    "cancelled": false,
+    "status": "PASS",
+    "processedBefore": 0,
+    "preparedIds": [
+      "6ffc32a1-7607-484a-8420-465698a9e151",
+      "5a117c47-6218-4ed4-bfb2-699969ba4ec7",
+      "e37ecce6-44db-4e1e-ac37-22604e851d25",
+      "09270f67-4df3-4b4f-b37a-4974d663e61e",
+      "145c4e37-78bc-4323-b9f0-76478405e3f7",
+      "3f1d3c5e-8e47-4f56-9409-8831d2428257",
+      "d4cfa707-a666-42a9-820c-840f03a0e975",
+      "d89a1db1-ce2d-4a69-b4f4-ae3375d82349",
+      "29f5f36b-04ff-41aa-a403-65c79ac2fe8a",
+      "e6e9f34b-cc8f-487f-862c-66b2ca3fbbe6"
+    ],
+    "doneIds": [
+      "6ffc32a1-7607-484a-8420-465698a9e151",
+      "5a117c47-6218-4ed4-bfb2-699969ba4ec7",
+      "e37ecce6-44db-4e1e-ac37-22604e851d25",
+      "09270f67-4df3-4b4f-b37a-4974d663e61e",
+      "145c4e37-78bc-4323-b9f0-76478405e3f7",
+      "3f1d3c5e-8e47-4f56-9409-8831d2428257",
+      "d4cfa707-a666-42a9-820c-840f03a0e975",
+      "d89a1db1-ce2d-4a69-b4f4-ae3375d82349",
+      "29f5f36b-04ff-41aa-a403-65c79ac2fe8a",
+      "e6e9f34b-cc8f-487f-862c-66b2ca3fbbe6"
+    ],
+    "doneBeforeIds": [],
+    "initializationMs": 1127.6958,
+    "analyzeMs": 2806.7706,
+    "attemptsPerMinute": 151.11404294741692,
+    "processedPhotosPerMinute": 213.7688060435007,
+    "integrity": [
+      {
+        "integrity_check": "ok"
+      }
+    ],
+    "foreignKeys": [],
+    "duplicateRows": [],
+    "missingAssets": 0,
+    "photos": [
+      {
+        "id": "6ffc32a1-7607-484a-8420-465698a9e151",
+        "fileName": "image-00001.jpg",
+        "groupId": "2d79863d-1e65-4695-950d-4e03119aacdd",
+        "rank": 4,
+        "status": "DONE",
+        "decision": "UNDECIDED"
+      },
+      {
+        "id": "5a117c47-6218-4ed4-bfb2-699969ba4ec7",
+        "fileName": "image-00002.png",
+        "groupId": "2d79863d-1e65-4695-950d-4e03119aacdd",
+        "rank": 7,
+        "status": "DONE",
+        "decision": "REVIEW"
+      },
+      {
+        "id": "e37ecce6-44db-4e1e-ac37-22604e851d25",
+        "fileName": "image-00003.jpg",
+        "groupId": "2d79863d-1e65-4695-950d-4e03119aacdd",
+        "rank": 5,
+        "status": "DONE",
+        "decision": "REVIEW"
+      },
+      {
+        "id": "09270f67-4df3-4b4f-b37a-4974d663e61e",
+        "fileName": "image-00004.png",
+        "groupId": "2d79863d-1e65-4695-950d-4e03119aacdd",
+        "rank": 3,
+        "status": "DONE",
+        "decision": "UNDECIDED"
+      },
+      {
+        "id": "145c4e37-78bc-4323-b9f0-76478405e3f7",
+        "fileName": "image-00005.jpg",
+        "groupId": "2d79863d-1e65-4695-950d-4e03119aacdd",
+        "rank": 1,
+        "status": "DONE",
+        "decision": "AI_SELECTED"
+      },
+      {
+        "id": "3f1d3c5e-8e47-4f56-9409-8831d2428257",
+        "fileName": "image-00006.jpg",
+        "groupId": "806947aa-1a57-47e1-8e2b-0aebfc04903a",
+        "rank": 1,
+        "status": "DONE",
+        "decision": "AI_SELECTED"
+      },
+      {
+        "id": "d4cfa707-a666-42a9-820c-840f03a0e975",
+        "fileName": "image-00007.jpg",
+        "groupId": "a8f79d50-15cc-4e52-a7c7-bf81c5f9a4dc",
+        "rank": 1,
+        "status": "DONE",
+        "decision": "AI_SELECTED"
+      },
+      {
+        "id": "d89a1db1-ce2d-4a69-b4f4-ae3375d82349",
+        "fileName": "image-00008.jpg",
+        "groupId": "2d79863d-1e65-4695-950d-4e03119aacdd",
+        "rank": 2,
+        "status": "DONE",
+        "decision": "UNDECIDED"
+      },
+      {
+        "id": "29f5f36b-04ff-41aa-a403-65c79ac2fe8a",
+        "fileName": "image-00009.jpg",
+        "groupId": "2d79863d-1e65-4695-950d-4e03119aacdd",
+        "rank": 6,
+        "status": "DONE",
+        "decision": "REVIEW"
+      },
+      {
+        "id": "e6e9f34b-cc8f-487f-862c-66b2ca3fbbe6",
+        "fileName": "image-00010.jpg",
+        "groupId": "2d79863d-1e65-4695-950d-4e03119aacdd",
+        "rank": 8,
+        "status": "DONE",
+        "decision": "REVIEW"
+      }
+    ],
+    "notes": [
+      "NIMA is a sequential diagnostic sidecar on every cache miss; never enters production ranking. Total wall time includes it.",
+      "Stage sums overlap across 2 workers; do not subtract sums from wall time.",
+      "Cache hits are persisted valid DONE results plus existing preview/thumbnail, not an inferred total-minus-success count.",
+      "Interruption uses production cancel at a safe boundary, closes the process, then starts a new process. Not an abrupt power-loss test."
+    ],
+    "memory": {
+      "status": "NOT_MEASURED",
+      "peak": {
+        "ms": 3693.7577,
+        "phase": "steady-state",
+        "progressCompleted": 8,
+        "nodeRss": 463917056,
+        "electronRss": 639152128,
+        "totalRss": 1103069184,
+        "valid": true,
+        "electronState": "live",
+        "heapUsed": 13089816,
+        "arrayBuffers": 830613
+      },
+      "phases": {
+        "startup": {
+          "samples": 2,
+          "validSamples": 1,
+          "first": {
+            "ms": 0.4349000000000274,
+            "phase": "startup",
+            "progressCompleted": 0,
+            "nodeRss": 74625024,
+            "electronRss": 0,
+            "totalRss": 74625024,
+            "valid": true,
+            "electronState": "not-started",
+            "heapUsed": 13054560,
+            "arrayBuffers": 309501
+          },
+          "last": {
+            "ms": 0.4349000000000274,
+            "phase": "startup",
+            "progressCompleted": 0,
+            "nodeRss": 74625024,
+            "electronRss": 0,
+            "totalRss": 74625024,
+            "valid": true,
+            "electronState": "not-started",
+            "heapUsed": 13054560,
+            "arrayBuffers": 309501
+          },
+          "peakTotalRss": 74625024
+        },
+        "steady-state": {
+          "samples": 7,
+          "validSamples": 7,
+          "first": {
+            "ms": 1154.371,
+            "phase": "steady-state",
+            "progressCompleted": 0,
+            "nodeRss": 119885824,
+            "electronRss": 392478720,
+            "totalRss": 512364544,
+            "valid": true,
+            "electronState": "live",
+            "heapUsed": 12840184,
+            "arrayBuffers": 6317375
+          },
+          "last": {
+            "ms": 3693.7577,
+            "phase": "steady-state",
+            "progressCompleted": 8,
+            "nodeRss": 463917056,
+            "electronRss": 639152128,
+            "totalRss": 1103069184,
+            "valid": true,
+            "electronState": "live",
+            "heapUsed": 13089816,
+            "arrayBuffers": 830613
+          },
+          "peakTotalRss": 1103069184
+        },
+        "shutdown": {
+          "samples": 2,
+          "validSamples": 2,
+          "first": {
+            "ms": 3973.3307,
+            "phase": "shutdown",
+            "progressCompleted": 10,
+            "nodeRss": 204726272,
+            "electronRss": 639152128,
+            "totalRss": 843878400,
+            "valid": true,
+            "electronState": "live",
+            "heapUsed": 8530088,
+            "arrayBuffers": 831057
+          },
+          "last": {
+            "ms": 4105.053599999999,
+            "phase": "shutdown",
+            "progressCompleted": 10,
+            "nodeRss": 175734784,
+            "electronRss": 0,
+            "totalRss": 175734784,
+            "valid": true,
+            "electronState": "exited",
+            "heapUsed": 8721968,
+            "arrayBuffers": 832537
+          },
+          "peakTotalRss": 843878400
+        }
+      },
+      "invalidSamples": 1,
+      "leakAssessment": "NOT_MEASURED",
+      "note": "No leak conclusion. Node RSS includes workers; Electron working sets approximate RSS and may double-count shared pages. ExifTool/orchestrator excluded.",
+      "samples": [
+        {
+          "ms": 0.4349000000000274,
+          "phase": "startup",
+          "progressCompleted": 0,
+          "nodeRss": 74625024,
+          "electronRss": 0,
+          "totalRss": 74625024,
+          "valid": true,
+          "electronState": "not-started",
+          "heapUsed": 13054560,
+          "arrayBuffers": 309501
+        },
+        {
+          "ms": 506.88970000000006,
+          "phase": "startup",
+          "progressCompleted": 0,
+          "nodeRss": 77332480,
+          "electronRss": null,
+          "totalRss": null,
+          "valid": false,
+          "electronState": "unavailable-or-expired",
+          "heapUsed": 13941192,
+          "arrayBuffers": 394655
+        },
+        {
+          "ms": 1154.371,
+          "phase": "steady-state",
+          "progressCompleted": 0,
+          "nodeRss": 119885824,
+          "electronRss": 392478720,
+          "totalRss": 512364544,
+          "valid": true,
+          "electronState": "live",
+          "heapUsed": 12840184,
+          "arrayBuffers": 6317375
+        },
+        {
+          "ms": 1159.789,
+          "phase": "steady-state",
+          "progressCompleted": 0,
+          "nodeRss": 120737792,
+          "electronRss": 392478720,
+          "totalRss": 513216512,
+          "valid": true,
+          "electronState": "live",
+          "heapUsed": 13081984,
+          "arrayBuffers": 6317375
+        },
+        {
+          "ms": 1671.1838,
+          "phase": "steady-state",
+          "progressCompleted": 0,
+          "nodeRss": 377524224,
+          "electronRss": 392687616,
+          "totalRss": 770211840,
+          "valid": true,
+          "electronState": "live",
+          "heapUsed": 13102184,
+          "arrayBuffers": 6318479
+        },
+        {
+          "ms": 2185.9814,
+          "phase": "steady-state",
+          "progressCompleted": 0,
+          "nodeRss": 405061632,
+          "electronRss": 392728576,
+          "totalRss": 797790208,
+          "valid": true,
+          "electronState": "live",
+          "heapUsed": 13108520,
+          "arrayBuffers": 6319583
+        },
+        {
+          "ms": 2686.2239,
+          "phase": "steady-state",
+          "progressCompleted": 2,
+          "nodeRss": 430161920,
+          "electronRss": 525471744,
+          "totalRss": 955633664,
+          "valid": true,
+          "electronState": "live",
+          "heapUsed": 13209192,
+          "arrayBuffers": 829280
+        },
+        {
+          "ms": 3188.6218,
+          "phase": "steady-state",
+          "progressCompleted": 5,
+          "nodeRss": 446304256,
+          "electronRss": 578408448,
+          "totalRss": 1024712704,
+          "valid": true,
+          "electronState": "live",
+          "heapUsed": 12802496,
+          "arrayBuffers": 226765
+        },
+        {
+          "ms": 3693.7577,
+          "phase": "steady-state",
+          "progressCompleted": 8,
+          "nodeRss": 463917056,
+          "electronRss": 639152128,
+          "totalRss": 1103069184,
+          "valid": true,
+          "electronState": "live",
+          "heapUsed": 13089816,
+          "arrayBuffers": 830613
+        },
+        {
+          "ms": 3973.3307,
+          "phase": "shutdown",
+          "progressCompleted": 10,
+          "nodeRss": 204726272,
+          "electronRss": 639152128,
+          "totalRss": 843878400,
+          "valid": true,
+          "electronState": "live",
+          "heapUsed": 8530088,
+          "arrayBuffers": 831057
+        },
+        {
+          "ms": 4105.053599999999,
+          "phase": "shutdown",
+          "progressCompleted": 10,
+          "nodeRss": 175734784,
+          "electronRss": 0,
+          "totalRss": 175734784,
+          "valid": true,
+          "electronState": "exited",
+          "heapUsed": 8721968,
+          "arrayBuffers": 832537
+        }
+      ],
+      "limitBytes": 4294967296
+    },
+    "counters": {
+      "indexed": 10,
+      "prepared": 10,
+      "analysisStarted": 10,
+      "done": 10,
+      "failed": 0
+    },
+    "faceHost": {
+      "starts": 1,
+      "requests": 10,
+      "responses": 10,
+      "successfulResponses": 10,
+      "responseIds": [
+        "face-1",
+        "face-2",
+        "face-3",
+        "face-4",
+        "face-5",
+        "face-6",
+        "face-7",
+        "face-8",
+        "face-9",
+        "face-10"
+      ],
+      "requestIds": [
+        "face-1",
+        "face-2",
+        "face-3",
+        "face-4",
+        "face-5",
+        "face-6",
+        "face-7",
+        "face-8",
+        "face-9",
+        "face-10"
+      ],
+      "timeoutMs": 60000,
+      "shutdownRequested": true,
+      "shutdownAcknowledged": true,
+      "internalShutdownReason": "requested",
+      "unexpectedExits": 0,
+      "events": [
+        {
+          "event": "spawn",
+          "at": "2026-10-06T21:27:50.542Z"
+        },
+        {
+          "event": "host:process-start",
+          "at": "2026-10-06T21:27:50.831Z",
+          "hostEvent": {
+            "event": "process-start",
+            "at": "2026-10-06T21:27:50.825Z",
+            "pid": 15944,
+            "transport": "dedicated-local-socket; stdin unused"
+          }
+        },
+        {
+          "event": "ipc-connected",
+          "at": "2026-10-06T21:27:50.832Z"
+        },
+        {
+          "event": "host:ipc-connected",
+          "at": "2026-10-06T21:27:50.904Z",
+          "hostEvent": {
+            "event": "ipc-connected",
+            "at": "2026-10-06T21:27:50.903Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "ipc-authenticated",
+          "at": "2026-10-06T21:27:50.904Z",
+          "pid": 15944
+        },
+        {
+          "event": "host:app-ready",
+          "at": "2026-10-06T21:27:50.917Z",
+          "hostEvent": {
+            "event": "app-ready",
+            "at": "2026-10-06T21:27:50.917Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:renderer-created",
+          "at": "2026-10-06T21:27:51.017Z",
+          "hostEvent": {
+            "event": "renderer-created",
+            "at": "2026-10-06T21:27:51.017Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:renderer-console",
+          "at": "2026-10-06T21:27:51.297Z",
+          "hostEvent": {
+            "event": "renderer-console",
+            "at": "2026-10-06T21:27:51.296Z",
+            "pid": 15944,
+            "message": "W1006 21:27:51.295000 2136208 face_landmarker_graph.cc:180] Sets FaceBlendshapesGraph acceleration to xnnpack by default."
+          }
+        },
+        {
+          "event": "host:renderer-console",
+          "at": "2026-10-06T21:27:51.402Z",
+          "hostEvent": {
+            "event": "renderer-console",
+            "at": "2026-10-06T21:27:51.401Z",
+            "pid": 15944,
+            "message": "I1006 21:27:51.400000 2136208 gl_context.cc:407] GL version: 3.0 (OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))), renderer: WebKit WebGL"
+          }
+        },
+        {
+          "event": "host:renderer-console",
+          "at": "2026-10-06T21:27:51.403Z",
+          "hostEvent": {
+            "event": "renderer-console",
+            "at": "2026-10-06T21:27:51.402Z",
+            "pid": 15944,
+            "message": "W1006 21:27:51.400999 2136208 gl_context.cc:1118] OpenGL error checking is disabled"
+          }
+        },
+        {
+          "event": "host:renderer-console",
+          "at": "2026-10-06T21:27:51.404Z",
+          "hostEvent": {
+            "event": "renderer-console",
+            "at": "2026-10-06T21:27:51.403Z",
+            "pid": 15944,
+            "message": "Graph successfully started running."
+          }
+        },
+        {
+          "event": "host:model-loaded",
+          "at": "2026-10-06T21:27:51.405Z",
+          "hostEvent": {
+            "event": "model-loaded",
+            "at": "2026-10-06T21:27:51.404Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:ready",
+          "at": "2026-10-06T21:27:51.406Z",
+          "hostEvent": {
+            "event": "ready",
+            "at": "2026-10-06T21:27:51.406Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:51.407Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:51.406Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:51.407Z",
+          "id": "ready",
+          "type": "READY"
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:52.712Z",
+          "id": "face-1",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:52.715Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:52.714Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:52.716Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:52.715Z",
+            "pid": 15944,
+            "id": "face-1",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\948654488b182677222dde83fe92dd3491ab2514066a982c8979ed036eb38b52-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:52.737Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:52.737Z",
+            "pid": 15944,
+            "id": "face-1"
+          }
+        },
+        {
+          "event": "host:renderer-console",
+          "at": "2026-10-06T21:27:52.759Z",
+          "hostEvent": {
+            "event": "renderer-console",
+            "at": "2026-10-06T21:27:52.758Z",
+            "pid": 15944,
+            "message": "INFO: Created TensorFlow Lite XNNPACK delegate for CPU."
+          }
+        },
+        {
+          "event": "host:renderer-console",
+          "at": "2026-10-06T21:27:52.772Z",
+          "hostEvent": {
+            "event": "renderer-console",
+            "at": "2026-10-06T21:27:52.770Z",
+            "pid": 15944,
+            "message": "W1006 21:27:52.769999 2136208 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors."
+          }
+        },
+        {
+          "event": "host:renderer-console",
+          "at": "2026-10-06T21:27:52.786Z",
+          "hostEvent": {
+            "event": "renderer-console",
+            "at": "2026-10-06T21:27:52.785Z",
+            "pid": 15944,
+            "message": "W1006 21:27:52.784999 2136208 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors."
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:52.852Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:52.852Z",
+            "pid": 15944,
+            "id": "face-1",
+            "detectionMs": 114.70000000298023
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:52.912Z",
+          "id": "face-1",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:52.914Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:52.912Z",
+            "pid": 15944,
+            "id": "face-1",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:52.914Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:52.913Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:52.931Z",
+          "id": "face-2",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:52.935Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:52.931Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:52.936Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:52.932Z",
+            "pid": 15944,
+            "id": "face-2",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\63648f598bf8cd975ed03f4bea655107bce9ac20179f6f61b6714b14396c4ef3-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:52.943Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:52.942Z",
+            "pid": 15944,
+            "id": "face-2"
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:52.988Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:52.987Z",
+            "pid": 15944,
+            "id": "face-2",
+            "detectionMs": 45.100000001490116
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:52.999Z",
+          "id": "face-2",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:53.000Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:52.999Z",
+            "pid": 15944,
+            "id": "face-2",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:53.000Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:53.000Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:53.180Z",
+          "id": "face-3",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:53.181Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:53.180Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:53.181Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:53.180Z",
+            "pid": 15944,
+            "id": "face-3",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\ba3cd3f193ced518ad80e1daf9f48a29063fac98bc5847bda8bd8cb61287249e-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:53.192Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:53.191Z",
+            "pid": 15944,
+            "id": "face-3"
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:53.218Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:53.216Z",
+            "pid": 15944,
+            "id": "face-3",
+            "detectionMs": 25.299999997019768
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:53.225Z",
+          "id": "face-3",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:53.226Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:53.225Z",
+            "pid": 15944,
+            "id": "face-3",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:53.226Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:53.225Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:53.307Z",
+          "id": "face-4",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:53.309Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:53.308Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:53.309Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:53.308Z",
+            "pid": 15944,
+            "id": "face-4",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\b7f50da1a9ac41bffe0df0f4ef3a64dacfe032f120ac46c507987a2b60da0408-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:53.319Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:53.318Z",
+            "pid": 15944,
+            "id": "face-4"
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:53.346Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:53.345Z",
+            "pid": 15944,
+            "id": "face-4",
+            "detectionMs": 27.400000002235174
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:53.357Z",
+          "id": "face-4",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:53.358Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:53.357Z",
+            "pid": 15944,
+            "id": "face-4",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:53.358Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:53.358Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:53.468Z",
+          "id": "face-5",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:53.470Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:53.469Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:53.470Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:53.470Z",
+            "pid": 15944,
+            "id": "face-5",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\c9907b198648ba6581c202a55b838635e64c0bbf1553b3ac509f9449ffc3df76-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:53.477Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:53.477Z",
+            "pid": 15944,
+            "id": "face-5"
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:53.513Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:53.512Z",
+            "pid": 15944,
+            "id": "face-5",
+            "detectionMs": 35
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:53.521Z",
+          "id": "face-5",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:53.522Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:53.521Z",
+            "pid": 15944,
+            "id": "face-5",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:53.523Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:53.522Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:53.632Z",
+          "id": "face-6",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:53.633Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:53.633Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:53.634Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:53.633Z",
+            "pid": 15944,
+            "id": "face-6",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\f62445a02c9f4aa66e7c62ebc12254adec726406633ed4bc6e38e4689e78ded9-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:53.643Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:53.642Z",
+            "pid": 15944,
+            "id": "face-6"
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:53.659Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:53.658Z",
+            "pid": 15944,
+            "id": "face-6",
+            "detectionMs": 16.200000002980232
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:53.660Z",
+          "id": "face-6",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:53.660Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:53.659Z",
+            "pid": 15944,
+            "id": "face-6",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:53.660Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:53.659Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:53.798Z",
+          "id": "face-7",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:53.799Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:53.799Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:53.800Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:53.799Z",
+            "pid": 15944,
+            "id": "face-7",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\fe643d0f4803f61cdb1fab2c58c77cba15472ae46528e634feb9228a32119926-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:53.812Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:53.811Z",
+            "pid": 15944,
+            "id": "face-7"
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:53.826Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:53.825Z",
+            "pid": 15944,
+            "id": "face-7",
+            "detectionMs": 14.199999999254942
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:53.826Z",
+          "id": "face-7",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:53.827Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:53.825Z",
+            "pid": 15944,
+            "id": "face-7",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:53.827Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:53.826Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:53.918Z",
+          "id": "face-8",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:53.919Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:53.919Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:53.920Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:53.919Z",
+            "pid": 15944,
+            "id": "face-8",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\c4f2e602c681a7765321a516236be61e4d5937f168f4f7102ace46fb54bdc418-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:53.930Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:53.929Z",
+            "pid": 15944,
+            "id": "face-8"
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:53.956Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:53.955Z",
+            "pid": 15944,
+            "id": "face-8",
+            "detectionMs": 25.800000000745058
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:53.966Z",
+          "id": "face-8",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:53.966Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:53.965Z",
+            "pid": 15944,
+            "id": "face-8",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:53.967Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:53.966Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:54.079Z",
+          "id": "face-9",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:54.081Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:54.080Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:54.081Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:54.081Z",
+            "pid": 15944,
+            "id": "face-9",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\cee4403c1b3f02fb1bc99a2ceecf8203006938e702dd3438f8628a1f3df40921-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:54.090Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:54.089Z",
+            "pid": 15944,
+            "id": "face-9"
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:54.114Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:54.113Z",
+            "pid": 15944,
+            "id": "face-9",
+            "detectionMs": 24.099999997764826
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:54.125Z",
+          "id": "face-9",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:54.126Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:54.125Z",
+            "pid": 15944,
+            "id": "face-9",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:54.126Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:54.125Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:54.212Z",
+          "id": "face-10",
+          "type": "ANALYZE_FACE"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:54.213Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:54.213Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:photo-received",
+          "at": "2026-10-06T21:27:54.213Z",
+          "hostEvent": {
+            "event": "photo-received",
+            "at": "2026-10-06T21:27:54.213Z",
+            "pid": 15944,
+            "id": "face-10",
+            "photoPath": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\cache\\e612a37282e3b7dec7a033d667750227ae289b3e4ed0aace804eb8e0439abd23-preview.jpg"
+          }
+        },
+        {
+          "event": "host:inference-started",
+          "at": "2026-10-06T21:27:54.221Z",
+          "hostEvent": {
+            "event": "inference-started",
+            "at": "2026-10-06T21:27:54.221Z",
+            "pid": 15944,
+            "id": "face-10"
+          }
+        },
+        {
+          "event": "host:inference-completed",
+          "at": "2026-10-06T21:27:54.249Z",
+          "hostEvent": {
+            "event": "inference-completed",
+            "at": "2026-10-06T21:27:54.248Z",
+            "pid": 15944,
+            "id": "face-10",
+            "detectionMs": 27.599999997764826
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:54.259Z",
+          "id": "face-10",
+          "type": "RESPONSE",
+          "ok": true
+        },
+        {
+          "event": "host:response-sent",
+          "at": "2026-10-06T21:27:54.260Z",
+          "hostEvent": {
+            "event": "response-sent",
+            "at": "2026-10-06T21:27:54.259Z",
+            "pid": 15944,
+            "id": "face-10",
+            "ok": true
+          }
+        },
+        {
+          "event": "host:waiting-next-message",
+          "at": "2026-10-06T21:27:54.260Z",
+          "hostEvent": {
+            "event": "waiting-next-message",
+            "at": "2026-10-06T21:27:54.260Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "request-sent",
+          "at": "2026-10-06T21:27:54.417Z",
+          "id": "face-11",
+          "type": "SHUTDOWN"
+        },
+        {
+          "event": "host:message-received",
+          "at": "2026-10-06T21:27:54.419Z",
+          "hostEvent": {
+            "event": "message-received",
+            "at": "2026-10-06T21:27:54.418Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:shutdown-requested",
+          "at": "2026-10-06T21:27:54.419Z",
+          "hostEvent": {
+            "event": "shutdown-requested",
+            "at": "2026-10-06T21:27:54.418Z",
+            "pid": 15944,
+            "id": "face-11"
+          }
+        },
+        {
+          "event": "host:renderer-console",
+          "at": "2026-10-06T21:27:54.421Z",
+          "hostEvent": {
+            "event": "renderer-console",
+            "at": "2026-10-06T21:27:54.421Z",
+            "pid": 15944,
+            "message": "Graph finished closing successfully."
+          }
+        },
+        {
+          "event": "host:renderer-console",
+          "at": "2026-10-06T21:27:54.422Z",
+          "hostEvent": {
+            "event": "renderer-console",
+            "at": "2026-10-06T21:27:54.422Z",
+            "pid": 15944,
+            "message": "I1006 21:27:54.422000 2136208 gl_context_webgl.cc:140] Successfully destroyed WebGL context with handle 1"
+          }
+        },
+        {
+          "event": "response-received",
+          "at": "2026-10-06T21:27:54.422Z",
+          "id": "face-11",
+          "type": "SHUTDOWN_ACK",
+          "ok": true
+        },
+        {
+          "event": "host:shutdown-ack-sent",
+          "at": "2026-10-06T21:27:54.423Z",
+          "hostEvent": {
+            "event": "shutdown-ack-sent",
+            "at": "2026-10-06T21:27:54.422Z",
+            "pid": 15944,
+            "id": "face-11"
+          }
+        },
+        {
+          "event": "host:renderer-closed",
+          "at": "2026-10-06T21:27:54.428Z",
+          "hostEvent": {
+            "event": "renderer-closed",
+            "at": "2026-10-06T21:27:54.427Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:window-all-closed",
+          "at": "2026-10-06T21:27:54.428Z",
+          "hostEvent": {
+            "event": "window-all-closed",
+            "at": "2026-10-06T21:27:54.428Z",
+            "pid": 15944
+          }
+        },
+        {
+          "event": "host:app-quit-called",
+          "at": "2026-10-06T21:27:54.429Z",
+          "hostEvent": {
+            "event": "app-quit-called",
+            "at": "2026-10-06T21:27:54.428Z",
+            "pid": 15944,
+            "reason": "requested"
+          }
+        },
+        {
+          "event": "host:before-quit",
+          "at": "2026-10-06T21:27:54.429Z",
+          "hostEvent": {
+            "event": "before-quit",
+            "at": "2026-10-06T21:27:54.428Z",
+            "pid": 15944,
+            "shutdownReason": "requested"
+          }
+        },
+        {
+          "event": "host:will-quit",
+          "at": "2026-10-06T21:27:54.430Z",
+          "hostEvent": {
+            "event": "will-quit",
+            "at": "2026-10-06T21:27:54.429Z",
+            "pid": 15944,
+            "shutdownReason": "requested"
+          }
+        },
+        {
+          "event": "host:process-exit",
+          "at": "2026-10-06T21:27:54.430Z",
+          "hostEvent": {
+            "event": "process-exit",
+            "at": "2026-10-06T21:27:54.429Z",
+            "pid": 15944,
+            "code": 0,
+            "shutdownReason": "requested"
+          }
+        },
+        {
+          "event": "host:app-quit",
+          "at": "2026-10-06T21:27:54.430Z",
+          "hostEvent": {
+            "event": "app-quit",
+            "at": "2026-10-06T21:27:54.429Z",
+            "pid": 15944,
+            "code": 0,
+            "shutdownReason": "requested"
+          }
+        },
+        {
+          "event": "ipc-closed",
+          "at": "2026-10-06T21:27:54.437Z"
+        },
+        {
+          "event": "process-exit",
+          "at": "2026-10-06T21:27:54.542Z",
+          "exitCode": 0,
+          "signal": null
+        },
+        {
+          "event": "process-close",
+          "at": "2026-10-06T21:27:54.543Z",
+          "exitCode": 0,
+          "signal": null,
+          "processError": null,
+          "controlledFailure": false,
+          "unexpectedExit": false,
+          "nativeCrash": false,
+          "timeout": false,
+          "nativeEvidence": []
+        }
+      ],
+      "stdout": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\face-harness-10\\host-stdout.log",
+      "stderr": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\face-harness-10\\host-stderr.log",
+      "lifecycle": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\face-harness-10\\lifecycle.jsonl",
+      "outcome": {
+        "exitCode": 0,
+        "signal": null,
+        "processError": null,
+        "controlledFailure": false,
+        "unexpectedExit": false,
+        "nativeCrash": false,
+        "timeout": false,
+        "nativeEvidence": []
+      },
+      "memory": {
+        "electronRss": 0,
+        "valid": true,
+        "state": "exited"
+      }
+    },
+    "reportVersion": 2,
+    "finishedAt": "2026-10-06T21:27:54.546Z",
+    "runtimeUntilShutdownMs": 4105.2312999999995,
+    "processingWallMs": 3970.5112000000004,
+    "stageMeasurements": {
+      "faceLandmarker": {
+        "status": "PASS",
+        "calls": 10,
+        "averageMs": 35.540000000223515
+      },
+      "nima": {
+        "status": "PASS",
+        "calls": 10,
+        "averageMs": 17.537339999999993
+      }
+    },
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "processOutcome": {
+      "exitCode": 0,
+      "signal": null,
+      "processError": null,
+      "controlledFailure": false,
+      "unexpectedExit": false,
+      "nativeCrash": false,
+      "timeout": false,
+      "nativeEvidence": []
+    },
+    "timeout": false,
+    "reportFile": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O\\run\\harness-10-report.json"
+  },
+  "harnessFingerprint": {
+    "scale-face-client.mjs": "cb285be4839370253bdc9e8ac19cf0bbf00440cfba8ea203fabd02448cdbc715",
+    "scale-face-host.mjs": "4f81974c7e5378c0baddd9754c34e6ebf80ae9c76ea031ce8cc598b02e5a8179",
+    "scale-face-renderer.ts": "c99d3e7f280cb678f65ea44586ab1047a179affa6fa1eb8e352da457d1bc5eac",
+    "scale-harness-state.mjs": "f26f3ab57dadf3a8655f7f2fae0fd1a1b3a1223930207f5f3c57416a6b6d9a1f",
+    "scale-run.mjs": "4783c5f9144e2f856bb681a991336e10aa33309268748ce6832c60796a863ce6",
+    "benchmark-scale.mjs": "f33082a43dc7c7539bba3f4c0b6f121ffa42741ff6d861115971c94033f56e12",
+    "benchmark-face-smoke.mjs": "9594105d059474fce2e3040034e5ea0430e078cb46ab6a2ad28a0038aa7bbcc2",
+    "benchmark-harness.mjs": "420aaa98b32c434d046d9ed3121e4af27d513a5c87b75e89a754c18b44168b35"
+  },
+  "productionFingerprint": {
+    "src/ai/dinov2-contract.json": "81b1c168e1718be01b9cd9aa3d37c44c7e03bd8b00aef4c47b43f0932af4b87c",
+    "src/ai/embedding.ts": "d350c5484d6aec484461cbb605c2be43a0f35666a0570dc63018d600d548d3dd",
+    "src/ai/eyes-config.ts": "aadac5124170fb484afe75a5bfe0b64e2533384d7837b01de29c47ba37729120",
+    "src/ai/eyes.ts": "145fa6c805c4e07c712848fd3d48c1d0723a151e7141b6d5ba4edd1b2cf8c95d",
+    "src/ai/face-analysis.ts": "1e598745a33406bb1507922a798825b62f589f26c35dc942876ee72d7c2c2d05",
+    "src/ai/face-host.ts": "51412d32f06e3742971777aa2aaaac70436025e977d24553eb979732ccc3372b",
+    "src/ai/face-options.ts": "35693db8a2f2b6303270db8414fa5dacdc7b66faa9d7ff8b795a082093a1abd3",
+    "src/ai/grouping.ts": "fb5cb8bc2daee69cd3d8fc4bcf749ca44adda0ce4f0ddcefca4f71c6df549f84",
+    "src/ai/quality.ts": "118769abc3725ae4428d5d403cff3b8bef702d14ad99f9a80f1cb8cb9384d021",
+    "src/ai/technical-score.ts": "a6ff4f610c26e8dcc4c6b8e3b6decbd1713ab952f77f9259cd40ff47a2900485",
+    "src/components/Inspector.tsx": "f40a8f48009523c2f49da7f9f8fd354dc9ccbf0f44f0c0db5c8d33fbfc4dcdf6",
+    "src/components/PhotoGrid.tsx": "6f59ce486b8f00023723b339fbf7446f17e70a34d1ba47a007b1cb355ce56401",
+    "src/components/PhotoViewer.tsx": "a8fccc2bf4c78b0337c5ca7fd34280573fcd0a8cd43fb29a9adcb3c9eecb0862",
+    "src/components/ui.tsx": "2d889207ab78f257cf8c021a4fcfea23d1ddf0656dae0bd8f57664f1e4777be3",
+    "src/database/store.ts": "cf37707463111b7577114913ffae41103ca22da5b51a2b93176e306306c95d66",
+    "src/features/hotkeys.ts": "04a5798dd8030e56ae1077f2d43845d383dd16157007fc2a1c0feaf9bfaad511",
+    "src/features/photos.ts": "9468a603ef8dd31a365e50e1304c370bcca33c3d5761fbca8df3e51837ef09f4",
+    "src/lib/config.ts": "1e53f02156b9f74a3953b5a440a6e745ba4c49aa08580771349c2886c4d889f6",
+    "src/lib/files.ts": "9f4d8f3d10e1b5120c6ced3b51b04b2cf660a8935e2ede2b622c651980cadb21",
+    "src/lib/validation.ts": "0c4d81b47bc60314e73d104a0d871cd50b32e15f88ff2ca971d9ef56fd5fed06",
+    "src/main/index.ts": "c14c90fa12f4bea7f788768f36bd8817f2eb06f16b9cd45630ec832dab342fe9",
+    "src/preload/index.ts": "5f115c9a1452247e7dac525ff0eac9f68b4552362228e9fc2126b09f35881285",
+    "src/renderer/App.tsx": "796cef582c7e7b0fa70e169f31523aa148b2887fff430eaf758970139813bdf3",
+    "src/renderer/main.tsx": "99817f9b7d6300cf7da7fe0df5d74630a8fdba55d8fd952a84aabe61a1997188",
+    "src/renderer/styles.css": "612b18ef72d1132e3ab90fc294ff9b6436892de9dcacdd82a1b959e7200da6a3",
+    "src/services/export.ts": "ba1abbcb8c1a335819063b155f43fa30b84b922827481311628a9ae00240b7a7",
+    "src/services/log.ts": "ce64ff8e54e17cb334a5887c51a3d0685c7c14a5e3659947a5c2d87531be6c25",
+    "src/services/pipeline.ts": "0ab61ad0bc239ea90c6a65d8cd23ba16ea488f873f3f17dea4b699cbf2e876c3",
+    "src/types/domain.ts": "c62913ef3fef70e6ac1a8238ceb9364ffca31278c7ddad9cfa74480237678010",
+    "src/workers/analysis.ts": "bece48d487f3b3ab51c84c924ad77828b59eb67249357a358fd826f39e457bf6",
+    "src/workers/grouping.ts": "db8f3cc2abf4b52f7b3af2bd93279f4ce7915c0a4f4bc6e7057b611c5f4a066b",
+    "resources/models/dinov2-small.onnx": "f22797eabf810a75e41de68d378541ebea372122b25c4ce3ef25ff618250c20a",
+    "resources/models/face_landmarker.task": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
+    "resources/models/manifest.json": "d1117d5efd35398097275acc703e88602edfdb18f7e1e0048a6467ce02681f18",
+    "resources/models/nima-mobilenet-aesthetic.onnx": "b00e347d9b3cf6442d561b6b349732368c058a07416a2eda30a9acb21e2164db",
+    "resources/models/weights_mobilenet_aesthetic_0.07.hdf5": "e563ad91b3d47410e45f7238f07ab8f6abd1bd0c4b18a4b0af9c681a21a91cb2"
+  },
+  "workspace": "C:\\dev\\ClickIT\\.test-tmp\\harness-10-GOUY8O"
+}

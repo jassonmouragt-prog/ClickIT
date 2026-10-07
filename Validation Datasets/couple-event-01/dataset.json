@@ -1,0 +1,75 @@
+{
+  "name": "couple-event-01",
+  "description": "Dataset B — casal/evento (proxy: duas instâncias faciais compostas das fotos disponíveis, mesma cena): sequência semelhante, uma instância com olhos fechados na foto 04, pequenas mudanças de enquadramento/escala.",
+  "photos": [
+    {
+      "file": "01.png",
+      "labels": [
+        "two-subjects",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "02.png",
+      "labels": [
+        "two-subjects",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "03.png",
+      "labels": [
+        "two-subjects",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "04.png",
+      "labels": [
+        "two-subjects",
+        "closed-eyes",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "05.png",
+      "labels": [
+        "two-subjects",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "06.png",
+      "labels": [
+        "two-subjects",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    },
+    {
+      "file": "07.png",
+      "labels": [
+        "two-subjects",
+        "open-eyes",
+        "technically-good",
+        "same-sequence"
+      ],
+      "humanRank": null
+    }
+  ]
+}
