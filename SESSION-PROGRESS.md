@@ -191,3 +191,23 @@ Pendente / criterio BRANDING_*:
   - Fases A-G com criterios EDITING_READY_FOR_BETA ao final. Nada implementado.
 - Nenhum codigo de producao alterado. Pendente: validar doc com o usuario antes de
   qualquer implementacao (Fase A).
+## Revisao final schema/interfaces do modulo Editar (2026-10-07) - SCHEMA_READY_FOR_PHASE_A
+
+- docs/EDITING-MODULE.md atualizado (planejamento apenas, Fase A NAO iniciada):
+  - EditingProfile: separado em q (quantitativo, MODEL_DELTA) e c (conceitual,
+    DERIVED_DELTA); adicionado profileVersion; tabela explicita de tipos de campo.
+  - EditingPlan: mantidos baseStyle/sceneCorrection/finalAdjustment; adicionados
+    engineVersion, profileVersion, generatedAt, sourcePhotoId,
+    sourceOriginalPath, status com ciclo DRAFT/GENERATED/REVIEWED/EXPORTED/STALE.
+  - inputFingerprint deterministico (sem timestamp): engineVersion + profileVersion
+    + sha256(conteudo do perfil) + ANALYSIS_VERSION + photos.hash.
+  - Schema v2 100% aditivo; bancos v1 abrem intactos; editing_* opcionais.
+  - STALE via leitura (fingerprint) + evento (edicao de perfil); regeneracao
+    preserva finalAdjustment por padrao.
+  - ReferenceImage: kind REFERENCE|BEFORE|AFTER, pairId, fingerprint sha256;
+    referencia nao altera original/plano.
+  - Espaco interno -100..+100 documentado como NAO equivalente XMP (conversao so Fase E).
+  - Testes de compatibilidade especificados (tests/editing-schema.test.ts): v1->v2,
+    round-trip v2, idempotencia, projeto antigo sem editing_*, STALE por mudanca
+    de perfil, fingerprint deterministico (item 17).
+- Resultado: SCHEMA_READY_FOR_PHASE_A. Proximo passo: Fase A quando autorizado.

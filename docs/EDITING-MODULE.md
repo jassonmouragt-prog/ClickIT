@@ -4,6 +4,8 @@
 > Este documento define arquitetura, schema, interfaces, fluxo, riscos e o
 > plano dividido em fases para a futura aba **Editar** do ClickIT.
 > Base congelada: Beta 0.1.0 (`tag clickit-beta-0.1.0`, commit `cd7f079`).
+> Revisão final de schema/interfaces: **SCHEMA_READY_FOR_PHASE_A**
+> (2026-10-07). A Fase A **não** foi iniciada.
 
 ## 1. Objetivo e não-objetivos
 
@@ -32,6 +34,8 @@ Fatos do código atual que esta especificação respeita:
 - `Analysis` hoje fornece: `exposure`, `sharpness`, `faceScore`,
   `faces[]`, `blur`, `overall`, `confidence`, `insight`, `embeddingAvailable`.
   `Metadata` fornece: camera, lens, iso, aperture, shutter, focal.
+- `photos.hash` (SHA-256 do arquivo original) já é persistido no pipeline —
+  base da identidade de arquivo do `inputFingerprint`.
 - Export atual: cópia byte a byte do original com verificação de integridade
   (`src/services/export.ts`). **Não pode ser tocada** — o Editar só adiciona
   caminhos próprios (planos, XMP) e nunca reescreve original.
@@ -41,10 +45,10 @@ Fatos do código atual que esta especificação respeita:
 ## 3. Vocabulário da aba Editar
 
 - **ClickIT Picks**: fotos com decisão `AI_SELECTED` ou `SELECTED`.
-- **Selecionadas**: decisão `SELECTED` (escolha hu mana no fluxo atual).
+- **Selecionadas**: decisão `SELECTED` (escolha humana no fluxo atual).
 - **Favoritas**: `favorite = true` em `photo_decisions`.
 - **Conjunto manual**: seleção explícita feita pelo usuário dentro da aba.
-- **Fotos alvo**: união/tomando entre os conjuntos acima, escolhida na UI.
+- **Fotos alvo**: união/intersecção dos conjuntos acima, escolhida na UI.
 
 ## 4. Arquitetura
 
@@ -65,32 +69,36 @@ Princípios:
 
 - **Aditivo e isolado**: novos módulos (`src/editing/`) e novas tabelas; nada
   do núcleo atual é alterado nesta fase de planejamento.
-- **Determinístico**: o mesmo perfil + mesmas fotos produzem o mesmo plano
-  (importante para auditar e para testes).
-- **Não destrutivo**: originais nunca são modificados; exportações futuras de
-  XMP vão para a pasta de destino como sidecar `<nome>.xmp`.
-- **Leve**: sem novo componente de IA pesada; sem paralelismo novo (RAM 8 GB).
+- **Determinístico**: o mesmo perfil + mesmas fotos + mesmo motor produzem o
+  mesmo plano e o mesmo `inputFingerprint` (importante para auditar e testar).
+- **Não destrutivo**: originais nunca são modificados; a referência visual
+  também não altera nada; XMP futuro vai para a pasta de destino como sidecar
+  `<nome>.xmp`.
+- **Leve**: sem novo componente de IA pesada; sem paralelismo novo (RAM 8 GB);
+  revisão em lote paginada (20–50 fotos).
 
-## 5. Tipos e interfaces (proposta TypeScript)
+## 5. Tipos e interfaces (especificação TypeScript)
 
 > Estes tipos são a especificação. Serão criados em `src/editing/types.ts`
 > apenas na Fase A.
 
 ```ts
-// Escala única: valores inteiros -100..+100 (0 = neutro), como no Lightroom.
-export type SliderValue = number; // -100..+100, step 1
+// Escala UNICA e INTERNA do ClickIT: inteiros -100..+100, step 1 (0 = neutro).
+// NAO e equivalente de valor de Lightroom/XMP — a conversao existe SO na Fase E.
+export type SliderValue = number; // -100..+100
 
-export interface EditingProfile {
-  id: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-  source: 'QUESTIONNAIRE' | 'PRESET' | 'MANUAL';
-  presetPath: string | null;           // quando originado de preset XMP
-  // --- quantitativos (neutro = null) ---
-  temperaturePreference: SliderValue | null;  // K, neg=mais azul, pos=mais âmbar
+// Como um campo da ClickIT gera delta no plano:
+// - MODEL_DELTA  : o valor do perfil vira um ajuste 1:1 (campo quantitativo).
+// - DERIVED_DELTA: intencao conceitual convertida, por tabela documentada,
+//                  em um SUBCONJUNTO de campos quantitativos; nunca vira
+//                  campo direto de XMP.
+export type ParamKind = 'MODEL_DELTA' | 'DERIVED_DELTA';
+
+export interface EditingProfileQuantitative {
+  // todos SliderValue | null — null = neutro/nao definido
+  temperaturePreference: SliderValue | null; // neg=mais azul, pos=mais Ã¢mbar
   tintPreference: SliderValue | null;
-  exposurePreference: SliderValue | null;     // EV x 10, ex.: +35 = +0.35 EV
+  exposurePreference: SliderValue | null;    // decimos de EV (35 = +0.35 EV)
   contrastPreference: SliderValue | null;
   highlightsPreference: SliderValue | null;
   shadowsPreference: SliderValue | null;
@@ -101,9 +109,12 @@ export interface EditingProfile {
   clarityPreference: SliderValue | null;
   texturePreference: SliderValue | null;
   sharpeningPreference: SliderValue | null;
-  grainPreference: SliderValue | null;        // 0..+100 somente
-  vignettePreference: SliderValue | null;     // -100..+100 (neg=clareia, pos=escurece)
-  // --- conceituais (sem representação direta em XMP v1) ---
+  grainPreference: SliderValue | null;       // 0..+100 somente
+  vignettePreference: SliderValue | null;    // neg=clareia bordas, pos=escurece
+}
+
+export interface EditingProfileConceptual {
+  // todos DERIVED_DELTA: intencao (nao tem campo direto em XMP)
   skinToneStyle: 'NEUTRAL' | 'WARM' | 'COOL' | 'NATURAL' | null;
   greensStyle: 'NATURAL' | 'SOFT' | 'DESATURATED' | 'JUICY' | null;
   bluesStyle: 'NATURAL' | 'MUTED' | 'DEEP' | null;
@@ -112,10 +123,25 @@ export interface EditingProfile {
   overallMood: 'CLEAN' | 'EDITORIAL' | 'FILM' | 'DRAMATIC' | 'NATURAL' | null;
 }
 
+export interface EditingProfile {
+  id: string;
+  name: string;
+  profileVersion: number; // 1..N — SEMPRE sobe quando muda forma/semantica
+                          // dos campos (adicionar/remover/redefinir significado).
+                          // Mudanca apenas de *mapeamento* sobe ENGINE_VERSION.
+  source: 'QUESTIONNAIRE' | 'PRESET' | 'MANUAL';
+  presetPath: string | null;          // quando originado de preset XMP
+  createdAt: string;
+  updatedAt: string;
+  q: EditingProfileQuantitative;      // MODEL_DELTA
+  c: EditingProfileConceptual;        // DERIVED_DELTA (intencao)
+}
+
 export interface QuestionnaireAction {
-  param: keyof EditingProfile;
-  amount: number; // delta aplicado ao valor vigente (determinístico)
-  when: Record<string, string | boolean | number>; // condição opcional (ex.: tipo de cena)
+  param: 'q.*' | 'c.*';               // caminho dentro do perfil
+  amount: number;                     // delta aplicado (deterministico)
+  when: Record<string, string | boolean | number>; // condicao opcional
+  kind: ParamKind;                    // define como o valor vira delta
 }
 
 export interface QuestionnaireItem {
@@ -124,92 +150,141 @@ export interface QuestionnaireItem {
   options: { label: string; actions: QuestionnaireAction[] }[];
 }
 
-// Sinais que já existem hoje (Assessment). Campos opcionais/null = indisponível.
+// Sinais de cena. Campos opcionais/null = indisponivel — NUNCA inventar valor.
 export interface SceneSignals {
-  exposure: number;                 // 0..1 (exists)
-  sharpness: number;                // exists
+  exposure: number;                   // 0..1 (existe)
+  sharpness: number;                  // existe
   blur: 'CLEAR' | 'DOF_POSSIBLE' | 'POSSIBLE_BLUR' | 'UNCERTAIN';
-  faceCount: number;                // exists (faces[])
-  faceScore: number | null;         // exists
-  overall: number;                  // exists
-  confidence: number;               // exists
-  isPortraitLike: boolean;          // derivado (um rosto grande/central)
-  // futuros (hoje null — NUNCA inventar valores):
+  faceCount: number;                  // existe (faces[])
+  faceScore: number | null;           // existe
+  overall: number;                    // existe
+  confidence: number;                 // existe
+  isPortraitLike: boolean;            // derivado (um rosto grande/central)
+  // futuros (hoje null — regra de ouro do item 7 impede uso):
   outdoorIndoor: 'OUTDOOR' | 'INDOOR' | null;
-  temperatureK: number | null;      // estimativa de balanço de branco
-  skyPresence: number | null;       // 0..1
-  greenPresence: number | null;     // 0..1
+  temperatureK: number | null;        // estimativa de balanco de branco
+  skyPresence: number | null;         // 0..1
+  greenPresence: number | null;       // 0..1
 }
 
 export interface EditingAdjustment {
-  param: string;                     // ex.: 'temperature', 'exposure', 'greens.saturation'
+  param: string;                      // ex.: 'q.exposure', 'q.blacks'
   value: SliderValue;
-  reason: 'PROFILE' | 'SCENE' | 'USER';
-  note: string;                      // legível para auditoria
+  reason: 'PROFILE_BASE' | 'PROFILE_DERIVED' | 'SCENE' | 'USER';
+  note: string;                       // legivel para auditoria
 }
 
+export type PlanStatus =
+  | 'DRAFT'      // registro criado, conteudo ainda nao gerado
+  | 'GENERATED'  // conteudo gerado pelo motor e consistente com o fingerprint
+  | 'REVIEWED'   // revisado/ajustado pelo usuario (unico que pode exportar)
+  | 'EXPORTED'   // XMP escrito (Fase E)
+  | 'STALE';     // entradas mudaram — precisa regenerar
+
 export interface EditingPlan {
-  id: string;                        // planId (uuid) — rastro
+  id: string;                         // planId (uuid) — rastro
+  sourcePhotoId: string;              // photos.id de origem (coluna FK photoId)
+  sourceOriginalPath: string;         // mirror de photos.originalPath (auditoria)
   profileId: string;
-  photoId: string;
-  createdAt: string;
+  profileVersion: number;             // versao do perfil USADA na geracao
+  engineVersion: number;              // EDITING_ENGINE_VERSION usada na geracao
+  inputFingerprint: string;           // algoritmo no item 5.1
+  generatedAt: string;                // quando o conteudo foi (re)gerado
+  createdAt: string;                  // criacao do registro
   updatedAt: string;
-  inputFingerprint: string;          // hash(ANALYSIS_VERSION + photo.hash + profile.hash)
-                                     // -> invalida o plano quando entradas mudam
-  baseStyle: EditingAdjustment[];    // derivado do perfil (determinístico)
-  sceneCorrection: EditingAdjustment[]; // derivado de SceneSignals (conservador)
-  finalAdjustment: EditingAdjustment[]; // ajustes manuais do usuário
-  status: 'DRAFT' | 'REVIEWED' | 'EXPORTED';
-  xmpPath: string | null;            // preenchido na Fase E
+  baseStyle: EditingAdjustment[];     // REQUERIDO — do perfil (deterministico)
+  sceneCorrection: EditingAdjustment[]; // REQUERIDO — de SceneSignals (conservador)
+  finalAdjustment: EditingAdjustment[]; // REQUERIDO — ajustes manuais do usuario
+  status: PlanStatus;
+  xmpPath: string | null;             // preenchido na Fase E
 }
+
+export type ReferenceKind = 'REFERENCE' | 'BEFORE' | 'AFTER';
 
 export interface ReferenceImage {
   id: string;
   profileId: string;
-  photoId: string | null;            // foto do projeto, se aplicável
-  externalPath: string;              // caminho do arquivo de referência
-  role: 'GOAL' | 'BEFORE_AFTER';     // antes/depois = par com beforeOf
-  beforeOf: string | null;           // id da referência 'after' correspondente
-  notes: string;
+  photoId: string | null;             // se veio de foto do projeto
+  externalPath: string;               // caminho de referencia (ausencia => missing)
+  kind: ReferenceKind;                // REFERENCE | BEFORE | AFTER
+  pairId: string | null;              // BEFORE/AFTER do mesmo par compartilham pairId
+  fingerprint: string;                // sha256 do conteudo — dedupe + detectar mudanca
+  createdAt: string;
 }
 
 export interface XmpExportResult {
   ok: boolean;
-  written: string[];                 // caminhos dos .xmp criados
-  skipped: string[];                 // fotos sem plano aprovado
+  written: string[];                  // caminhos dos .xmp criados
+  skipped: string[];                  // fotos sem plano REVIEWED
   errors: string[];
 }
 ```
 
-Detalhe de mapeamento quantitativo (v1):
+### 5.1 — `inputFingerprint` (determinístico, sem timestamp volátil)
 
-- `exposurePreference`: armazenado em décimos de EV (ex.: `35` = `+0.35 EV`),
-  convertido para `Exposure2012` na exportação;
-- `temperaturePreference`: em unidades relativas (-100..+100), convertidas para
-  `Temperature` (Lightroom) dentro de uma faixa documentada (ex.: ± 40);
-- `contrast/highlights/shadows/whites/blacks/saturation/vibrance/clarity/
-  texture/sharpening/grain/vignette`: 1:1 para os campos XMP correspondentes.
+```
+ENTRADAS (string canônica, chaves ordenadas, sem timestamps, sem caminhos):
+  EDITING_ENGINE_VERSION            ;  // versao SEMANTICA do mapeamento perfil/deltas
+  profileVersion                    ;  // versao do perfil
+  sha256(canonicalJson(EditingProfile)) ; // CONTEUDO do perfil (q+c ordenados)
+  ANALYSIS_VERSION                  ;  // versao da analise (ja existe em config)
+  photos.hash                       ;  // hash sha-256 do ARQUIVO de origem persistido
 
-**Conceituais (skinToneStyle, greensStyle, bluesStyle, blackPointStyle,
-highlightStyle, overallMood) NÃO têm campo direto em XMP.** Eles são usados
-para *derivar* um subconjunto dos ajustes quantitativos (ex.: `blackPointStyle:
-'DEEP'` => `blacks: -18`, `shadows: -8`) de forma determinística e documentada
-tabela acima — no plano, sempre aparecem como `reason: 'PROFILE'`.
+inputFingerprint = sha256(joinsComPipeDasEntradasAcima)
+```
 
-## 6. Schema proposto (migração segura da base existente)
+- `canonicalJson` = `JSON.stringify` com chaves recursivamente ordenadas,
+  sem espaços, usando apenas os campos do perfil (nada gerado em runtime).
+- **Determinístico**: os mesmos 5 insumos sempre produzem o mesmo hash; sem
+  data/hora, PID, path absoluto ou ordem de iteração não estável.
+- **Garante invalidação** quando: perfil for editado (muda hash do conteúdo
+  OU `profileVersion`), motor de edição mudar (`engineVersion`), análise for
+  refeita (bump de `ANALYSIS_VERSION` pelo pipeline), ou arquivo de origem
+  for substituído (`photos.hash` muda após re-index + re-analysis).
+- `sourceOriginalPath` NÃO entra no fingerprint (não é identidade de arquivo).
 
-Mesmo padrão do Store atual: `CREATE TABLE IF NOT EXISTS`, colunas `TEXT` com
-JSON, FKs para `photos`. **Nenhuma tabela existente é alterada.** O
-`PRAGMA user_version` sobe para `2` (guard de habilitação das novas telas).
+### 5.2 — Classificação explícita dos campos do perfil
+
+| Campo | Local | Kind | Para o plano | Para o XMP (Fase E) |
+|---|---|---|---|---|
+| 15 parâmetros em `q` | `EditingProfileQuantitative` | `MODEL_DELTA` | delta 1:1 | conversão por tabela documentada |
+| `skinToneStyle` `greensStyle` `bluesStyle` `blackPointStyle` `highlightStyle` `overallMood` em `c` | `EditingProfileConceptual` | `DERIVED_DELTA` | deriva subconjunto de `q` (ex.: `blackPointStyle:'DEEP'` → `q.blacks:-18`, `q.shadows:-8`) | nunca direto — só via `q` derivado |
+
+Nenhum campo é puramente decorativo na v1: todos geram deltas (1:1 ou via
+derivação documentada). A distinção existe para deixar claro **o mecanismo**
+(MODEL_DELTA vs DERIVED_DELTA) e o que é intenção (`c`) vs valor direto (`q`).
+
+## 6. Espaço de valores interno vs Lightroom/XMP
+
+- `SliderValue` (-100..+100) é **espaço interno do ClickIT**. Não é garantia
+  de equivalência numérica com Lightroom/Camera Raw.
+- A conversão (curvas/faixas documentadas por parâmetro, ex.: temperatura ±40,
+  exposição em décimos de EV) acontece **somente na Fase E**, dentro de
+  `src/editing/xmp.ts`.
+- Nenhum valor interno é escrito em XMP antes da Fase E.
+
+## 7. Schema v2 (100% aditivo) e migração
+
+Regras absolutas:
+
+- **Nenhuma tabela existente é alterada** (sem `ALTER`, sem drop, sem mudança
+  de coluna). Apenas `CREATE TABLE IF NOT EXISTS` aditivas.
+- **Bancos/projetos v1 continuam abrindo sem alteração destrutiva**:
+  projetos sem qualquer registro em `editing_*` continuam válidos; consultas
+  de plano/referência retornam listas vazias, nunca erro.
+- `PRAGMA user_version` sobe de `1` para `2` **somente após** os creates
+  (guard de habilitação das telas do Editar).
+- Padrão de dado: coluna `data TEXT` com JSON (mesmo padrão de
+  `photo_analysis`); apenas `fingerprint` e `status` viriam como colunas
+  consultáveis (espelho do JSON, sem duplicar lógica).
 
 ```sql
--- roda no construtor, junto das demais
-PRAGMA user_version=2;
-
+-- roda no construtor, junto das demais, dentro da mesma execucao
 CREATE TABLE IF NOT EXISTS editing_profiles (
   id TEXT PRIMARY KEY,
   name TEXT NOT NULL,
-  data TEXT NOT NULL,             -- EditingProfile (JSON)
+  profile_version INTEGER NOT NULL DEFAULT 1,
+  data TEXT NOT NULL,               -- EditingProfile (JSON)
   createdAt TEXT NOT NULL,
   updatedAt TEXT NOT NULL
 );
@@ -217,10 +292,10 @@ CREATE TABLE IF NOT EXISTS editing_profiles (
 CREATE TABLE IF NOT EXISTS editing_plans (
   id TEXT PRIMARY KEY,
   profileId TEXT NOT NULL REFERENCES editing_profiles(id),
-  photoId TEXT NOT NULL REFERENCES photos(id),
+  photoId TEXT NOT NULL REFERENCES photos(id),   -- == EditingPlan.sourcePhotoId
   inputFingerprint TEXT NOT NULL,
-  data TEXT NOT NULL,             -- EditingPlan (JSON)
   status TEXT NOT NULL DEFAULT 'DRAFT',
+  data TEXT NOT NULL,                               -- EditingPlan (JSON)
   createdAt TEXT NOT NULL,
   updatedAt TEXT NOT NULL,
   UNIQUE(profileId, photoId)
@@ -231,9 +306,11 @@ CREATE TABLE IF NOT EXISTS reference_images (
   profileId TEXT NOT NULL REFERENCES editing_profiles(id),
   photoId TEXT REFERENCES photos(id),
   externalPath TEXT NOT NULL,
-  role TEXT NOT NULL DEFAULT 'GOAL',
-  beforeOf TEXT,
-  data TEXT NOT NULL              -- ReferenceImage (JSON)
+  kind TEXT NOT NULL DEFAULT 'REFERENCE',           -- REFERENCE | BEFORE | AFTER
+  pairId TEXT,
+  fingerprint TEXT NOT NULL,
+  data TEXT NOT NULL,                               -- ReferenceImage (JSON)
+  createdAt TEXT NOT NULL
 );
 
 CREATE INDEX IF NOT EXISTS editing_plans_profile ON editing_plans(profileId);
@@ -243,15 +320,13 @@ CREATE INDEX IF NOT EXISTS reference_images_profile ON reference_images(profileI
 
 Regras da migração:
 
-- Executar dentro de transação no construtor, como o `CREATE TABLE IF NOT
-  EXISTS` atual; banco v1 existente continua válido (tabelas novas apenas).
-- `inputFingerprint` permite detectar planos desatualizados (análise refeita,
-  arquivo substituído) sem apagar histórico: a UI marca "desatualizado" e
-  permite regenerar.
-- Teste obrigatório na Fase A: copiar um banco v1 real, abrir com o novo
-  código, conferir que nada quebrou e que `user_version` vira 2.
+- Nova abertura de banco v1: creates rodam, `user_version` vira 2, tabelas
+  antigas intocadas, dados antigos íntegros.
+- Persistência de `profile_version` e `status`/`fingerprint` também em coluna
+  facilita consulta SQL (ex.: "planos STALE") sem ler JSON.
+- `UNIQUE(profileId, photoId)` evita plano duplicado por par perfil+foto.
 
-## 7. Reaproveitamento de sinais (nenhum classificador inventado)
+## 8. Sinais de cena e nullability (nenhum classificador inventado)
 
 | Sinal desejado            | Origem hoje | Uso no Editar (v1)              |
 |---------------------------|-------------|----------------------------------|
@@ -260,62 +335,93 @@ Regras da migração:
 | Rostos / retrato          | `faces[]`, `faceScore` | `faceCount>0` => não esmagar `skinTone`; ajustes de pele conservadores |
 | Olhos                     | `eyesScore` | inferência de prioridade (retrato) |
 | Estética geral            | `overall`, `embeddingAvailable` | *não* vira ajuste efetivo — só contexto de auditoria |
-| Indoor/outdoor            | **indisponível** | `null` — não usar |
-| Temperatura (WB)          | **indisponível** | `null` — correção de cena de temperatura fica DESLIGADA até existir sinal confiável |
-| Presença de céu/verde     | **indisponível** | `null` — `greensStyle`/`bluesStyle` aplicados via perfil, não via cena |
+| Indoor/outdoor            | **indisponível** | fica `null`; sem ajuste |
+| Temperatura (WB)          | **indisponível** | fica `null`; correção de cena de temperatura DESLIGADA |
+| Presença de céu/verde     | **indisponível** | fica `null`; `greensStyle`/`bluesStyle` só via perfil, nunca via cena |
 
 **Regra de ouro:** se o sinal não existe hoje, o campo fica `null` e o
 `sceneCorrection` correspondente não gera ajuste. O plano registra o motivo
 via `note` ("sinal indisponível — sem correção de cena"). Isto evita
-"classificadores falsos" e mantém a auditoria honesta.
+"classificadores falsos" e mantém a auditoria honesta. Valores inventados
+para indoor/temperatura/céu/verde são **proibidos** nesta especificação.
 
-## 8. Questionário (estruturado, sem "IA mágica")
+## 9. Questionário (estruturado, sem "IA mágica")
 
 Cada pergunta oferece opções; cada opção aplica um conjunto **determinístico**
-de deltas (`QuestionnaireAction`) sobre o perfil. Exemplos:
+de deltas (`QuestionnaireAction` com `kind`). Exemplos:
 
 | Pergunta | Exemplo de opções | Ação no perfil |
 |---|---|---|
-| Como você prefere a luz geral das fotos? | Mais clara / Natural / Mais escura | `exposurePreference` +15 / 0 / -15 |
-| Temperatura da cena? | Quente / Neutra / Fria | `temperaturePreference` +25 / 0 / -25 |
-| Contraste? | Suave / Médio / Forte | `contrastPreference` +15 / 0 / +25 |
-| Sombras? | Abertas / Naturais / Densas | `shadowsPreference` +30 / 0 / -20 |
-| Highlights? | Suaves / Brilhantes | `highlightsPreference` -25 / +15 |
-| Cores? | Naturais / Intensas | `saturationPreference` -10 / +20; `vibrancePreference` 0/+15 |
-| Verdes? | Naturais / Suaves / Dessaturados | `greensStyle` NATURAL / SOFT / DESATURATED |
-| Pele? | Neutra / Quente / Fria | `skinToneStyle` NEUTRAL / WARM / COOL |
-| Visual? | Clean / Editorial / Filme / Dramático / Natural | conjunto base (perfil predefinido por opção) |
-| Granulação? | Sem / Leve / Visível | `grainPreference` 0 / +20 / +40 |
-| Vinheta? | Sem / Sutil / Forte | `vignettePreference` 0 / -12 / -25 |
-| Pretos? | Lavados / Naturais / Profundos | `blackPointStyle` WASHED / NATURAL / DEEP |
+| Como você prefere a luz geral das fotos? | Mais clara / Natural / Mais escura | `q.exposurePreference` +15 / 0 / -15 |
+| Temperatura da cena? | Quente / Neutra / Fria | `q.temperaturePreference` +25 / 0 / -25 |
+| Contraste? | Suave / Médio / Forte | `q.contrastPreference` +15 / 0 / +25 |
+| Sombras? | Abertas / Naturais / Densas | `q.shadowsPreference` +30 / 0 / -20 |
+| Highlights? | Suaves / Brilhantes | `q.highlightsPreference` -25 / +15 |
+| Cores? | Naturais / Intensas | `q.saturationPreference` -10 / +20; `q.vibrancePreference` 0 / +15 |
+| Verdes? | Naturais / Suaves / Dessaturados | `c.greensStyle` NATURAL / SOFT / DESATURATED |
+| Pele? | Neutra / Quente / Fria | `c.skinToneStyle` NEUTRAL / WARM / COOL |
+| Visual? | Clean / Editorial / Filme / Dramático / Natural | conjunto base (perfil predefinido) |
+| Granulação? | Sem / Leve / Visível | `q.grainPreference` 0 / +20 / +40 |
+| Vinheta? | Sem / Sutil / Forte | `q.vignettePreference` 0 / -12 / -25 |
+| Pretos? | Lavados / Naturais / Profundos | `c.blackPointStyle` WASHED / NATURAL / DEEP |
 
 Resultado: um `EditingProfile` com `source: 'QUESTIONNAIRE'`, sempre revisável
 na UI e editável manualmente depois.
 
-## 9. Presets XMP (futuro — só interface estruturada se segura)
+## 10. Presets XMP (futuro — só interface estruturada se segura)
 
 - **Upload/leitura**: receber arquivo `.xmp`; ler somente campos da whitelist
   (`crs:Temperature`, `crs:Tint`, `Exposure2012`, `Contrast2012`,
   `Highlights2012`, `Shadows2012`, `Whites2012`, `Blacks2012`, `Saturation`,
   `Vibrance`, `Clarity`, `Texture`, `Sharpness`, `Grain`, `Vignette`);
   valores fora da faixa válida são descartados com aviso.
-- **Associação**: importar cria `EditingProfile` com `source:'PRESET'` e
-  `presetPath` salvo. Nunca aplicar preset sobre pixels.
-- **Parser**: módulo dedicado `src/editing/xmp.ts` (também reaproveitado pela
-  exportação da Fase E). NA Fase F, import-only; nenhuma escrita.
+- **Associação**: importar cria `EditingProfile` com `source:'PRESET'`,
+  `presetPath` salvo e `profileVersion` próprio. Nunca aplicar preset sobre
+  pixels.
+- **Parser**: módulo dedicado `src/editing/xmp.ts` (reaproveitado pela Fase E).
+  Na Fase F, import-only; nenhuma escrita.
 - Se qualquer tag for desconhecida/ambígua: ignorar com nota, nunca adivinhar.
 
-## 10. Referências visuais (armazenamento/estrutura apenas)
+## 11. Referências visuais (armazenamento/estrutura apenas)
 
-- 3 a 10 fotos de referência por perfil (recomendado), com `role GOAL` ou par
-  `BEFORE_AFTER` (antes/depois) quando disponível.
+- 3 a 10 referências por perfil (recomendado), com `kind` `REFERENCE`, ou pares
+  `BEFORE`/`AFTER` (mesmo `pairId`) quando disponíveis.
+- **Referência visual NÃO altera o original e não altera o plano por si só**:
+  apenas acompanha a comparação visual do fotógrafo. Sem aplicação de pixels.
 - Somente referência de caminho (`externalPath` ou `photoId` do projeto) —
   nenhuma cópia de imagem, nenhum embedding, nenhum treino.
-- A UI mostra a referência ao lado do plano gerado para o fotógrafo comparar
-  visualmente; a API de comparação **não existe nesta fase**.
-- Caminho inexistente -> marcado `missing` na UI (não quebra o perfil).
+- `fingerprint` (sha256 do arquivo) permite detectar referência substituída ou
+  duplicada; caminho inexistente -> marcado `missing` na UI (não quebra perfil).
+- A API de comparação automática de referências **não existe nesta fase**.
 
-## 11. Fluxo esperado (tela)
+## 12. Ciclo de vida do plano
+
+```
+             regenerar (preserva finalAdjustment por padrao)
+                  |                          |
+                  v                          |
+  DRAFT ---> GENERATED ---> REVIEWED ---> EXPORTED
+                  ^            ^
+                  |            |  evento: perfil editado / origem mudou /
+                  +------------+-- engineVersion mudou / fingerprint nao confere
+                               -> STALE (proxima leitura/regen marca)
+
+  estados -> em ordem: DRAFT, GENERATED, REVIEWED, EXPORTED, STALE
+  EXPORTED e terminal; re-revisao apos export volta a REVIEWED.
+```
+
+- **Fonte da verdade do STALE**: comparação **em leitura** entre o
+  `inputFingerprint` armazenado e o recalculado com engine/perfil/análise/
+  arquivo atuais. Qualquer divergência marca `STALE`.
+- **Evento (otimista)**: quando um perfil é editado, dependentes marcados
+  `STALE` imediatamente (evita UI mostrando plano antigo como válido).
+- Regeneração (`STALE` → `GENERATED`): recomputa `baseStyle` e
+  `sceneCorrection`; `finalAdjustment` preservado por padrão (usuário pode
+  descartar). `generatedAt` atualiza e `createdAt` permanece.
+- Only `REVIEWED` planos podem ser exportados (Fase E); exportação marca
+  `EXPORTED` + `xmpPath`.
+
+## 13. Fluxo esperado (tela)
 
 ```
 Aba Editar
@@ -323,28 +429,29 @@ Aba Editar
   2. Questionário (opcional; perfis podem começar MANUAL)
   3. Referências (opcional)
   4. Escolher fotos alvo: Picks | Selecionadas | Favoritas | Manual
-  5. Gerar plano  -> lista de fotos com ajustes previstos (DRAFT)
-  6. Revisar/ajustar (finalAdjustment)
-  7. Marcar como REVISED (guarda: sem REVISED não exporta)
+  5. Gerar plano  -> lista de fotos com ajustes previstos (DRAFT -> GENERATED)
+  6. Revisar/ajustar (finalAdjustment -> REVIEWED)
+  7. Guarda: sem REVIEWED não exporta
   8. Exportar XMP (Fase E)
 ```
 
 Simplicidade: o fluxo inteiro deve caber em poucas telas; não criar telas
 extras nesta fase de planejamento.
 
-## 12. Estratégia XMP (alvo primário; implementação só na Fase E)
+## 14. Estratégia XMP (alvo primário; implementação só na Fase E)
 
 - O ClickIT **gerencia o plano**; o XMP é o ponto de entrega para
   Lightroom/Camera Raw (não substitui o Lightroom).
 - Exportação: para cada foto alvo com plano `REVIEWED`, escrever
   `<destino>/<nome>.xmp` lado-a-lado com a **cópia** da foto (a exportação de
   cópia continua a atual; o módulo só acrescenta o sidecar).
-- Regras: só parâmetros da whitelist; valores arredondados para inteiros;
-  `rate`/`PresetName` não inventados; nunca escrever no original.
+- Regras: só parâmetros da whitelist; conversão do espaço interno
+  (item 6) aplicada aqui; `rate`/`PresetName` não inventados; nunca escrever
+  no original.
 - Round-trip: teste Fase E lê de volta o XMP gerado e confirma igualdade de
   parâmetros (mesmo parser da Fase F).
 
-## 13. Limitações assumidas (v1)
+## 15. Limitações assumidas (v1)
 
 - Sem correção de cor / WB real (falta sinal de temperatura).
 - Sem detecção de outdoor/indoor, céu ou verde (campos `null`).
@@ -353,45 +460,70 @@ extras nesta fase de planejamento.
   possível detectar).
 - Perfis conceituais não mapeiam 1:1 para XMP (derivados deterministicamente).
 - Bateria de "antes/depois" automática fica para fase futura.
+- `photos.hash` exige análise concluída (`analysisStatus='DONE'`); fotos em
+  PENDING/FAILED não geram plano (sem identidade de arquivo).
 
-## 14. Riscos e mitigações
+## 16. Riscos e mitigações
 
 | Risco | Mitigação |
 |---|---|
-| Migração v2 quebrar banco v1 existente | transação + `IF NOT EXISTS`; teste com cópia de banco v1 real |
+| Migração v2 quebrar banco v1 existente | transação + `IF NOT EXISTS` + item 7; testes item 17 |
 | Planos desatualizados após nova análise | `inputFingerprint` + aviso de regeneração |
 | XMP incompatível com Lightroom | whitelist documentada; round-trip test; valores na faixa |
 | "Edição automática mágica" quebra confiança | sempre auditável (`reason`/`note`); default conservador |
 | Export atual regredir | Fase de planejamento não toca `export.ts`; testes de byte-identity permanecem |
 | Referências externas sumirem | marcar `missing`, não falhar o perfil |
-| Sinal indisponível virado em ajuste falso | regra do item 7 (campos `null` proíbem ajuste) |
-| Consumo de RAM ao revisar muitas fotos | usar preview cache existente; revisão em lote com pagina |
-ção de 20–50 |
+| Sinal indisponível virado em ajuste falso | regra do item 8 (campos `null` proíbem ajuste) |
+| Consumo de RAM ao revisar muitas fotos | usar preview cache existente; revisão em lote paginada 20–50 |
+| `photos.hash` ausente (análise não concluída) | plano só para `analysisStatus='DONE'` |
 
-## 15. Plano de implementação por fases (ordem)
+## 17. Testes de compatibilidade schema/interfaces (implementar na Fase A)
 
-1. **Fase A — Fundações**: `src/editing/types.ts`, migração schema `v2`,
-   métodos `Store` para as 3 tabelas, testes de migração sobre banco v1 + 85/85
-   atuais intactos. *Não* gera planos.
+`tests/editing-schema.test.ts` — casos obrigatórios:
+
+1. **Abrir store v1**: usar fixture = cópia de banco v1 real (sem `editing_*`);
+   abre sem erro; `user_version` passa a 2; `projects`/`photos` íntegros e
+   legíveis por `photo()`.
+2. **Salvar v2**: criar `EditingProfile`, `EditingPlan` e `ReferenceImage` e
+   persistir; **reabrir v2** e recarregar — round-trip igual (canonical JSON).
+3. **Reabrir v2 idempotente**: segunda abertura do mesmo banco não duplica
+   tabelas nem registros; `UNIQUE(profileId,photoId)` respeitado.
+4. **Projeto antigo sem `editing_*`**: métodos de plano/referência retornam
+   vazios, nada quebra; `projects()`/`photos()` inalterados.
+5. **Plano STALE após mudança de perfil**: editar perfil (ou quebrar conteúdo)
+   → fingerprint recalculado difere → leitura marca `STALE`; após regenerar,
+   volta a `GENERATED` e o fingerprint novo confere.
+6. **Fingerprint determinístico**: mesmos insumos → mesmo hash; alterar apenas
+   `profileVersion`, `engineVersion`, conteúdo do perfil ou `photos.hash` →
+   hash muda; ausência de timestamps/paths no cálculo (testar que duas
+   execuções em momentos/caminhos diferentes produzem o mesmo hash).
+
+## 18. Plano de implementação por fases (ordem)
+
+1. **Fase A — Fundações**: `src/editing/types.ts` (tipos desta especificação,
+   constantes `EDITING_ENGINE_VERSION`), migração schema `v2` (item 7),
+   métodos `Store` para as 3 tabelas e implementação dos testes do item 17
+   (migração v1 + round-trip + STALE + fingerprint). *Não* gera planos.
 2. **Fase B — Perfis e questionário**: UI de criar/editar `EditingProfile` e
-   questionário estruturado (item 8). Sem geração de plano.
+   questionário estruturado (item 9). Sem geração de plano.
 3. **Fase C — Gerador de plano (baseStyle)**: planner determinístico perfil→
    ajustes; persistência em `editing_plans`; revisão na UI (sem scene);
-   invalidação por fingerprint.
+   invalidação por fingerprint; ciclo DRAFT→GENERATED→REVIEWED.
 4. **Fase D — Correção de cena conservadora**: aplicar `sceneCorrection` SOMENTE
-   com sinais existentes e `confidence` alta (item 7). Auditoria por foto.
-5. **Fase E — Exportação XMP v1**: sidecar na pasta de destino; whitelist;
-   round-trip test. Export atual intocado.
+   com sinais existentes e `confidence` alta (item 8). Auditoria por foto.
+5. **Fase E — Exportação XMP v1**: sidecar na pasta de destino; conversão do
+   espaço interno (item 6); whitelist; round-trip test. Export atual intocado.
 6. **Fase F — Presets e referências**: import de XMP (whitelist), associação
-   `source:'PRESET'`; armazenamento e exibição das 3–10 referências.
+   `source:'PRESET'`; armazenamento/exibição das 3–10 referências
+   (`REFERENCE` e pares `BEFORE`/`AFTER`).
 7. **Fase G — Validação com fotógrafo**: critérios e evidências
    `EDITING_READY_FOR_BETA` (mesmo padrão das rodadas anteriores).
 
 **Critérios de prontidão (Edit):** typecheck/lint/testes PASS após cada fase;
-migração v1→v2 sem perda; planos auditáveis; XMP round-trip; export byte-idêntico
-preservado; nenhum original escrito.
+testes do item 17 verdes; migração v1→v2 sem perda; planos auditáveis; XMP
+round-trip; export byte-idêntico preservado; nenhum original escrito.
 
-## 16. Roadmap macro
+## 19. Roadmap macro
 
 - **Beta 0.1.1**: Fases A–B (fundações + perfis/questionário).
 - **Beta 0.2**: Fases C–D (geração e revisão de planos).
