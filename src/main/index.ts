@@ -134,14 +134,14 @@ const handle = (channel: string, fn: (...args: unknown[]) => unknown, protectedC
     handle('license:activate', value => { if (typeof value !== 'string') throw new Error('Chave inválida.'); return license.activate(value); });
     handle('license:deactivate', () => license.deactivate());
     const owner = (channel: string, fn: (...args: unknown[]) => unknown): void => handle(channel, fn, true);
-    registerEditingHandlers(owner, store, async mode => {
+registerEditingHandlers(owner, store, async mode => {
       const options = { properties: ['openFile'] as ('openFile')[], filters: [{ name: 'Imagens de referência', extensions: ['jpg', 'jpeg', 'png', 'webp', 'tif', 'tiff'] }] };
       const before = await dialog.showOpenDialog(win!, { ...options, title: mode === 'PAIR' ? 'Selecionar foto Antes' : 'Adicionar referência' });
       if (before.canceled || !before.filePaths[0]) return null;
       if (mode === 'REFERENCE') return [before.filePaths[0]];
       const after = await dialog.showOpenDialog(win!, { ...options, title: 'Selecionar foto Depois' });
       return after.canceled || !after.filePaths[0] ? null : [before.filePaths[0], after.filePaths[0]];
-    });
+    }, projectId => store.photos(projectId));
     owner('projects:list', () => store.projects());
     owner('projects:create', async value => {
       if (busy) throw new Error('Aguarde a operação atual.');

@@ -35,7 +35,7 @@ async function launch(licensed, directory) {
   ws.addEventListener('message', event => {
     const value = JSON.parse(event.data);
     if (value.method === 'Runtime.exceptionThrown') evidence.errors.push(value.params.exceptionDetails.text);
-    if (value.id) { const call = pending.get(value.id); pending.delete(value.id); if (call) { clearTimeout(call.timer); value.error ? call.reject(new Error(JSON.stringify(value.error))) : call.resolve(value.result); } }
+    if (value.id) { const call = pending.get(value.id); pending.delete(value.id); if (call) { clearTimeout(call.timer); if (value.error) call.reject(new Error(JSON.stringify(value.error))); else call.resolve(value.result); } }
   });
   const send = (method, params = {}) => new Promise((resolve, reject) => { const id = ++sequence; const timer = setTimeout(() => { pending.delete(id); reject(new Error(`CDP timeout: ${method}`)); }, 20000); pending.set(id, { resolve, reject, timer }); ws.send(JSON.stringify({ id, method, params })); });
   const evaluate = async expression => { const result = await send('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true }); if (result.exceptionDetails) throw new Error(result.exceptionDetails.exception?.description ?? result.exceptionDetails.text); return result.result?.value; };

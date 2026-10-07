@@ -1,0 +1,19 @@
+{
+  "mode": "actual Electron GUI automation, not human manual review",
+  "userData": "C:\\dev\\ClickIT\\.test-tmp\\editing-plan-ui-HJTeG0",
+  "checks": [
+    "GUI profile Planos → projeto → foto → plano GENERATED com valores/explicação/advisory/missing",
+    "GUI batch ClickIT Picks é idempotente: plano existente reutilizado",
+    "GUI segunda foto com exposição saudável não recebe correção de cena",
+    "GUI originais byte-identical após geração de planos",
+    "GUI fechar/reabrir mantém planos persistidos (2 planos, valores corretos, status Gerado)"
+  ],
+  "screenshots": [
+    "docs/evidence/editing-plan-ui/plan-scope-photo.png",
+    "docs/evidence/editing-plan-ui/plan-generated.png",
+    "docs/evidence/editing-plan-ui/plan-two.png",
+    "docs/evidence/editing-plan-ui/plan-persisted.png"
+  ],
+  "errors": [],
+  "status": "PASS"
+}

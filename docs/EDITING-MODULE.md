@@ -1,15 +1,17 @@
 # Módulo Editar — Planejamento Técnico
 
-> **Status: Fase B implementada (perfis + questionário + referências).**
+> **Status: Fase C implementada (gerador real e determinístico de planos de edição).**
 > Este documento define arquitetura, schema, interfaces, fluxo, riscos e o
 > plano dividido em fases para a futura aba **Editar** do ClickIT.
 > Base congelada: Beta 0.1.0 (`tag clickit-beta-0.1.0`, commit `cd7f079`).
 > Revisão final de schema/interfaces aprovada em 2026-10-07.
-> Contratos executáveis: `src/editing/types.ts`, `config.ts`, `contracts.ts`
-> e `store.ts`; testes: `tests/editing-schema.test.ts` e `tests/editing-style.test.ts`.
-> As fases C–G aguardam autorização.
-> Classificação: **PHASE_B_READY** — Fase A: typecheck, lint, 103/103 testes e build PASS;
-> Fase B: typecheck, lint, 111/111 testes, build PASS e validação GUI automatizada (Electron real).
+> Contratos executáveis: `src/editing/types.ts`, `config.ts`, `contracts.ts`,
+> `planner.ts` e `store.ts`; testes: `tests/editing-schema.test.ts`,
+> `tests/editing-style.test.ts` e `tests/editing-plan.test.ts`.
+> As fases D–G aguardam autorização.
+> Classificação: **PHASE_C_READY** — Fase A: typecheck, lint, 103/103 testes e build PASS;
+> Fase B: typecheck, lint, 111/111 testes, build PASS e validação GUI automatizada (Electron real);
+> Fase C: typecheck, lint, 124/124 testes, build PASS e validação GUI automatizada da geração de planos.
 
 ## 1. Objetivo e não-objetivos
 
@@ -700,3 +702,99 @@ sem referências.
   de exclusão e gate de ativação.
 - Nenhuma geração de plano real, XMP, motor de edição, preview/editado ou nova IA
   entrou na Fase B (permanecem fases C–G).
+
+## 22. Fase C — gerador de plano determinístico (implementado 2026-10-07)
+
+### Escopo
+
+Geração **real e determinística** de `EditingPlan` por foto a partir do
+`EditingProfile` vigente e dos **sinais reais** da análise. Nada de XMP,
+preview editado, modelos novos, aprendizado por referência ou Lightroom.
+`ReferenceImage` **não influencia** o plano (permanece referência visual).
+
+### Motor puro (`src/editing/planner.ts`)
+
+- `EDITING_ENGINE_VERSION = 2` (+1 frente à Fase A que falava de "motor futuro").
+- **`baseStyle`** — cópia 1:1 dos quantitativos `q` do perfil na escala interna
+  −100..+100 (ajustes com valor `0` são omitidos do array).
+- **`sceneCorrection`** — correção conservadora de cena, **somente** com
+  `confidence >= 0.6` e `exposure < 70`: `deficit = 70 − exposure`;
+  `shadows = min(14, round(deficit*0.2))`, `blacks = min(7, round(deficit*0.1))`,
+  `highlights = −min(4, round(deficit*0.05))`. Zeros são omitidos. Sem esses
+  gatilhos, `sceneCorrection` fica vazio (fotos saudáveis não são tocadas).
+- **`finalAdjustment`** — `clamp(base + scene, −100..+100)`; `reason`
+  `PROFILE_BASE` quando `base ≠ 0`, senão `SCENE`; nota sempre
+  `"base X; cena Y; final Z."` (auditável por item).
+- **`explanation`** — descritores por item com `param/base/scene/final/note`;
+  a nota usa `describeSlider` do questionário (abaixado) para texto legível.
+- **Advisories** (`sceneAdvisories`) — apenas observações derivadas de sinais
+  reais: `sharpness` `UNCERTAIN`/`POSSIBLE_BLUR` → `ADVISORY`;
+  olhos (`eyesScore` baixo ou ausente) → `OBSERVATION`;
+  `isPortraitLike` (1 rosto com bbox ≥ 0.06 e centróide em [0.3, 0.7])
+  → `OBSERVATION`; `ISO >= 3200` → `OBSERVATION`. Nenhum advisory vira ajuste.
+- **`missingSignals`** — lista toda chave de `SceneSignals` nula; hoje sempre
+  inclui `temperatureK`, `outdoorIndoor`, `skyPresence`, `greenPresence`
+  (sinais que o pipeline ainda não mede). **Nunca inventados**.
+- Conceitos `c` continuam sem virar número (DERIVED_DELTA fica para fase de XMP).
+
+### Persistência e batch (`src/editing/store.ts`)
+
+- `photoData(photoId)` — JOIN com `photo_metadata`/`photo_analysis` para montar
+  `SceneSignals`; `planFor(profileId, photoId)`; `photoAsset(photoId)`.
+- `generateEditingPlan(id)` — DRAFT→GENERATED com guard /gerado pelo motor/;
+  regeneração só a partir de `DRAFT`|`STALE` ("Plano já gerado não pode ser
+  regenerado automaticamente."); `inputFingerprint` recalculado na geração;
+  `statusHistory` preservado.
+- `generateEditingPlans(profileId, photoIds)` — retorna
+  `{ generated, skipped: {photoId, reason}[] }`; fotos sem análise são puladas
+  (o batch não falha); planos `GENERATED` válidos são devolvidos reutilizados
+  (idempotência); `UNIQUE(profileId, photoId)`.
+- Transições: `DRAFT → GENERATED`; `STALE → GENERATED` (via verify por
+  `profileVersion`/engine/fingerprint).
+
+### IPC e licença (`src/editing/ipc.ts`, `src/main/index.ts`, `src/preload/index.ts`)
+
+Nova assinatura `registerEditingHandlers(owner, store, choose, photos)` — 4
+novos IPCs (13 no total, todos atrás de `requireWorkspaceLicense`):
+
+- `editing:plans:list` / `editing:plans:get` — com `planView`, incluindo
+  `profileName`, `photo.fileName` e `previewUrl` (`clickit://photo/<id>/preview?v=<mtime>`);
+- `editing:plans:generate(profileId, scope)` — escopos `PHOTO`, `SELECTED`,
+  `PICKS` (AI_SELECTED|SELECTED), `FAVORITES`, `ALL` (resolvidos sobre as fotos
+  do projeto);
+- `editing:plans:delete`.
+
+### UI (`src/renderer/EditingWorkspace.tsx`, `styles.css`)
+
+- Botão "Planos" por perfil (`aria-pressed`) abre o painel `.plan-section`:
+  projeto, escopo (ClickIT Picks / Selecionadas / Favoritas / Esta foto), e
+  botão "Gerar plano de edição".
+- Cards `.plan-card` com badge de status (`.plan-badge-generated`), tabela
+  `.plan-table` do `finalAdjustment` por `STYLE_SLIDERS`, `.plan-explanation`
+  (chips "base · cena · final" + nota), `.plan-advisories` e `.plan-missing`.
+- Nota de rodapé do painel: "Determinístico e auditável: perfil × sinais reais
+  da foto. A foto original nunca é alterada. Sinais que o pipeline ainda não
+  mede ficam como pendentes — jamais inventados."
+
+### Testes e validação
+
+- `tests/editing-plan.test.ts`: **13 casos** — perfil neutro sem análise, base 1:1,
+  correção de exposição (default 45/conf 0.65 → shadows +5, blacks +3,
+  highlights −1), saudável/baixa confiança, sharpness advisory, olhos/retrato,
+  sinais não medidos + missing, clamp+merge, idempotência, persistência/reopen
+  + fingerprint + byte-identity, STALE + regeneração + history, batch com skip,
+  conceitos sem ajustes.
+- Suite: **124/124 PASS** (85 Beta + 18 Fase A + 8 Fase B + 13 Fase C);
+  typecheck, lint e build PASS.
+- Validação GUI automatizada em Electron real
+  (`scripts/validate-editing-plan-ui.mjs`): **PASS**, 5 checks, 0 erros;
+  screenshots e `validation.json` em `docs/evidence/editing-plan-ui/`. Cobre
+  geração por foto com valores/explicação/advisory/missing, batch ClickIT Picks
+  idempotente, segunda foto saudável sem correção, originais byte-idênticos e
+  persistência após reabrir (2 planos).
+- Re-execução da validação GUI da Fase B tentada nesta rodada ficou instável
+  no diálogo nativo de arquivo por RAM crítica do host (0.3 GB livres); o fluxo
+  de referência foi confirmado em nível de store (import + thumbnail PASS) e a
+  evidência PASS original foi restaurada de `git` — sem regressão de produto.
+- Nada de XMP, preview/editado, modelos novos, aprendizado por referência ou
+  Lightroom entrou na Fase C (permanecem fases D–G como autorizadas).

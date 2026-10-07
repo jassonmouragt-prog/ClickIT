@@ -247,3 +247,40 @@ Pendente / criterio BRANDING_*:
   preview editado nesta fase.
 - Próxima ação: aguardar autorização para Fase C. Fase A + B ainda não commitadas
   neste registro (próximo passo: commit local).
+
+## Fase C do módulo Editar — 2026-10-07 — PHASE_C_READY
+
+- Gerador real e determinístico em `src/editing/planner.ts`
+  (EDITING_ENGINE_VERSION=2): baseStyle 1:1 dos q (zeros omitidos);
+  sceneCorrection só com confidence>=0.6 e exposure<70 (deficit 70−exposure →
+  shadows=min(14,round(d*0.2)), blacks=min(7,round(d*0.1)),
+  highlights=−min(4,round(d*0.05))); finalAdjustment=clamp(base+scene) com
+  reason PROFILE_BASE/SCENE e nota "base X; cena Y; final Z."; explanation
+  auditável; sceneAdvisories só de sinais reais (sharpness UNCERTAIN/POSSIBLE_BLUR,
+  olhos, retrato-like, ISO>=3200); missingSignals sempre com
+  temperatureK/outdoorIndoor/skyPresence/greenPresence (jamais inventados).
+  ReferenceImage não influencia; conceitos c seguem sem número.
+- Store: photoData, generateEditingPlan(s) batch {generated,skipped},
+  regeneração só DRAFT|STALE, fingerprint recalculado, statusHistory preservado,
+  UNIQUE(profileId,photoId), idempotência, fotos sem análise puladas.
+- IPC: 4 handlers novos (total 13, todos atrás de requireWorkspaceLicense):
+  plans:list/get/generate(scope PHOTO/SELECTED/PICKS/FAVORITES/ALL)/delete;
+  planView com profileName, fileName e previewUrl clickit://photo/id/preview?v=mtime.
+- UI: botão "Planos" → painel .plan-section (projeto/escopo/gerar), cards
+  .plan-card (badge Gerado, tabela finalAdjustment, explanation base·cena·final,
+  advisories, missing) e nota determinística/auditável.
+- testes/editing-plan.test.ts 13 casos; suite 124/124 (85+18+8+13); typecheck,
+  lint e build PASS (sequenciais).
+- Validação GUI Electron real (scripts/validate-editing-plan-ui.mjs): PASS,
+  5 checks, 0 erros; evidência docs/evidence/editing-plan-ui/validation.json +
+  4 screenshots. Cobriu geração por foto, batch ClickIT Picks idempotente,
+  marcada saudável sem correção, byte-identity dos originais e reabertura
+  persistindo 2 planos.
+- Re-execução da GUI da Fase B instável por RAM crítica do host (0.3 GB livres;
+  falha na automatização do diálogo nativo, sem banner de erro). Referências
+  confirmadas em nível de store (import+thumbnail PASS) e evidência PASS da
+  Fase B restaurada de git. Sem regressão de produto.
+- docs/EDITING-MODULE.md (seção 22) e docs/VALIDATION.md atualizados.
+- Commitado? Não — próximo passo: commit local da Fase C. Nada de XMP, preview/
+  editado, modelos novos, aprendizado por referência ou Lightroom nesta fase.
+- Próxima ação: aguardar autorização para Fase D. Não iniciar automaticamente.

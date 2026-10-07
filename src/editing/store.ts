@@ -2,6 +2,7 @@ import type { DatabaseSync } from 'node:sqlite';
 import { randomUUID } from 'node:crypto';
 import { EDITING_ENGINE_VERSION, EDITING_SCHEMA_VERSION } from './config.ts';
 import { canonicalJson, inputFingerprint, profileContent, record, text, validateProfile, validateTransition, version } from './contracts.ts';
+import { generateContent } from './planner.ts';
 import type { EditingPlan, EditingPlanStatus, EditingProfile, EditingProfileInput, ReferenceImage, ReferenceImageInput } from './types.ts';
 
 export class EditingStore {
@@ -67,7 +68,7 @@ export class EditingStore {
     const profile = this.getEditingProfile(profileId), source = this.source(sourcePhotoId);
     if (source.analysisStatus !== 'DONE' || !source.hash) throw new Error('Origem sem análise/hash válido.');
     const now = new Date().toISOString();
-    const plan: EditingPlan = { id: randomUUID(), profileId, sourcePhotoId, sourceOriginalPath: String(source.originalPath), profileVersion: profile.profileVersion, engineVersion: EDITING_ENGINE_VERSION, inputFingerprint: inputFingerprint(profile, String(source.hash)), generatedAt: null, createdAt: now, updatedAt: now, baseStyle: [], sceneCorrection: [], finalAdjustment: [], status: 'DRAFT', statusHistory: [{ status: 'DRAFT', at: now }], xmpPath: null };
+    const plan: EditingPlan = { id: randomUUID(), profileId, sourcePhotoId, sourceOriginalPath: String(source.originalPath), profileVersion: profile.profileVersion, engineVersion: EDITING_ENGINE_VERSION, inputFingerprint: inputFingerprint(profile, String(source.hash)), generatedAt: null, createdAt: now, updatedAt: now, baseStyle: [], sceneCorrection: [], finalAdjustment: [], explanation: [], sceneAdvisories: [], missingSignals: [], status: 'DRAFT', statusHistory: [{ status: 'DRAFT', at: now }], xmpPath: null };
     this.db.prepare('INSERT INTO editing_plans VALUES(?,?,?,?,?,?,?,?)').run(plan.id, profileId, sourcePhotoId, plan.inputFingerprint, plan.status, JSON.stringify(plan), now, now);
     return plan;
   }
@@ -86,6 +87,50 @@ export class EditingStore {
     }
     return plan;
   }
+  private photoData(id: string) {
+    text(id, 'Fotografia');
+    const row = this.db.prepare('SELECT p.originalPath,p.hash,p.analysisStatus,p.width,p.height,m.data AS metadataData,a.data AS analysisData FROM photos p LEFT JOIN photo_metadata m ON m.photoId=p.id LEFT JOIN photo_analysis a ON a.photoId=p.id WHERE p.id=?').get(id);
+    if (!row) throw new Error('Fotografia de origem inexistente.');
+    return row as { originalPath: string; hash: string | null; analysisStatus: string; width: number | null; height: number | null; metadataData: string | null; analysisData: string | null };
+  }
+  private planFor(profileId: string, photoId: string): EditingPlan | null {
+    const row = this.db.prepare('SELECT data FROM editing_plans WHERE profileId=? AND photoId=?').get(profileId, photoId);
+    return row ? JSON.parse(String(row.data)) as EditingPlan : null;
+  }
+  photoAsset(id: string): { id: string; fileName: string; originalPath: string; previewPath: string | null; thumbnailPath: string | null; mtime: number } {
+    text(id, 'Fotografia');
+    const row = this.db.prepare('SELECT id,fileName,originalPath,previewPath,thumbnailPath,mtime FROM photos WHERE id=?').get(id);
+    if (!row) throw new Error('Fotografia de origem inexistente.');
+    return row as { id: string; fileName: string; originalPath: string; previewPath: string | null; thumbnailPath: string | null; mtime: number };
+  }
+  generateEditingPlan(id: string): EditingPlan {
+    const plan = this.getEditingPlan(id);
+    if (plan.status !== 'DRAFT' && plan.status !== 'STALE') throw new Error('Plano já gerado não pode ser regenerado automaticamente.');
+    const profile = this.getEditingProfile(plan.profileId);
+    const photo = this.photoData(plan.sourcePhotoId);
+    if (photo.analysisStatus !== 'DONE' || !photo.hash || !photo.analysisData) throw new Error('Origem sem análise/hash válido.');
+    const content = generateContent(profile, { analysis: JSON.parse(photo.analysisData), width: Number(photo.width ?? 0), height: Number(photo.height ?? 0), metadata: photo.metadataData ? JSON.parse(photo.metadataData) : {} });
+    const now = new Date().toISOString();
+    plan.baseStyle = content.baseStyle; plan.sceneCorrection = content.sceneCorrection; plan.finalAdjustment = content.finalAdjustment;
+    plan.explanation = content.explanation; plan.sceneAdvisories = content.sceneAdvisories; plan.missingSignals = content.missingSignals;
+    plan.inputFingerprint = inputFingerprint(profile, String(photo.hash));
+    plan.profileVersion = profile.profileVersion; plan.engineVersion = EDITING_ENGINE_VERSION;
+    plan.generatedAt = now; plan.status = 'GENERATED'; plan.updatedAt = now;
+    plan.statusHistory.push({ status: 'GENERATED', at: now });
+    this.savePlan(plan); return plan;
+  }
+  generateEditingPlans(profileId: string, photoIds: string[]): { generated: EditingPlan[]; skipped: { photoId: string; reason: string }[] } {
+    this.getEditingProfile(profileId);
+    const generated: EditingPlan[] = [], skipped: { photoId: string; reason: string }[] = [];
+    for (const photoId of new Set(photoIds)) {
+      try {
+        const existing = this.planFor(profileId, photoId);
+        if (existing) { const plan = this.verifyEditingPlan(existing); generated.push(plan.status === 'DRAFT' || plan.status === 'STALE' ? this.generateEditingPlan(plan.id) : plan); }
+        else { const draft = this.createEditingPlan(profileId, photoId); generated.push(this.generateEditingPlan(draft.id)); }
+      } catch (e) { skipped.push({ photoId, reason: e instanceof Error ? e.message : String(e) }); }
+    }
+    return { generated, skipped };
+  }
   invalidateEditingPlansForPhoto(id: string): void { for (const p of this.rawPlans('photoId', id)) this.markStale(p); }
   verifyEditingPlansForPhoto(id: string): void { for (const p of this.rawPlans('photoId', id)) this.verifyEditingPlan(p); }
   verifyEditingPlan(plan: EditingPlan): EditingPlan {
@@ -103,7 +148,7 @@ export class EditingStore {
   updateEditingPlanStatus(id: string, status: EditingPlanStatus): EditingPlan {
     const plan = this.getEditingPlan(id); validateTransition(plan.status, status);
     // Phase A has no generator/exporter: valid structural transitions cannot manufacture their evidence.
-    if (status === 'GENERATED' && (plan.generatedAt === null || plan.status === 'STALE')) throw new Error('Plano deve ser regenerado por motor futuro antes de GENERATED.');
+    if (status === 'GENERATED' && (plan.generatedAt === null || plan.status === 'STALE')) throw new Error('Plano deve ser gerado pelo motor antes de GENERATED.');
     if (status === 'EXPORTED' && !plan.xmpPath) throw new Error('Plano não possui exportação XMP.');
     plan.status = status; plan.updatedAt = new Date().toISOString();
     plan.statusHistory.push({ status, at: plan.updatedAt }); this.savePlan(plan); return plan;

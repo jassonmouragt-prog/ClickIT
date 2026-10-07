@@ -1,2 +1,2 @@
-export const EDITING_ENGINE_VERSION = 1;
+export const EDITING_ENGINE_VERSION = 2;
 export const EDITING_SCHEMA_VERSION = 2;

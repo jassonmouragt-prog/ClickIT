@@ -97,7 +97,7 @@ test('lifecycle rejeita saltos e estados inválidos; fase A não simula geraçã
   validateTransition('DRAFT', 'GENERATED'); validateTransition('GENERATED', 'REVIEWED'); validateTransition('REVIEWED', 'EXPORTED');
   assert.throws(() => s.updateEditingPlanStatus(id, 'EXPORTED'), /Transição/);
   assert.throws(() => s.updateEditingPlanStatus(id, 'UNKNOWN' as EditingPlanStatus), /Transição/);
-  assert.throws(() => s.updateEditingPlanStatus(id, 'GENERATED'), /motor futuro/);
+  assert.throws(() => s.updateEditingPlanStatus(id, 'GENERATED'), /gerado pelo motor/);
   assert.equal(s.updateEditingPlanStatus(id, 'STALE').status, 'STALE');
 }));
 test('engineVersion diferente e fingerprint adulterado são detectados na leitura', () => withPlan((s, id) => {

@@ -1160,3 +1160,61 @@ docs/evidence/packaging-reproducibility-2026-10-07.json.
 - Checks sequenciais PASS: typecheck, lint, `npm test` 111/111, build.
   Nenhuma geração de plano, XMP, motor de edição ou preview/editado nesta fase.
 - Próxima ação: aguardar autorização para Fase C.
+
+## Fase C do módulo Editar — 2026-10-07
+
+**Classificação: PHASE_C_READY.**
+
+- Geração real e determinística de `EditingPlan` em `src/editing/planner.ts`
+  (motor puro, `EDITING_ENGINE_VERSION=2`): `baseStyle` 1:1 dos `q` do perfil
+  (zeros omitidos); `sceneCorrection` conservadora só com `confidence>=0.6` e
+  `exposure<70` (deficit 70−exposure → `shadows=min(14, round(d*0.2))`,
+  `blacks=min(7, round(d*0.1))`, `highlights=−min(4, round(d*0.05))`, zeros
+  omitidos); `finalAdjustment=clamp(base+scene,−100..100)` com `reason`
+  `PROFILE_BASE` (base≠0) ou `SCENE` e nota "base X; cena Y; final Z.";
+  `explanation` com param/base/scene/final/note legível; `sceneAdvisories`
+  apenas de sinais reais (sharpness `UNCERTAIN`/`POSSIBLE_BLUR` → ADVISORY;
+  olhos baixo/ausente, retrato-like e `ISO>=3200` → OBSERVATION); `missingSignals`
+  lista todos os sinais nulos (sempre `temperatureK`, `outdoorIndoor`,
+  `skyPresence`, `greenPresence` — jamais inventados). `ReferenceImage` não
+  influencia o plano; conceitos `c` continuam sem número.
+- Store (`src/editing/store.ts`): `photoData` (JOIN metadata/análise),
+  `generateEditingPlan(s)` com batch `{ generated, skipped:{photoId,reason}[] }`
+  (fotos sem análise são puladas, não falham o batch), regeneração só de
+  `DRAFT`|`STALE` ("Plano já gerado não pode ser regenerado automaticamente."),
+  fingerprint recalculado na geração, `statusHistory` preservado e
+  `UNIQUE(profileId,photoId)`; idempotência (mesma entrada → mesmo conteúdo,
+  planos GENERATED reutilizados).
+- IPC: **4 novos handlers** (total 13) todos atrás de `requireWorkspaceLicense`:
+  `editing:plans:list/get`, `editing:plans:generate(profileId, scope)` com
+  escopos `PHOTO`/`SELECTED`/`PICKS`/`FAVORITES`/`ALL`, `editing:plans:delete`;
+  `planView` expõe `profileName`, `photo.fileName` e
+  `previewUrl` (`clickit://photo/<id>/preview?v=<mtime>`).
+- UI (`EditingWorkspace.tsx`, `styles.css`): botão "Planos" por perfil
+  (`aria-pressed`) → painel `.plan-section` com projeto/escopo/botão "Gerar
+  plano de edição"; cards `.plan-card` com badge Gerado, tabela `.plan-table`
+  do `finalAdjustment` por slider, `.plan-explanation` (base·cena·final + nota),
+  `.plan-advisories` e `.plan-missing`; footer determinístico/auditável.
+- `tests/editing-plan.test.ts`: **13 casos PASS** (base 1:1; correção default
+  45/conf 0.65 → +5/+3/−1; foto saudável/baixa confiança sem correção; advisory
+  de sharpness; olhos/retrato/ISO observations; missingSignals; merge+clamp;
+  idempotência; persistência/reopen + fingerprint + byte-identity; STALE →
+  regeneração + history; batch com skip; conceitos sem ajustes).
+- Suite final: **124/124 PASS** (85 Beta + 18 Fase A + 8 Fase B + 13 Fase C);
+  typecheck, lint e build PASS (sequenciais).
+- Validação GUI em Electron real (`scripts/validate-editing-plan-ui.mjs`):
+  **PASS, 5 checks, 0 erros**; evidência `docs/evidence/editing-plan-ui/validation.json`
+  e 4 screenshots. Fluxos: seed isolado (p1 exposure 45/conf 0.85/ISO 6400 +
+  p2 exposição saudável), perfil com exposure +20/grain +12, geração "Esta foto"
+  com valores/explicação/advisory/missing corretos; batch ClickIT Picks
+  idempotente; segunda foto saudável sem correção de cena; originais
+  byte-idênticos após gerar; fechar/reabrir mantém 2 planos persistidos.
+- Re-execução da validação GUI da Fase B (diálogo nativo) ficou instável nesta
+  rodada por **RAM crítica do host (0.3 GB livres)** — falha na automatização
+  do diálogo nativo, não no produto: sem banner de erro, referências sem arquivo
+  selecionado, e o fluxo de referência confirmado em nível de store
+  (import + thumbnail PASS). A evidência PASS original da Fase B foi restaurada
+  de `git` (inesgotada, intacta). Nenhuma regressão de código foi encontrada.
+- Nada de XMP, preview/editado, modelos novos, aprendizado por referência ou
+  Lightroom entrou na Fase C (permanecem fases D–G). Próxima ação: aguardar
+  autorização para Fase D (não iniciar automaticamente).

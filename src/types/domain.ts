@@ -1,6 +1,6 @@
 export type Decision = 'UNDECIDED' | 'AI_SELECTED' | 'SELECTED' | 'REVIEW' | 'REJECTED';
 import type { LicenseView } from '../licensing/types.ts';
-import type { EditingProfile, EditingProfileInput, ReferenceImage } from '../editing/types.ts';
+import type { EditingProfile, EditingProfileInput, EditingPlanView, PlanScope, ReferenceImage } from '../editing/types.ts';
 import type { ReferenceView } from '../editing/references.ts';
 export { type LicenseView };
 export type ProjectStatus = 'NEW' | 'INDEXING' | 'ANALYZING' | 'INTERRUPTED' | 'READY';
@@ -36,9 +36,13 @@ export interface ClickITApi {
   updateEditingProfile(id: string, input: EditingProfileInput): Promise<EditingProfile>;
   deleteEditingProfile(id: string): Promise<void>;
   duplicateEditingProfile(id: string): Promise<EditingProfile>;
-  editingReferences(profileId?: string): Promise<ReferenceView[]>;
+editingReferences(profileId?: string): Promise<ReferenceView[]>;
   addEditingReference(profileId: string, mode: 'REFERENCE' | 'PAIR'): Promise<ReferenceImage[]>;
   removeEditingReference(id: string): Promise<void>;
+  editingPlans(profileId?: string): Promise<EditingPlanView[]>;
+  generateEditingPlans(profileId: string, scope: PlanScope): Promise<{ generated: EditingPlanView[]; skipped: { photoId: string; reason: string }[] }>;
+  editingPlan(id: string): Promise<EditingPlanView>;
+  deleteEditingPlan(id: string): Promise<void>;
   projects(): Promise<Project[]>; create(name: string): Promise<Project | null>;
   photos(projectId: string): Promise<Photo[]>; index(projectId: string): Promise<void>;
   analyze(projectId: string): Promise<void>; cancel(): Promise<void>;
