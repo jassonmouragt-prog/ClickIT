@@ -1218,3 +1218,64 @@ docs/evidence/packaging-reproducibility-2026-10-07.json.
 - Nada de XMP, preview/editado, modelos novos, aprendizado por referência ou
   Lightroom entrou na Fase C (permanecem fases D–G). Próxima ação: aguardar
   autorização para Fase D (não iniciar automaticamente).
+
+## Fase D do módulo Editar - 2026-10-07
+
+**Classificação: PHASE_D_READY.**
+
+- Prévia visual **não destrutiva** de `EditingPlan`: motor
+  `src/editing/preview.ts` (JPEG a partir do preview em cache, nunca do
+  RAW/original) + mapeamento central puro `src/editing/preview-map.ts`
+  (`PREVIEW_ENGINE_VERSION=1`, `PREVIEW_MAX_WIDTH=1280`, qualidade 85, 13
+  params renderizáveis; `temperature`/`tint` marcados `UNSUPPORTED_PREVIEW`,
+  nunca simulados; sem equivalência 1:1 com Lightroom). Fórmulas internas
+  documentadas (exposição em stops, tons por peso de luminância, contraste
+  com pivô 0.5, vibrância ponderada pela croma, granulação PRNG determinística,
+  vinheta suavizada) — limitação registrada: vibrância sem proteção de pele.
+- Overrides manuais são **DELTA** sobre `finalAdjustment`
+  (`efetivo = clamp(sugestão + override, −100..+100)`, grão em 0..100);
+  a sugestão ClickIT nunca é sobrescrita; persistidos em
+  `manualOverrides` com reset individual/global; `reviewedAt` ao revisar.
+- Cache de preview separado da análise: chave sha256(engine, largura, photoHash,
+  inputFingerprint, valores efetivos, tamanho+mtime do preview base);
+  gravação atômica via `.partial`; cancelamento por nova alteração
+  (`PreviewCancelledError`) e render em chunks com yield (nunca
+  full-resolution por movimento de slider).
+- IPC: **4 novos handlers** (total 17, todos atrás de `requireWorkspaceLicense`):
+  `editing:preview:render` (guards DRAFT/STALE com mensagem explícita,
+  token por plano com cancelamento), `editing:overrides:save`,
+  `editing:overrides:reset`, `editing:plans:review` (só `GENERATED→REVIEWED`,
+  nunca `EXPORTED`); protocolo `clickit://edited/<sha256>` também exige
+  licença e regex de hash.
+- UI (`PlanPreview` em `EditingWorkspace.tsx` + `.plan-preview*` em
+  `styles.css`): antes/depois/lado a lado, "Segure para ver o original"
+  (pointer + teclado), 13 sliders com valor efetivo e chip "sugestão ±N",
+  reset individual (↺) e global "Voltar à sugestão ClickIT", chips
+  `UNSUPPORTED_PREVIEW`, estado "Plano desatualizado — gere o plano
+  novamente…", debounce 240 ms + render sob demanda via IntersectionObserver.
+- `tests/editing-preview.test.ts`: **12 casos PASS** (params suportados;
+  DELTA+clamp; separação renderizado/unsupported; fingerprint determinístico e
+  sensível a todos os componentes; JPEG no cache sem tocar a prévia base nem
+  criar arquivos junto do original; cache hit/miss; cancelamento sem gravação;
+  largura ≤1280; guards DRAFT/STALE; IPC applied/unsupported/overrides;
+  reset individual/global byte-identical; revisão REVIEWED + sem salto de
+  estado + original intacto). Atualizado `editing-style.test.ts` para 17 IPCs.
+- Suite final: **136/136 PASS** (85 Beta + 18 Fase A + 8 Fase B + 13 Fase C
+  + 12 Fase D); typecheck e build PASS (sequenciais); lint dos arquivos
+  alterados PASS. Lint global falha com os 4 erros de
+  lint remanescentes estão em arquivos não tocados (`landing/`,
+  `scripts/validate-editing-plan-ui.mjs`) e são anteriores a esta fase.
+- Validação GUI em Electron real (`scripts/validate-editing-preview-ui.mjs`):
+  **PASS, 9 checks, 0 erros**; evidência
+  `docs/evidence/editing-preview-ui/validation.json` e 5 screenshots.
+  Fluxos: geração de plano → prévia renderiza sozinha em `clickit://edited`
+  com chip UNSUPPORTED (temperature); comparação Antes/Depois/Lado a lado e
+  segurar-para-ver-original; slider manual com DELTA + chip "sugestão +20" e
+  re-render (src novo); volta ao valor da sugestão reusa o cache; reset global;
+  revisão `GENERATED→REVIEWED` com data; originais byte-idênticos; fechar e
+  reabrir mantém Revisado + cache. Executado com o host em RAM crítica
+  (~0,16 GB livres) sem falhas.
+- Nada de XMP, exportação editada, escrita no original, novos modelos de IA,
+  aprendizado por referência, Lightroom ou batch de exportação entrou na
+  Fase D (permanece a Fase E). Próxima ação: aguardar autorização para
+  Fase E (não iniciar automaticamente).

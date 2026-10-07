@@ -798,3 +798,109 @@ novos IPCs (13 no total, todos atrás de `requireWorkspaceLicense`):
   evidência PASS original foi restaurada de `git` — sem regressão de produto.
 - Nada de XMP, preview/editado, modelos novos, aprendizado por referência ou
   Lightroom entrou na Fase C (permanecem fases D–G como autorizadas).
+
+## 23. Fase D — prévia visual não destrutiva (implementado 2026-10-07)
+
+### Escopo
+
+Prévia visual **antes/depois** do `EditingPlan` (lado a lado, sliders
+manuais, overrides, reset e revisão) SEM jamais ler o RAW nem escrever no
+original/JPEG de origem. Nada de XMP, exportação editada, novos modelos de IA,
+aprendizado por referência, Lightroom ou batch de exportação (Fase E).
+
+### Mapeamento central (`src/editing/preview-map.ts`)
+
+- Módulo **puro** (sem sharp/node) para uso no renderer; importa só tipos.
+- `PREVIEW_ENGINE_VERSION = 1`, `PREVIEW_MAX_WIDTH = 1280`,
+  `PREVIEW_JPEG_QUALITY = 85` — nunca render full-resolution por movimento
+  de slider.
+- `PREVIEW_PARAMS` (13): exposure, contrast, highlights, shadows, whites,
+  blacks, saturation, vibrance, clarity, texture, sharpening, grain, vignette.
+- `UNSUPPORTED_PREVIEW_PARAMS`: `temperaturePreference`/`tintPreference` —
+  aprovados no schema mas **nunca simulados** (chips `UNSUPPORTED_PREVIEW`).
+- `PREVIEW_RENDER_MAP` documenta a transformação interna −100..+100 → render:
+  `exposureStops 0.75`, `contrastAmount 0.75` (pivô 0.5),
+  `shadowsAmount 0.30`/`highlightsAmount 0.30`/`whitesAmount 0.35`/
+  `blacksAmount 0.25` (pesos de luminância), `saturationFull 1.0`,
+  `vibranceAmount 1.0` (sem proteção de pele — limitação registrada),
+  `grainAmount 0.12`, `vignetteAmount 0.65` + `vignetteStart 0.45`,
+  `claritySigma 20`, `textureSigma 3`, `sharpeningSigma 2`.
+  **Sem equivalência 1:1 com Lightroom** (XMP é da Fase E).
+- Semântica de override: **DELTA** sobre `finalAdjustment` —
+  `effectiveValue = clamp(sugestão + override, −100..+100)` (grão 0..100);
+  `effectiveAdjustments()` devolve `{ applied, unsupported, values }` e o
+  motor recebe somente `values` dos params suportados ≠ 0.
+
+### Motor (`src/editing/preview.ts`)
+
+- Entrada: preview base em cache (JPEG — nunca o RAW), `photoHash`,
+  `inputFingerprint`, valores efetivos e diretório próprio de cache.
+- `previewFingerprint` = sha256(engine, largura, photoHash, inputFingerprint,
+  `canonicalJson(values)`, tamanho+mtime do preview base) → qualquer
+  componente muda ⇒ outro arquivo; preview base ausente ⇒ erro explícito.
+- Render em chunks de 48 linhas com `yield` e cancelamento cooperativo
+  (`PreviewCancelledError`); PRNG determinístico por pixel para granulação;
+  estágios clarity/texture/sharpening via `sharpen()` e negativos via `blur()`;
+  gravação atômica `.partial` + `rename`.
+- Cache **separado** da análise (`storage/cache/editing-preview`).
+
+### Persistência, IPC e licença
+
+- `EditingPlan` ganhou `manualOverrides` (delta persistido) e `reviewedAt`;
+  store: `setEditingPlanOverrides`/`resetEditingPlanOverrides` (aceita
+  param ou tudo), `updateEditingPlanStatus` grava `reviewedAt` em
+  `REVIEWED`; `photoHash(photoId)` para a chave do preview.
+- 4 novos IPCs (**17 no total**, todos atrás de `requireWorkspaceLicense`):
+  `editing:preview:render` (guards: DRAFT → "Plano ainda não foi gerado.";
+  STALE → "Plano desatualizado — gere o plano novamente antes de visualizar
+  a prévia."; token por plano cancela renders antigos), `editing:overrides:save`,
+  `editing:overrides:reset`, `editing:plans:review`
+  (transição apenas `GENERATED → REVIEWED`; `EXPORTED` exige XMP — Fase E).
+- Protocolo `clickit://edited/<sha256>` em `src/main/index.ts`: regex
+  estrita + `requireWorkspaceLicense` (a URL vaza somente bytes já editados
+  em cache, dentro do workspace licenciado).
+
+### UI (`PlanPreview` em `EditingWorkspace.tsx`, `styles.css`)
+
+- Renderização sob demanda (IntersectionObserver + 160 px de margem),
+  debounced 240 ms com flush em pointerup/keyup/blur e cancelamento de
+  render anterior (sequência por card).
+- Modos Antes / Depois / Lado a lado (`aria-pressed`) + botão "Segure para
+  ver o original" (pointer e teclado). Cena base usa o preview existente
+  (`clickit://photo/<id>/preview`) — nunca o RAW completo.
+- 13 sliders com valor **efetivo**, chip "sugestão ±N" quando há override,
+  reset individual (↺) e global "Voltar à sugestão ClickIT"; chips
+  `UNSUPPORTED_PREVIEW` por param; estado STALE explícito; status de render
+  (ms + cache) e botão "Marcar como revisado" → badge/data de revisão.
+- Overrides persistem via IPC e são reaplicados ao reabrir; a sugestão
+  gerada nunca é sobrescrita.
+
+### Testes e validação
+
+- `tests/editing-preview.test.ts`: **12 casos** — params suportados vs
+  UNSUPPORTED; DELTA+clamp (inclusive grão); separação applied/unsupported;
+  fingerprint determinístico e sensível a cada componente; JPEG no cache sem
+  alterar a prévia base nem criar arquivos junto do original; cache hit/miss
+  por override; cancelamento sem gravação; largura ≤ 1280; guards DRAFT/STALE
+  via IPC; resultado IPC com applied/unsupported/overrides; reset
+  individual/global byte-identical; revisão `GENERATED→REVIEWED` com
+  `reviewedAt`, sem salto de estado e original intacto.
+- `tests/editing-style.test.ts` atualizado: guard de licença cobre **17 IPCs**
+  (inclui os 4 novos).
+- Suite: **136/136 PASS** (85 Beta + 18 Fase A + 8 Fase B + 13 Fase C +
+  12 Fase D); typecheck e build PASS (sequenciais); lint dos arquivos
+  alterados PASS. Lint global permanece com 4 erros pré-existentes fora das
+  alterações C/D (`landing/` e `scripts/validate-editing-plan-ui.mjs`).
+- Validação GUI automatizada em Electron real
+  (`scripts/validate-editing-preview-ui.mjs`): **PASS**, 9 checks, 0 erros;
+  screenshots e `validation.json` em `docs/evidence/editing-preview-ui/`.
+  Cobre: prévia renderizando sozinha em `clickit://edited` com chip
+  UNSUPPORTED (temperature); comparação Antes/Depois/Lado a lado +
+  segurar-para-ver-original; slider manual com DELTA + chip "sugestão +20" e
+  re-render; volta ao valor da sugestão reusa o cache; reset global; revisão
+  `GENERATED→REVIEWED`; originais byte-idênticos; fechar/reabrir mantém
+  Revisado + cache. Executado com o host em RAM crítica (~0,16 GB livres)
+  sem falhas.
+- Nada de XMP, exportação editada, escrita no original, novos modelos,
+  aprendizado por referência ou Lightroom entrou na Fase D (permanece a
+  Fase E como autorizada).

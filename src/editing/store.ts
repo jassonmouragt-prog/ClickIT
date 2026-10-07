@@ -1,9 +1,9 @@
 import type { DatabaseSync } from 'node:sqlite';
 import { randomUUID } from 'node:crypto';
 import { EDITING_ENGINE_VERSION, EDITING_SCHEMA_VERSION } from './config.ts';
-import { canonicalJson, inputFingerprint, profileContent, record, text, validateProfile, validateTransition, version } from './contracts.ts';
+import { canonicalJson, inputFingerprint, profileContent, record, text, validateOverrides, validateProfile, validateTransition, version, QUANTITATIVE_KEYS } from './contracts.ts';
 import { generateContent } from './planner.ts';
-import type { EditingPlan, EditingPlanStatus, EditingProfile, EditingProfileInput, ReferenceImage, ReferenceImageInput } from './types.ts';
+import type { EditingPlan, EditingPlanStatus, EditingProfile, EditingProfileInput, ManualOverrides, ReferenceImage, ReferenceImageInput } from './types.ts';
 
 export class EditingStore {
   db: DatabaseSync;
@@ -68,7 +68,7 @@ export class EditingStore {
     const profile = this.getEditingProfile(profileId), source = this.source(sourcePhotoId);
     if (source.analysisStatus !== 'DONE' || !source.hash) throw new Error('Origem sem análise/hash válido.');
     const now = new Date().toISOString();
-    const plan: EditingPlan = { id: randomUUID(), profileId, sourcePhotoId, sourceOriginalPath: String(source.originalPath), profileVersion: profile.profileVersion, engineVersion: EDITING_ENGINE_VERSION, inputFingerprint: inputFingerprint(profile, String(source.hash)), generatedAt: null, createdAt: now, updatedAt: now, baseStyle: [], sceneCorrection: [], finalAdjustment: [], explanation: [], sceneAdvisories: [], missingSignals: [], status: 'DRAFT', statusHistory: [{ status: 'DRAFT', at: now }], xmpPath: null };
+    const plan: EditingPlan = { id: randomUUID(), profileId, sourcePhotoId, sourceOriginalPath: String(source.originalPath), profileVersion: profile.profileVersion, engineVersion: EDITING_ENGINE_VERSION, inputFingerprint: inputFingerprint(profile, String(source.hash)), generatedAt: null, createdAt: now, updatedAt: now, baseStyle: [], sceneCorrection: [], finalAdjustment: [], explanation: [], sceneAdvisories: [], missingSignals: [], status: 'DRAFT', statusHistory: [{ status: 'DRAFT', at: now }], xmpPath: null, manualOverrides: {}, reviewedAt: null };
     this.db.prepare('INSERT INTO editing_plans VALUES(?,?,?,?,?,?,?,?)').run(plan.id, profileId, sourcePhotoId, plan.inputFingerprint, plan.status, JSON.stringify(plan), now, now);
     return plan;
   }
@@ -102,6 +102,11 @@ export class EditingStore {
     const row = this.db.prepare('SELECT id,fileName,originalPath,previewPath,thumbnailPath,mtime FROM photos WHERE id=?').get(id);
     if (!row) throw new Error('Fotografia de origem inexistente.');
     return row as { id: string; fileName: string; originalPath: string; previewPath: string | null; thumbnailPath: string | null; mtime: number };
+  }
+  photoHash(id: string): string {
+    const source = this.source(id);
+    if (source.analysisStatus !== 'DONE' || !source.hash) throw new Error('Origem sem análise/hash válido.');
+    return String(source.hash);
   }
   generateEditingPlan(id: string): EditingPlan {
     const plan = this.getEditingPlan(id);
@@ -151,7 +156,29 @@ export class EditingStore {
     if (status === 'GENERATED' && (plan.generatedAt === null || plan.status === 'STALE')) throw new Error('Plano deve ser gerado pelo motor antes de GENERATED.');
     if (status === 'EXPORTED' && !plan.xmpPath) throw new Error('Plano não possui exportação XMP.');
     plan.status = status; plan.updatedAt = new Date().toISOString();
+    if (status === 'REVIEWED') plan.reviewedAt = plan.updatedAt;
     plan.statusHistory.push({ status, at: plan.updatedAt }); this.savePlan(plan); return plan;
+  }
+  // Fase D — overrides manuais persistidos como DELTA sobre finalAdjustment.
+  // A sugestao gerada nunca e reescrita; reset apenas remove o delta.
+  private generatedPlan(id: string): EditingPlan {
+    const plan = this.getEditingPlan(id);
+    if (!plan.generatedAt || plan.status === 'DRAFT' || plan.status === 'STALE') throw new Error('Plano precisa estar gerado para ajustes manuais.');
+    return plan;
+  }
+  setEditingPlanOverrides(id: string, overrides: unknown): EditingPlan {
+    const plan = this.generatedPlan(id);
+    plan.manualOverrides = validateOverrides(overrides);
+    plan.updatedAt = new Date().toISOString();
+    this.savePlan(plan); return plan;
+  }
+  resetEditingPlanOverrides(id: string, param: unknown): EditingPlan {
+    const plan = this.generatedPlan(id);
+    if (param !== null && param !== undefined && (typeof param !== 'string' || !(QUANTITATIVE_KEYS as readonly string[]).includes(param))) throw new Error('Ajuste manual desconhecido.');
+    if (param === null || param === undefined) plan.manualOverrides = {};
+    else { const next = { ...(plan.manualOverrides ?? {}) }; delete next[param as keyof ManualOverrides]; plan.manualOverrides = next; }
+    plan.updatedAt = new Date().toISOString();
+    this.savePlan(plan); return plan;
   }
   deleteEditingPlan(id: string): void { this.read<EditingPlan>('editing_plans', id); this.db.prepare('DELETE FROM editing_plans WHERE id=?').run(id); }
   addReferenceImage(input: ReferenceImageInput): ReferenceImage {

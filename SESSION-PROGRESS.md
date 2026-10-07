@@ -281,6 +281,66 @@ Pendente / criterio BRANDING_*:
   confirmadas em nível de store (import+thumbnail PASS) e evidência PASS da
   Fase B restaurada de git. Sem regressão de produto.
 - docs/EDITING-MODULE.md (seção 22) e docs/VALIDATION.md atualizados.
-- Commitado? Não — próximo passo: commit local da Fase C. Nada de XMP, preview/
+- Fase C commitada em `1a2176f`. Nada de XMP, preview/
   editado, modelos novos, aprendizado por referência ou Lightroom nesta fase.
 - Próxima ação: aguardar autorização para Fase D. Não iniciar automaticamente.
+
+## Fase D do módulo Editar - 2026-10-07 - PHASE_D_READY
+
+- Prévia visual NÃO destrutiva do EditingPlan: motor `src/editing/preview.ts`
+  (JPEG a partir do preview em cache, chunked/cancelável, gravação atômica) +
+  mapeamento central puro `src/editing/preview-map.ts` (13 params
+  renderizáveis, PREVIEW_ENGINE_VERSION=1, largura ≤1280, qualidade 85;
+  temperature/tint = UNSUPPORTED_PREVIEW, nunca simulados; sem equivalência
+  1:1 com Lightroom). Corrigido na passada: vinheta não aplicava duas vezes
+  `vignetteAmount`.
+- Overrides manuais = DELTA sobre finalAdjustment (efetivo = clamp(sugestão
+  + override, -100..100), grão 0..100), persistidos em `manualOverrides` com
+  reset individual/global; `reviewedAt` ao revisar; sugestão gerada nunca
+  sobrescrita.
+- Cache de preview separado da análise (sha256 de engine|largura|photoHash|
+  inputFingerprint|valores|tamanho+mtime do preview base) em
+  `storage/cache/editing-preview`; URL `clickit://edited/<sha256>` com regex
+  estrita + requireWorkspaceLicense.
+- Store: `photoHash`, `setEditingPlanOverrides`, `resetEditingPlanOverrides`,
+  `updateEditingPlanStatus` grava `reviewedAt` em REVIEWED.
+- IPC: 4 novos handlers (17 total, todos atrás de requireWorkspaceLicense):
+  `editing:preview:render` (guards DRAFT/STALE com mensagem explícita + token
+  de cancelamento por plano), `editing:overrides:save/reset`,
+  `editing:plans:review` (só GENERATED→REVIEWED, nunca EXPORTED).
+- UI: componente `PlanPreview` (render sob demanda por IntersectionObserver,
+  debounce 240ms + flush, modos Antes/Depois/Lado a lado, segurar-para-ver-
+  original, 13 sliders com chip "sugestão ±N", reset individual ↺ e global,
+  chips UNSUPPORTED_PREVIEW, estado STALE, "Marcar como revisado") + CSS
+  `.plan-preview*`; `preview-map.ts` importado pelo renderer (só tipos de
+  `./types.ts`, sem sharp/node).
+- tests/editing-preview.test.ts: 12 casos PASS; editing-style guard atualizado
+  para 17 IPCs. Suite 136/136 (85+18+8+13+12); typecheck e build PASS
+  (sequenciais); lint dos arquivos alterados PASS. Lint global permanece com
+  4 erros pré-existentes em arquivos não
+  tocados (landing/, scripts/validate-editing-plan-ui.mjs).
+- Validação GUI Electron real (scripts/validate-editing-preview-ui.mjs): PASS,
+  9 checks, 0 erros; evidência docs/evidence/editing-preview-ui/validation.json
+  + 5 screenshots. Cobriu: render sozinho em clickit://edited com chip
+  UNSUPPORTED (temperature), comparação/hold, slider DELTA + chip sugestão +
+  re-render por src, reuso de cache, reset global, revisão REVIEWED, originais
+  byte-idênticos e reabertura com Revisado + cache. Executado com o host em
+  RAM crítica (~0,16 GB livres) sem falhas.
+- docs/EDITING-MODULE.md (seção 23) e docs/VALIDATION.md atualizados.
+- Fechamento local autorizado: `feat(editing): complete phases C and D`.
+  A Fase C já consta em `1a2176f`; este commit conclui a Fase D e registra
+  conjuntamente o estado validado das Fases C/D. Nada de XMP, exportação
+  editada, escrita no original, novos
+  modelos, aprendizado por referência ou Lightroom nesta fase.
+- Próxima ação: aguardar autorização para Fase E. Não iniciar automaticamente.
+
+### Registro do fechamento C/D
+
+- Fase C: geração determinística de `EditingPlan`.
+- Fase D: preview não destrutivo; before/after/side-by-side; manual overrides;
+  cache/fingerprint; STALE handling; REVIEWED lifecycle.
+- Validação: 136/136 testes PASS; GUI Electron real PASS (9 checks, 0 erros).
+- Os 4 erros de lint remanescentes são pré-existentes e não pertencem às
+  alterações das Fases C/D; lint dos arquivos alterados PASS.
+- Commit limitado ao código, testes, documentação e evidências C/D;
+  sem ferramentas locais, temporários, caches ou segredos. Fase E não iniciada.

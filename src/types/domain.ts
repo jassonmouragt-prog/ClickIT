@@ -1,6 +1,6 @@
 export type Decision = 'UNDECIDED' | 'AI_SELECTED' | 'SELECTED' | 'REVIEW' | 'REJECTED';
 import type { LicenseView } from '../licensing/types.ts';
-import type { EditingProfile, EditingProfileInput, EditingPlanView, PlanScope, ReferenceImage } from '../editing/types.ts';
+import type { EditingProfile, EditingProfileInput, EditingPlanView, EditingPreviewResult, ManualOverrides, PlanScope, ReferenceImage } from '../editing/types.ts';
 import type { ReferenceView } from '../editing/references.ts';
 export { type LicenseView };
 export type ProjectStatus = 'NEW' | 'INDEXING' | 'ANALYZING' | 'INTERRUPTED' | 'READY';
@@ -43,6 +43,10 @@ editingReferences(profileId?: string): Promise<ReferenceView[]>;
   generateEditingPlans(profileId: string, scope: PlanScope): Promise<{ generated: EditingPlanView[]; skipped: { photoId: string; reason: string }[] }>;
   editingPlan(id: string): Promise<EditingPlanView>;
   deleteEditingPlan(id: string): Promise<void>;
+  renderEditingPreview(planId: string, overrides?: ManualOverrides): Promise<EditingPreviewResult>;
+  saveEditingOverrides(planId: string, overrides: ManualOverrides): Promise<EditingPlanView>;
+  resetEditingOverrides(planId: string, param?: string | null): Promise<EditingPlanView>;
+  reviewEditingPlan(planId: string): Promise<EditingPlanView>;
   projects(): Promise<Project[]>; create(name: string): Promise<Project | null>;
   photos(projectId: string): Promise<Photo[]>; index(projectId: string): Promise<void>;
   analyze(projectId: string): Promise<void>; cancel(): Promise<void>;

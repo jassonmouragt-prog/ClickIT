@@ -26,6 +26,7 @@ const temporaryAssets = new Map<string, string>();
 let facesReady: (() => void) | null = null;
 const models = (): string => app.isPackaged ? path.join(process.resourcesPath, 'models') : path.join(app.getAppPath(), 'resources/models');
 const storage = (): string => path.join(app.getPath('userData'), 'storage');
+const editingPreviewCache = (): string => path.join(storage(), 'cache', 'editing-preview');
 function emit(progress: Progress): void { currentProgress = progress; win?.webContents.send('progress', progress); }
 function workers(settings: Settings): number {
   const safe = Math.max(1, Math.min(LIMITS.maxWorkers, Math.floor(availableParallelism() / 2), Math.floor(totalmem() / 1024 ** 3 / 2)));
@@ -86,6 +87,11 @@ else {
           if (!reference) return new Response('Not found', { status: 404 });
           const thumbnail = await referenceThumbnail(reference);
           return new Response(new Uint8Array(thumbnail), { headers: { 'Content-Type': 'image/jpeg', 'Cache-Control': 'no-store' } });
+        } else if (url.hostname === 'edited') {
+          await requireWorkspaceLicense(license);
+          const fingerprint = url.pathname.slice(1);
+          if (!/^[a-f0-9]{64}$/.test(fingerprint)) return new Response('Not found', { status: 404 });
+          file = path.join(editingPreviewCache(), `${fingerprint}.jpg`);
         } else if (url.hostname === 'models' && url.pathname === '/face_landmarker.task') file = path.join(models(), 'face_landmarker.task');
         else if (url.hostname === 'photo') {
           const [, photoId, kind] = url.pathname.split('/'); validate.id(photoId);
@@ -141,7 +147,7 @@ registerEditingHandlers(owner, store, async mode => {
       if (mode === 'REFERENCE') return [before.filePaths[0]];
       const after = await dialog.showOpenDialog(win!, { ...options, title: 'Selecionar foto Depois' });
       return after.canceled || !after.filePaths[0] ? null : [before.filePaths[0], after.filePaths[0]];
-    }, projectId => store.photos(projectId));
+    }, projectId => store.photos(projectId), editingPreviewCache());
     owner('projects:list', () => store.projects());
     owner('projects:create', async value => {
       if (busy) throw new Error('Aguarde a operação atual.');

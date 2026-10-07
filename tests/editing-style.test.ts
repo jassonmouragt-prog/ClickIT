@@ -20,7 +20,7 @@ async function fixture() {
 function api(store: Store, choose: () => Promise<string[] | null> = async () => null, state: LicenseView['state'] = 'VALID') {
   const handlers = new Map<string, EditingHandler>();
   const license = { status: async (): Promise<LicenseView> => ({ state }) };
-  registerEditingHandlers((channel, handler) => handlers.set(channel, async (...args: unknown[]) => { await requireWorkspaceLicense(license); return handler(...args); }), store, choose, projectId => store.photos(projectId));
+  registerEditingHandlers((channel, handler) => handlers.set(channel, async (...args: unknown[]) => { await requireWorkspaceLicense(license); return handler(...args); }), store, choose, projectId => store.photos(projectId), path.resolve('.test-tmp'));
   return { handlers, call: async (channel: string, ...args: unknown[]) => { const fn = handlers.get(channel); assert.ok(fn); return await fn(...args); } };
 }
 test('questionário cobre os 15 quantitativos e seis conceitos; respostas são determinísticas e limitadas', () => {
@@ -97,7 +97,8 @@ test('todos os IPCs Editar bloqueiam sem licença; guard permite só estados lic
   try {
     for (const state of ['UNACTIVATED', 'EXPIRED', 'REVOKED', 'GRACE_EXPIRED'] as const) {
       const a = api(s, async () => { throw new Error('Dialog não deve abrir'); }, state);
-      assert.equal(a.handlers.size, 13);
+      assert.equal(a.handlers.size, 17);
+      for (const channel of ['editing:preview:render', 'editing:overrides:save', 'editing:overrides:reset', 'editing:plans:review']) assert.ok(a.handlers.has(channel), channel);
       for (const channel of a.handlers.keys()) await assert.rejects(() => a.call(channel, 'invalid'), /Licença/);
     }
     for (const state of ['VALID', 'VALID_OFFLINE'] as const) await requireWorkspaceLicense({ status: async () => ({ state }) });

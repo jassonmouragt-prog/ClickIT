@@ -30,6 +30,17 @@ export interface EditingAdjustment {
   param: keyof EditingProfileQuantitative; value: SliderValue;
   reason: 'PROFILE_BASE' | 'PROFILE_DERIVED' | 'SCENE' | 'USER'; note: string;
 }
+// Manual override = delta RELATIVE a sugestao (finalAdjustment), nunca a substitui.
+// effective = clamp(final + override, -100..+100); grain efetivo tambem em 0..100.
+export type ManualOverrides = Partial<Record<keyof EditingProfileQuantitative, SliderValue>>;
+export interface EditingPreviewAdjustment { param: keyof EditingProfileQuantitative; value: SliderValue }
+export interface EditingPreviewResult {
+  planId: string; status: EditingPlanStatus; fingerprint: string; url: string;
+  cached: boolean; renderMs: number;
+  applied: EditingPreviewAdjustment[];      // parametrados renderizados
+  unsupported: EditingPreviewAdjustment[];  // valor != 0 sem render confiavel (UNSUPPORTED_PREVIEW)
+  overrides: ManualOverrides;               // overrides efetivos usados neste render
+}
 export interface EditingPlan {
   id: string; sourcePhotoId: string; sourceOriginalPath: string; profileId: string;
   profileVersion: number; engineVersion: number; inputFingerprint: string;
@@ -38,6 +49,8 @@ export interface EditingPlan {
   explanation: EditingExplanation[]; sceneAdvisories: SceneAdvisory[]; missingSignals: SceneSignalKey[];
   status: EditingPlanStatus; statusHistory: { status: EditingPlanStatus; at: string }[];
   xmpPath: string | null;
+  manualOverrides?: ManualOverrides;   // ausente em planos antigos = sem override
+  reviewedAt?: string | null;          // preenchido na revisao visual (Fase D)
 }
 export interface EditingExplanation {
   param: keyof EditingProfileQuantitative; base: number; scene: number; final: number; note: string;

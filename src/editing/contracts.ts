@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { ANALYSIS_VERSION } from '../lib/config.ts';
 import { EDITING_ENGINE_VERSION } from './config.ts';
-import type { EditingPlanStatus, EditingProfile, EditingProfileInput } from './types.ts';
+import type { EditingPlanStatus, EditingProfile, EditingProfileInput, ManualOverrides } from './types.ts';
 
 export const QUANTITATIVE_KEYS = ['temperaturePreference', 'tintPreference', 'exposurePreference', 'contrastPreference', 'highlightsPreference', 'shadowsPreference', 'whitesPreference', 'blacksPreference', 'saturationPreference', 'vibrancePreference', 'clarityPreference', 'texturePreference', 'sharpeningPreference', 'grainPreference', 'vignettePreference'] as const;
 export const CONCEPTUAL_VALUES = {
@@ -33,6 +33,16 @@ export function validateProfile(value: unknown): asserts value is EditingProfile
     if (c[key] !== null && (typeof c[key] !== 'string' || !(allowed as readonly string[]).includes(c[key]))) throw new Error(`${key} inválido.`);
   }
   if ('profileVersion' in p) version(p.profileVersion);
+}
+export function validateOverrides(value: unknown): ManualOverrides {
+  const o = record(value); const clean: ManualOverrides = {};
+  for (const key of Object.keys(o)) {
+    if (!(QUANTITATIVE_KEYS as readonly string[]).includes(key)) throw new Error('Ajuste manual desconhecido.');
+    const v = o[key];
+    if (typeof v !== 'number' || !Number.isInteger(v) || v < -100 || v > 100) throw new Error('Ajuste manual fora da faixa interna.');
+    if (v !== 0) clean[key as keyof typeof clean] = v;
+  }
+  return clean;
 }
 export function canonicalJson(value: unknown): string {
   if (value === null || typeof value !== 'object') return JSON.stringify(value);

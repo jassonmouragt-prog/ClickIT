@@ -1,12 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Button, EmptyState, Modal } from '../components/ui.tsx';
-import type { EditingPlan, EditingPlanView, EditingProfile, EditingProfileInput, PlanScope, SliderValue } from '../editing/types.ts';
+import type { EditingPlan, EditingPlanView, EditingProfile, EditingProfileInput, EditingPreviewResult, ManualOverrides, PlanScope, SliderValue } from '../editing/types.ts';
 import type { ReferenceView } from '../editing/references.ts';
 import type { Photo, Project } from '../types/domain.ts';
 import { STYLE_STEPS, STYLE_SLIDERS, STYLE_CONCEPTS, newStyleProfile, quantitativeAnswer, conceptualAnswer, describeSlider, styleSummary } from '../editing/questionnaire.ts';
+import { PREVIEW_PARAMS, effectiveAdjustments, effectiveValue } from '../editing/preview-map.ts';
+import type { PreviewParam } from '../editing/preview-map.ts';
 
 function message(error: unknown): string { return error instanceof Error ? error.message.replace(/^Error invoking remote method '[^']+': Error: /, '') : 'Não foi possível concluir. Tente novamente.'; }
 function planLabel(key: string): string { return STYLE_SLIDERS.find(s => s.key === key)?.label.replace(/\?$/, '') ?? key; }
+function sign(value: number): string { return `${value > 0 ? '+' : ''}${value}`; }
 function planStatus(status: EditingPlan['status']): string {
   return { DRAFT: 'Rascunho', GENERATED: 'Gerado', REVIEWED: 'Revisado', EXPORTED: 'Exportado', STALE: 'Desatualizado' }[status];
 }
@@ -92,7 +95,7 @@ export function EditingWorkspace(): React.JSX.Element {
       {selectedProfile && <section className="style-reference-section" aria-labelledby="reference-title"><div className="editing-section-title"><div><h2 id="reference-title">Referências de {selectedProfile.name}</h2><p className="muted">Para comparar visualmente. Seu estilo não será inferido dessas imagens.</p></div><div className="button-row"><Button disabled={busy} onClick={() => { void run(async () => { const refs = await window.clickit.addEditingReference(selectedProfile.id, 'REFERENCE'); await load(); if (refs.length) setNotice('Referência adicionada.'); }); }}>Adicionar referência</Button><Button disabled={busy} onClick={() => { void run(async () => { const refs = await window.clickit.addEditingReference(selectedProfile.id, 'PAIR'); await load(); if (refs.length) setNotice('Par Antes/Depois adicionado.'); }); }}>Adicionar Antes/Depois</Button></div></div>
         {selectedRefs.length ? <div className="style-reference-grid">{selectedRefs.map(ref => <ReferenceTile key={ref.id} reference={ref} pairNumber={ref.pairId ? [...new Set(selectedRefs.map(r => r.pairId).filter(Boolean))].indexOf(ref.pairId) + 1 : null} busy={busy} remove={() => { void run(async () => { await window.clickit.removeEditingReference(ref.id); await load(); setNotice('Referência removida. Arquivo preservado.'); }); }}/>)}</div> : <p className="style-reference-empty">Nenhuma referência associada. Você pode adicionar de 3 a 10 imagens para organizar sua intenção visual.</p>}
       </section>}
-      {plansFor && profiles.find(p => p.id === plansFor) && <PlanPanel profileName={profiles.find(p => p.id === plansFor)!.name} projects={projects} projectPhotos={projectPhotos} plans={plans} busy={busy} planScope={planScope} planProject={planProject} planPhoto={planPhoto} onScope={setPlanScope} onProject={selectPlanProject} onPhoto={setPlanPhoto} onGenerate={() => generate(plansFor)} />}
+      {plansFor && profiles.find(p => p.id === plansFor) && <PlanPanel profileName={profiles.find(p => p.id === plansFor)!.name} projects={projects} projectPhotos={projectPhotos} plans={plans} busy={busy} planScope={planScope} planProject={planProject} planPhoto={planPhoto} onScope={setPlanScope} onProject={selectPlanProject} onPhoto={setPlanPhoto} onGenerate={() => generate(plansFor)} onView={view => setPlans(previous => previous.map(item => item.plan.id === view.plan.id ? view : item))} />}
     </>}
     {confirmation && <Modal title={confirmation.kind === 'DELETE' ? 'Excluir perfil?' : 'Descartar alterações?'} close={() => { if (!busy) setConfirmation(null); }}><p>{confirmation.kind === 'DELETE' ? `Excluir “${confirmation.name}”? Planos históricos e referências não serão apagados automaticamente.` : 'As alterações ainda não salvas serão descartadas.'}</p><div className="button-row"><Button disabled={busy} onClick={() => setConfirmation(null)}>Manter</Button><Button primary disabled={busy} onClick={() => {
       if (confirmation.kind === 'CANCEL') { setDraft(null); setConfirmation(null); return; }
@@ -105,10 +108,11 @@ function ReferenceTile({ reference, pairNumber, busy, remove }: { reference: Ref
   return <article className="style-reference"><div className="style-reference-image">{reference.available && !failed ? <img loading="lazy" src={reference.thumbnailUrl} alt={name} onError={() => setFailed(true)}/> : <p>Referência indisponível</p>}</div><div className="style-reference-info"><div><strong>{reference.kind === 'BEFORE' ? 'Antes' : reference.kind === 'AFTER' ? 'Depois' : 'Referência'}{pairNumber && ` · Par ${pairNumber}`}</strong><p title={reference.externalPath}>{name}</p></div><Button disabled={busy} aria-label={`Remover ${name}`} onClick={remove}>Remover</Button></div></article>;
 }
 const SCOPE_OPTIONS: { value: PlanScope['kind']; label: string }[] = [{ value: 'PICKS', label: 'ClickIT Picks' }, { value: 'SELECTED', label: 'Selecionadas' }, { value: 'FAVORITES', label: 'Favoritas' }, { value: 'PHOTO', label: 'Esta foto' }];
-function PlanPanel({ profileName, projects, projectPhotos, plans, busy, planScope, planProject, planPhoto, onScope, onProject, onPhoto, onGenerate }: {
+function PlanPanel({ profileName, projects, projectPhotos, plans, busy, planScope, planProject, planPhoto, onScope, onProject, onPhoto, onGenerate, onView }: {
   profileName: string; projects: Project[]; projectPhotos: Photo[]; plans: EditingPlanView[]; busy: boolean;
   planScope: PlanScope['kind']; planProject: string; planPhoto: string;
   onScope: (s: PlanScope['kind']) => void; onProject: (id: string) => void; onPhoto: (id: string) => void; onGenerate: () => void;
+  onView: (view: EditingPlanView) => void;
 }): React.JSX.Element {
   const ready = planScope === 'PHOTO' ? !!planPhoto : !!planProject;
   return <section className="plan-section" aria-labelledby="plan-title">
@@ -119,21 +123,170 @@ function PlanPanel({ profileName, projects, projectPhotos, plans, busy, planScop
       {planScope === 'PHOTO' && <label className="plan-field"><span>Foto analisada</span><select disabled={busy} value={planPhoto} onChange={e => onPhoto(e.target.value)}>{!planPhoto && <option value="">Escolher foto…</option>}{projectPhotos.filter(p => p.analysisStatus === 'DONE').map(p => <option key={p.id} value={p.id}>{p.fileName}</option>)}</select></label>}
       <div className="button-row"><Button primary disabled={busy || !ready} onClick={onGenerate}>Gerar plano de edição</Button></div>
     </div>
-    {plans.length ? <div className="plan-list">{plans.map(view => <PlanCard key={view.plan.id} view={view} />)}</div> : <p className="plan-empty muted">Nenhum plano ainda. Escolha um projeto e gere o primeiro plano para este perfil.</p>}
+    {plans.length ? <div className="plan-list">{plans.map(view => <PlanCard key={view.plan.id} view={view} busy={busy} onView={onView} />)}</div> : <p className="plan-empty muted">Nenhum plano ainda. Escolha um projeto e gere o primeiro plano para este perfil.</p>}
   </section>;
 }
-function PlanCard({ view }: { view: EditingPlanView }): React.JSX.Element {
+function PlanCard({ view, busy, onView }: { view: EditingPlanView; busy: boolean; onView: (view: EditingPlanView) => void }): React.JSX.Element {
   const { plan, photo } = view;
   const final = new Map(plan.finalAdjustment.map(a => [a.param, a.value] as const));
   const valueRows = STYLE_SLIDERS.filter(s => final.get(s.key) !== undefined);
-  const sign = (v: number): string => `${v > 0 ? '+' : ''}${v}`;
   return <article className="plan-card">
     <header className="plan-card-header">{photo.previewUrl ? <img className="plan-photo" src={photo.previewUrl} alt="Pré-visualização" loading="lazy" /> : <div className="plan-photo plan-photo-empty" />}<div><h3>{photo.fileName}</h3><p className="muted" title={photo.originalPath}>{photo.originalPath}</p><p><span className={`plan-badge plan-badge-${plan.status.toLowerCase()}`}>{planStatus(plan.status)}</span> Perfil versão {plan.profileVersion} · Motor {plan.engineVersion}</p>{plan.generatedAt ? <small>Gerado em {new Date(plan.generatedAt).toLocaleString('pt-BR')}</small> : <small>Não gerado</small>}</div></header>
     <div className="plan-card-body">
+      <PlanPreview view={view} busy={busy} onView={onView} />
       <section><h4>Valores de edição</h4>{valueRows.length ? <table className="plan-table"><tbody>{valueRows.map(s => { const v = final.get(s.key)!; return <tr key={s.key}><th scope="row">{s.label}</th><td className="plan-value">{sign(v)}</td><td>{describeSlider(s.key, v as SliderValue)}</td></tr>; })}</tbody></table> : <p className="muted">Perfil aberto e cena sem correção: nenhum ajuste final.</p>}</section>
       <section><h4>Por que a ClickIT sugeriu isso?</h4>{plan.explanation.length ? <ol className="plan-explanation">{plan.explanation.map(e => <li key={e.param}><div><strong>{planLabel(e.param)}</strong><span className="plan-nums">base {sign(e.base)} · cena {sign(e.scene)} · final {sign(e.final)}</span></div><p>{e.note}</p></li>)}</ol> : <p className="muted">Sem ajustes para explicar.</p>}</section>
       {plan.sceneAdvisories.length > 0 && <section><h4>Notas da foto</h4><ul className="plan-advisories">{plan.sceneAdvisories.map((a, i) => <li key={i}><strong>{a.kind === 'ADVISORY' ? 'Nota' : 'Observação'}:</strong> {a.message}</li>)}</ul></section>}
       {plan.missingSignals.length > 0 && <p className="plan-missing muted">Sinais ainda não medidos pelo pipeline atual: {plan.missingSignals.join(', ')}.</p>}
     </div>
   </article>;
+}
+// Fase D — prévia visual NÃO destrutiva do EditingPlan.
+// Render em cache pelo EditingPreviewEngine (main); o original nunca é lido nem escrito aqui.
+function PlanPreview({ view, busy, onView }: { view: EditingPlanView; busy: boolean; onView: (view: EditingPlanView) => void }): React.JSX.Element | null {
+  const { plan, photo } = view;
+  const final = new Map(plan.finalAdjustment.map(a => [a.param, a.value] as const));
+  const [overrides, setOverrides] = useState<ManualOverrides>(() => ({ ...(plan.manualOverrides ?? {}) }));
+  const [result, setResult] = useState<EditingPreviewResult | null>(null);
+  const [rendering, setRendering] = useState(false);
+  const [error, setError] = useState('');
+  const [compare, setCompare] = useState<'after' | 'before' | 'side'>('after');
+  const [hold, setHold] = useState(false);
+  const [localBusy, setLocalBusy] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const sequence = useRef(0);
+  const commitTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pendingOverrides = useRef<ManualOverrides | null>(null);
+  const stage = useRef<HTMLElement | null>(null);
+  const previewable = plan.status === 'GENERATED' || plan.status === 'REVIEWED' || plan.status === 'EXPORTED';
+  const renderKey = `${plan.id}|${plan.generatedAt ?? ''}|${plan.inputFingerprint}|${plan.engineVersion}`;
+  const effective = useMemo(() => effectiveAdjustments(plan.finalAdjustment, overrides), [plan.finalAdjustment, overrides]);
+  const hasOverrides = Object.keys(overrides).length > 0;
+  const startRender = (proposed?: ManualOverrides): void => {
+    const token = ++sequence.current;
+    setRendering(true);
+    void (async () => {
+      try {
+        const preview = await window.clickit.renderEditingPreview(plan.id, proposed);
+        if (sequence.current !== token) return;
+        setResult(preview); setRendering(false); setError('');
+      } catch (e) {
+        if (sequence.current !== token) return;
+        setError(message(e)); setRendering(false);
+      }
+    })();
+  };
+  const persist = (next: ManualOverrides): void => {
+    pendingOverrides.current = null;
+    void (async () => {
+      try { onView(await window.clickit.saveEditingOverrides(plan.id, next)); startRender(next); }
+      catch (e) { setError(message(e)); }
+    })();
+  };
+  const schedule = (next: ManualOverrides): void => {
+    pendingOverrides.current = next;
+    if (commitTimer.current) clearTimeout(commitTimer.current);
+    commitTimer.current = setTimeout(() => { commitTimer.current = null; persist(next); }, 240);
+  };
+  const flush = (): void => {
+    if (!pendingOverrides.current) return;
+    if (commitTimer.current) { clearTimeout(commitTimer.current); commitTimer.current = null; }
+    persist(pendingOverrides.current);
+  };
+  const change = (param: PreviewParam, value: number): void => {
+    const next = { ...overrides };
+    const delta = value - (final.get(param) ?? 0);
+    if (delta === 0) delete next[param]; else next[param] = delta;
+    setOverrides(next); schedule(next);
+  };
+  const resetOne = (param: PreviewParam): void => {
+    const next = { ...overrides };
+    delete next[param];
+    setOverrides(next); schedule(next);
+  };
+  const immediate = (action: () => Promise<EditingPlanView>, after?: () => void): void => {
+    if (commitTimer.current) { clearTimeout(commitTimer.current); commitTimer.current = null; }
+    pendingOverrides.current = null;
+    setLocalBusy(true); setError('');
+    void (async () => {
+      try { onView(await action()); after?.(); }
+      catch (e) { setError(message(e)); }
+      finally { setLocalBusy(false); }
+    })();
+  };
+  useEffect(() => () => {
+    sequence.current++;
+    if (commitTimer.current) clearTimeout(commitTimer.current);
+    const left = pendingOverrides.current;
+    pendingOverrides.current = null;
+    if (left) void window.clickit.saveEditingOverrides(plan.id, left).catch(() => {});
+  }, []);
+  useEffect(() => {
+    const element = stage.current;
+    if (!element || typeof IntersectionObserver === 'undefined') { setVisible(true); return; }
+    const observer = new IntersectionObserver(entries => { if (entries.some(entry => entry.isIntersecting)) { setVisible(true); observer.disconnect(); } }, { rootMargin: '160px' });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    setOverrides({ ...(plan.manualOverrides ?? {}) });
+    if (visible && previewable) startRender();
+  }, [visible, renderKey]);
+  if (plan.status === 'DRAFT') return null;
+  const stale = plan.status === 'STALE';
+  const showBase = hold || compare === 'before' || compare === 'side';
+  const showEdited = !hold && (compare === 'after' || compare === 'side');
+  return <section className="plan-preview" aria-label="Prévia da edição" ref={stage}>
+    <div className="plan-preview-head">
+      <h4>Prévia da edição</h4>
+      <div className="plan-preview-modes" role="group" aria-label="Comparação antes e depois">
+        <button type="button" aria-pressed={compare === 'before'} disabled={stale || busy || localBusy} onClick={() => setCompare('before')}>Antes</button>
+        <button type="button" aria-pressed={compare === 'after'} disabled={stale || busy || localBusy} onClick={() => setCompare('after')}>Depois</button>
+        <button type="button" aria-pressed={compare === 'side'} disabled={stale || busy || localBusy} onClick={() => setCompare('side')}>Lado a lado</button>
+        <button type="button" className="plan-preview-hold" disabled={stale || busy || localBusy}
+          onPointerDown={event => { event.preventDefault(); setHold(true); }} onPointerUp={() => setHold(false)} onPointerLeave={() => setHold(false)} onPointerCancel={() => setHold(false)}
+          onKeyDown={event => { if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); setHold(true); } }} onKeyUp={event => { if (event.key === ' ' || event.key === 'Enter') setHold(false); }} onBlur={() => setHold(false)}>Segure para ver o original</button>
+      </div>
+    </div>
+    {stale ? <p className="plan-preview-stale" role="status">Plano desatualizado — gere o plano novamente antes de visualizar a prévia.</p> : <>
+      <div className="plan-preview-stage" data-mode={hold ? 'before' : compare}>
+        {showBase && photo.previewUrl && <figure><img src={photo.previewUrl} alt="Original" /><figcaption>Antes</figcaption></figure>}
+        {showEdited && <figure>{result ? <img src={result.url} alt="Prévia da edição" /> : <div className="plan-preview-empty">Preparando prévia…</div>}<figcaption>Depois</figcaption></figure>}
+        {showBase && !photo.previewUrl && <p className="plan-preview-empty">Prévia base indisponível.</p>}
+      </div>
+      <p className="plan-preview-status" role="status">
+        {rendering ? 'Renderizando prévia…' : result ? `Prévia não destrutiva em ${result.renderMs} ms${result.cached ? ' · cache' : ''}. O arquivo original não é alterado.` : 'Prévia ainda não renderizada.'}
+      </p>
+      {error && <p className="plan-preview-error" role="alert">{error}</p>}
+      {effective.unsupported.length > 0 && <ul className="plan-preview-unsupported">{effective.unsupported.map(item => <li key={item.param}>{planLabel(item.param)} {sign(item.value)} — sem prévia nesta fase (UNSUPPORTED_PREVIEW).</li>)}</ul>}
+      <div className="plan-preview-controls">
+        <div className="plan-preview-controls-head">
+          <div><h5>Ajustes manuais</h5><p className="muted">A sugestão ClickIT fica intacta; seus ajustes são guardados como diferença sobre ela.</p></div>
+          <div className="button-row">
+            <button type="button" disabled={busy || localBusy || !hasOverrides} onClick={() => immediate(() => window.clickit.resetEditingOverrides(plan.id), () => { setOverrides({}); startRender({}); })}>Voltar à sugestão ClickIT</button>
+            {plan.status === 'GENERATED' && <button type="button" disabled={busy || localBusy} onClick={() => immediate(() => window.clickit.reviewEditingPlan(plan.id), () => startRender())}>Marcar como revisado</button>}
+            {plan.status === 'REVIEWED' && <span className="plan-preview-reviewed">Revisado{plan.reviewedAt ? ` em ${new Date(plan.reviewedAt).toLocaleString('pt-BR')}` : ''}</span>}
+          </div>
+        </div>
+        <div className="plan-preview-sliders">
+          {PREVIEW_PARAMS.map(param => {
+            const spec = STYLE_SLIDERS.find(s => s.key === param)!;
+            const suggested = final.get(param) ?? 0;
+            const value = effectiveValue(param, suggested, overrides[param] ?? 0);
+            const changed = (overrides[param] ?? 0) !== 0;
+            const control = `plan-preview-${plan.id}-${param}`;
+            return <div className="plan-preview-slider" key={param}>
+              <label htmlFor={control}>{planLabel(param)}</label>
+              <output htmlFor={control}>{sign(value)}</output>
+              <input id={control} type="range" min={spec.min} max={100} step={1} value={value} disabled={busy || localBusy}
+                aria-valuetext={describeSlider(param, value)}
+                onChange={event => change(param, Number(event.target.value))} onPointerUp={flush} onKeyUp={flush} onBlur={flush} />
+              <div className="plan-preview-slider-foot"><span>{spec.low}</span>{changed && suggested !== 0 && <small>sugestão {sign(suggested)}</small>}<span>{spec.high}</span></div>
+              <button type="button" className="plan-preview-reset" disabled={busy || localBusy || !changed} title="Resetar ajuste individual" aria-label={`Resetar ${planLabel(param)}`} onClick={() => resetOne(param)}>↺</button>
+            </div>;
+          })}
+        </div>
+      </div>
+    </>}
+  </section>;
 }

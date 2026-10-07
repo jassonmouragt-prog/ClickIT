@@ -1,9 +1,11 @@
 import type { Photo } from '../types/domain.ts';
-import type { EditingPlan, EditingPlanView, PlanScope } from './types.ts';
+import type { EditingPlan, EditingPlanView, EditingPreviewResult, PlanScope } from './types.ts';
 import type { EditingStore } from './store.ts';
-import { record, text, validateProfile } from './contracts.ts';
+import { record, text, validateOverrides, validateProfile } from './contracts.ts';
 import { id } from '../lib/validation.ts';
 import { importReferences, referenceView } from './references.ts';
+import { effectiveAdjustments } from './preview-map.ts';
+import { PreviewCancelledError, renderEditingPreview } from './preview.ts';
 export type EditingHandler = (...args: unknown[]) => unknown;
 export type ReferenceChooser = (mode: 'REFERENCE' | 'PAIR') => Promise<string[] | null>;
 export type ProjectPhotos = (projectId: string) => Photo[];
@@ -33,7 +35,7 @@ function planView(store: EditingStore, plan: EditingPlan): EditingPlanView {
   const asset = store.photoAsset(plan.sourcePhotoId);
   return { plan, profileName: store.getEditingProfile(plan.profileId).name, photo: { id: asset.id, fileName: asset.fileName, previewUrl: asset.previewPath ? `clickit://photo/${asset.id}/preview?v=${asset.mtime}` : '', originalPath: asset.originalPath } };
 }
-export function registerEditingHandlers(owner: (channel: string, action: EditingHandler) => void, store: EditingStore, choose: ReferenceChooser, photos: ProjectPhotos): void {
+export function registerEditingHandlers(owner: (channel: string, action: EditingHandler) => void, store: EditingStore, choose: ReferenceChooser, photos: ProjectPhotos, previewDir: string): void {
   owner('editing:profiles:list', () => store.listEditingProfiles());
   owner('editing:profiles:get', value => store.getEditingProfile(id(value)));
   owner('editing:profiles:create', value => store.createEditingProfile(profileInput(value)));
@@ -62,4 +64,33 @@ export function registerEditingHandlers(owner: (channel: string, action: Editing
     return { generated: result.generated.map(plan => planView(store, plan)), skipped: result.skipped };
   });
   owner('editing:plans:delete', value => store.deleteEditingPlan(id(value)));
+  // Fase D — preview não destrutivo. Nenhum handler toca no arquivo original;
+  // todos já passam pelo guard requireWorkspaceLicense do chamador.
+  const renderTokens = new Map<string, number>();
+  owner('editing:preview:render', async (value, proposed) => {
+    const plan = store.getEditingPlan(id(value));
+    if (plan.status === 'DRAFT') throw new Error('Plano ainda não foi gerado.');
+    if (plan.status === 'STALE') throw new Error('Plano desatualizado — gere o plano novamente antes de visualizar a prévia.');
+    const overrides = proposed === undefined ? (plan.manualOverrides ?? {}) : validateOverrides(proposed);
+    const asset = store.photoAsset(plan.sourcePhotoId);
+    if (!asset.previewPath) throw new Error('Prévia base indisponível. Aguarde a geração dos previews da foto.');
+    const { applied, unsupported, values } = effectiveAdjustments(plan.finalAdjustment, overrides);
+    const token = (renderTokens.get(plan.id) ?? 0) + 1;
+    renderTokens.set(plan.id, token);
+    try {
+      const outcome = await renderEditingPreview({
+        basePreviewPath: asset.previewPath, photoHash: store.photoHash(plan.sourcePhotoId),
+        inputFingerprint: plan.inputFingerprint, values, cacheDir: previewDir,
+        shouldCancel: () => renderTokens.get(plan.id) !== token,
+      });
+      const result: EditingPreviewResult = { planId: plan.id, status: plan.status, fingerprint: outcome.fingerprint, url: outcome.url, cached: outcome.cached, renderMs: outcome.renderMs, applied, unsupported, overrides };
+      return result;
+    } catch (error) {
+      if (error instanceof PreviewCancelledError) throw new Error('Prévia interrompida por nova alteração.');
+      throw error;
+    }
+  });
+  owner('editing:overrides:save', (value, overrides) => planView(store, store.setEditingPlanOverrides(id(value), overrides)));
+  owner('editing:overrides:reset', (value, param) => planView(store, store.resetEditingPlanOverrides(id(value), param ?? null)));
+  owner('editing:plans:review', value => planView(store, store.updateEditingPlanStatus(id(value), 'REVIEWED')));
 }

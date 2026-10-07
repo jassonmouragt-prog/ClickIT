@@ -1,0 +1,24 @@
+{
+  "mode": "actual Electron GUI automation, not human manual review",
+  "userData": "C:\\dev\\ClickIT\\.test-tmp\\editing-preview-ui-VJ9oL7",
+  "checks": [
+    "GUI prévia renderiza sozinha em clickit://edited, com status não destrutivo e chip UNSUPPORTED_PREVIEW (temperature)",
+    "GUI comparação Antes/Depois/Lado a lado e segurar-para-ver-original trocam o modo da cena",
+    "GUI slider manual aplica DELTA sobre a sugestão (+60 efetivo com chip sugestão +20) e re-renderiza",
+    "GUI volta ao valor da sugestão e reusa o cache da mesma chave (src idêntico + \"cache\")",
+    "GUI reset global \"Voltar à sugestão ClickIT\" limpa todos os ajustes manuais e re-renderiza",
+    "GUI revisão marca GENERATED → REVIEWED com data, sem salto para Exportado",
+    "GUI originais byte-identical após render, ajustes e revisão",
+    "GUI fechar/reabrir mantém status Revisado e prévia servida do cache",
+    "GUI original byte-idêntico após reabertura"
+  ],
+  "screenshots": [
+    "docs/evidence/editing-preview-ui/preview-rendered.png",
+    "docs/evidence/editing-preview-ui/preview-compare.png",
+    "docs/evidence/editing-preview-ui/preview-reset.png",
+    "docs/evidence/editing-preview-ui/preview-reviewed.png",
+    "docs/evidence/editing-preview-ui/preview-reopened.png"
+  ],
+  "errors": [],
+  "status": "PASS"
+}
