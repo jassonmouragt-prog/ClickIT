@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+.shots/
+.server-start.log
+.server.pid
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store

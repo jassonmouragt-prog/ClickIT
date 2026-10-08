@@ -1,5 +1,13 @@
 ﻿# Session progress — 2026-10-06
 
+## Atualização — Fase F Editar (2026-10-08)
+
+- Classificação: **PHASE_F_READY** para o fluxo local de edição e XMP. Implementados escopos/ações em lote, status e filtros por foto, falha persistente com retry, STALE explícito, resumo de exportação e abrir pasta seguro.
+- DNG real em `Imagens Teste/PhotoTraces_Free_RAW_Photos_01_Manhattan_Skyline.dng`: `PASS` em `npm run raw:validate -- --dir "C:\dev\ClickIT\Imagens Teste"`; original e cópia RAW com SHA-256 idêntico `8726ee28e30b3e0157769043d6fc73444338a41c9c247547ee37fdb973515cc1`. EditingPlan REVIEWED → sidecar XMP separado e legível no ExifTool. CR2/CR3/NEF/ARW `NOT_TESTED`; Adobe `ADOBE_RUNTIME_NOT_TESTED`.
+- Benchmarks 10/50/100: zero falha, 252/800/1538 ms. Electron real validou edição/revisão/exportação/reabertura sem console.error/IPC_ERROR. Checks: lint, typecheck, 157/157 testes, build PASS.
+- Evidências: `docs/evidence/raw-validation-2026-10-08T10-01-58-771Z.json`, `docs/evidence/editing-xmp/validation-result.json`, `docs/evidence/editing-phase-f-performance.json`.
+- Trial de 20 minutos e licenciamento temporário não foram iniciados.
+
 ## Completed
 
 - Added RAW, photo benchmark and read-only grouping audit commands.
@@ -344,3 +352,130 @@ Pendente / criterio BRANDING_*:
   alterações das Fases C/D; lint dos arquivos alterados PASS.
 - Commit limitado ao código, testes, documentação e evidências C/D;
   sem ferramentas locais, temporários, caches ou segredos. Fase E não iniciada.
+
+## Fase E do módulo Editar - 2026-10-07 - PHASE_E_READY
+
+- Exportação XMP sidecar NÃO destrutiva de `EditingPlan` em estado `REVIEWED`:
+  original (RAW/JPEG) permanece 100% inalterado (validado por SHA-256 antes e depois).
+- Whitelist de 13 parâmetros em `src/editing/xmp-map.ts` com conversões explícitas
+  e documentadas (exposição limitada a ±0.75 EV, vinheta com sinal invertido, nitidez 0..150).
+  `temperaturePreference` e `tintPreference` marcados como `UNSUPPORTED_XMP`.
+- Serialização UTF-8 e parser rigoroso em `src/editing/xmp.ts` com namespaces `x`, `rdf`,
+  `crs` e proveniência `clickit:`.
+- Exportador em 2 etapas (`prepare` + `export`) em `src/editing/xmp-export.ts` com suporte
+  a políticas `BACKUP_AND_REPLACE` (`IMG_1234.xmp.bak-<timestamp>-<uuid>`), `REPLACE` e `CANCEL`,
+  resolução segura de caminhos (`sidecarPath`), prevenção de path traversal/symlinks, detecção
+  de colisões de basename (`IMG_001.CR3` + `IMG_001.JPG`) e gravação atômica `.partial` com rollback.
+- Store e IPC: `completeXmpExport` avança para `EXPORTED`, grava `xmpPath`, `xmpFingerprint` e
+  `exportedAt`. Alterar `manualOverrides` invalida o status `REVIEWED`/`EXPORTED` de volta para `GENERATED`.
+  2 novos IPCs (19 no total, todos protegidos por licença).
+- UI: componente `EditingXmpExport` com modal de confirmação, parâmetros suportados/não suportados,
+  suporte a exportação por foto ou lote em `EditingWorkspace.tsx` e `styles.css`.
+- Testes: `tests/editing-xmp.test.ts` com 15 casos PASS. Suite total **153/153 PASS**;
+  typecheck e build PASS (sequenciais); lint dos arquivos alterados PASS.
+- Validação GUI Electron real (`scripts/validate-editing-xmp-ui.mjs`): **PASS**, 5 checks, 0 erros
+  console/IPC; evidências e screenshots em `docs/evidence/editing-xmp/` com confirmação ExifTool
+  independente dos parâmetros CRS.
+- Classificação: **`PHASE_E_READY`**. Estrutura: `XMP_STRUCTURE_VALIDATED`.
+  Ambiente Adobe: `ADOBE_RUNTIME_NOT_TESTED` (nenhuma instalação Adobe detectada no Windows host).
+- docs/EDITING-MODULE.md (seção 24) e docs/VALIDATION.md atualizados.
+- Próxima ação: aguardar autorização para Fase F. Não iniciar automaticamente.
+
+## Trial temporário de 20 minutos - 2026-10-08 - TRIAL_READY_FOR_BETA
+
+- Trial integrado à License API e ao `LicenseManager` existente, sem autenticação paralela:
+  `POST /licenses/trial/start` usa hora do servidor, token Ed25519 `TRIAL` e
+  `trial_activations.deviceIdHash` único. Duração fixa de 1.200.000 ms; primeiro start
+  exige internet e tentativas posteriores retornam `TRIAL_ALREADY_USED`.
+- Main process aceita `TRIAL_ACTIVE` no guard do workspace e bloqueia após expiração,
+  inclusive IPC e protocolo de fotos. Storage protegido guarda token, offset da hora
+  do servidor e última hora observada. Sem graça offline de 30 dias; sleep, restart e
+  rollback evidente do relógio local foram validados.
+- UI oferece "Experimentar por 20 minutos", contador discreto e aviso nos últimos
+  cinco minutos; após expiração mostra ativação comercial. Projetos permanecem no
+  storage e licença paga substitui o trial sem reinstalar. CLI `npm run license:trials`
+  consulta hash parcial e status administrativo.
+- Suite **162/162 PASS**, `npm run lint`, `npm run typecheck`, `npm run build`,
+  `npm run license:build` e `npm run package:win` PASS. Portable e NSIS gerados e
+  inspecionados; payload contém trial e não contém private key. Bypass DEV e relógio
+  de teste são indisponíveis em app empacotado.
+- GUI Electron real + API local + SQLite: PASS em ativação, countdown, restart,
+  expiração controlada, tentativa negada após apagar storage e conversão paga com
+  projeto preservado; zero `console.error`/`IPC_ERROR`. Evidências em
+  `docs/evidence/trial/validation-result.json` e `package-verification.json`.
+- Smoke test no payload empacotado: PASS; guard ativo mesmo com bypass DEV ligado,
+  trial oferecido e relógio de teste futuro ignorado (`packaged-smoke.json`).
+- Sem pagamento, webhook ou reset de trial na UI. Classificação:
+  **TRIAL_READY_FOR_BETA**.
+
+## Landing comercial ClickIT - 2026-10-08 - LANDING_CONTENT_READY
+
+- Seções completas na ordem do spec em `landing/src/app/page.tsx`: Hero, dor, como
+  funciona, picks, recursos, revisão humana, processamento local, escala, editar,
+  trial, comparação, provas, formatos RAW, público, oferta, FAQ, CTA final, rodapé.
+- `LicensingSection` removida; `Trial.tsx` (âncora `#trial`) e `RawSupport.tsx`
+  (`#formatos`) adicionadas. Todos os `NAV_LINKS`/CTAs apontam para âncoras que
+  existem; nenhum `#beta` restante (`GradientButton` passou a usar `/checkout`).
+- Config comercial única em `src/config/product.ts` (preço placeholder `R$ XXX`,
+  envs `NEXT_PUBLIC_PRODUCT_*`); `src/lib/checkout.ts` com `startCheckout()` e
+  rota `/checkout` preparada, sem chamar a InfinitePay sem config real.
+- SEO: `layout.tsx` com descrição nova, `SoftwareApplication.offers` ligado ao
+  preço configurável; páginas `/privacidade` e `/termos` criadas para os links do
+  rodapé.
+- Qualidade: `console.log` removidos de `anim.ts` e `ClickITPicks.tsx`; mojibake
+  corrigido em `lib/photos.ts`; migração `<img>` -> `next/image` (4 usos) e novo
+  componente `ui/AnimatedHeading.tsx` (usado em `FinalCta`).
+- ESLint instalado (`eslint`, `@eslint/js`, `typescript-eslint`) com
+  `eslint.config.mjs` e script `npm run lint`; `next-env.d.ts` ignorado.
+- Overflow horizontal corrigido no mobile: telas com `grid gap-*` + `lg:grid-cols`
+  ganharam `grid-cols-1` (`minmax(0,1fr)`) em RawSupport, DetectionFeatures, Offer,
+  Trial, EditingPreview, HumanReview, LocalProcessing e CheckoutPanel. ScrollWidth
+  = viewport em 390/834/1440/1920.
+- Validação sequencial PASS: `npm run lint`, `npm run typecheck`, `npm run build`
+  (5 rotas estáticas). Smoke com Puppeteer em 4 viewports: zero `console.error`,
+  zero overflow real, âncoras resolvidas, `prefers-reduced-motion: reduce` deixa
+  nenhum conteúdo oculto.
+- Pendente: screenshots `.shots/` apenas inspecionados por métricas (agente não
+  lê imagem); `AVALIAÇÃO VISUAL HUMANA` continua necessária. Aviso do `next build`
+  sobre plugin ESLint do Next é informativo (`eslint-config-next` não instalado).
+- Landing inteira ainda **não commitada**.
+
+### Rodada final de correções (2026-10-08, antes do commit)
+
+- **Bug de renderização (editar.png / faq.png sem CSS) - causa real provada**:
+  um `next start` de um build anterior ainda segurava a porta 3000 (o novo start
+  devolveu `EADDRINUSE`) e um `next build` posterior apagou `.next/static`.
+  Reproduzido em laboratório: com `.next/static` ausente, `next start` responde
+  **400** em `/_next/static/*` e **200** no HTML -> a página navega sem stylesheet,
+  HTML cru com fundo branco. Com o diretório presente, asset inexistente devolve
+  **404** (confirmado), logo o 400 só ocorre com a raiz estática removida.
+  `tools/shoot.mjs` agora aborta com exit 1 se qualquer `/_next/` devolver >=400,
+  se `document.styleSheets` estiver vazio ou se o `background` do body for branco.
+- **Escala 989 -> 1.000**: era captura no meio da tween do contador (1,5 s +
+  stagger 0,25 s). Baseline dos contadores é lida antes de qualquer scroll e o
+  script só dispara o screenshot quando o texto volta exatamente ao baseline;
+  caso contrário falha. Verificado: assenta em `100 | 500 | 1.000`.
+- **CTAs padronizados**: Navbar `Testar grátis` + `Comprar ClickIT` (inalterada);
+  Hero mantém `Testar grátis por 20 minutos` + `Ver como funciona`; Trial trocou
+  `Testar ClickIT por 20 minutos` -> `Testar grátis por 20 minutos` e
+  `Ver a licença` -> `Comprar ClickIT`. Nenhuma ocorrência de
+  `Começar com a ClickIT` ou `Quero testar a ClickIT` no código.
+- **Como funciona (desktop)**: pin de `end: '+=110%'` para `'+=70%'`, espaçamentos
+  internos reduzidos (`mt-14`->`mt-12`, `mt-16/md:mt-20`->`mt-10/md:mt-12`,
+  `py-8/md:py-10`->`py-7/md:py-8`, gaps do timeline `gap-7/md:gap-9`->`gap-5/md:gap-6`).
+  Altura total da página 16.508 -> 16.085 px. Storytelling e pin mantidos.
+- **Comparação (antes)**: `text-fog`->`text-mist` em bullets e sublabel,
+  badge `text-fog`->`text-mist` + borda `hairline-strong`, ponto `white/20`->`white/40`.
+  Continua abaixo do lado `Com a ClickIT` (`text-cloud` + font-medium).
+- **Editar**: copy espelha o estado real (perfil, questionário, EditingPlan,
+  ajustes por foto, preview não destrutivo, Before/After, overrides, revisão,
+  operações em lote, exportação XMP); fluxo `Perfil -> Plano -> Preview -> Ajustes -> XMP`;
+  nota "Compatibilidade Adobe em validação de runtime ... não prometemos aplicação
+  automática no Lightroom". Nenhuma menção a "em desenvolvimento"/"Futuro XMP".
+- **Consistência**: 128 px de padding vertical em Dor/Como/Comparação/Editar/RAW/FAQ
+  (Hero 144 px por desenho) e container `max-w-[1240px] px-5 md:px-8` em todas.
+- **FAQ desktop**: renderiza, itens visíveis (opacity 1), `<details>` abre
+  (altura 1084 -> 1108 px). Mobile mantido.
+- Validação final sequencial PASS: `typecheck`, `lint`, `build`. Smoke 390/834/1440/1920:
+  `stylesheetCount=1`, `bodyBackground=rgb(7,10,16)`, `scrollWidth == viewport`,
+  zero `console.error`. Screenshots finais gerados em `.shots/` para revisão humana.
