@@ -513,6 +513,44 @@ Pendente / criterio BRANDING_*:
 - **Pendente**: e-mail (fora desta etapa), deploy, pagamento real (exige
   autorização), commit desta fase (commitado em `c724ef3`).
 
+## 2026-10-08 — Fechamento: License API pública + pedidos Postgres (fim da fase 1 comercio)
+
+**STATUS: COMMERCE_LICENSE_PIPELINE_READY. Nenhum pagamento real; instalador não hospedado.**
+
+- **License API em produção**: projeto Vercel `clickit-license-api`
+  (org `jason-3c4d`), functions em `api/**` na raiz do repo, Neon Postgres
+  (`neon-cordovan-diamond`). URL pública: `https://clickit-license-api.vercel.app`;
+  `/health` → `200 {"ok":true,"database":"ok"}`.
+- **Fix de build Vercel**: installCommand via project settings
+  (`npm install --omit=dev --ignore-scripts --no-audit --no-fund`),
+  postinstall garantir (`scripts/apply-nsis-patch.mjs` sai 0 em Vercel/CI),
+  `tsconfig` com `module: preserve` + `rewriteRelativeImportExtensions`
+  (emit `.ts→.js` no bundle Node; fonte e `node --test` continuam `.ts`),
+  adapter Vercel que lê corpo (`readBody`), remove prefixo `/api` e
+  serializa. `vercel.json` (raiz): `framework: null`, `buildCommand: ""`,
+  `rewrites`: `/health`, `/licenses/*`, `/admin/*` → `/api/*`.
+- **Validação produção (curl)**: create 201 + idempotência `already:true`,
+  activate/deactivate/validate com token Ed25519 real, `DEVICE_LIMIT` no 3°
+  device, trial 201 + `TRIAL_ALREADY_USED`, admin sem Bearer 401, revoke OK.
+  Dados de teste revogados; logs de debug removidos; redeploy final OK.
+- **Landing em produção com pedidos Postgres**: Neon conectado ao projeto
+  `clickit` (envs `DATABASE_URL` e derivadas). Envs setadas (secrets):
+  `LICENSE_API_URL`, `LICENSE_ADMIN_KEY`, `INFINITEPAY_HANDLE`. PENDENTES:
+  `NEXT_PUBLIC_DOWNLOAD_URL` e `NEXT_PUBLIC_SUPPORT_URL` (decisão:
+  não setar — sem hosting de instalador; fallback `/#faq`).
+- **`POST /api/checkout` validado em produção**: 201 + `checkoutUrl` real
+  (link InfinitePay) e pedido persistido no Neon: `CLICKIT-ORDER-B2CE31D2301B9074AB`,
+  status `PENDING`, cliente Ana Silva, 34700 centavos. Webhook público
+  responde 200/400 conforme docs (corpo inválido → `INVALID_EVENT`).
+- **Comportamento `node:sqlite`**: dev local usa SQLite; produção (Vercel)
+  usa `pg`/Neon via `DATABASE_URL` quando presente.
+- **Docs atualizados**: `docs/COMMERCE.md` (§10 envs resolvidas, nova §12
+  License API), `docs/LICENSING.md`. Arquivos temporários com `DATABASE_URL`
+  deletados (nenhum segredo persistido).
+- **Restam**: commit/push desta fase (`feat(licensing): deploy Neon-backed
+  serverless license API`), teste de pagamento real (autorização explícita) e
+  hosting do instalador.
+
 ## 2026-10-08 — Publicação na Vercel (deploy de produção)
 
 **DEPLOY_STATUS: PASS** — publicado e validado publicamente.

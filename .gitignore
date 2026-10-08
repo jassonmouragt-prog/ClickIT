@@ -9,3 +9,7 @@ public/wasm/
 *.log
 licensing/dev-keypair.json
 licensing/dist/
+.vercel/
+
+.vercel
+.env*

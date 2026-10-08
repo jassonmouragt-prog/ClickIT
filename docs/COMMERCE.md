@@ -229,10 +229,16 @@ Licenciamento (raiz): `node --test tests/licensing-*.test.ts` → 31 PASS.
   - `NEXT_PUBLIC_SITE_URL=https://clickit-pearl.vercel.app`
   - `INFINITEPAY_WEBHOOK_URL=https://clickit-pearl.vercel.app/api/webhooks/infinitepay`
   - `INFINITEPAY_REDIRECT_URL=https://clickit-pearl.vercel.app/pagamento`
+  - `INFINITEPAY_HANDLE` (InfiniteTag; secret, fornecida pelo usuário)
+  - `LICENSE_API_URL=https://clickit-license-api.vercel.app` (secret)
+  - `LICENSE_ADMIN_KEY` (secret; Bearer da License API)
+  - **Neon Postgres** (integration `neon-cordovan-diamond`, Production):
+    `DATABASE_URL`, `POSTGRES_URL`, `PGHOST`, `PGUSER`, `PGPASSWORD`, etc.
+    `OrdersStore` **usa Postgres em produção** (variante `pg` em `db.ts`);
+    SQLite fica restrito ao dev (sem `DATABASE_URL`).
 - **Env vars PENDENTES** (não inventadas; não quebram o deploy):
-  - `INFINITEPAY_HANDLE` (InfiniteTag da conta)
-  - `LICENSE_API_URL` + `LICENSE_ADMIN_KEY` (License API pública)
-  - `NEXT_PUBLIC_DOWNLOAD_URL` (instalador hospedado)
+  - `NEXT_PUBLIC_DOWNLOAD_URL` (instalador hospedado — sem hosting, o botão
+    "Baixar ClickIT" na página de sucesso fica indisponível)
   - `NEXT_PUBLIC_SUPPORT_URL` (fallback `/#faq` já usado pelo site)
 - **Problema crítico descoberto no serverless**: o filesystem do runtime
   Vercel é somente leitura (exceto `/tmp`), então **o SQLite de pedidos
@@ -294,10 +300,57 @@ Recomendação:
 
 ### 11.3 Pendências para abrir a venda (checklist)
 
-1. Neon Postgres para pedidos da landing (migrar `OrdersStore` ou Vercel KV).
-2. License API pública (opção 11.1.A ou 11.1.B) + `LICENSE_API_URL` /
-   `LICENSE_ADMIN_KEY` na Vercel.
+1. Neon Postgres para pedidos da landing — **FEITO** (Postgres em produção, item 10).
+2. License API pública (opção 11.1.A) + `LICENSE_API_URL` / `LICENSE_ADMIN_KEY`
+   na Vercel — **FEITO** (ver seção 12).
 3. `INFINITEPAY_HANDLE` + registrar `INFINITEPAY_REDIRECT_URL` e
-   `INFINITEPAY_WEBHOOK_URL` na conta InfinitePay.
-4. Instalador em R2/B2 → `NEXT_PUBLIC_DOWNLOAD_URL`.
+   `INFINITEPAY_WEBHOOK_URL` na conta InfinitePay — **FEITO** (handle setado;
+   confirmar o cadastro das URLs no painel InfinitePay).
+4. Instalador em R2/B2 → `NEXT_PUBLIC_DOWNLOAD_URL` — pendente.
 5. Só então: teste real de pagamento (autorização explícita).
+
+## 12. License API pública (Vercel + Neon, 2026-10-08)
+
+- **URL pública (Production): `https://clickit-license-api.vercel.app`**.
+  `GET /health` → `200 {"ok":true,"database":"ok"}`.
+- **Projeto Vercel**: `clickit-license-api`, deploy a partir da **raiz** do
+  repo (functions em `api/**`). Settings: Framework "Other",
+  Install Command `npm install --omit=dev --ignore-scripts --no-audit --no-fund`,
+  Build Command vazio. `vercel.json` (raiz): `framework: null` (valores
+  `"other"`/`""` são rejeitados no validate), `buildCommand: ""` e `rewrites`
+  de paths limpos → `/api/*`:
+  - `/health` → `/api/health`
+  - `/licenses/*` → `/api/licenses/*`
+  - `/admin/*` → `/api/admin/*`
+- **Envs (secrets)**: `DATABASE_URL` (Neon `neon-cordovan-diamond`,
+  Postgres), `LICENSE_ADMIN_KEY` (Bearer das rotas `/admin/*`),
+  `LICENSE_PRIVATE_KEY` (PEM Ed25519 de `licensing/dev-keypair.json`),
+  `LICENSE_PUBLIC_KEY` (de `src/licensing/publicKey.ts`).
+- **Postinstall serverless**: `scripts/apply-nsis-patch.mjs` detecta Vercel/CI
+  e sai `0` sem aplicar patch (o deps é instalado com `--ignore-scripts`,
+  então o postinstall nem roda no build; o guard é rede de segurança).
+- **Emite `.ts`→`.js`**: `tsconfig.json` usa `"module": "preserve"` +
+  `"rewriteRelativeImportExtensions": true`, então os imports relativos
+  terminam em `.js` no bundle Node (runtime ESM), enquanto a fonte e o
+  `node --test` (type stripping) continuam usando `.ts`.
+- **Adapter Vercel** (`api/_shared.ts` + handlers): cada função é uma
+  `vercelHandler(fn)` que: lê o corpo (`readBody`), remove prefixo `/api`
+  quando presente (via path-slice), despacha para o handler e serializa. O
+  pool Postgres é cacheado por lambda/warm. `route`/`method` vêm da
+  invocação, então `req.url` é o path da rewrite (destino `/api/...`).
+- **Validação pública em produção (2026-10-08)** com `curl`:
+  - `POST /admin/licenses` com Bearer → 201 + licença `CLICKIT-*`; repetido
+    (`byOrderNsu`) → 200 `{"already":true}` (idempotência).
+  - `activate`/`deactivate`/`validate` com token Ed25519 real → ok;
+    `DEVICE_LIMIT` com 3° device (maxDevices 2).
+  - `trial/start` → 201 (token), 2ª tentativa → `TRIAL_ALREADY_USED`.
+  - `/admin/*` sem Bearer → 401; revoke → status `REVOKED`.
+  - Dado de teste revogado/apagado ao final; NÃO há licença real emitida por
+    este fluxo (é emissão administrativa legítima via Clerk app).
+- **Landing já aponta para a License API pública**: `POST /api/checkout`
+  validado em produção → 201 + `checkoutUrl` real (link de pagamento), e o
+  pedido persiste no Neon (`orders.order_nsu`, status `PENDING`, valor 34700).
+  Webhook público responde 200/400 conforme docs (corpo inválido →
+  `INVALID_EVENT`).
+- **Pendências**: `NEXT_PUBLIC_DOWNLOAD_URL` (hosting do instalador),
+  pagamento real (autorização explícita) e commit/push desta fase.

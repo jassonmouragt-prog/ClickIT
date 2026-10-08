@@ -7,7 +7,7 @@ import {
   PRODUCT_PRICE_CENTS,
   UPDATES_INCLUDED,
 } from '../src/config/commerce.ts';
-import { ordersDb, type OrdersStore } from '../src/lib/commerce/db.ts';
+import { sqliteOrdersDb, type OrdersStore } from '../src/lib/commerce/db.ts';
 import type { CommerceEnv } from '../src/lib/commerce/env.ts';
 import type { HttpJson, HttpResponse } from '../src/lib/commerce/infinitepay.ts';
 import {
@@ -84,8 +84,8 @@ function harness(options: HarnessOptions = {}): Harness {
   return state;
 }
 
-function newStore(): OrdersStore {
-  return ordersDb(':memory:');
+function newStore(): Promise<OrdersStore> {
+  return sqliteOrdersDb(':memory:');
 }
 
 function webhookBody(orderNsu: string, transactionNsu: string): Record<string, unknown> {
@@ -111,7 +111,7 @@ test('oferta: 34700 centavos e campos comerciais centralizados', () => {
 });
 
 test('cliente não consegue alterar preço: o backend define 34700', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const { order, checkoutUrl } = await startOrder(
@@ -128,7 +128,7 @@ test('cliente não consegue alterar preço: o backend define 34700', async () =>
 });
 
 test('order_nsu é único e não sequencial', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const seen = new Set<string>();
@@ -142,7 +142,7 @@ test('order_nsu é único e não sequencial', async () => {
 });
 
 test('payload /links leva handle, itens, redirect com token, webhook e customer', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
@@ -162,34 +162,34 @@ test('payload /links leva handle, itens, redirect com token, webhook e customer'
 });
 
 test('checkout não configurado recusa antes de criar pedido', async () => {
-  const store = newStore();
+  const store = await newStore();
   const deps = makeDeps({ env: { ...env, handle: '' }, store });
   await assert.rejects(() => startOrder(CUSTOMER, deps), (error: unknown) => {
     assert.ok(error instanceof CommerceError);
     assert.equal(error.code, 'NOT_CONFIGURED');
     return true;
   });
-  assert.equal(store.list().length, 0);
+  assert.equal((await store.list()).length, 0);
 });
 
 test('redirect não aprova sozinho: /pagamento vê PENDING sem licença', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
-  const status = publicStatus(store.byOrderNsu(order.orderNsu)!, `${env.siteUrl}/download`, deps);
+  const status = await publicStatus((await store.byOrderNsu(order.orderNsu))!, `${env.siteUrl}/download`, deps);
   assert.equal(status.status, 'PENDING');
   assert.equal(status.licenseKey, undefined);
   assert.equal(h.checks.length, 0);
 });
 
 test('redirect com payment_check negativo mantém o pedido PENDING', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness({ paid: false, success: false });
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
   const reconciled = await reconcileFromRedirect(
-    store.byOrderNsu(order.orderNsu)!,
+    (await store.byOrderNsu(order.orderNsu))!,
     { orderNsu: order.orderNsu, transactionNsu: 'TX-1', slug: 'slug-1' },
     deps,
   );
@@ -199,7 +199,7 @@ test('redirect com payment_check negativo mantém o pedido PENDING', async () =>
 });
 
 test('webhook aprovado gera licença com os metadados comerciais', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
@@ -207,7 +207,7 @@ test('webhook aprovado gera licença com os metadados comerciais', async () => {
   assert.equal(result.status, 200);
   assert.deepEqual(result.body, { ok: true });
 
-  const updated = store.byOrderNsu(order.orderNsu)!;
+  const updated = (await store.byOrderNsu(order.orderNsu))!;
   assert.equal(updated.status, 'LICENSE_CREATED');
   assert.match(updated.licenseKey ?? '', /^CLICKIT-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}$/);
   assert.equal(updated.transactionNsu, 'TX-1');
@@ -228,7 +228,7 @@ test('webhook aprovado gera licença com os metadados comerciais', async () => {
 });
 
 test('webhook duplicado não gera segunda licença', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
@@ -238,11 +238,11 @@ test('webhook duplicado não gera segunda licença', async () => {
   assert.equal(first.status, 200);
   assert.equal(second.status, 200);
   assert.equal(h.licenses.length, 1);
-  assert.equal(store.byOrderNsu(order.orderNsu)!.status, 'LICENSE_CREATED');
+  assert.equal((await store.byOrderNsu(order.orderNsu))!.status, 'LICENSE_CREATED');
 });
 
 test('transaction_nsu já usado em outro pedido é recusado', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const a = await startOrder(CUSTOMER, deps);
@@ -251,12 +251,12 @@ test('transaction_nsu já usado em outro pedido é recusado', async () => {
   const result = await handleWebhook(webhookBody(b.order.orderNsu, 'TX-DUP'), deps);
   assert.equal(result.status, 400);
   assert.equal(result.body.reason, 'TRANSACTION_CONFLICT');
-  assert.equal(store.byOrderNsu(b.order.orderNsu)!.status, 'PENDING');
+  assert.equal((await store.byOrderNsu(b.order.orderNsu))!.status, 'PENDING');
   assert.equal(h.licenses.length, 1);
 });
 
 test('webhook para pedido inexistente não cria nada e não gera retry infinito', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const result = await handleWebhook(webhookBody('CLICKIT-ORDER-000000000000000000', 'TX-X'), deps);
@@ -266,7 +266,7 @@ test('webhook para pedido inexistente não cria nada e não gera retry infinito'
 });
 
 test('webhook sem order_nsu/transaction_nsu é 400', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const result = await handleWebhook({ invoice_slug: 'slug-1' }, deps);
@@ -275,31 +275,31 @@ test('webhook sem order_nsu/transaction_nsu é 400', async () => {
 });
 
 test('payment_check paid=false não gera licença', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness({ paid: false, success: true });
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
   const result = await handleWebhook(webhookBody(order.orderNsu, 'TX-2'), deps);
   assert.equal(result.status, 400);
   assert.equal(result.body.reason, 'PAYMENT_NOT_CONFIRMED');
-  assert.equal(store.byOrderNsu(order.orderNsu)!.status, 'PENDING');
+  assert.equal((await store.byOrderNsu(order.orderNsu))!.status, 'PENDING');
   assert.equal(h.licenses.length, 0);
 });
 
 test('valor divergente não gera licença', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness({ amount: 1000, paidAmount: 1000 });
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
   const result = await handleWebhook(webhookBody(order.orderNsu, 'TX-3'), deps);
   assert.equal(result.status, 400);
   assert.equal(result.body.reason, 'AMOUNT_MISMATCH');
-  assert.equal(store.byOrderNsu(order.orderNsu)!.status, 'PENDING');
+  assert.equal((await store.byOrderNsu(order.orderNsu))!.status, 'PENDING');
   assert.equal(h.licenses.length, 0);
 });
 
 test('License API indisponível: pedido fica PAID e o retry conclui', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness({ licenseFailures: 1 });
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
@@ -308,49 +308,49 @@ test('License API indisponível: pedido fica PAID e o retry conclui', async () =
   const first = await handleWebhook(body, deps);
   assert.equal(first.status, 400);
   assert.equal(first.body.reason, 'LICENSE_API_UNAVAILABLE');
-  const mid = store.byOrderNsu(order.orderNsu)!;
+  const mid = (await store.byOrderNsu(order.orderNsu))!;
   assert.equal(mid.status, 'PAID');
   assert.equal(mid.licenseKey, null);
 
   const second = await handleWebhook(body, deps);
   assert.equal(second.status, 200);
-  const done = store.byOrderNsu(order.orderNsu)!;
+  const done = (await store.byOrderNsu(order.orderNsu))!;
   assert.equal(done.status, 'LICENSE_CREATED');
   assert.match(done.licenseKey ?? '', /^CLICKIT-/);
   assert.equal(h.licenses.length, 2);
 });
 
 test('página de status: PENDING → LICENSE_READY → COMPLETED', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
   const download = 'https://download.test/ClickIT-Setup.exe';
 
-  const before = publicStatus(store.byOrderNsu(order.orderNsu)!, download, deps);
+  const before = await publicStatus((await store.byOrderNsu(order.orderNsu))!, download, deps);
   assert.equal(before.status, 'PENDING');
   assert.equal(before.licenseKey, undefined);
 
   await handleWebhook(webhookBody(order.orderNsu, 'TX-5'), deps);
-  const ready = publicStatus(store.byOrderNsu(order.orderNsu)!, download, deps);
+  const ready = await publicStatus((await store.byOrderNsu(order.orderNsu))!, download, deps);
   assert.equal(ready.status, 'LICENSE_CREATED');
   assert.equal(ready.licenseKey, 'CLICKIT-ABCD-1234-5678');
   assert.equal(ready.downloadUrl, download);
   assert.equal(ready.license.maxDevices, 2);
   assert.equal(ready.license.plan, 'BETA_LIFETIME');
 
-  const after = publicStatus(store.byOrderNsu(order.orderNsu)!, download, deps);
+  const after = await publicStatus((await store.byOrderNsu(order.orderNsu))!, download, deps);
   assert.equal(after.status, 'COMPLETED');
   assert.equal(after.licenseKey, 'CLICKIT-ABCD-1234-5678');
 });
 
 test('reconciliação via redirect dispara payment_check e conclui', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
   const result = await reconcileFromRedirect(
-    store.byOrderNsu(order.orderNsu)!,
+    (await store.byOrderNsu(order.orderNsu))!,
     { orderNsu: order.orderNsu, transactionNsu: 'TX-6', slug: 'slug-1', receiptUrl: 'https://recibo.test/6', captureMethod: 'credit_card' },
     deps,
   );
@@ -363,12 +363,12 @@ test('reconciliação via redirect dispara payment_check e conclui', async () =>
 });
 
 test('reconciliação com order_nsu divergente é ignorada', async () => {
-  const store = newStore();
+  const store = await newStore();
   const h = harness();
   const deps = makeDeps({ env, store, http: h.http });
   const { order } = await startOrder(CUSTOMER, deps);
   const result = await reconcileFromRedirect(
-    store.byOrderNsu(order.orderNsu)!,
+    (await store.byOrderNsu(order.orderNsu))!,
     { orderNsu: 'CLICKIT-ORDER-FFFFFFFFFFFFFFFFFFFF', transactionNsu: 'TX-7', slug: 'slug-1' },
     deps,
   );

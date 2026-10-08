@@ -1,5 +1,11 @@
 export type LicenseStatus = 'ACTIVE' | 'REVOKED';
 
+/** Detecta violação de constraint única (Postgres 23505 / SQLite 2067). */
+export function isUniqueViolation(error: unknown): boolean {
+  const e = error as { code?: string; errcode?: number };
+  return e?.code === '23505' || e?.errcode === 2067 || e?.errcode === 2068;
+}
+
 export interface LicenseRow {
   id: string;
   keyHash: string;
@@ -70,6 +76,10 @@ export interface LicenseDb {
   create(input: CreateLicenseInput): Promise<LicenseRow>;
   byKeyHash(hash: string): Promise<LicenseRow | null>;
   byId(id: string): Promise<LicenseRow | null>;
+  /** Licença criada a partir de um order_nsu (idempotência de pedido). */
+  byOrderNsu(orderNsu: string): Promise<LicenseRow | null>;
+  /** SELECT 1 no banco; false se o banco estiver inacessível. */
+  ping(): Promise<boolean>;
   list(): Promise<LicenseRow[]>;
   setStatus(id: string, status: LicenseStatus, at: string): Promise<void>;
   activation(licenseId: string, deviceId: string): Promise<ActivationRow | null>;

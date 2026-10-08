@@ -1,0 +1,15 @@
+# Upload mínimo para o projeto Vercel da License API (raiz do repo).
+landing/
+docs/
+release/
+public/
+resources/
+tests/
+.test-tmp/
+*.log
+vite.config.ts
+# Nunca enviar a chave privada nem dados locais para o bundle.
+licensing/dev-keypair.json
+licensing/license.sqlite
+licensing/dist/
+licensing/build.mjs

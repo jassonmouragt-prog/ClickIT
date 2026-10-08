@@ -17,7 +17,7 @@ import { CommerceError, type OrderRecord, type WebhookEvent } from './types.ts';
 
 export interface OrderDeps {
   env: CommerceEnv;
-  store: OrdersStore;
+  store: OrdersStore | Promise<OrdersStore>;
   http?: HttpJson;
   createLicense?: typeof createCommercialLicense;
 }
@@ -31,9 +31,13 @@ export function makeDeps(overrides: Partial<OrderDeps> = {}): OrderDeps {
   };
 }
 
+/** Resolve o store (default é assíncrono: precisa escolher engine). */
+export async function resolveStore(deps: OrderDeps): Promise<OrdersStore> {
+  return deps.store instanceof Promise ? deps.store : Promise.resolve(deps.store);
+}
+
 /** Trava por pedido dentro do processo: webhook + polling não intercalam. */
 const inflight = new Map<string, Promise<OrderRecord>>();
-
 function serialized(orderNsu: string, task: () => Promise<OrderRecord>): Promise<OrderRecord> {
   const previous = inflight.get(orderNsu) ?? Promise.resolve();
   const next = previous.catch(() => undefined).then(task);
@@ -62,7 +66,8 @@ export async function startOrder(
     throw new CommerceError('NOT_CONFIGURED', 'Checkout não configurado.');
   }
   const customer = validateCustomer(input);
-  const order = deps.store.insert({
+  const store = await resolveStore(deps);
+  const order = await store.insert({
     id: randomUUID(),
     orderNsu: generateOrderNsu(),
     publicToken: generatePublicToken(),
@@ -88,12 +93,12 @@ export async function startOrder(
       description: PRODUCT_DESCRIPTION,
       http: deps.http,
     });
-    const updated = deps.store.attachCheckout(order.orderNsu, { checkoutUrl: link.checkoutUrl, slug: link.slug });
+    const updated = await store.attachCheckout(order.orderNsu, { checkoutUrl: link.checkoutUrl, slug: link.slug });
     logEvent('CHECKOUT_CREATED', { orderNsu: order.orderNsu, slug: link.slug });
     return { order: updated, checkoutUrl: link.checkoutUrl };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    deps.store.setState(order.orderNsu, 'FAILED', message.slice(0, 300));
+    await store.setState(order.orderNsu, 'FAILED', message.slice(0, 300));
     logEvent('CHECKOUT_FAILED', { orderNsu: order.orderNsu, reason: message.slice(0, 200) });
     throw error;
   }
@@ -137,7 +142,8 @@ export interface ConfirmInput {
  */
 export async function confirmPayment(input: ConfirmInput, deps: OrderDeps): Promise<OrderRecord> {
   return serialized(input.orderNsu, async () => {
-    const order = deps.store.byOrderNsu(input.orderNsu);
+    const store = await resolveStore(deps);
+    const order = await store.byOrderNsu(input.orderNsu);
     if (!order) throw new CommerceError('ORDER_NOT_FOUND', 'Pedido não encontrado.');
     if (order.status === 'LICENSE_CREATED' || order.status === 'COMPLETED') return order;
 
@@ -163,10 +169,10 @@ export async function confirmPayment(input: ConfirmInput, deps: OrderDeps): Prom
     }
     logEvent('PAYMENT_VERIFIED', { orderNsu: input.orderNsu, installments: check.installments });
 
-    const current = deps.store.byOrderNsu(input.orderNsu);
+    const current = await store.byOrderNsu(input.orderNsu);
     if (current?.status === 'LICENSE_CREATED' || current?.status === 'COMPLETED') return current;
 
-    const claim = deps.store.claimPaid(input.orderNsu, {
+    const claim = await store.claimPaid(input.orderNsu, {
       transactionNsu: input.transactionNsu,
       paidAmount: check.paidAmount ?? check.amount,
       captureMethod: check.captureMethod ?? input.captureMethod ?? null,
@@ -187,12 +193,12 @@ export async function confirmPayment(input: ConfirmInput, deps: OrderDeps): Prom
         orderNsu: claim.order.orderNsu,
         http: deps.http,
       });
-      const attached = deps.store.attachLicense(input.orderNsu, issued);
+      const attached = await store.attachLicense(input.orderNsu, issued);
       logEvent('LICENSE_CREATED', { orderNsu: input.orderNsu, licenseId: issued.licenseId });
       return attached.order;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      deps.store.setState(input.orderNsu, 'PAID', message.slice(0, 300));
+      await store.setState(input.orderNsu, 'PAID', message.slice(0, 300));
       logEvent('LICENSE_FAILED', { orderNsu: input.orderNsu, reason: message.slice(0, 200) });
       throw error;
     }
@@ -212,7 +218,8 @@ export async function handleWebhook(
   }
   logEvent('WEBHOOK_RECEIVED', { orderNsu: event.orderNsu, transactionNsu: event.transactionNsu });
 
-  const order = deps.store.byOrderNsu(event.orderNsu);
+  const store = await resolveStore(deps);
+  const order = await store.byOrderNsu(event.orderNsu);
   if (!order) {
     logEvent('PAYMENT_REJECTED', { orderNsu: event.orderNsu, reason: 'ORDER_NOT_FOUND' });
     return { status: 200, body: { ok: false, reason: 'ORDER_NOT_FOUND' } };
@@ -308,7 +315,8 @@ async function attemptConfirm(
     // "processando" e o polling/webhook tenta de novo. Nunca gera licença.
     const code = error instanceof CommerceError ? error.code : 'UNEXPECTED';
     logEvent('RECONCILE_SKIPPED', { orderNsu: order.orderNsu, reason: code });
-    return deps.store.byOrderNsu(order.orderNsu) ?? order;
+    const store = await resolveStore(deps);
+    return (await store.byOrderNsu(order.orderNsu)) ?? order;
   }
 }
 
@@ -326,10 +334,11 @@ export interface PublicStatus {
 }
 
 /** Payload público do polling — sem dados pessoais. */
-export function publicStatus(order: OrderRecord, downloadUrl: string | null, deps: OrderDeps): PublicStatus {
+export async function publicStatus(order: OrderRecord, downloadUrl: string | null, deps: OrderDeps): Promise<PublicStatus> {
+  const store = await resolveStore(deps);
   const deliverable = (ENTREGABLE as readonly string[]).includes(order.status) && Boolean(order.licenseKey);
   if (deliverable && order.status === 'LICENSE_CREATED') {
-    deps.store.markDelivered(order.orderNsu);
+    await store.markDelivered(order.orderNsu);
     logEvent('ORDER_COMPLETED', { orderNsu: order.orderNsu });
   }
   const ready = deliverable || order.status === 'COMPLETED';

@@ -8,7 +8,7 @@
  * Não imprime credenciais: o serial só aparece em `get`, que é o caminho
  * de recuperação administrativa por e-mail/pedido.
  */
-import { ordersDb } from '../src/lib/commerce/db.ts';
+import { sqliteOrdersDb } from '../src/lib/commerce/db.ts';
 import { readCommerceEnv } from '../src/lib/commerce/env.ts';
 import { confirmPayment, makeDeps } from '../src/lib/commerce/orders.ts';
 import type { OrdersStore } from '../src/lib/commerce/db.ts';
@@ -50,7 +50,7 @@ function detail(order: OrderRecord): void {
 }
 
 async function reconcile(store: OrdersStore, only?: string): Promise<void> {
-  const targets = store.list(200).filter(order => {
+  const targets = (await store.list(200)).filter(order => {
     if (only) return order.orderNsu === only || order.publicToken === only;
     return (order.status === 'PAID' && !order.licenseKey) || order.status === 'PENDING';
   });
@@ -80,17 +80,17 @@ async function reconcile(store: OrdersStore, only?: string): Promise<void> {
 
 async function main(): Promise<void> {
   const [command, argument] = process.argv.slice(2);
-  const store = ordersDb(file);
+  const store = await sqliteOrdersDb(file);
   try {
     if (command === 'list') {
       console.log(header());
-      for (const order of store.list(50)) console.log(line(order));
+      for (const order of await store.list(50)) console.log(line(order));
     } else if (command === 'get') {
       if (!argument) {
         console.error('Uso: orders:get <orderNsu|publicToken>');
         process.exit(1);
       }
-      const order = store.byLocator(argument);
+      const order = await store.byLocator(argument);
       if (!order) {
         console.error('Pedido não encontrado.');
         process.exit(1);
@@ -106,7 +106,7 @@ async function main(): Promise<void> {
       process.exit(argument === undefined && command === undefined ? 0 : 1);
     }
   } finally {
-    store.close();
+    await store.close();
   }
 }
 

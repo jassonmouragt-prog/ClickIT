@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { DOWNLOAD_URL } from '@/config/product';
-import { makeDeps, publicStatus, reconcileFromRedirect, retryFulfilment } from '@/lib/commerce/orders';
+import { makeDeps, publicStatus, reconcileFromRedirect, resolveStore, retryFulfilment } from '@/lib/commerce/orders';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,18 +16,17 @@ export async function GET(
   { params }: { params: Promise<{ token: string }> },
 ): Promise<NextResponse> {
   const { token } = await params;
-  let deps: Awaited<ReturnType<typeof makeDeps>>;
-  try {
-    deps = makeDeps();
-  } catch {
-    return NextResponse.json(
-      { ok: false, status: 'STORE_UNAVAILABLE' },
-      { status: 503, headers: { 'cache-control': 'no-store' } },
-    );
+  const serialize = (body: Record<string, unknown>, status: number) =>
+    NextResponse.json(body, { status, headers: { 'cache-control': 'no-store' } });
+
+  const deps = makeDeps();
+  const store = await resolveStore(deps).catch(() => null);
+  if (!store) {
+    return serialize({ ok: false, status: 'STORE_UNAVAILABLE' }, 503);
   }
-  const order = deps.store.byLocator(token);
+  const order = await store.byLocator(token);
   if (!order) {
-    return NextResponse.json({ ok: false, status: 'NOT_FOUND' }, { status: 404, headers: { 'cache-control': 'no-store' } });
+    return serialize({ ok: false, status: 'NOT_FOUND' }, 404);
   }
 
   const query = new URL(request.url).searchParams;
@@ -54,9 +53,6 @@ export async function GET(
     // Licença ainda indisponível: o polling tenta de novo.
   }
 
-  const fresh = deps.store.byLocator(token) ?? current;
-  return NextResponse.json(
-    { ok: true, ...publicStatus(fresh, DOWNLOAD_URL, deps) },
-    { status: 200, headers: { 'cache-control': 'no-store' } },
-  );
+  const fresh = (await store.byLocator(token)) ?? current;
+  return serialize({ ok: true, ...(await publicStatus(fresh, DOWNLOAD_URL, deps)) }, 200);
 }

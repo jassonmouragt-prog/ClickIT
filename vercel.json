@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm install --omit=dev --ignore-scripts --no-audit --no-fund",
+  "buildCommand": "",
+  "rewrites": [
+    { "source": "/health", "destination": "/api/health" },
+    { "source": "/licenses/activate", "destination": "/api/licenses/activate" },
+    { "source": "/licenses/deactivate", "destination": "/api/licenses/deactivate" },
+    { "source": "/licenses/validate", "destination": "/api/licenses/validate" },
+    { "source": "/licenses/trial/start", "destination": "/api/licenses/trial/start" },
+    { "source": "/admin/licenses", "destination": "/api/admin/licenses" },
+    { "source": "/admin/trials", "destination": "/api/admin/trials" },
+    { "source": "/admin/licenses/:id/revoke", "destination": "/api/admin/licenses/:id/revoke" },
+    { "source": "/admin/licenses/:id/unrevoke", "destination": "/api/admin/licenses/:id/unrevoke" },
+    { "source": "/admin/licenses/:id/activations", "destination": "/api/admin/licenses/:id/activations" }
+  ]
+}

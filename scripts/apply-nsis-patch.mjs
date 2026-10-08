@@ -5,6 +5,12 @@ import path from 'node:path';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const checkOnly = process.argv.includes('--check');
 
+// Skip in serverless / CI environments where app-builder-lib is not installed.
+if (process.env.VERCEL || process.env.CI) {
+  console.log('[nsis-patch] skipped (serverless/CI environment).');
+  process.exit(0);
+}
+
 try {
   const patch = JSON.parse(await readFile(path.join(root, 'patches/app-builder-lib-26.15.3-nsis.json'), 'utf8'));
   for (const [name, expected] of Object.entries(patch.versions)) {

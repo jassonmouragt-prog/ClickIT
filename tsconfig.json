@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2023", "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "module": "ESNext", "moduleResolution": "Bundler", "jsx": "react-jsx",
+    "module": "preserve", "moduleResolution": "Bundler", "jsx": "react-jsx",
     "strict": true, "noUnusedLocals": true, "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true, "noUncheckedIndexedAccess": true,
-    "allowImportingTsExtensions": true, "resolveJsonModule": true,
+    "allowImportingTsExtensions": true, "rewriteRelativeImportExtensions": true, "resolveJsonModule": true,
     "esModuleInterop": true, "skipLibCheck": true, "noEmit": true,
     "types": ["node", "vite/client"]
   },
-  "include": ["src", "licensing", "tests", "vite.config.ts"]
+  "include": ["src", "licensing", "api", "tests", "vite.config.ts"]
 }

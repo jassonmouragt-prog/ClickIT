@@ -5,6 +5,7 @@ const SQL = {
   create: 'INSERT INTO licenses(id,key_hash,customer_name,customer_email,status,plan,max_devices,created_at,expires_at,revoked_at,order_nsu,purchased_version,updates_included,updates_used) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
   byHash: 'SELECT * FROM licenses WHERE key_hash=?',
   byId: 'SELECT * FROM licenses WHERE id=?',
+  byOrderNsu: 'SELECT * FROM licenses WHERE order_nsu=?',
   list: 'SELECT * FROM licenses ORDER BY created_at DESC',
   setStatus: 'UPDATE licenses SET status=?,revoked_at=? WHERE id=?',
   activation: 'SELECT * FROM license_activations WHERE license_id=? AND device_id=?',
@@ -59,7 +60,8 @@ export function sqliteLicenseDb(file: string): LicenseDb {
     status TEXT NOT NULL DEFAULT 'ACTIVE', plan TEXT NOT NULL DEFAULT 'LIFETIME', max_devices INTEGER NOT NULL DEFAULT 2,
     created_at TEXT NOT NULL, expires_at TEXT, revoked_at TEXT,
     order_nsu TEXT, purchased_version TEXT, updates_included INTEGER, updates_used INTEGER
-  ); CREATE TABLE IF NOT EXISTS license_activations (
+  ); CREATE UNIQUE INDEX IF NOT EXISTS idx_licenses_order_nsu ON licenses(order_nsu) WHERE order_nsu IS NOT NULL;
+  CREATE TABLE IF NOT EXISTS license_activations (
     id TEXT PRIMARY KEY, license_id TEXT NOT NULL REFERENCES licenses(id) ON DELETE CASCADE, device_id TEXT NOT NULL,
     device_name TEXT NOT NULL, app_version TEXT NOT NULL, activated_at TEXT NOT NULL, last_seen_at TEXT NOT NULL, revoked_at TEXT,
     UNIQUE(license_id, device_id)
@@ -85,6 +87,8 @@ export function sqliteLicenseDb(file: string): LicenseDb {
     },
     byKeyHash: async hash => { const row = get(SQL.byHash, hash); return row ? licenseRow(row) : null; },
     byId: async id => { const row = get(SQL.byId, id); return row ? licenseRow(row) : null; },
+    byOrderNsu: async orderNsu => { const row = get(SQL.byOrderNsu, orderNsu); return row ? licenseRow(row) : null; },
+    ping: async () => { db.prepare('SELECT 1').get(); return true; },
     list: async () => all(SQL.list).map(licenseRow),
     setStatus: async (id, status, at) => run(SQL.setStatus, status, status === 'REVOKED' ? at : null, id),
     activation: async (licenseId, deviceId) => { const row = get(SQL.activation, licenseId, deviceId); return row ? activationRow(row) : null; },
@@ -116,6 +120,19 @@ type PgRow = Record<string, unknown>;
 export async function postgresLicenseDb(connectionString: string): Promise<LicenseDb> {
   const { Pool } = await import('pg') as { Pool: new (options: { connectionString: string }) => import('pg').Pool };
   const pool = new Pool({ connectionString });
+  await pool.query(`CREATE TABLE IF NOT EXISTS licenses (
+    id uuid PRIMARY KEY, key_hash text NOT NULL UNIQUE, customer_name text NOT NULL, customer_email text NOT NULL,
+    status text NOT NULL DEFAULT 'ACTIVE' CHECK (status IN ('ACTIVE','REVOKED')), plan text NOT NULL DEFAULT 'LIFETIME',
+    max_devices integer NOT NULL DEFAULT 2, created_at timestamptz NOT NULL, expires_at timestamptz, revoked_at timestamptz,
+    order_nsu text, purchased_version text, updates_included integer, updates_used integer
+  )`);
+  await pool.query(`CREATE TABLE IF NOT EXISTS license_activations (
+    id uuid PRIMARY KEY, license_id uuid NOT NULL REFERENCES licenses(id) ON DELETE CASCADE, device_id text NOT NULL,
+    device_name text NOT NULL, app_version text NOT NULL, activated_at timestamptz NOT NULL, last_seen_at timestamptz NOT NULL,
+    revoked_at timestamptz, UNIQUE(license_id, device_id)
+  )`);
+  await pool.query('CREATE INDEX IF NOT EXISTS idx_la_license ON license_activations(license_id)');
+  await pool.query(`CREATE UNIQUE INDEX IF NOT EXISTS idx_licenses_order_nsu ON licenses(order_nsu) WHERE order_nsu IS NOT NULL`);
   await pool.query(`CREATE TABLE IF NOT EXISTS trial_activations (
     id uuid PRIMARY KEY, device_id_hash text NOT NULL UNIQUE, started_at timestamptz NOT NULL,
     expires_at timestamptz NOT NULL, consumed_at timestamptz NOT NULL,
@@ -153,6 +170,8 @@ export async function postgresLicenseDb(connectionString: string): Promise<Licen
     },
     byKeyHash: async hash => { const result = await pool.query<{ [key: string]: unknown }>('SELECT * FROM licenses WHERE key_hash=$1', [hash]); return result.rows[0] ? toLicense(result.rows[0]) : null; },
     byId: async id => { const result = await pool.query<{ [key: string]: unknown }>('SELECT * FROM licenses WHERE id=$1', [id]); return result.rows[0] ? toLicense(result.rows[0]) : null; },
+    byOrderNsu: async orderNsu => { const result = await pool.query<{ [key: string]: unknown }>('SELECT * FROM licenses WHERE order_nsu=$1', [orderNsu]); return result.rows[0] ? toLicense(result.rows[0]) : null; },
+    ping: async () => { await pool.query('SELECT 1'); return true; },
     list: async () => (await pool.query<{ [key: string]: unknown }>('SELECT * FROM licenses ORDER BY created_at DESC')).rows.map(toLicense),
     setStatus: async (id, status, at) => { await pool.query('UPDATE licenses SET status=$1,revoked_at=$2 WHERE id=$3', [status, status === 'REVOKED' ? at : null, id]); },
     activation: async (licenseId, deviceId) => { const result = await pool.query<{ [key: string]: unknown }>('SELECT * FROM license_activations WHERE license_id=$1 AND device_id=$2', [licenseId, deviceId]); return result.rows[0] ? toActivation(result.rows[0]) : null; },
