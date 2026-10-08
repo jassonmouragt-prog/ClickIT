@@ -212,3 +212,92 @@ Licenciamento (raiz): `node --test tests/licensing-*.test.ts` → 31 PASS.
   validar primeiro com mocks/ambiente de teste da InfinitePay).
 - **Webhook assinado**: a InfinitePay não documenta assinatura — a prova é
   sempre o `payment_check`.
+
+## 10. Deploy na Vercel (2026-10-08)
+
+- **URL pública**: `https://clickit-pearl.vercel.app` (alias de produção;
+  deployments individuais usam `clickit-<hash>-jason-3c4d.vercel.app`).
+- **Projeto Vercel**: `clickit` (org `jason-3c4d`), importado pela CLI a
+  partir de `landing/`. Repositório `jassonmouragt-prog/ClickIT` **privado**
+  já conectado na Vercel (Integração Git detectada no `vercel link`).
+- **Root Directory**: `landing` (o deploy via CLI sobe exatamente a pasta
+  `landing/`; para deploys por push do Git, confirmar `Root Directory =
+  landing` e `Build Command = npm run build` no painel).
+- **Node/runtime**: build e funções rodando no runtime default da Vercel.
+  Locais (dev) permanecem Node 24 + `node:sqlite`.
+- **Env vars configuradas** (Production, secret):
+  - `NEXT_PUBLIC_SITE_URL=https://clickit-pearl.vercel.app`
+  - `INFINITEPAY_WEBHOOK_URL=https://clickit-pearl.vercel.app/api/webhooks/infinitepay`
+  - `INFINITEPAY_REDIRECT_URL=https://clickit-pearl.vercel.app/pagamento`
+- **Env vars PENDENTES** (não inventadas; não quebram o deploy):
+  - `INFINITEPAY_HANDLE` (InfiniteTag da conta)
+  - `LICENSE_API_URL` + `LICENSE_ADMIN_KEY` (License API pública)
+  - `NEXT_PUBLIC_DOWNLOAD_URL` (instalador hospedado)
+  - `NEXT_PUBLIC_SUPPORT_URL` (fallback `/#faq` já usado pelo site)
+- **Problema crítico descoberto no serverless**: o filesystem do runtime
+  Vercel é somente leitura (exceto `/tmp`), então **o SQLite de pedidos
+  (`data/orders.sqlite`) NÃO funciona em produção** — antes isso derrubava
+  as rotas com 500 (`ENOENT mkdir 'data'`). Corrigido: quando o store não
+  abre, as rotas respondem estados seguros — `POST /api/checkout` → **503**
+  `STORE_UNAVAILABLE`, `POST /api/webhooks/infinitepay` → **400**
+  `STORE_UNAVAILABLE` (retry), status → **503**. Nenhuma licença é gerada
+  sem `payment_check` válido. Para a venda real a frente de pedidos precisa
+  de **Postgres (Neon)** — ver seção 12.
+- **Validação do deploy** (screenshots/métricas Puppeteer, zero console
+  error): `/` desktop+mobile, `/checkout` desktop+mobile com
+  `scrollWidth == viewport`, 1 stylesheet, `bodyBackground rgb(7,10,16)`,
+  overflow somente em blobs decorativos bleeds; `/pagamento`, `/privacidade`
+  e `/termos` retornam 200. Um `ERR_CONNECTION_RESET` no otimizador de
+  imagem (`cmp-05.webp`, w=128) no mobile foi transiente (retry sem erro).
+
+## 11. Infraestrutura recomendada
+
+### 11.1 License API (auditoria)
+
+Estado atual: projeto independente em `licensing/` — servidor `node:http`
+de longa duração (`src/index.ts`), banco **SQLite local** por padrão
+(`licensing/license.sqlite`) e **Postgres já suportado** via `DATABASE_URL`
+(`postgresLicenseDb`); chave de assinatura Ed25519 por env
+`LICENSE_PRIVATE_KEY` (ou `dev-keypair.json` ignorado). Requer estado
+persistente (ativações/revogações/trials) — **não é serverless-friendly com
+SQLite**.
+
+Recomendação (em ordem):
+- **A) Vercel Serverless + Neon Postgres** — menor custo operacional (tudo
+  na Vercel, Neon tem tier grátis) e `db.ts` já tem driver Postgres; falta
+  um wrapper serverless quebrado do `createLicenseServer` para a função e
+  configurar `DATABASE_URL` + `LICENSE_PRIVATE_KEY` como env. Requer etapa
+  de código pequena.
+- **B) Railway / Render / Fly.io** — roda o servidor atual intocado
+  (container persistente com volume SQLite) em ~5–7 min, custo ~US$5/mês.
+- Não recomendado hospedar com banco SQLite em serverless (Runtime não
+  persistente).
+
+Para a venda aberta, a **frente de pedidos da landing precisa do mesmo
+Postgres** (Neon): `ORDERS_SQLITE` é dev-only; em produção o `db.ts` de
+pedidos deveria ganhar variante Postgres (ou usar Vercel Postgres/KV).
+
+### 11.2 Instalador (auditoria)
+
+Estado atual: `release/ClickIT Setup 0.1.0.exe` (≈ **313,9 MB**) e
+`release/ClickIT 0.1.0.exe` portable (≈ 313,6 MB) + blockmap — **não** está
+hospedado.
+
+Recomendação:
+- **Cloudflare R2** (10 GB grátis, **zero egress**) ou **Backblaze B2**
+  (10 GB grátis) — arquivos grandes com download aceitável; bucket público
+  ou URL pré-assinada de longa duração como `NEXT_PUBLIC_DOWNLOAD_URL`.
+- **GitHub Releases NÃO serve** (limite de 2 GB por versão, mas arquivos
+  acima de 100 MB não são permitidos) — 313 MB ultrapassa.
+- **Vercel não cabe**: limite de 250 MB por arquivo estático no projeto +
+  custo de bandwidth; não recomendado.
+
+### 11.3 Pendências para abrir a venda (checklist)
+
+1. Neon Postgres para pedidos da landing (migrar `OrdersStore` ou Vercel KV).
+2. License API pública (opção 11.1.A ou 11.1.B) + `LICENSE_API_URL` /
+   `LICENSE_ADMIN_KEY` na Vercel.
+3. `INFINITEPAY_HANDLE` + registrar `INFINITEPAY_REDIRECT_URL` e
+   `INFINITEPAY_WEBHOOK_URL` na conta InfinitePay.
+4. Instalador em R2/B2 → `NEXT_PUBLIC_DOWNLOAD_URL`.
+5. Só então: teste real de pagamento (autorização explícita).

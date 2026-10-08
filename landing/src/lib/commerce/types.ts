@@ -86,6 +86,7 @@ export interface CheckoutLink {
 
 export type CommerceErrorCode =
   | 'NOT_CONFIGURED'
+  | 'STORE_UNAVAILABLE'
   | 'INVALID_CUSTOMER'
   | 'ORDER_NOT_FOUND'
   | 'CHECKOUT_UNAVAILABLE'

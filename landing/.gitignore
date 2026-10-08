@@ -7,6 +7,10 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+.vercel/
 .env
 .env*.local
 data/
+
+.vercel
+.env*

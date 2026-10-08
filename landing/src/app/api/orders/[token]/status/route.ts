@@ -16,7 +16,15 @@ export async function GET(
   { params }: { params: Promise<{ token: string }> },
 ): Promise<NextResponse> {
   const { token } = await params;
-  const deps = makeDeps();
+  let deps: Awaited<ReturnType<typeof makeDeps>>;
+  try {
+    deps = makeDeps();
+  } catch {
+    return NextResponse.json(
+      { ok: false, status: 'STORE_UNAVAILABLE' },
+      { status: 503, headers: { 'cache-control': 'no-store' } },
+    );
+  }
   const order = deps.store.byLocator(token);
   if (!order) {
     return NextResponse.json({ ok: false, status: 'NOT_FOUND' }, { status: 404, headers: { 'cache-control': 'no-store' } });

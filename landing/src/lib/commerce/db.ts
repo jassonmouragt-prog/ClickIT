@@ -267,7 +267,16 @@ export function defaultOrdersStore(): OrdersStore {
   const cache = (caches.__clickitOrders ??= new Map());
   const existing = cache.get(file);
   if (existing) return existing;
-  const store = ordersDb(file);
+  let store: OrdersStore;
+  try {
+    store = ordersDb(file);
+  } catch (error) {
+    // FS somente leitura (ex.: serverless): sem store não há pedido.
+    throw new CommerceError(
+      'STORE_UNAVAILABLE',
+      `banco de pedidos indisponível: ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
   cache.set(file, store);
   return store;
 }

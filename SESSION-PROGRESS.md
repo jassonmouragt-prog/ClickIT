@@ -511,4 +511,34 @@ Pendente / criterio BRANDING_*:
 - Docs: novo `docs/COMMERCE.md`; `docs/VALIDATION.md` com a seção da
   integração. `.env.example` documenta as env vars (nenhuma no client).
 - **Pendente**: e-mail (fora desta etapa), deploy, pagamento real (exige
-  autorização), commit desta fase.
+  autorização), commit desta fase (commitado em `c724ef3`).
+
+## 2026-10-08 — Publicação na Vercel (deploy de produção)
+
+**DEPLOY_STATUS: PASS** — publicado e validado publicamente.
+
+- Repo privado criado: `jassonmouragt-prog/ClickIT` (origin adicionada;
+  push somente dos commits `e903485` + `c724ef3`; alterações locais de
+  outras fases NÃO foram commitadas/pushadas).
+- Projeto Vercel `clickit` (org `jason-3c4d`), Root Directory = `landing`;
+  Git integrado (detectado no `vercel link`).
+- **URL pública (produção): `https://clickit-pearl.vercel.app`**.
+- Env vars configuradas: `NEXT_PUBLIC_SITE_URL`,
+  `INFINITEPAY_WEBHOOK_URL=https://clickit-pearl.vercel.app/api/webhooks/infinitepay`,
+  `INFINITEPAY_REDIRECT_URL=https://clickit-pearl.vercel.app/pagamento`.
+- Env vars PENDENTES: `INFINITEPAY_HANDLE`, `LICENSE_API_URL`,
+  `LICENSE_ADMIN_KEY`, `NEXT_PUBLIC_DOWNLOAD_URL`, `NEXT_PUBLIC_SUPPORT_URL`.
+- **Fix de produção**: serverless Vercel tem FS somente leitura → `data/`
+  não cria; rotas caíam para 500. Novo código `STORE_UNAVAILABLE`:
+  checkout → 503, webhook → 400 (retry), status → 503; nenhuma licença sem
+  `payment_check`. Checks PASS (typecheck/lint/test 19/build). **Non
+  commitado** — aguardando você.
+- Validação pública (Puppeteer, na URL): `/`, `/checkout`, `/pagamento`,
+  `/privacidade`, `/termos`; desktop+mobile sem console error, scroll sem
+  overflow, CSS carregado (1 stylesheet), fundo `rgb(7,10,16)`, oferta
+  R$ 347,00 e CTA → `/checkout`.
+- Auditoria: License API precisa de Postgres em prod (Neon) ou host
+  persistente; instalador 313,9 MB → GitHub Releases não serve (limite
+  100 MB/arquivo) → recomendar R2/B2. Ver `docs/COMMERCE.md` §§10–11.
+- **Próximo passo**: commit do fix `STORE_UNAVAILABLE` + push para
+  origin/main; depois decidir Neon para pedidos + License API pública.

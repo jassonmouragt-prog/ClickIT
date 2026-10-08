@@ -19,7 +19,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     return NextResponse.json({ ok: true, checkoutUrl }, { status: 201 });
   } catch (error) {
     const code = error instanceof CommerceError ? error.code : 'UNEXPECTED';
-    const status = code === 'INVALID_CUSTOMER' ? 400 : code === 'NOT_CONFIGURED' ? 503 : code === 'CHECKOUT_UNAVAILABLE' ? 502 : 500;
+    const status = code === 'INVALID_CUSTOMER' ? 400 : code === 'NOT_CONFIGURED' || code === 'STORE_UNAVAILABLE' ? 503 : code === 'CHECKOUT_UNAVAILABLE' ? 502 : 500;
     if (!(error instanceof CommerceError)) {
       console.error('checkout falhou:', error instanceof Error ? error.message : String(error));
     }

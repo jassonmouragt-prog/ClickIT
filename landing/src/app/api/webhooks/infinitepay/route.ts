@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { CommerceError } from '@/lib/commerce/types';
 import { handleWebhook, makeDeps } from '@/lib/commerce/orders';
 
 /**
@@ -14,6 +15,14 @@ import { handleWebhook, makeDeps } from '@/lib/commerce/orders';
  */
 export async function POST(request: Request): Promise<NextResponse> {
   const raw: unknown = await request.json().catch(() => null);
-  const { status, body } = await handleWebhook(raw, makeDeps());
-  return NextResponse.json(body, { status });
+  try {
+    const { status, body } = await handleWebhook(raw, makeDeps());
+    return NextResponse.json(body, { status });
+  } catch (error) {
+    // Store indisponível (FS somente leitura): 400 → a InfinitePay reenvia.
+    if (error instanceof CommerceError && error.code === 'STORE_UNAVAILABLE') {
+      return NextResponse.json({ ok: false, reason: 'STORE_UNAVAILABLE' }, { status: 400 });
+    }
+    throw error;
+  }
 }
