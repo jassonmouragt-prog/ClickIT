@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { useGsapScope, gsap } from '@/lib/anim';
 import { SectionHeader } from '@/components/ui/Actions';
 import { PRODUCT_FULL_NAME, PRODUCT_PRICE_DISPLAY, PRODUCT_PRICE_READY } from '@/config/product';
-import { goToCheckout, startCheckout } from '@/lib/checkout';
+import { goToCheckout } from '@/lib/checkout';
 
 const INCLUDES = [
   'Seleção inteligente',
@@ -17,6 +17,13 @@ const INCLUDES = [
   'Preview de edição',
   'Exportação XMP',
   'Atualizações da beta',
+];
+
+const TERMS = [
+  'Licença vitalícia',
+  'Até 2 dispositivos',
+  '3 próximas versões principais incluídas',
+  'Trial permanece separado',
 ];
 
 export function Offer(): ReactNode {
@@ -34,11 +41,6 @@ export function Offer(): ReactNode {
   });
 
   const handleBuy = (): void => {
-    const result = startCheckout();
-    if (result.status === 'redirect') {
-      window.location.href = result.url;
-      return;
-    }
     goToCheckout();
   };
 
@@ -48,7 +50,7 @@ export function Offer(): ReactNode {
         <SectionHeader
           eyebrow="oferta"
           title={['Comece a recuperar', 'suas horas.']}
-          lead="Licença para Windows, uso no seu computador, atualizações incluídas durante a beta."
+          lead="Pagamento único, licença vitalícia e atualizações incluídas durante a beta."
           align="center"
         />
 
@@ -98,9 +100,27 @@ export function Offer(): ReactNode {
                 </p>
                 <p className="mt-3 text-[13.5px] leading-relaxed text-mist">
                   {PRODUCT_PRICE_READY
-                    ? 'Pagamento processado pela InfinitePay. A licença é ativada sem reinstalar.'
+                    ? 'Pagamento único · sem renovação automática.'
                     : 'Valor em definição final. Enquanto isso, teste a ClickIT por 20 minutos.'}
                 </p>
+
+                <ul className="mt-5 grid gap-2">
+                  {TERMS.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-[14px] leading-relaxed text-mist">
+                      <svg
+                        viewBox="0 0 24 24"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-cyan"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        aria-hidden="true"
+                      >
+                        <path d="m5 12.5 4.2 4.2L19 7" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <div>
@@ -113,7 +133,7 @@ export function Offer(): ReactNode {
                 </a>
 
                 <p className="mt-3 text-center text-[12.5px] text-fog">
-                  {PRODUCT_PRICE_READY ? 'Compra única · sem renovação automática' : 'Disponível em breve'}
+                  {PRODUCT_PRICE_READY ? 'Pagamento seguro pela InfinitePay' : 'Disponível em breve'}
                 </p>
               </div>
             </div>

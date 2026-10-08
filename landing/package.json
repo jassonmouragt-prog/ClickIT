@@ -8,7 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts",
+    "orders:list": "node tools/orders.ts list",
+    "orders:get": "node tools/orders.ts get",
+    "orders:reconcile": "node tools/orders.ts reconcile"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",

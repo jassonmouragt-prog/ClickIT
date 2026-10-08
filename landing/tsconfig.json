@@ -15,6 +15,7 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "allowJs": true,
+    "allowImportingTsExtensions": true,
     "noEmit": true,
     "incremental": true,
     "plugins": [{ "name": "next" }],

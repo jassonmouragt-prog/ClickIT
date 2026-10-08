@@ -8,7 +8,11 @@ CREATE TABLE IF NOT EXISTS licenses (
   max_devices integer NOT NULL DEFAULT 2,
   created_at timestamptz NOT NULL,
   expires_at timestamptz,
-  revoked_at timestamptz
+  revoked_at timestamptz,
+  order_nsu text,
+  purchased_version text,
+  updates_included integer,
+  updates_used integer
 );
 
 CREATE TABLE IF NOT EXISTS license_activations (
@@ -25,3 +29,15 @@ CREATE TABLE IF NOT EXISTS license_activations (
 
 CREATE INDEX IF NOT EXISTS idx_license_activations_license ON license_activations(license_id);
 CREATE INDEX IF NOT EXISTS idx_licenses_key_hash ON licenses(key_hash);
+
+CREATE TABLE IF NOT EXISTS trial_activations (
+  id uuid PRIMARY KEY,
+  device_id_hash text NOT NULL UNIQUE,
+  started_at timestamptz NOT NULL,
+  expires_at timestamptz NOT NULL,
+  consumed_at timestamptz NOT NULL,
+  status text NOT NULL CHECK (status IN ('ACTIVE','EXPIRED','CONVERTED')),
+  app_version text NOT NULL,
+  created_at timestamptz NOT NULL,
+  converted_at timestamptz
+);

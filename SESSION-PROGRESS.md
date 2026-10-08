@@ -479,3 +479,36 @@ Pendente / criterio BRANDING_*:
 - Validação final sequencial PASS: `typecheck`, `lint`, `build`. Smoke 390/834/1440/1920:
   `stylesheetCount=1`, `bodyBackground=rgb(7,10,16)`, `scrollWidth == viewport`,
   zero `console.error`. Screenshots finais gerados em `.shots/` para revisão humana.
+
+## 2026-10-08 — Integração comercial InfinitePay (fase 1)
+
+**Classificação: COMMERCE_READY_FOR_LIVE_PAYMENT_TEST. Nenhum pagamento real.**
+
+- Oferta travada: ClickIT Beta, **R$ 347,00** (34700 centavos), pagamento
+  único, licença vitalícia `BETA_LIFETIME`, 2 dispositivos, 3 próximas
+  versões principais (`purchasedVersion 0.1.0`, patch não consome).
+  Fonte única: `landing/src/config/commerce.ts`; `product.ts` agora exibe
+  `R$ 347,00` por padrão (removido placeholder `R$ XXX`).
+- **Landing** (`landing/src/lib/commerce/*`): pedidos em SQLite
+  (`data/orders.sqlite`, `node:sqlite`, cria `data/` automaticamente),
+  cliente `infinitepay.ts` (`/links`, `/payment_check`, `assertPaid`),
+  `license-api.ts` (emite licença via `POST /admin/licenses`), orquestração
+  `orders.ts` (idempotente, trava por pedido), validação e logs redigidos.
+- Rotas: `POST /api/checkout`, `POST /api/webhooks/infinitepay`
+  (200 tratado / 400 retry), `GET /api/orders/[token]/status`
+  (polling + reconciliação). Páginas: `/checkout` virou formulário real
+  (nome/e-mail/WhatsApp + resumo da oferta) e `/pagamento` com estados
+  PROCESSING/PENDING/PAID/LICENSE_READY/FAILED, polling 2,5 s × 72 e
+  entrega do serial com copiar + download.
+- **License API**: novas colunas `order_nsu`, `purchased_version`,
+  `updates_included`, `updates_used` (migração SQLite/Postgres) e aceitação
+  dos metadados no admin. Token do app continua `LIFETIME`.
+- CLI `npm run orders:list|get|reconcile` (landing/tools/orders.ts).
+- Testes: landing **19/19 PASS** (mocks, sem rede); raiz **162/162 PASS**
+  (31 de licenciamento). Landing `typecheck/lint/build` PASS; raiz
+  `typecheck/lint/test/build` PASS. Smoke `next start`: 503 sem config,
+  404 status inexistente, 200 webhook desconhecido, 400 corpo inválido.
+- Docs: novo `docs/COMMERCE.md`; `docs/VALIDATION.md` com a seção da
+  integração. `.env.example` documenta as env vars (nenhuma no client).
+- **Pendente**: e-mail (fora desta etapa), deploy, pagamento real (exige
+  autorização), commit desta fase.

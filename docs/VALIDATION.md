@@ -1,5 +1,43 @@
 ﻿# ClickIT — validação do MVP existente
 
+## Trial temporário de 20 minutos — 2026-10-08
+
+**TRIAL_READY_FOR_BETA** para o fluxo local validado. A License API registra um trial
+único por hash de dispositivo e emite token Ed25519 com início no relógio do servidor e
+vencimento exato após 20 minutos. O main process protege workspace e IPCs, bloqueia
+trial vencido sem apagar projetos e permite ativar uma licença comercial na mesma
+instalação. Ativação inicial offline é negada; uso offline só dura até o prazo assinado.
+
+Testes cobrem início, duração fixa, uso único mesmo após apagar storage, restart,
+relógio alterado, sleep, offline, guard, adulteração de token, deviceId trocado,
+preservação de projeto, conversão e consulta administrativa. A suíte total passou em
+**162/162**, além de lint, typecheck e build. O teste de duração confirma que o build
+empacotado ignora a injeção do relógio de teste.
+
+O [fluxo real no Electron](evidence/trial/validation-result.json) usou License API e
+SQLite reais locais, com relógio controlado somente no app não empacotado: ativação,
+contador, fechamento/reabertura com ~15 minutos restantes, expiração, tentativa negada
+após apagar storage e conversão paga preservando o projeto. Resultado **PASS**, sem
+`console.error` nem `IPC_ERROR` inesperado. Foram gerados portable e NSIS por
+`npm run package:win`; a [inspeção dos artefatos](evidence/trial/package-verification.json)
+confirmou o mesmo payload com tela/endpoint de trial e ausência de chave privada.
+O bypass `CLICKIT_DEV_LICENSE` continua restrito ao app não empacotado.
+Um [smoke test do app empacotado](evidence/trial/packaged-smoke.json) confirmou que
+ele exige entitlement mesmo com o bypass DEV ligado, oferece o trial e ignora o
+relógio de teste futuro. NSIS e portable usam esse mesmo `app.asar`.
+
+Limite da validação: o fluxo completo de expiração foi automatizado no Electron não
+empacotado porque o relógio de teste é deliberadamente ignorado em produção. Não há
+servidor externo implantado nem pagamento/webhook nesta fase.
+
+## Fase F do Editar — 2026-10-08
+
+**PHASE_F_READY** para o fluxo local validado. `npm run lint`, `npm run typecheck`, `npm test` (157/157) e `npm run build` passaram. O Electron real percorreu geração em lote, override na prévia, revisão individual e em lote, exportação XMP, resumo, abrir pasta e reabertura com status persistido, sem `console.error` ou `IPC_ERROR`. [Evidência GUI e leitura ExifTool](evidence/editing-xmp/validation-result.json).
+
+O DNG real `PhotoTraces_Free_RAW_Photos_01_Manhattan_Skyline.dng` passou magic TIFF/DNG 1.4, EXIF, preview embutido 1024×683, análise completa, exportação RAW byte-idêntica e geração/revisão/exportação de XMP separado, legível pelo ExifTool. SHA-256 do original antes/depois e da cópia RAW: `8726ee28e30b3e0157769043d6fc73444338a41c9c247547ee37fdb973515cc1`. [Relatório RAW completo](evidence/raw-validation-2026-10-08T10-01-58-771Z.json). O pipeline registrou uma falha transitória ao tentar o worker de preview ausente e recuperou por fallback antes de concluir `DONE`; ela permanece visível no relatório. CR2/CR3/NEF/ARW: `NOT_TESTED`.
+
+Benchmarks de 10/50/100 planos mais XMPs: 10/50/100 sucessos, zero falha, respectivamente 252/800/1538 ms; RSS após cada lote aproximadamente 88/92/101 MB. [Medições](evidence/editing-phase-f-performance.json). Adobe/Lightroom: `ADOBE_RUNTIME_NOT_TESTED`.
+
 ## Sinais de preferência isolados — 2026-10-06
 
 Executado `node scripts/preference-signals-test.mjs` nas mesmas cinco imagens e análises reais salvas. [JSON com hashes e medidas](evidence/preference-signals-2026-10-06T13-05-51-937Z.json). Para -1/-4/-5, centróide horizontal facial normalizado: **0,519 / 0,515 / 0,507**; espaço superior até o rosto: **0,209 / 0,207 / 0,205**. São retângulos faciais reais, próximos entre si; não distinguem confiavelmente preferência de composição. Distância a linhas dos terços é só medida bruta auxiliar. Dimensões originais vieram do Sharp; retângulos estão normalizados no preview do FaceLandmarker.
@@ -1279,3 +1317,83 @@ docs/evidence/packaging-reproducibility-2026-10-07.json.
   aprendizado por referência, Lightroom ou batch de exportação entrou na
   Fase D (permanece a Fase E). Próxima ação: aguardar autorização para
   Fase E (não iniciar automaticamente).
+
+## Fase E do módulo Editar - 2026-10-07
+
+**Classificação: PHASE_E_READY.**
+**Validação de estrutura XMP: XMP_STRUCTURE_VALIDATED.**
+**Validação no ambiente Adobe: ADOBE_RUNTIME_NOT_TESTED.**
+
+- Exportação XMP sidecar **não destrutiva** de `EditingPlan` em estado `REVIEWED`:
+  originais (RAW/JPEG) permanecem **100% idênticos** (verificados por SHA-256 antes
+  e depois da exportação).
+- Whitelist explícita de 13 parâmetros em `src/editing/xmp-map.ts`: `Exposure2012`
+  (limite dedicado a ±0.75 EV, 2 casas decimais), `Contrast2012`, `Highlights2012`,
+  `Shadows2012`, `Whites2012`, `Blacks2012`, `Clarity2012`, `Texture`, `Vibrance`,
+  `Saturation`, `Sharpness` (0..150, sem nitidez negativa), `GrainAmount` (0..100) e
+  `PostCropVignetteAmount` (sinal invertido: ClickIT + escurece, Adobe - escurece).
+- Parâmetros não suportados (`temperaturePreference`, `tintPreference`) marcados como
+  `UNSUPPORTED_XMP` com motivo documentado ("WB depende do original").
+- XML gerado em UTF-8 com namespaces `x`, `rdf`, `crs` e `clickit:` (provinda com
+  `engineVersion`, `mappingVersion`, `profileId`, `profileVersion`, `planId`,
+  `inputFingerprint`, `exportedAt`).
+- Resolução segura de caminhos (`sidecarPath`), prevenção de path traversal/symlinks,
+  detecção de colisões de basename (`IMG_001.CR3` + `IMG_001.JPG`) e suporte às políticas
+  explícitas `BACKUP_AND_REPLACE` (gera `IMG_1234.xmp.bak-<timestamp>-<uuid>`),
+  `REPLACE` e `CANCEL`.
+- Ticket de confirmação em duas etapas (`prepare` + `export`), gravação atômica `.partial`,
+  parse de sanidade pré-renomeação e rollback seguro se a gravação/banco falhar.
+- IPC: **2 novos handlers** (total 19, todos com guard `requireWorkspaceLicense`).
+- UI (`EditingXmpExport.tsx`): modal de confirmação com visualização de parâmetros
+  suportados, alertas de `UNSUPPORTED_XMP`, detecção de sidecar existente e botão
+  de exportação em lote ou individual.
+- `tests/editing-xmp.test.ts`: **15 casos PASS**. Suite global **153/153 PASS**;
+  typecheck, build e lint dos arquivos alterados PASS.
+- Validação GUI automatizada em Electron real (`scripts/validate-editing-xmp-ui.mjs`):
+  **PASS**, 5 checks, 0 erros console/IPC, evidências em `docs/evidence/editing-xmp/`
+  com captura visual desktop/compacto, XMP gerado, JSONs de hash/comparação e
+  confirmação ExifTool independente dos parâmetros CRS.
+- Nenhuma instalação Adobe encontrada na máquina de validação Windows; leitura no
+  Lightroom/ACR permanece não testada no ambiente real (`ADOBE_RUNTIME_NOT_TESTED`).
+
+## Integração comercial InfinitePay — 2026-10-08
+
+**Classificação: COMMERCE_READY_FOR_LIVE_PAYMENT_TEST.**
+**Pagamento real: NÃO realizado. Deploy: NÃO realizado. E-mail: NÃO implementado.**
+
+- Fluxo completo implementado na landing: `/checkout` (formulário) →
+  `POST /api/checkout` → pedido `PENDING` em SQLite (`data/orders.sqlite`) →
+  `POST https://api.checkout.infinitepay.io/links` → redirect para a
+  InfinitePay → retorno em `/pagamento` → webhook
+  `POST /api/webhooks/infinitepay` → `payment_check` → `POST /admin/licenses`
+  da License API → serial `CLICKIT-XXXX-XXXX-XXXX` entregue na página.
+- Preço **34700 centavos** fixado em `landing/src/config/commerce.ts`;
+  o navegador não envia preço (testado: payload `price`/`amount` do cliente
+  é ignorado). Plano `BETA_LIFETIME`, `maxDevices=2`, `updatesIncluded=3`,
+  `updatesUsed=0`, `expiresAt=null`, `purchasedVersion=0.1.0`.
+- Idempotência: `order_nsu` UNIQUE, `transaction_nsu` UNIQUE (índice parcial),
+  `BEGIN IMMEDIATE` + `UPDATE ... WHERE status IN (...)` em `claimPaid` e
+  `attachLicense`, mais trava por pedido no processo. Webhook duplicado →
+  1 licença; `transaction_nsu` repetido → `TRANSACTION_CONFLICT` (400).
+- Redirect nunca aprova sozinho: `/pagamento` só localiza o pedido e roda
+  `payment_check` (requer `transaction_nsu` + `slug`); sem eles fica `PENDING`.
+- License API estendida (`licensing/src/{types,db,app}.ts`): colunas
+  `order_nsu`, `purchased_version`, `updates_included`, `updates_used` com
+  migração automática (SQLite `ALTER TABLE` + Postgres `IF NOT EXISTS`);
+  `POST /admin/licenses` aceita `plan` (allowlist), `purchasedVersion`,
+  `updatesIncluded`, `updatesUsed`, `orderId`. O token entregue ao app
+  continua `plan: 'LIFETIME'` (allowlist de `src/licensing/token.ts` intacta).
+- CLI: `npm run orders:list | orders:get | orders:reconcile` (landing).
+- Logs estruturados com redação de serial/cartão/chave (`log.ts`).
+- **Landing**: 19 testes PASS (mocks de HTTP, zero chamadas reais) — preço do
+  backend, order_nsu único, payload `/links`, redirect não aprova, webhook
+  desconhecido/duplicado, tx repetido, `paid=false`, valor divergente, retry
+  com License API fora, estados `PENDING`/`LICENSE_READY`, validação de form.
+  `typecheck`, `lint`, `build` PASS. Smoke em `next start`: checkout
+  sem config → **503**, status inexistente → **404**, webhook pedido
+  desconhecido → **200 ORDER_NOT_FOUND**, corpo inválido → **400**;
+  `data/orders.sqlite` criado automaticamente (bug de diretório corrigido).
+- **Raiz**: `typecheck`, `lint`, `test` **162/162 PASS**, `build` PASS
+  (inclui os 31 testes de licenciamento).
+- Documentação: `docs/COMMERCE.md`; pendências: e-mail, deploy e pagamento
+  real (exige autorização explícita).

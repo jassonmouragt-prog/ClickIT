@@ -11,6 +11,10 @@ export interface LicenseRow {
   createdAt: string;
   expiresAt: string | null;
   revokedAt: string | null;
+  orderId: string | null;
+  purchasedVersion: string | null;
+  updatesIncluded: number | null;
+  updatesUsed: number | null;
 }
 
 export interface ActivationRow {
@@ -33,6 +37,33 @@ export interface CreateLicenseInput {
   maxDevices: number;
   createdAt: string;
   expiresAt: string | null;
+  /** order_nsu do pedido comercial que originou esta licença. */
+  orderId?: string | null;
+  /** Versão adquirida (início do ciclo de atualizações inclusas). */
+  purchasedVersion?: string | null;
+  /** Atualizações PRINCIPAIS inclusas (patches não consomem). */
+  updatesIncluded?: number | null;
+  updatesUsed?: number | null;
+}
+
+export type TrialStatus = 'ACTIVE' | 'EXPIRED' | 'CONVERTED';
+export interface TrialRow {
+  id: string;
+  deviceIdHash: string;
+  startedAt: string;
+  expiresAt: string;
+  consumedAt: string;
+  status: TrialStatus;
+  appVersion: string;
+  createdAt: string;
+  convertedAt: string | null;
+}
+export interface StartTrialInput {
+  id: string;
+  deviceIdHash: string;
+  startedAt: string;
+  expiresAt: string;
+  appVersion: string;
 }
 
 export interface LicenseDb {
@@ -47,5 +78,10 @@ export interface LicenseDb {
   addActivation(licenseId: string, deviceId: string, deviceName: string, appVersion: string, at: string): Promise<ActivationRow>;
   deactivate(licenseId: string, deviceId: string): Promise<void>;
   touch(licenseId: string, deviceId: string, appVersion: string, at: string): Promise<void>;
+  startTrial(input: StartTrialInput): Promise<TrialRow | null>;
+  trialByDeviceHash(hash: string): Promise<TrialRow | null>;
+  listTrials(now: string): Promise<TrialRow[]>;
+  convertTrial(hash: string, at: string): Promise<void>;
+  hasCommercialActivation(deviceId: string): Promise<boolean>;
   close(): Promise<void>;
 }
