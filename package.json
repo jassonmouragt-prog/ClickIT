@@ -1,6 +1,6 @@
 {
   "name": "clickit",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "description": "Seleção local de fotografias",
   "author": "ClickIT",
@@ -42,12 +42,14 @@
     "license:list": "node licensing/src/cli.ts list",
     "license:revoke": "node licensing/src/cli.ts revoke",
     "license:devices": "node licensing/src/cli.ts devices",
+    "license:trials": "node licensing/src/cli.ts trials",
     "license:serve": "node licensing/src/index.ts",
     "license:build": "node licensing/build.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "5.2.8",
     "@mediapipe/tasks-vision": "0.10.35",
+    "@xmldom/xmldom": "0.9.12",
     "exiftool-vendored": "^34.0.0",
     "onnxruntime-node": "^1.22.0",
     "pg": "8.23.1",
@@ -56,6 +58,8 @@
     "sharp": "^0.34.3"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "3.1148.0",
+    "@aws-sdk/lib-storage": "3.1148.0",
     "@eslint/js": "^9.30.0",
     "@tailwindcss/vite": "^4.1.0",
     "@types/node": "^24.0.0",
@@ -86,6 +90,10 @@
       {
         "from": "resources/models",
         "to": "models"
+      },
+      {
+        "from": "build/icon.ico",
+        "to": "icon.ico"
       }
     ],
     "asarUnpack": [
@@ -105,7 +113,10 @@
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": true,
-      "shortcutName": "ClickIT"
+      "shortcutName": "ClickIT",
+      "installerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
     }
   }
 }
