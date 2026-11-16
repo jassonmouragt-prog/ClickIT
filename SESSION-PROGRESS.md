@@ -1,4 +1,4 @@
-﻿# Session progress — 2026-10-06
+﻿﻿﻿﻿# Session progress — 2026-10-06
 
 ## Atualização — ÍCONE (2026-10-08) — ROOT_CAUSE: bug no gerador de .ico
 
@@ -54,7 +54,7 @@
 
 - Projeto: `C:\dev\ClickIT`. Ler este arquivo e `docs/VALIDATION.md` antes de continuar.
 - Ambiente Windows / PowerShell 5.1, 8 GB de RAM. Executar tarefas pesadas sequencialmente; não deixar watchers ou workers temporários ativos.
-- Pasta RAW fornecida pelo usuário: `C:\Users\jasso\OneDrive\Documents\jobs\Plataforma para professores\Arquivos Editáveis` (dois DNGs PhotoTraces reais).
+- Pasta RAW fornecida pelo usuário: `<pasta RAW do usuario>` (dois DNGs PhotoTraces reais).
 - Pool de benchmark: `.test-tmp/benchmark/pool`; fontes: Imagens Teste (7), Validation Datasets (22), Downloads (53). Replicação autorizada pelo usuário.
 - Scripts npm: `raw:validate`, `benchmark:photos`, `grouping:audit`, `ranking:validate`, `datasets:build`.
 - Template por grupo na raiz: `human-ranking-template.json`, com `humanRank: []` pendente. Preencher nomes do melhor ao pior; corresponder por dataset/conjunto de arquivos, não UUID.
@@ -77,15 +77,15 @@
 - Próximo passo é apenas a validação de 10 fotos solicitada, quando trabalhando no PowerShell local. Não rodar os benchmarks de escala antigos como se fossem evidência de sucesso, não alterar produção e não atualizar classificações passadas sem relatórios novos.
 - Evidências e notas da correção: `docs/VALIDATION.md`, `docs/SCALE-VALIDATION.md`, `docs/evidence/scale-harness-repair.json`, `scale-face-smoke.json`. Ao resumir smoke, observar timestamps/fingerprints: o usuário pode ter atualizado evidência local após esta cópia do workspace.
 
-## Atualiza��o � pol�tica de mem�ria e classifica��o do harness (2026-10-06)
+## Atualização da política de memória e classificação do harness (2026-10-06)
 
-- Mudan�as somente em scripts/scale-harness-state.mjs, scripts/benchmark-scale.mjs e testes. Produ��o/IA/ranking/modelos/grouping/cache intactos.
-- memoryReport: cobertura de amostras v�lidas (PASS >= 0.95, WARN 0.80�0.95, NOT_MEASURED < 0.80 ou sem amostra), com totalSamples/validSamples/invalidSamples/coverageRatio/reason. Cold real 97% ? PASS.
-- memoryLeak: heur�stica conservadora em steady-state (ignora startup/shutdown): regress�o linear na janela est�vel; FAIL s� com halvesAgree + crescimento >= 50% relativo E >= 256 MiB absoluto; >= 20% ? WARN; sen�o PASS. Cold real ? PASS (-43% relativo).
-- classifyTier: checks CRITICAL (falha ? FAIL), REQUIRED (n�o-PASS/WARN ? BLOCKED), OBSERVATIONAL (NOT_MEASURED n�o bloqueia; FAIL ? BLOCKED). Check desconhecido = CRITICAL. Tier 100 existente reclassificado como PASS na nova pol�tica.
-- aggregateStages(stages, observational): memoryLeak por tier � observacional; WARN conta como medido.
-- Testes adicionados em tests/scale-harness-state.test.ts: 98/101, 80/101, 0/101, RSS est�vel (PASS), crescimento lento (WARN), crescimento claro (FAIL), guarda < 256 MiB, amostras insuficientes, classifyTier (CRITICAL/REQUIRED/OBSERVATIONAL) e aggregate observacional. Lint, typecheck, 54/54 testes e build passaram.
-- Benchmark n�o reexecutado; evid�ncias antigas em docs/evidence n�o foram reescritas. Pr�xima a��o quando autorizado: rerun 100 (gera scale-benchmark-100.json novo) e depois 500/1000 + retomada para limpar o BLOCKED agregado.
+- Mudanças somente em scripts/scale-harness-state.mjs, scripts/benchmark-scale.mjs e testes. Produção/IA/ranking/modelos/grouping/cache intactos.
+- memoryReport: cobertura de amostras válidas (PASS >= 0.95, WARN 0.80–0.95, NOT_MEASURED < 0.80 ou sem amostra), com totalSamples/validSamples/invalidSamples/coverageRatio/reason. Cold real 97% → PASS.
+- memoryLeak: heurística conservadora em steady-state (ignora startup/shutdown): regressão linear na janela estável; FAIL são com halvesAgree + crescimento >= 50% relativo E >= 256 MiB absoluto; >= 20% → WARN; senão PASS. Cold real → PASS (-43% relativo).
+- classifyTier: checks CRITICAL (falha → FAIL), REQUIRED (não-PASS/WARN → BLOCKED), OBSERVATIONAL (NOT_MEASURED não bloqueia; FAIL → BLOCKED). Check desconhecido = CRITICAL. Tier 100 existente reclassificado como PASS na nova política.
+- aggregateStages(stages, observational): memoryLeak por tier é observacional; WARN conta como medido.
+- Testes adicionados em tests/scale-harness-state.test.ts: 98/101, 80/101, 0/101, RSS estável (PASS), crescimento lento (WARN), crescimento claro (FAIL), guarda < 256 MiB, amostras insuficientes, classifyTier (CRITICAL/REQUIRED/OBSERVATIONAL) e aggregate observacional. Lint, typecheck, 54/54 testes e build passaram.
+- Benchmark não reexecutado; evidências antigas em docs/evidence não foram reescritas. Próxima ação quando autorizado: rerun 100 (gera scale-benchmark-100.json novo) e depois 500/1000 + retomada para limpar o BLOCKED agregado.
 
 
 ## 2026-10-07 — Empacotamento beta (win-unpacked + NSIS)

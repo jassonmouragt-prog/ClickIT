@@ -8,6 +8,7 @@ resources/models/*.task
 public/wasm/
 *.log
 licensing/dev-keypair.json
+licensing/license.sqlite
 licensing/dist/
 .vercel/
 

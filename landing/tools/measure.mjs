@@ -4,11 +4,10 @@ const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 950 });
 await page.goto('http://localhost:3000/', { waitUntil: 'networkidle0' });
 await new Promise(r => setTimeout(r, 2500));
-const data = await page.evaluate(() => {
+await page.evaluate(() => {
   const el = document.querySelector('#picks');
   const y = el.getBoundingClientRect().top + window.scrollY;
   window.scrollTo({ top: y, behavior: 'instant' });
-  return y;
 });
 await new Promise(r => setTimeout(r, 1500));
 const rects = await page.evaluate(() => {

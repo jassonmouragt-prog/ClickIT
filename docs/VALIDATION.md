@@ -1,4 +1,4 @@
-﻿# ClickIT — validação do MVP existente
+﻿﻿# ClickIT — validação do MVP existente
 
 ## Trial temporário de 20 minutos — 2026-10-08
 
@@ -167,7 +167,7 @@ Hipótese apresentada após a auditoria: usar `regionalSharpness` no termo foco 
 
 **Hook failure não reproduzido; causa não determinada.** Não foi encontrada essa ocorrência exata nos logs acessíveis do projeto/npm, eventos da sessão atual ou registros de hooks do Codex. A pasta `app-server-daemon` negou acesso à listagem; não se contornou essa restrição. O usuário confirmou que dispõe somente de “Hook failed / hook exited with code 1”, sem nome, comando ou stack. **Sem evidência suficiente para atribuir ao projeto. Não considerar PASS nem FAIL do aplicativo por esse evento isolado; ele não bloqueia a validação.** [Registro da investigação](evidence/hook-investigation.json).
 
-Há dois hooks externos do plugin Impeccable 4.3.1 configurados: `PostToolUse` (matcher Edit|Write|apply_patch) e `Stop`. Ambos usam o comando Windows abaixo, com PLUGIN_ROOT resolvido para `C:\Users\jasso\.codex\plugins\cache\openai-curated-remote\impeccable\4.3.1`:
+Há dois hooks externos do plugin Impeccable 4.3.1 configurados: `PostToolUse` (matcher Edit|Write|apply_patch) e `Stop`. Ambos usam o comando Windows abaixo, com PLUGIN_ROOT resolvido para `<PLUGIN_ROOT>\cache\openai-curated-remote\impeccable\4.3.1`:
 
 ```cmd
 if exist "${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable.cmd" ("${PLUGIN_ROOT}/skills/impeccable/scripts/impeccable.cmd" hook & exit /b)
@@ -471,7 +471,7 @@ PASS se aplica somente ao escopo explicitado. PARCIAL não representa aceitaçã
 - Comando: `npm install --verbose`.
 - Executável: `C:\Program Files\nodejs\node.exe`.
 - CLI: `C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js`.
-- CWD: `C:\Users\jasso\OneDrive\Documents\jobs\ClickIT`.
+- CWD: `<repo>`.
 - Fase: obtenção de metadados pelo npm/minipass-fetch. As 21 consultas registraram EACCES; o erro final reporta `https://registry.npmjs.org/@eslint%2fjs`.
 - Frames completos preservados no [debug npm](evidence/npm-install-debug.log), incluindo minipass-fetch/lib/index.js:130:14, ClientRequest.emit, _http_client e processTicksAndRejections.
 - Um fetch diagnóstico do Node ao mesmo endpoint identificou **syscall connect, IPv4 TCP/443**, incluindo `104.16.6.34:443`. Todos os endereços/frames estão em [network.log](evidence/network.log).
@@ -487,8 +487,8 @@ PASS se aplica somente ao escopo explicitado. PARCIAL não representa aceitaçã
 
 ### Permissões e limpeza
 
-- Cache: `C:\Users\jasso\OneDrive\Documents\jobs\ClickIT\.npm-cache`.
-- Prefixo: `C:\Users\jasso\AppData\Roaming\npm`; não é o destino desta instalação local.
+- Cache: `<repo>\.npm-cache`.
+- Prefixo: `%APPDATA%\npm`; não é o destino desta instalação local.
 - ACL: proprietário JARVIS\jasso; Modify para CodexSandboxUsers; também há uma ACE Todos Deny DeleteSubdirectoriesAndFiles. [Projeto](evidence/project-acl.log), [cache](evidence/cache-acl.log). Não se presume permissão de remoção recursiva com base na ACL.
 - Teste efetivo de criar/excluir um arquivo temporário passou no projeto e cache. O npm também conseguiu escrever seu debug log.
 - Não há node_modules nem package-lock.json. Nada foi removido: não existe evidência de corrupção justificando apagar cache ou lock.
@@ -521,7 +521,7 @@ Nenhuma versão foi alterada nesta rodada. Não há lock reproduzível, árvore 
 
 ## Inventário físico dos modelos
 
-Diretório `C:\Users\jasso\OneDrive\Documents\jobs\ClickIT\resources\models`: existe e está **vazio**. [Inventário capturado](evidence/model-directory.log).
+Diretório `<repo>\resources\models`: existe e está **vazio**. [Inventário capturado](evidence/model-directory.log).
 
 | Função | Caminho esperado | Tamanho aproximado | Presença |
 |---|---|---|---|
@@ -788,7 +788,7 @@ Rubric aplicada pelo comando (registrada na evidência): `NOT_READY` = falha de 
 
 ### RAW real e preservação dos originais
 
-Comando: `npm run raw:validate -- --dir "C:\Users\jasso\OneDrive\Documents\jobs\Plataforma para professores\Arquivos Editáveis"`.
+Comando: `npm run raw:validate -- --dir "<pasta RAW do usuario>"`.
 Evidência: [RAW](evidence/raw-validation-2026-10-06T19-11-13-389Z.json).
 
 | Formato | Arquivos reais | Resultado |

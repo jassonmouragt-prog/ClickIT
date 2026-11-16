@@ -30,20 +30,23 @@ Inicie o bundle em `licensing/dist/server.cjs`. Envs:
 | `LICENSE_PRIVATE_KEY` | PEM Ed25519 privada do par de assinatura. |
 | `LICENSE_PORT` | Porta HTTP (default `8085`). |
 
-O desktop conversa com `https://licensing.clickit.app` por padrão; override só para
-desenvolvimento com `CLICKIT_LICENSE_API`.
+O desktop conversa com `https://clickit-license-api.vercel.app` por padrão; override só para
+desenvolvimento com `CLICKIT_LICENSE_API`. O domínio `licensing.clickit.app` está
+estacionado e não serve a API: builds que ainda apontem para ele falham ao ativar.
 
 ## CLI admin
 
-Os comandos abaixo operam sobre `licensing/license.sqlite` (caminho controlado por
-`CLICKIT_LICENSE_API`/ambiente de desenvolvimento). Use no mesmo volume da API dev:
+Os comandos operam sobre o Postgres de produção quando `DATABASE_URL` existe (ou com
+`--db postgres`), e sobre `licensing/license.sqlite` caso contrário (caminho controlado
+por `CLICKIT_LICENSE_SQLITE`). Use o mesmo banco da API em produção:
 
 - `npm run license:keys` — gera novo par de chaves; **atualizar `src/licensing/publicKey.ts`
   e rebuildar o desktop** sempre que trocar o par.
-- `npm run license:create` — cria licença (nome, email, maxDevices); mostra a chave **uma vez**.
+- `npm run license:create` — cria licença (nome, email, maxDevices, plano, versão); mostra a chave **uma vez**.
 - `npm run license:list` — lista licenças (sem hash; apenas prefixo).
 - `npm run license:revoke <id>` — revoga uma licença.
 - `npm run license:devices <id>` — lista ativações por device.
+- `npm run license:trials` — lista os testes grátis emitidos (janela de 20 minutos).
 - `npm run license:serve` — sobe a API dev em `http://127.0.0.1:8085`.
 
 Admin HTTP: `POST/GET /admin/licenses`, `POST /admin/licenses/:id/revoke|unrevoke`,
@@ -53,7 +56,8 @@ Admin HTTP: `POST/GET /admin/licenses`, `POST /admin/licenses/:id/revoke|unrevok
 
 - Chave = 3 blocos `CLICKIT-XXXX-XXXX-XXXX`; aleatória; armazenada só como hash sha256 no banco.
 - `maxDevices` padrão 2; mesma máquina reativar não consome vaga.
-- Plano atual: `LIFETIME` (expiração opcional via `expiresAt`).
+- Plano atual: `LIFETIME` (expiração opcional via `expiresAt`). A API também assina tokens
+  de `TRIAL` (janela de 20 minutos) para o teste grátis.
 - Revalidação: ~7 dias online e graça offline de 30 dias (`VALID_OFFLINE` → `GRACE_EXPIRED`).
 - Licença revogada é reconhecida na próxima validação e bloqueia o workspace offline.
 - `CLICKIT_DEV_LICENSE=1` é ignorado em builds empacotados (só serve no app não-empacotado).
