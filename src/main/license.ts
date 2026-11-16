@@ -6,7 +6,7 @@ import { fileLicenseStore, plainCipher, type SecretCipher } from '../licensing/s
 import { LICENSE_PUBLIC_KEY } from '../licensing/publicKey.ts';
 
 export function licenseApiUrl(): string {
-  return process.env.CLICKIT_LICENSE_API ?? 'https://licensing.clickit.app';
+  return process.env.CLICKIT_LICENSE_API ?? 'https://clickit-license-api.vercel.app';
 }
 
 function cipher(): SecretCipher {

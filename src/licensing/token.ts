@@ -20,7 +20,7 @@ export function unb64u(value: string): Buffer {
 export function isLicensePayload(value: unknown): value is LicensePayload {
   const v = value as Record<string, unknown>;
   return !!v && typeof v === 'object' && typeof v.licenseId === 'string' && typeof v.deviceId === 'string'
-    && v.plan === 'LIFETIME' && typeof v.issuedAt === 'number' && typeof v.checkAfter === 'number'
+    && (v.plan === 'LIFETIME' || v.plan === 'TRIAL') && typeof v.issuedAt === 'number' && typeof v.checkAfter === 'number'
     && (v.validUntil === null || typeof v.validUntil === 'number') && typeof v.maxDevices === 'number';
 }
 

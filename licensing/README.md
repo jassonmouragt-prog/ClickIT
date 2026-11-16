@@ -34,4 +34,20 @@ npm run license:devices
 npm run license:serve          # API local (SQLite + dev-keypair)
 ```
 
+O `--db` escolhe o banco: `postgres` (usa `DATABASE_URL`, o mesmo banco da API em
+produção) ou `sqlite` (arquivo local). Sem `--db`, o CLI usa postgres quando
+`DATABASE_URL` existir e sqlite caso contrário. Uma licença criada no SQLite local
+**não** é reconhecida pela API de produção — para valer no app, crie no postgres.
+
+```bash
+DATABASE_URL=postgresql://... npm run license:create -- --name "Cliente" --maxDevices 2
+```
+
 A chave completa é exibida **uma única vez** na criação; o banco guarda apenas o hash (sha256).
+
+## URL da API no desktop
+
+O desktop chama `https://clickit-license-api.vercel.app` por padrão
+(`src/main/license.ts`). Para apontar outro servidor use a variável de ambiente
+`CLICKIT_LICENSE_API`. O domínio `licensing.clickit.app` está estacionado e não
+serve a API: builds que ainda apontem para ele falham ao ativar.

@@ -1,7 +1,9 @@
 export const REVALIDATION_MS = 7 * 24 * 60 * 60 * 1000;
 export const OFFLINE_GRACE_MS = 30 * 24 * 60 * 60 * 1000;
+/** Janela do teste grátis emitida pela API: 20 minutos (mesma duração da landing). */
+export const TRIAL_DURATION_MS = 20 * 60 * 1000;
 
-export type LicensePlan = 'LIFETIME';
+export type LicensePlan = 'LIFETIME' | 'TRIAL';
 
 export type LicenseState =
   | 'UNACTIVATED'
